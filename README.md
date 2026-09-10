@@ -55,3 +55,5 @@ Supreme Computation asks: **Should this exact consequence happen now, under this
 - [`proofs/CODEX_READONLY_BOUNDARY_2026-09-10.md`](proofs/CODEX_READONLY_BOUNDARY_2026-09-10.md) — the September 10 Codex governance proof.
 
 This repository is the public reference implementation and evidence surface. Dated live-state documents make the observation boundary explicit when production moves faster than documentation.
+
+- [`proofs/OLLAMA_SUBSTRATE_INDEPENDENCE_2026-09-10.md`](proofs/OLLAMA_SUBSTRATE_INDEPENDENCE_2026-09-10.md) — executed Ollama substrate-independence proof across Qwen and TinyLlama.
