@@ -1,47 +1,57 @@
-🧠 Supreme Computation
+# 🧠 Supreme Computation
 
-Nothing Executes Until It Proves Itself.
+**Nothing Executes Until It Proves Itself.**
 
-Supreme Computation is a way for people and machines to check the whole truth of an action before that action becomes reality.
+Supreme Computation is a governance system for people, AI, software and machines. Before an important action becomes real, SCQOS checks whether the whole situation still agrees across eight invariants: **Time, Continuity, Alignment, Genesis, Boundary, Reference, Causality, and Consciousness / Accountability.**
 
-Most software checks things in separate pieces. It may confirm that someone has the right password, permission, account, and command. But all of those pieces can be correct while the final action is still wrong.
+SCQOS returns **PERMIT** when the current transition proves itself, **HOLD** when something is missing, stale or contradictory, and **REJECT** when a hard rule or authority boundary is crossed.
 
-The information could be old. The wrong customer could be selected. The action could go against the real goal. A person or AI could technically have permission to do something that should not happen under the current circumstances.
+## What is live now
 
-Supreme Computation checks whether the person, purpose, timing, history, evidence, authority, boundaries, action, and expected result all agree at the same time. ⚖️
+As of **September 10, 2026**, the verified environment includes a live AWS governance plane, a 59-faculty Supreme Mind architecture, governed Shadow Clones, model-validation boundaries, durable receipts, public-proof infrastructure, business automation, website/email/social infrastructure, Gekyume financial execution work, sports/quantum evidence paths, and independently challengeable demonstrations.
 
-🛡️ What SCQOS Is
+The important idea is not “many disconnected tools.” The tools are useful because they are being placed behind one rule: **no consequential transition inherits permission just because one component said yes earlier. The current transition has to prove itself again.**
 
-SCQOS is the software architecture that makes Supreme Computation executable.
+## Supreme Mind and Shadow Clones
 
-It sits between what a person, AI, application, or machine wants to do and what it is actually allowed to make real.
+The live Supreme Mind manifest defines **59 digital faculties** sharing one SCQOS governance plane. Only causally necessary faculties need to activate. Shadow Clones are bounded workers that can research, analyze, draft and test in parallel, but their output remains evidence or a proposal until governance qualifies the consequence.
 
-Before an important action happens, SCQOS checks the complete situation and returns one of three decisions:
+The system has already observed Shadow Clone drift. During the September 10 Codex experiment, a clone returned unrelated evidence and SCQOS failed closed with **HOLD** rather than releasing the result.
 
-✅ PERMIT — The action proved itself and may continue.
+## Digital-twin testing
 
-⏸️ HOLD — Something is missing, unclear, outdated, or contradictory, so the action stops until the problem is resolved.
+A digital twin freezes one situation and changes one relevant condition so the decision can be challenged directly. In the live Codex proof:
 
-⛔ REJECT — The action crosses a rule, authority, or boundary and is not allowed to happen.
+- `READ_ONLY` + `git status` → **PERMIT**
+- `READ_ONLY` + `mv /tmp/x /tmp/y` → **HOLD**
 
-🧾 Why the Receipt Matters
+Same authority. Different proposed consequence. That makes the boundary falsifiable instead of rhetorical.
 
-When an action is approved and executed, SCQOS can preserve proof showing:
+## Live Codex proof
 
-* what was requested
-* what evidence was used
-* who or what had authority
-* what decision was made
-* what actually happened afterward
+On September 10, 2026, the environment froze public OpenAI Codex issue **#44130**, where an explicitly read-only task reportedly produced `mv /tmp/x /tmp/y`. Supreme Computation produced frozen evidence, a SHA-256 identity, an AWS KMS ML-DSA signature, a verifier and reproducible test vectors.
 
-That means the result does not have to depend on somebody saying, “trust me.”
+**Evidence SHA-256:** `ccfeb37d299494d20ffd18e8bd1d4e60486bbb67cb2211e3fa3856509bf76df0`
 
-It can be checked later. 🔍
+**Public proof:** http://SupremeComputation.org/proof/codex-readonly-boundary-2026-09-10/
 
-⚙️ The Core Idea
+The result was also posted back into the upstream GitHub issue for independent challenge.
 
-Supreme Computation is not just about asking whether software can do something.
+## Live AWS pieces
 
-It asks whether it should happen, whether the full situation supports it, whether the correct authority exists, and whether the result can be proven afterward.
+The verified environment includes SCQOS governors and validators, Shadow Clone execution, Supreme Mind state and receipts in DynamoDB, SQS work queues, versioned S3 evidence, AWS KMS signing, model inference/release validation, SupremeComputation.org business infrastructure, LinkedIn OAuth/publishing, email routing, Anabelle/GrassRootsAI integration, Gekyume, and quantum-facing Qiskit/IBM/AWS experimentation.
 
-Nothing Executes Until It Proves Itself. ⚡
+## The point
+
+Most software asks: **Can this component perform this operation?**
+
+Supreme Computation asks: **Should this exact consequence happen now, under this authority, using this evidence, inside this boundary, and can we prove afterward what happened?**
+
+## Current documentation
+
+- [`docs/CURRENT_STATE_2026-09-10.md`](docs/CURRENT_STATE_2026-09-10.md) — current state in plain English.
+- [`docs/WHAT_CHANGED_SINCE_2026-09-07.md`](docs/WHAT_CHANGED_SINCE_2026-09-07.md) — verified delta since the last public README update.
+- [`docs/LIVE_AWS_MAP_2026-09-10.md`](docs/LIVE_AWS_MAP_2026-09-10.md) — how the live AWS pieces fit together.
+- [`proofs/CODEX_READONLY_BOUNDARY_2026-09-10.md`](proofs/CODEX_READONLY_BOUNDARY_2026-09-10.md) — the September 10 Codex governance proof.
+
+This repository is the public reference implementation and evidence surface. Dated live-state documents make the observation boundary explicit when production moves faster than documentation.
