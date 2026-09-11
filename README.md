@@ -47,6 +47,16 @@ Most software asks: **Can this component perform this operation?**
 
 Supreme Computation asks: **Should this exact consequence happen now, under this authority, using this evidence, inside this boundary, and can we prove afterward what happened?**
 
+## Planetary energy totality proof
+
+Supreme Computation is now being applied to a larger physical question: **can a brain-scale active control layer coordinate a planetary electrical system while the actual energy comes from measured physical sources already available to the planet?**
+
+The executed cloud proof uses public global-energy data, deterministic calculation, local AI digital twins, an Amazon Braket quantum branch, SCQOS invariant checks, AWS KMS signing, versioned S3 evidence, and a durable DynamoDB receipt. Incorrect AI output was rejected instead of promoted.
+
+The current result is **PERMIT** for the planetary energy-abundance bound and the control architecture, and **HOLD** for a physically measured <=20 W global control plane and actual full-world grid operation.
+
+Read the plain-English proof: [Planetary Energy Totality — Executed Cloud Proof](proofs/PLANETARY_ENERGY_TOTALITY_CLOUD_PROOF_2026-09-10.md)
+
 ## Current documentation
 
 - [`docs/CURRENT_STATE_2026-09-10.md`](docs/CURRENT_STATE_2026-09-10.md) — current state in plain English.
