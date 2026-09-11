@@ -27,9 +27,8 @@ ProofGate puts a checkpoint between an AI decision and execution. Before anythin
 
 ## Operating state after submission
 
-The public websites remain online. Recurring experimental automation, background ingestion, autonomous business cycles, sports ingestion, evidence publishers, and agent execution queues were disabled after the submission so they no longer wake compute on a schedule. Their infrastructure and source remain available for controlled redeployment.
+SupremeComputation.org and ForTheFamily.com remain online. Four recurring schedules, seven event-driven worker mappings, and 39 non-site functions were disabled or execution-locked after the submission so they cannot wake compute unexpectedly. The Rack Scottsdale restaurant pilot was removed from the public website after all nine of its files and prior versions were preserved in the private redeployment archive. Source, configuration, and shutdown state remain available for controlled restoration.
 
 ## Current status
 
 The project is complete and publicly documented. The remaining work is external review, judging, feedback, and any requested follow-up or redeployment.
-
