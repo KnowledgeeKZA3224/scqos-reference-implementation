@@ -57,3 +57,6 @@ Supreme Computation asks: **Should this exact consequence happen now, under this
 This repository is the public reference implementation and evidence surface. Dated live-state documents make the observation boundary explicit when production moves faster than documentation.
 
 - [`proofs/OLLAMA_SUBSTRATE_INDEPENDENCE_2026-09-10.md`](proofs/OLLAMA_SUBSTRATE_INDEPENDENCE_2026-09-10.md) — executed Ollama substrate-independence proof across Qwen and TinyLlama.
+
+- [`research/SC_TOTALITY_ENERGY_CONVERGENCE_MAP_2026-09-10.md`](research/SC_TOTALITY_ENERGY_CONVERGENCE_MAP_2026-09-10.md) — global convergence map for brain-scale, environmentally coupled computation.
+- [`proofs/SC_20W_ENVIRONMENTAL_INTELLIGENCE_PROOF_SPEC_V1.md`](proofs/SC_20W_ENVIRONMENTAL_INTELLIGENCE_PROOF_SPEC_V1.md) — universal eight-invariant 20 W proof specification.
