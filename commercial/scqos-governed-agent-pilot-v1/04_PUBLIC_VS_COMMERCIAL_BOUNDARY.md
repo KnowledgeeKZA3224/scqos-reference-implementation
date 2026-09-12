@@ -62,13 +62,14 @@ Knowledgee Kza.
 A customer deployment that explicitly includes Anabelle must preserve
 the applicable Jerry Elizares / Anabelle permission boundary.
 
-## Nikolai Nedovodin
+## STARGA, Inc. external reviewer attribution
 
-Nikolai Nedovodin is an external independent verification partner /
-challenger.
+STARGA, Inc. is named as an external reviewer in this commercial record
+in place of an individual. Original technical provenance remains in its
+source records and is not converted into SCQOS software ownership.
 
-His independent verification work remains attributed to him and is
-not silently converted into SCQOS software ownership.
+This mention does not establish a partnership, verification engagement,
+endorsement, representation authority, or other commercial relationship.
 
 ## Frozen object
 
