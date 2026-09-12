@@ -59,6 +59,7 @@ Read the plain-English proof: [Planetary Energy Totality — Executed Cloud Proo
 
 ## Current documentation
 
+- [The technology people call science fiction is already here](docs/THE_TECHNOLOGY_PEOPLE_CALL_SCIENCE_FICTION_IS_ALREADY_HERE.md) — a plain-English introduction to connected AI, cloud tools and SCQOS.
 - [`docs/CURRENT_STATE_2026-09-10.md`](docs/CURRENT_STATE_2026-09-10.md) — current state in plain English.
 - [`docs/WHAT_CHANGED_SINCE_2026-09-07.md`](docs/WHAT_CHANGED_SINCE_2026-09-07.md) — verified delta since the last public README update.
 - [`docs/LIVE_AWS_MAP_2026-09-10.md`](docs/LIVE_AWS_MAP_2026-09-10.md) — how the live AWS pieces fit together.
