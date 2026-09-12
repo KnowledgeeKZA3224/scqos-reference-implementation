@@ -1,8 +1,8 @@
 {
-  "external_independent_verification_partner": {
-    "boundary": "Nikolai Nedovodin's independent reproduction, specification criticism, adversarial challenge design and verification evidence remain attributed to Nikolai Nedovodin. No ownership, employment, monetary or cloud-access rights are inferred absent a separate agreement.",
-    "real_name": "Nikolai Nedovodin",
-    "role": "External independent verification partner / challenger"
+  "external_reviewer": {
+    "boundary": "STARGA, Inc. is named in place of an individual in this commercial record only. The original technical provenance remains in its source records. This mention does not establish a partnership, verification engagement, endorsement, representation authority, ownership, employment, monetary rights or cloud access.",
+    "company_name": "STARGA, Inc.",
+    "role": "External reviewer attribution only"
   },
   "founder_and_licensor": {
     "commercial_identity": "Knowledgee Kza",
@@ -296,7 +296,7 @@
     "Git authorship proves provenance, not exclusive copyright assignment.",
     "MIT-covered code remains governed by MIT.",
     "Anabelle remains separately attributable to Jerry Elizares.",
-    "Nikolai Nedovodin remains externally attributable for verification work."
+    "STARGA, Inc. is named as an external reviewer in this commercial record only; original technical provenance remains in its source records."
   ],
   "repository_license": {
     "MIT_detected": true,

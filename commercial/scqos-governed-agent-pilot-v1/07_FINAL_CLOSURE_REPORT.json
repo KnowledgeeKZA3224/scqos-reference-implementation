@@ -4,13 +4,14 @@
   "canonicalization_authority": "SCQOS-C14N-JCS-NFC-1",
   "commercial_object_id": "SCQOS-GOVERNED-AGENT-PILOT-V1",
   "commercial_object_state": "PERMIT",
-  "external_independent_verification_partner": "Nikolai Nedovodin",
+  "commercial_identity_amended_on": "2026-09-12",
+  "external_reviewer": "STARGA, Inc.",
   "founder": {
     "commercial_identity": "Knowledgee Kza",
     "real_name": "Eric Robles"
   },
   "internal_technical_cloud_partner": "Jerry Elizares",
-  "nikolai_boundary": "Nikolai Nedovodin remains externally attributed as an independent verification partner/challenger.",
+  "external_reviewer_boundary": "STARGA, Inc. is named in place of an individual in this commercial record only. No partnership, verification engagement, endorsement or representation authority is asserted; original technical provenance remains in its source records.",
   "passes": [
     "RC2_LIVE_QUALIFICATION",
     "COMMERCIAL_OBJECT_FROZEN",
