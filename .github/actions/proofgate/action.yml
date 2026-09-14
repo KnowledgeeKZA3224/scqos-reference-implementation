@@ -1,0 +1,74 @@
+name: ProofGate AI
+
+description: Gate a proposed transition through the live SCQOS pre-execution boundary.
+
+inputs:
+  endpoint:
+    description: Public SCQOS ProofGate endpoint.
+    required: false
+    default: https://lcnk9bvtz5.execute-api.us-east-1.amazonaws.com/
+  case_id:
+    description: Optional built-in challenge case. Ignored when transition is provided.
+    required: false
+    default: valid
+  transition:
+    description: Optional transition JSON object as a string.
+    required: false
+    default: ""
+  fail_on_nonpermit:
+    description: Fail the workflow unless ProofGate returns PERMIT.
+    required: false
+    default: "true"
+
+outputs:
+  decision:
+    description: PERMIT, HOLD, or REJECT.
+    value: ${{ steps.gate.outputs.decision }}
+  receipt_id:
+    description: Signed receipt identifier.
+    value: ${{ steps.gate.outputs.receipt_id }}
+  decision_boundary:
+    description: Boundary that made the decision.
+    value: ${{ steps.gate.outputs.decision_boundary }}
+
+runs:
+  using: composite
+  steps:
+    - id: gate
+      shell: bash
+      env:
+        PROOFGATE_ENDPOINT: ${{ inputs.endpoint }}
+        PROOFGATE_CASE_ID: ${{ inputs.case_id }}
+        PROOFGATE_TRANSITION: ${{ inputs.transition }}
+        PROOFGATE_FAIL_ON_NONPERMIT: ${{ inputs.fail_on_nonpermit }}
+      run: |
+        python - <<'PY'
+        import json, os, sys, urllib.request
+
+        endpoint = os.environ['PROOFGATE_ENDPOINT'].rstrip('/') + '/v1/challenge'
+        transition = os.environ.get('PROOFGATE_TRANSITION', '').strip()
+        payload = {'transition': json.loads(transition)} if transition else {'case_id': os.environ.get('PROOFGATE_CASE_ID', 'valid')}
+        request = urllib.request.Request(endpoint, data=json.dumps(payload, separators=(',', ':')).encode(), headers={'content-type':'application/json','accept':'application/json'}, method='POST')
+        try:
+            with urllib.request.urlopen(request, timeout=20) as response:
+                receipt = json.loads(response.read().decode())
+        except Exception as exc:
+            print(f'ProofGate endpoint error: {exc}', file=sys.stderr)
+            raise SystemExit(1)
+
+        decision = str(receipt.get('decision', 'UNKNOWN'))
+        receipt_id = str(receipt.get('receipt_id', ''))
+        boundary = str(receipt.get('decision_boundary', ''))
+        print(json.dumps(receipt, indent=2, sort_keys=True))
+        with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as output:
+            output.write(f'decision={decision}\n')
+            output.write(f'receipt_id={receipt_id}\n')
+            output.write(f'decision_boundary={boundary}\n')
+        with open(os.environ['GITHUB_STEP_SUMMARY'], 'a', encoding='utf-8') as summary:
+            summary.write('## ProofGate AI\n\n')
+            summary.write(f'**Decision:** `{decision}`  \n')
+            summary.write(f'**Boundary:** `{boundary}`  \n')
+            summary.write(f'**Receipt:** `{receipt_id}`\n')
+        if os.environ.get('PROOFGATE_FAIL_ON_NONPERMIT','true').lower() == 'true' and decision != 'PERMIT':
+            raise SystemExit(2)
+        PY
