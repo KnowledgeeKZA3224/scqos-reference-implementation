@@ -1,0 +1,28 @@
+name: ProofGate self-test
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "proofgate_ai/**"
+      - "pyproject.toml"
+      - ".github/actions/proofgate/**"
+      - ".github/workflows/proofgate-selftest.yml"
+
+jobs:
+  live-boundary:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile client
+        run: python -m py_compile proofgate_ai/*.py
+      - name: Run frozen adversarial matrix
+        run: |
+          python -m pip install --disable-pip-version-check .
+          proofgate matrix
+      - name: Exercise reusable action
+        uses: ./.github/actions/proofgate
+        with:
+          case_id: valid
