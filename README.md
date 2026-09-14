@@ -6,6 +6,26 @@ Supreme Computation is a governance system for people, AI, software and machines
 
 SCQOS returns **PERMIT** when the current transition proves itself, **HOLD** when something is missing, stale or contradictory, and **REJECT** when a hard rule or authority boundary is crossed.
 
+## ProofGate AI — use it now
+
+The public pre-execution boundary is now packaged as a Python CLI/client and a reusable GitHub Action. You do not need to learn the entire SCQOS stack to challenge it.
+
+```bash
+pip install "git+https://github.com/KnowledgeeKZA3224/scqos-reference-implementation.git"
+proofgate matrix
+proofgate challenge --case valid
+```
+
+Drop it into another repository with:
+
+```yaml
+- uses: KnowledgeeKZA3224/scqos-reference-implementation/.github/actions/proofgate@main
+  with:
+    case_id: valid
+```
+
+The live public challenge is shadow-only: it evaluates the proposition, emits a signed durable receipt, and never performs the proposed external side effect itself. Developers can submit their own transition JSON and test whether the boundary returns the wrong decision. See [`docs/PROOFGATE_PLUG_AND_PLAY.md`](docs/PROOFGATE_PLUG_AND_PLAY.md).
+
 ## What is live now
 
 As of **September 10, 2026**, the verified environment includes a live AWS governance plane, a 59-faculty Supreme Mind architecture, governed Shadow Clones, model-validation boundaries, durable receipts, public-proof infrastructure, business automation, website/email/social infrastructure, Gekyume financial execution work, sports/quantum evidence paths, and independently challengeable demonstrations.
