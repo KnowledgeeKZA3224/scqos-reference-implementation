@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "proofgate-ai-scqos"
+version = "0.1.0"
+description = "Plug-and-play client for the SCQOS ProofGate pre-execution boundary"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "Supreme Computation"}]
+dependencies = []
+
+[project.scripts]
+proofgate = "proofgate_ai.cli:main"
+
+[tool.setuptools]
+packages = ["proofgate_ai"]
