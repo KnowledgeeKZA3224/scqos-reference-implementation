@@ -1,0 +1,49 @@
+{
+  "system": "GEKYUME",
+  "version": "1.0.0-universal",
+  "accepted_at": "2026-09-15",
+  "environment": {
+    "aws_region": "us-east-1",
+    "cloudformation_stack": "gekyume-universal-v1",
+    "stack_status": "CREATE_COMPLETE",
+    "lambda": "gekyume-universal-gate-v1",
+    "receipt_table": "gekyume-universal-receipts-v1",
+    "api_id": "vakkhcgpuk",
+    "routes": [
+      "GET /health",
+      "POST /evaluate",
+      "POST /execute",
+      "POST /reconcile"
+    ]
+  },
+  "acceptance": {
+    "ACH": "PERMIT",
+    "FEDNOW": "PERMIT",
+    "RTP": "PERMIT",
+    "WIRE": "PERMIT",
+    "SWIFT": "PERMIT",
+    "ISO20022": "PERMIT",
+    "CARD": "PERMIT",
+    "AI_AGENT": "PERMIT",
+    "GENERIC": "PERMIT",
+    "BLOCKCHAIN_BOUND_RECIPIENT": "PERMIT",
+    "BLOCKCHAIN_MUTATED_RECIPIENT": "REJECT",
+    "POST_SETTLEMENT_MATCH": "SETTLED_AS_AUTHORIZED"
+  },
+  "controls": {
+    "payment_agnostic_normalization": true,
+    "pre_execution_governance": true,
+    "recipient_binding": true,
+    "network_binding": true,
+    "chain_binding": true,
+    "asset_binding": true,
+    "amount_boundary": true,
+    "authority_check": true,
+    "replay_check": true,
+    "post_settlement_reconciliation": true,
+    "durable_receipts": true,
+    "fail_closed_internal_errors": true
+  },
+  "test_scope": "Synthetic acceptance tests only; no real funds moved.",
+  "result": "PASS"
+}
