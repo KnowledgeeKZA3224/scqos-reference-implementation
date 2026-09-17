@@ -32,21 +32,25 @@ As of **September 16, 2026**, the verified environment includes a live AWS gover
 
 The important idea is not “many disconnected tools.” The tools are useful because they are being placed behind one rule: **no consequential transition inherits permission just because one component said yes earlier. The current transition has to prove itself again.**
 
-## First-party software portfolio
+## Software ownership and attribution
 
-The current named first-party portfolio documented in this repository/environment includes:
+### Owned by Knowledgee KZA
 
-- **Supreme Computation / SCQOS** — the governing software layer.
-- **ProofGate AI** — the reusable public pre-execution checkpoint.
-- **Supreme Mind** — the 59-faculty digital-twin architecture.
-- **Shadow Clone** — bounded recursive workers governed by Supreme Mind / SCQOS.
-- **Gekyume** — financial execution and universal payment-governance software.
-- **Supreme Apex V1** — the continuous intent-to-proof control surface.
-- **Sharingan** — the Supreme Computation sports-betting software for single bets and 3+ leg parlay evaluation, recursive contradiction resolution, immutable pregame receipts and later reality verification.
+- **Supreme Computation / SCQOS** — Owner: **Knowledgee KZA** — the governing software layer.
+- **ProofGate AI** — Owner: **Knowledgee KZA** — the reusable public pre-execution checkpoint.
+- **Supreme Mind** — Owner: **Knowledgee KZA** — the 59-faculty digital-twin architecture.
+- **Shadow Clone** — Owner: **Knowledgee KZA** — bounded recursive workers governed by Supreme Mind / SCQOS.
+- **Gekyume** — Owner: **Knowledgee KZA** — financial execution and universal payment-governance software.
+- **Supreme Apex V1** — Owner: **Knowledgee KZA** — the continuous intent-to-proof control surface.
+- **Sharingan** — Owner: **Knowledgee KZA** — the Supreme Computation sports-betting software for single bets and 3+ leg parlay evaluation, recursive contradiction resolution, immutable pregame receipts and later reality verification.
 
-See [`docs/SOFTWARE_PORTFOLIO_2026-09-16.md`](docs/SOFTWARE_PORTFOLIO_2026-09-16.md) for the portfolio boundary and [`docs/SHARINGAN_SOFTWARE_2026-09-16.md`](docs/SHARINGAN_SOFTWARE_2026-09-16.md) for Sharingan's live identity.
+### Collaborator-owned software integrated into the environment
 
-Anabelle / GrassRootsAI remains an integrated collaborator-owned AI system and is not counted as a first-party product in that portfolio. AWS, Qiskit, IBM Quantum, model providers, DraftKings and other external services remain integrations rather than first-party software.
+- **Anabelle / GrassRootsAI** — Owner: **Jerry Elizares** — integrated AI software operating behind dedicated Supreme Computation inference/release governance boundaries. Its presence in the cloud does not transfer ownership to Knowledgee KZA.
+
+AWS, Qiskit, IBM Quantum, model providers, DraftKings, and other open-source/vendor technologies remain integrations and infrastructure rather than software attributed to Knowledgee KZA or Jerry Elizares merely because they are deployed in the environment.
+
+See [`docs/SOFTWARE_PORTFOLIO_2026-09-16.md`](docs/SOFTWARE_PORTFOLIO_2026-09-16.md) for the detailed ownership boundary and [`docs/SHARINGAN_SOFTWARE_2026-09-16.md`](docs/SHARINGAN_SOFTWARE_2026-09-16.md) for Sharingan's live identity.
 
 ## Supreme Mind and Shadow Clones
 
@@ -99,8 +103,8 @@ Read the plain-English proof: [Planetary Energy Totality — Executed Cloud Proo
 - [`docs/CURRENT_STATE_2026-09-10.md`](docs/CURRENT_STATE_2026-09-10.md) — current state in plain English.
 - [`docs/WHAT_CHANGED_SINCE_2026-09-07.md`](docs/WHAT_CHANGED_SINCE_2026-09-07.md) — verified delta since the last public README update.
 - [`docs/LIVE_AWS_MAP_2026-09-10.md`](docs/LIVE_AWS_MAP_2026-09-10.md) — how the live AWS pieces fit together.
-- [`docs/SOFTWARE_PORTFOLIO_2026-09-16.md`](docs/SOFTWARE_PORTFOLIO_2026-09-16.md) — current first-party software portfolio and integration boundary.
-- [`docs/SHARINGAN_SOFTWARE_2026-09-16.md`](docs/SHARINGAN_SOFTWARE_2026-09-16.md) — Sharingan sports-betting software identity and architecture.
+- [`docs/SOFTWARE_PORTFOLIO_2026-09-16.md`](docs/SOFTWARE_PORTFOLIO_2026-09-16.md) — software portfolio ownership and integration boundary.
+- [`docs/SHARINGAN_SOFTWARE_2026-09-16.md`](docs/SHARINGAN_SOFTWARE_2026-09-16.md) — Sharingan sports-betting software identity, ownership attribution and architecture.
 - [`proofs/CODEX_READONLY_BOUNDARY_2026-09-10.md`](proofs/CODEX_READONLY_BOUNDARY_2026-09-10.md) — the September 10 Codex governance proof.
 
 This repository is the public reference implementation and evidence surface. Dated live-state documents make the observation boundary explicit when production moves faster than documentation.
