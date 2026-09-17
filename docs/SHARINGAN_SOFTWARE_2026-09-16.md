@@ -1,12 +1,13 @@
 # Sharingan — Supreme Computation Sports Betting Software
 
 **Canonical software name:** `Sharingan`  
+**Owner:** **Knowledgee KZA**  
 **Domain:** Sports betting  
 **Architecture:** `SC_SPORTS_TOTALITY_V2`  
 **Framework:** Supreme Computation / SCQOS eight-invariant governance  
 **Observed live deployment:** September 16, 2026
 
-Sharingan is the named sports-betting software layer running inside the Supreme Computation cloud environment.
+Sharingan is the named sports-betting software layer owned and attributed to Knowledgee KZA inside the Supreme Computation cloud environment.
 
 ## Purpose
 
@@ -20,12 +21,13 @@ The live AWS deployment identifies the engine as:
 
 - Lambda: `sc-sports-supreme-engine-v2`
 - Software name: `Sharingan`
+- Software owner: `Knowledgee KZA`
 - Software domain: `SPORTS_BETTING`
 - Architecture name: `SC_SPORTS_TOTALITY_V2`
 - Resolver rule: `sc-sports-supreme-resolver-every-minute-v2`
 - Receipt store: `sc-sports-receipts-v1`
 
-The cloud identity record is `SOFTWARE#SHARINGAN` and binds the name Sharingan to the sports-betting architecture.
+The cloud identity record is `SOFTWARE#SHARINGAN` and binds the name Sharingan to the sports-betting architecture and Knowledgee KZA ownership attribution.
 
 ## Decision circuit
 
@@ -35,4 +37,4 @@ Sharingan supports both single-bet evaluation and 3+ leg parlay candidate evalua
 
 ## Boundary
 
-Sharingan is the first-party sports-betting software name. It does not rename Amazon Web Services, DraftKings, Qiskit, IBM Quantum, third-party data providers, or any external model/service integrated into the environment.
+Sharingan is attributed to Knowledgee KZA. It does not rename or claim ownership of Amazon Web Services, DraftKings, Qiskit, IBM Quantum, third-party data providers, or any external model/service integrated into the environment.
