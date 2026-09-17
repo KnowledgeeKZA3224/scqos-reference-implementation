@@ -28,9 +28,25 @@ The live public challenge is shadow-only: it evaluates the proposition, emits a 
 
 ## What is live now
 
-As of **September 10, 2026**, the verified environment includes a live AWS governance plane, a 59-faculty Supreme Mind architecture, governed Shadow Clones, model-validation boundaries, durable receipts, public-proof infrastructure, business automation, website/email/social infrastructure, Gekyume financial execution work, sports/quantum evidence paths, and independently challengeable demonstrations.
+As of **September 16, 2026**, the verified environment includes a live AWS governance plane, a 59-faculty Supreme Mind architecture, governed Shadow Clones, model-validation boundaries, durable receipts, public-proof infrastructure, business automation, website/email/social infrastructure, Gekyume financial execution work, Supreme Apex V1, Sharingan sports-betting software, sports/quantum evidence paths, and independently challengeable demonstrations.
 
 The important idea is not “many disconnected tools.” The tools are useful because they are being placed behind one rule: **no consequential transition inherits permission just because one component said yes earlier. The current transition has to prove itself again.**
+
+## First-party software portfolio
+
+The current named first-party portfolio documented in this repository/environment includes:
+
+- **Supreme Computation / SCQOS** — the governing software layer.
+- **ProofGate AI** — the reusable public pre-execution checkpoint.
+- **Supreme Mind** — the 59-faculty digital-twin architecture.
+- **Shadow Clone** — bounded recursive workers governed by Supreme Mind / SCQOS.
+- **Gekyume** — financial execution and universal payment-governance software.
+- **Supreme Apex V1** — the continuous intent-to-proof control surface.
+- **Sharingan** — the Supreme Computation sports-betting software for single bets and 3+ leg parlay evaluation, recursive contradiction resolution, immutable pregame receipts and later reality verification.
+
+See [`docs/SOFTWARE_PORTFOLIO_2026-09-16.md`](docs/SOFTWARE_PORTFOLIO_2026-09-16.md) for the portfolio boundary and [`docs/SHARINGAN_SOFTWARE_2026-09-16.md`](docs/SHARINGAN_SOFTWARE_2026-09-16.md) for Sharingan's live identity.
+
+Anabelle / GrassRootsAI remains an integrated collaborator-owned AI system and is not counted as a first-party product in that portfolio. AWS, Qiskit, IBM Quantum, model providers, DraftKings and other external services remain integrations rather than first-party software.
 
 ## Supreme Mind and Shadow Clones
 
@@ -59,7 +75,7 @@ The result was also posted back into the upstream GitHub issue for independent c
 
 ## Live AWS pieces
 
-The verified environment includes SCQOS governors and validators, Shadow Clone execution, Supreme Mind state and receipts in DynamoDB, SQS work queues, versioned S3 evidence, AWS KMS signing, model inference/release validation, SupremeComputation.org business infrastructure, LinkedIn OAuth/publishing, email routing, Anabelle/GrassRootsAI integration, Gekyume, and quantum-facing Qiskit/IBM/AWS experimentation.
+The verified environment includes SCQOS governors and validators, Shadow Clone execution, Supreme Mind state and receipts in DynamoDB, SQS work queues, versioned S3 evidence, AWS KMS signing, model inference/release validation, SupremeComputation.org business infrastructure, LinkedIn OAuth/publishing, email routing, Anabelle/GrassRootsAI integration, Gekyume, Sharingan, Supreme Apex V1, and quantum-facing Qiskit/IBM/AWS experimentation.
 
 ## The point
 
@@ -83,6 +99,8 @@ Read the plain-English proof: [Planetary Energy Totality — Executed Cloud Proo
 - [`docs/CURRENT_STATE_2026-09-10.md`](docs/CURRENT_STATE_2026-09-10.md) — current state in plain English.
 - [`docs/WHAT_CHANGED_SINCE_2026-09-07.md`](docs/WHAT_CHANGED_SINCE_2026-09-07.md) — verified delta since the last public README update.
 - [`docs/LIVE_AWS_MAP_2026-09-10.md`](docs/LIVE_AWS_MAP_2026-09-10.md) — how the live AWS pieces fit together.
+- [`docs/SOFTWARE_PORTFOLIO_2026-09-16.md`](docs/SOFTWARE_PORTFOLIO_2026-09-16.md) — current first-party software portfolio and integration boundary.
+- [`docs/SHARINGAN_SOFTWARE_2026-09-16.md`](docs/SHARINGAN_SOFTWARE_2026-09-16.md) — Sharingan sports-betting software identity and architecture.
 - [`proofs/CODEX_READONLY_BOUNDARY_2026-09-10.md`](proofs/CODEX_READONLY_BOUNDARY_2026-09-10.md) — the September 10 Codex governance proof.
 
 This repository is the public reference implementation and evidence surface. Dated live-state documents make the observation boundary explicit when production moves faster than documentation.
