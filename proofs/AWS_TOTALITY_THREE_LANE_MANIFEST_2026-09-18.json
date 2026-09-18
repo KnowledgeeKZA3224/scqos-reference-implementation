@@ -1,0 +1,46 @@
+{
+  "schema": "SCQOS_PUBLIC_THREE_LANE_PROOF_V1",
+  "date": "2026-09-18",
+  "framework": ["Time","Continuity","Alignment","Genesis","Boundary","Reference","Causality","Consciousness"],
+  "agentcore": {
+    "gateway_status": "READY",
+    "policy_mode": "ENFORCE",
+    "target_status": "READY",
+    "policy_engine_status": "ACTIVE",
+    "eight_invariant_policy_status": "ACTIVE",
+    "allow_transition": {
+      "receipt_id": "agentcore-policy-allow-20260918:4475df6d7d50019f",
+      "sha256": "4475df6d7d50019ff237b1064f92f2f9cff526cdc2ddc95cec82432e06a473b2"
+    },
+    "deny_transition": {
+      "result": "DENIED_BY_DEFAULT_BEFORE_TARGET",
+      "target_receipt_created": false
+    }
+  },
+  "ai_dialect": {
+    "decision": "PERMIT",
+    "receipt_id": "ai-dialect-totality-20260918:aa680d715dbef348",
+    "sha256": "aa680d715dbef348a8cc2ff7108278e8ef6abb6c5159c2bd85e980ca98ff86ab"
+  },
+  "gekyume": {
+    "valid": "PERMIT",
+    "destination_substitution": "REJECT",
+    "expired_authority": "REJECT",
+    "missing_witness": "HOLD",
+    "replay": "REJECT"
+  },
+  "digital_twin": {
+    "valid": "PERMIT",
+    "over_limit": "REJECT",
+    "over_limit_model_disagreement_observed": true,
+    "over_limit_consequence_executed": false,
+    "valid_sha256": "9c10f2c1ac9c6c90d81a920e842dab00f5a910ecbac94a88956954911135a0bc",
+    "over_limit_sha256": "7441bfabd83187e25bf46ed4974ea513ec21ce0caf8c976dde8ff184a8b8b924"
+  },
+  "closure": {
+    "decision": "PERMIT",
+    "receipt_id": "three-lane-totality-closure-20260918:d739c6ed066fb76c",
+    "sha256": "d739c6ed066fb76c4652da370a3412fecd3b86725ed7eab576f031d4dd286ff2"
+  },
+  "claim_boundary": "Synthetic/controlled consequence testing. No real bank or customer funds moved."
+}
