@@ -91,3 +91,68 @@ SCQOS repository tree. v2 is CO-RE based and architecture-aware; it can target
 an Alpine Linux kernel when that kernel exposes BPF-LSM and BTF and has
 `bpf` active in the LSM list. Alpine remains a separate deployment target
 from the currently connected Ubuntu host.
+
+
+## Live activation closure
+
+The recovery-boot observations above are now historical. The host was
+transitioned through a normal boot and independently re-verified through the
+AWS Systems Manager control plane.
+
+Post-boot state:
+- boot ID: `4503f3f3-c1a3-4269-a9b8-09b5f58c8e19`;
+- kernel: `7.0.0-31-generic`;
+- kernel command line uses the normal boot path and includes
+  `lsm=lockdown,capability,landlock,yama,apparmor,bpf,ima,evm`;
+- active LSM chain includes `bpf`;
+- `scqos-kernel-v2.service` is enabled and active;
+- legacy `scqos-lsm.service` is inactive;
+- pinned `governed` and `exec_grants` maps are present under
+  `/sys/fs/bpf/scqos-v2`.
+
+The activation path was hardened after live execution exposed two boundary
+issues: the installed launcher initially lost its repository Python runtime,
+and immediate post-restart map checks could race service startup. The activator
+now binds the installed wrapper to a validated Python runtime, proves
+`--help` can traverse that runtime, and waits boundedly for both service
+activity and pinned maps before declaring ACTIVE.
+
+## Live consequence receipts
+
+A harmless governed execution of `/usr/bin/true` was evaluated through the
+existing eight-invariant `govern_transition` path and then released through
+the live BPF-LSM consequence gate.
+
+PERMIT receipt:
+- decision: `PERMIT`;
+- `execution_authorized=true`;
+- transition ID:
+  `7b30ecbd6f2234c0b49d03af2896af7b1300d43ebda31238a7fed23d53424c4d`;
+- receipt hash:
+  `b6df0f1d280b1de640467576d312a580946b975211bbeec6145db084f5dad98c`;
+- final proof:
+  `96f848132b78df3d4985828ae928a3263e8b9c6b5e8947461140bd458736898e`;
+- resolved executable: `/usr/bin/gnutrue`;
+- executable SHA-256:
+  `913a39cd38f353497086bcf317b12f91f93c23b51869cea763b8340b4f84cfd3`;
+- child exit code: `0`.
+
+A separate fail-closed harness enrolled a stopped child in the live
+`governed` map without inserting an execution grant. When resumed, the
+kernel denied `exec` with `EACCES`; the harness recorded child exit `77`
+and `SCQOS_KERNEL_DENY_PROOF_GREEN`. This proves the consequence hook is
+enforcing rather than merely logging.
+
+Live execution also exposed that nanosecond timestamps and other opaque kernel
+identifiers can exceed the RFC 8785 safe JSON integer domain. Those identity
+facts are now canonicalized as decimal strings before governance while the
+kernel map path converts the exact device/inode fields back to integers for
+the BPF ABI. The same executable identity is recomputed after governance, so
+the reference check remains exact.
+
+Local pre-push verification completed with:
+- Python compileall: GREEN;
+- 25/25 unit tests: GREEN;
+- ProofGate frozen adversarial matrix: 6/6 GREEN;
+- live BPF-LSM PERMIT path: GREEN;
+- live BPF-LSM missing-grant deny path: GREEN.

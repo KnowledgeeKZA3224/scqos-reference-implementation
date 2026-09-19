@@ -25,7 +25,7 @@ case "$(uname -m)" in
     ;;
 esac
 
-for tool in clang bpftool cc systemctl grep install; do
+for tool in clang bpftool cc systemctl grep install sed; do
   if ! command -v "$tool" >/dev/null 2>&1; then
     echo "SCQOS_HOLD reason=missing_tool tool=$tool" >&2
     exit 11
@@ -47,11 +47,42 @@ mkdir -p "$DEST"
 # Compile everything before changing service ownership of the consequence path.
 bpftool btf dump file /sys/kernel/btf/vmlinux format c > "$DEST/vmlinux.h"
 
-clang -O2 -g -target bpf "-D__TARGET_ARCH_$BPF_ARCH"   -I"$DEST"   -c "$SRC/scqos_exec_gate.bpf.c"   -o "$DEST/scqos_exec_gate.bpf.o"
+clang -O2 -g -target bpf "-D__TARGET_ARCH_$BPF_ARCH" \
+  -I"$DEST" \
+  -c "$SRC/scqos_exec_gate.bpf.c" \
+  -o "$DEST/scqos_exec_gate.bpf.o"
 
-cc -O2 "$SRC/scqos_exec_gate_loader.c"   -o "$DEST/scqos_exec_gate_loader"   -lbpf -lelf -lz
+cc -O2 "$SRC/scqos_exec_gate_loader.c" \
+  -o "$DEST/scqos_exec_gate_loader" \
+  -lbpf -lelf -lz
 
-install -m 0755 "$SRC/scqos_kernel_exec.py"   /usr/local/sbin/scqos-kernel-exec
+if [ -x "$REPO_ROOT/.venv/bin/python" ] && \
+   "$REPO_ROOT/.venv/bin/python" -c 'import fastapi,pydantic' >/dev/null 2>&1; then
+  PY_RUNTIME="$REPO_ROOT/.venv/bin/python"
+elif command -v python3 >/dev/null 2>&1 && \
+     python3 -c 'import fastapi,pydantic' >/dev/null 2>&1; then
+  PY_RUNTIME=$(command -v python3)
+else
+  echo "SCQOS_HOLD reason=python_runtime_missing_governance_dependencies" >&2
+  exit 15
+fi
+
+cat > /usr/local/sbin/scqos-kernel-exec <<'WRAPPER_EOF'
+#!/bin/sh
+REPO_ROOT="__SCQOS_REPO_ROOT__"
+PY_RUNTIME="__SCQOS_PY_RUNTIME__"
+exec env SCQOS_REPO_ROOT="$REPO_ROOT" "$PY_RUNTIME" "$REPO_ROOT/kernel_integration/scqos_kernel_exec.py" "$@"
+WRAPPER_EOF
+sed -i "s|__SCQOS_REPO_ROOT__|$REPO_ROOT|g; s|__SCQOS_PY_RUNTIME__|$PY_RUNTIME|g" \
+  /usr/local/sbin/scqos-kernel-exec
+chmod 0755 /usr/local/sbin/scqos-kernel-exec
+
+# Prove the installed launcher can import its governance runtime and preserve argv.
+if ! /usr/local/sbin/scqos-kernel-exec --help >/dev/null 2>&1; then
+  echo "SCQOS_HOLD reason=installed_launcher_runtime_invalid" >&2
+  exit 16
+fi
+
 install -m 0644 "$SRC/scqos-kernel-v2.service" "$UNIT"
 
 systemctl daemon-reload
@@ -65,11 +96,21 @@ systemctl enable "$NEW_UNIT"
 
 if grep -qw bpf /sys/kernel/security/lsm; then
   systemctl restart "$NEW_UNIT"
-  systemctl is-active --quiet "$NEW_UNIT"
-  test -e /sys/fs/bpf/scqos-v2/governed
-  test -e /sys/fs/bpf/scqos-v2/exec_grants
-  echo "SCQOS_KERNEL_V2_ACTIVE"
-  exit 0
+
+  i=0
+  while [ "$i" -lt 50 ]; do
+    if systemctl is-active --quiet "$NEW_UNIT" && \
+       [ -e /sys/fs/bpf/scqos-v2/governed ] && \
+       [ -e /sys/fs/bpf/scqos-v2/exec_grants ]; then
+      echo "SCQOS_KERNEL_V2_ACTIVE"
+      exit 0
+    fi
+    i=$((i + 1))
+    sleep 0.1
+  done
+
+  echo "SCQOS_HOLD reason=v2_service_or_maps_not_ready" >&2
+  exit 17
 fi
 
 echo "SCQOS_KERNEL_V2_STAGED active_lsm=$(cat /sys/kernel/security/lsm)"

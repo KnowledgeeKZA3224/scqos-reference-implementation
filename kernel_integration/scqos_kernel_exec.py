@@ -100,19 +100,19 @@ def _sha256_file(path: Path) -> str:
     return digest.hexdigest()
 
 
-def _file_identity(path: Path) -> dict[str, int | str]:
+def _file_identity(path: Path) -> dict[str, str]:
     st = path.stat()
     if not stat.S_ISREG(st.st_mode):
         raise ValueError("target executable must be a regular file")
     return {
-        "stat_dev": int(st.st_dev),
-        "kernel_dev": _kernel_dev(st.st_dev),
-        "device_major": os.major(st.st_dev),
-        "device_minor": os.minor(st.st_dev),
-        "inode": int(st.st_ino),
-        "size": int(st.st_size),
-        "mtime_ns": int(st.st_mtime_ns),
-        "ctime_ns": int(st.st_ctime_ns),
+        "stat_dev": str(int(st.st_dev)),
+        "kernel_dev": str(_kernel_dev(st.st_dev)),
+        "device_major": str(os.major(st.st_dev)),
+        "device_minor": str(os.minor(st.st_dev)),
+        "inode": str(int(st.st_ino)),
+        "size": str(int(st.st_size)),
+        "mtime_ns": str(int(st.st_mtime_ns)),
+        "ctime_ns": str(int(st.st_ctime_ns)),
         "sha256": _sha256_file(path),
     }
 
