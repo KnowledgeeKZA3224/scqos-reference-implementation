@@ -109,7 +109,12 @@ jobs:
           assert struct.calcsize("<QQ") == 16
           assert module._kernel_dev(os.makedev(8, 6)) == (8 << 20) | 6
           assert module._kernel_dev(os.makedev(259, 2)) == (259 << 20) | 2
-          assert module._resolve_executable("sh").is_file()
+          shell = module._resolve_executable("sh")
+          assert shell.is_file()
+          identity = module._file_identity(shell)
+          assert len(identity["sha256"]) == 64
+          assert identity["size"] > 0
+          assert identity["kernel_dev"] == module._kernel_dev(shell.stat().st_dev)
           PY
 
       - name: Verify source-layer invariants
@@ -119,6 +124,9 @@ jobs:
           ! grep -R --include="*.c" --include="*.py" "scqos_mode" kernel_integration
           grep -q "govern_transition" kernel_integration/scqos_kernel_exec.py
           grep -q "_kernel_dev" kernel_integration/scqos_kernel_exec.py
+          grep -q "_sha256_file" kernel_integration/scqos_kernel_exec.py
+          grep -q "executable changed after governance" kernel_integration/scqos_kernel_exec.py
+          grep -q "ttl-ms must be between 100 and 5000" kernel_integration/scqos_kernel_exec.py
           grep -q '"kernel_exec"' kernel_integration/scqos_kernel_exec.py
           grep -q "kernel_release" kernel_integration/scqos_kernel_exec.py
           grep -q "active_lsms" kernel_integration/scqos_kernel_exec.py
