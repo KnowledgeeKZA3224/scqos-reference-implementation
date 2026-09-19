@@ -1,0 +1,20 @@
+[Unit]
+Description=Supreme Computation scoped BPF-LSM execution gate v2
+Documentation=https://github.com/KnowledgeeKZA3224/scqos-reference-implementation
+After=local-fs.target
+Before=multi-user.target
+RequiresMountsFor=/sys/fs/bpf
+ConditionPathExists=/sys/kernel/btf/vmlinux
+
+[Service]
+Type=simple
+ExecCondition=/bin/sh -c 'grep -qw bpf /sys/kernel/security/lsm'
+ExecStart=/opt/scqos-v2/scqos_exec_gate_loader
+Restart=on-failure
+RestartSec=2
+User=root
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
