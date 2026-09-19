@@ -72,6 +72,18 @@ kernel map ABI, verifies kernel device-number encoding, verifies executable
 reference hashing, and rejects reintroduction of the legacy global
 `scqos_mode` switch in executable source.
 
+## Independent build receipts
+
+GitHub Actions independently compiled and checked the mainline source:
+- kernel workflow run `35475904457` — SUCCESS;
+- stricter kernel workflow run `35475910972` — SUCCESS.
+
+The stricter run completed dependency/tool resolution, BTF-derived
+`vmlinux.h`, BPF-LSM compilation, userspace-loader compilation, launcher and
+activation syntax checks, userspace/kernel map ABI checks, kernel device-number
+encoding checks, executable-reference hashing checks, and source-layer
+invariant assertions.
+
 ## Alpine boundary
 
 No Alpine installation was found on the connected laptop or in the searched
