@@ -12,6 +12,7 @@ import argparse
 import json
 import os
 import platform
+import shutil
 import signal
 import stat
 import struct
@@ -70,6 +71,26 @@ def _nonce(receipt_hash: str) -> int:
     return int(receipt_hash[:16], 16)
 
 
+def _kernel_dev(st_dev: int) -> int:
+    """Encode userspace dev_t as the kernel's 32-bit MKDEV layout."""
+    major = os.major(st_dev)
+    minor = os.minor(st_dev)
+    if major >= (1 << 12) or minor >= (1 << 20):
+        raise ValueError(
+            f"device number outside kernel dev_t bounds: major={major} minor={minor}"
+        )
+    return (major << 20) | minor
+
+
+def _resolve_executable(value: str) -> Path:
+    if "/" in value:
+        return Path(value).resolve(strict=True)
+    resolved = shutil.which(value)
+    if not resolved:
+        raise FileNotFoundError(value)
+    return Path(resolved).resolve(strict=True)
+
+
 def _kill_stopped_child(pid: int) -> None:
     try:
         os.kill(pid, signal.SIGKILL)
@@ -95,8 +116,9 @@ def main() -> int:
     if not GOVERNED.exists() or not EXEC_GRANTS.exists():
         raise SystemExit("SCQOS BPF-LSM v2 maps are not pinned")
 
-    exe = Path(args.command[0]).resolve(strict=True)
+    exe = _resolve_executable(args.command[0])
     st = exe.stat()
+    kernel_dev = _kernel_dev(st.st_dev)
     if not stat.S_ISREG(st.st_mode):
         raise SystemExit("target executable must be a regular file")
 
@@ -117,7 +139,10 @@ def main() -> int:
         "pid": pid,
         "path": str(exe),
         "argv": [str(exe), *args.command[1:]],
-        "device": int(st.st_dev),
+        "stat_dev": int(st.st_dev),
+        "kernel_dev": kernel_dev,
+        "device_major": os.major(st.st_dev),
+        "device_minor": os.minor(st.st_dev),
         "inode": int(st.st_ino),
         "kernel_release": platform.release(),
         "active_lsms": _active_lsms(),
@@ -161,7 +186,7 @@ def main() -> int:
             "<IIQQ",
             pid,
             0,
-            int(st.st_dev),
+            kernel_dev,
             int(st.st_ino),
         )
 
