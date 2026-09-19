@@ -13,6 +13,18 @@ if [ "$(id -u)" -ne 0 ]; then
   exit 10
 fi
 
+case "$(uname -m)" in
+  x86_64|amd64) BPF_ARCH=x86 ;;
+  aarch64|arm64) BPF_ARCH=arm64 ;;
+  s390x) BPF_ARCH=s390 ;;
+  ppc64le|ppc64) BPF_ARCH=powerpc ;;
+  riscv64) BPF_ARCH=riscv ;;
+  *)
+    echo "SCQOS_HOLD reason=unsupported_arch arch=$(uname -m)" >&2
+    exit 13
+    ;;
+esac
+
 for tool in clang bpftool cc systemctl grep install; do
   if ! command -v "$tool" >/dev/null 2>&1; then
     echo "SCQOS_HOLD reason=missing_tool tool=$tool" >&2
@@ -25,12 +37,17 @@ if [ ! -r /sys/kernel/btf/vmlinux ]; then
   exit 12
 fi
 
+if ! grep -qs ' /sys/fs/bpf bpf ' /proc/mounts; then
+  echo "SCQOS_HOLD reason=bpffs_not_mounted" >&2
+  exit 14
+fi
+
 mkdir -p "$DEST"
 
 # Compile everything before changing service ownership of the consequence path.
 bpftool btf dump file /sys/kernel/btf/vmlinux format c > "$DEST/vmlinux.h"
 
-clang -O2 -g -target bpf -D__TARGET_ARCH_x86   -I"$DEST"   -c "$SRC/scqos_exec_gate.bpf.c"   -o "$DEST/scqos_exec_gate.bpf.o"
+clang -O2 -g -target bpf "-D__TARGET_ARCH_$BPF_ARCH"   -I"$DEST"   -c "$SRC/scqos_exec_gate.bpf.c"   -o "$DEST/scqos_exec_gate.bpf.o"
 
 cc -O2 "$SRC/scqos_exec_gate_loader.c"   -o "$DEST/scqos_exec_gate_loader"   -lbpf -lelf -lz
 
