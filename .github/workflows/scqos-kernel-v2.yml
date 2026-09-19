@@ -65,11 +65,12 @@ jobs:
           gcc -O2 kernel_integration/scqos_exec_gate_loader.c             -o /tmp/scqos-v2/scqos_exec_gate_loader             -lbpf -lelf -lz
           test -x /tmp/scqos-v2/scqos_exec_gate_loader
 
-      - name: Validate Python launcher
+      - name: Validate launch and activation syntax
         shell: bash
         run: |
           set -euo pipefail
           python3 -m py_compile kernel_integration/scqos_kernel_exec.py
+          sh -n kernel_integration/activate_v2.sh
 
       - name: Verify source-layer invariants
         shell: bash
@@ -77,6 +78,9 @@ jobs:
           set -euo pipefail
           ! grep -R "scqos_mode" kernel_integration
           grep -q "govern_transition" kernel_integration/scqos_kernel_exec.py
+          grep -q '"kernel_exec"' kernel_integration/scqos_kernel_exec.py
+          grep -q "kernel_release" kernel_integration/scqos_kernel_exec.py
+          grep -q "active_lsms" kernel_integration/scqos_kernel_exec.py
           grep -q "bprm_check_security" kernel_integration/scqos_exec_gate.bpf.c
           grep -q "exec_grants" kernel_integration/scqos_exec_gate.bpf.c
           grep -q "governed" kernel_integration/scqos_exec_gate.bpf.c
