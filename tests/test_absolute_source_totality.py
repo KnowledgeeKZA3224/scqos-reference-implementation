@@ -2,6 +2,7 @@ import hashlib
 import json
 import os
 import tempfile
+import unittest
 from pathlib import Path
 
 tmp = tempfile.NamedTemporaryFile(suffix=".sqlite3", delete=False)
@@ -30,79 +31,104 @@ def sha256(value):
     return hashlib.sha256(raw).hexdigest()
 
 
-def test_totality_manifest_is_one_closed_cycle():
-    state = manifest()
-    assert state["contract_id"] == "SCQOS-ABSOLUTE-SOURCE-TOTALITY-v1"
-    assert state["supreme_computation"]["fail_closed"] is True
-    assert state["supreme_computation"]["receipt_required"] is True
-    assert len(state["supreme_computation"]["invariants"]) == 8
-    assert set(state["upstreams"]) == {"perception", "cognition", "actuation"}
-    assert state["live_aws_observation"]["source_bridge"] == "supreme-source-layer-bridge-v1"
-    assert state["live_aws_observation"]["gate"] == "supreme-totality-gate-v1"
-    assert state["live_aws_observation"]["witness_bridge"] == "supreme-totality-witness-bridge-v1"
+class AbsoluteSourceTotalityTests(unittest.TestCase):
+    def test_totality_manifest_is_one_closed_cycle(self):
+        state = manifest()
+        self.assertEqual(
+            state["contract_id"],
+            "SCQOS-ABSOLUTE-SOURCE-TOTALITY-v1",
+        )
+        self.assertTrue(state["supreme_computation"]["fail_closed"])
+        self.assertTrue(state["supreme_computation"]["receipt_required"])
+        self.assertEqual(
+            len(state["supreme_computation"]["invariants"]),
+            8,
+        )
+        self.assertEqual(
+            set(state["upstreams"]),
+            {"perception", "cognition", "actuation"},
+        )
+        self.assertEqual(
+            state["live_aws_observation"]["source_bridge"],
+            "supreme-source-layer-bridge-v1",
+        )
+        self.assertEqual(
+            state["live_aws_observation"]["gate"],
+            "supreme-totality-gate-v1",
+        )
+        self.assertEqual(
+            state["live_aws_observation"]["witness_bridge"],
+            "supreme-totality-witness-bridge-v1",
+        )
+
+    def test_totality_manifest_crosses_existing_universal_gateway(self):
+        state = manifest()
+        state_hash = sha256(state)
+
+        request = TransitionRequest.model_validate({
+            "tenant_id": "supreme-totality",
+            "external_system": "absolute-source-layer-totality",
+            "subject": state["contract_id"],
+            "authority": {
+                "principal_id": "supreme-source-layer-bridge-v1",
+                "scope": "totality:release",
+            },
+            "intent": "bind one source state to one governed consequence",
+            "evidence": {
+                "manifest_sha256": state_hash,
+                "upstreams": state["upstreams"],
+                "live_aws_observation": state["live_aws_observation"],
+            },
+            "current_state": {
+                "source_state": "pinned",
+                "coherence_required": True,
+            },
+            "proposed_transition": {
+                "operation": "release_candidate",
+                "manifest_sha256": state_hash,
+            },
+            "expected_consequence": {
+                "receipt_required": True,
+                "next_genesis_required": True,
+            },
+            "metadata": {
+                "contract_id": state["contract_id"],
+                "one_cycle": state["one_cycle"],
+            },
+        })
+
+        result = govern_transition(request)
+        self.assertEqual(result.decision, "PERMIT")
+        self.assertTrue(result.execution_authorized)
+        self.assertEqual(len(result.gate_proofs), 9)
+        self.assertTrue(all(result.gate_proofs.values()))
+
+    def test_totality_never_inherits_unauthorized_authority(self):
+        state = manifest()
+
+        request = TransitionRequest.model_validate({
+            "tenant_id": "supreme-totality",
+            "external_system": "absolute-source-layer-totality",
+            "subject": state["contract_id"],
+            "authority": {
+                "principal_id": "external-upstream",
+                "scope": "unauthorized",
+            },
+            "intent": "attempt to inherit authority from an upstream",
+            "evidence": {"upstreams": state["upstreams"]},
+            "current_state": {},
+            "proposed_transition": {
+                "operation": "release_candidate"
+            },
+            "expected_consequence": {
+                "receipt_required": True
+            },
+        })
+
+        result = govern_transition(request)
+        self.assertEqual(result.decision, "REJECT")
+        self.assertFalse(result.execution_authorized)
 
 
-def test_totality_manifest_crosses_existing_universal_gateway():
-    state = manifest()
-    state_hash = sha256(state)
-
-    request = TransitionRequest.model_validate({
-        "tenant_id": "supreme-totality",
-        "external_system": "absolute-source-layer-totality",
-        "subject": state["contract_id"],
-        "authority": {
-            "principal_id": "supreme-source-layer-bridge-v1",
-            "scope": "totality:release",
-        },
-        "intent": "bind one source state to one governed consequence",
-        "evidence": {
-            "manifest_sha256": state_hash,
-            "upstreams": state["upstreams"],
-            "live_aws_observation": state["live_aws_observation"],
-        },
-        "current_state": {
-            "source_state": "pinned",
-            "coherence_required": True,
-        },
-        "proposed_transition": {
-            "operation": "release_candidate",
-            "manifest_sha256": state_hash,
-        },
-        "expected_consequence": {
-            "receipt_required": True,
-            "next_genesis_required": True,
-        },
-        "metadata": {
-            "contract_id": state["contract_id"],
-            "one_cycle": state["one_cycle"],
-        },
-    })
-
-    result = govern_transition(request)
-    assert result.decision == "PERMIT"
-    assert result.execution_authorized is True
-    assert len(result.gate_proofs) == 9
-    assert all(result.gate_proofs.values())
-
-
-def test_totality_never_inherits_unauthorized_authority():
-    state = manifest()
-
-    request = TransitionRequest.model_validate({
-        "tenant_id": "supreme-totality",
-        "external_system": "absolute-source-layer-totality",
-        "subject": state["contract_id"],
-        "authority": {
-            "principal_id": "external-upstream",
-            "scope": "unauthorized",
-        },
-        "intent": "attempt to inherit authority from an upstream",
-        "evidence": {"upstreams": state["upstreams"]},
-        "current_state": {},
-        "proposed_transition": {"operation": "release_candidate"},
-        "expected_consequence": {"receipt_required": True},
-    })
-
-    result = govern_transition(request)
-    assert result.decision == "REJECT"
-    assert result.execution_authorized is False
+if __name__ == "__main__":
+    unittest.main()
