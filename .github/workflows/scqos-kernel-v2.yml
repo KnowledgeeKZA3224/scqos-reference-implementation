@@ -23,13 +23,22 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y             clang llvm gcc libbpf-dev libelf-dev zlib1g-dev             linux-tools-common linux-tools-generic
 
-          BPFTOOL="$(command -v bpftool || true)"
-          if [[ -z "$BPFTOOL" ]] || ! "$BPFTOOL" version >/dev/null 2>&1; then
-            BPFTOOL="$(find /usr/lib/linux-tools -type f -name bpftool -perm -111 2>/dev/null | sort -V | tail -n 1)"
+          BPFTOOL=""
+          for candidate in             "$(command -v bpftool || true)"             $(find /usr/lib /usr/sbin /usr/bin -type f -name bpftool -perm -111 2>/dev/null | sort -V -r || true)
+          do
+            if [[ -n "$candidate" ]] && "$candidate" version >/dev/null 2>&1; then
+              BPFTOOL="$candidate"
+              break
+            fi
+          done
+
+          if [[ -z "$BPFTOOL" ]]; then
+            echo "No working bpftool binary found after linux-tools install"
+            dpkg -L linux-tools-generic || true
+            find /usr/lib /usr/sbin /usr/bin -name bpftool -ls 2>/dev/null || true
+            exit 1
           fi
 
-          test -n "$BPFTOOL"
-          test -x "$BPFTOOL"
           "$BPFTOOL" version
           echo "BPFTOOL=$BPFTOOL" >> "$GITHUB_ENV"
 
