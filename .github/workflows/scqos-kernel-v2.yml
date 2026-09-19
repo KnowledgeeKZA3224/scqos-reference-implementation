@@ -1,48 +1,73 @@
 name: SCQOS Kernel Source Layer v2
 
 on:
-  push:
-    branches:
-      - scqos-kernel-source-layer-v2-20260919
   pull_request:
     paths:
       - "kernel_integration/**"
       - ".github/workflows/scqos-kernel-v2.yml"
+  workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
 
       - name: Install kernel build dependencies
+        shell: bash
         run: |
+          set -euo pipefail
           sudo apt-get update
-          sudo apt-get install -y clang llvm gcc libbpf-dev libelf-dev zlib1g-dev bpftool
+          sudo apt-get install -y             clang llvm gcc libbpf-dev libelf-dev zlib1g-dev             linux-tools-common linux-tools-generic
+
+          BPFTOOL="$(command -v bpftool || true)"
+          if [[ -z "$BPFTOOL" ]] || ! "$BPFTOOL" version >/dev/null 2>&1; then
+            BPFTOOL="$(find /usr/lib/linux-tools -type f -name bpftool -perm -111 2>/dev/null | sort -V | tail -n 1)"
+          fi
+
+          test -n "$BPFTOOL"
+          test -x "$BPFTOOL"
+          "$BPFTOOL" version
+          echo "BPFTOOL=$BPFTOOL" >> "$GITHUB_ENV"
 
       - name: Generate vmlinux.h
+        shell: bash
         run: |
+          set -euo pipefail
           test -r /sys/kernel/btf/vmlinux
           mkdir -p /tmp/scqos-v2
-          sudo bpftool btf dump file /sys/kernel/btf/vmlinux format c > /tmp/scqos-v2/vmlinux.h
+          "$BPFTOOL" btf dump file /sys/kernel/btf/vmlinux format c > /tmp/scqos-v2/vmlinux.h
+          test -s /tmp/scqos-v2/vmlinux.h
 
       - name: Compile BPF-LSM object
+        shell: bash
         run: |
+          set -euo pipefail
           clang -O2 -g -target bpf -D__TARGET_ARCH_x86             -I/tmp/scqos-v2             -c kernel_integration/scqos_exec_gate.bpf.c             -o /tmp/scqos-v2/scqos_exec_gate.bpf.o
+          test -s /tmp/scqos-v2/scqos_exec_gate.bpf.o
 
       - name: Compile userspace loader
+        shell: bash
         run: |
+          set -euo pipefail
           gcc -O2 kernel_integration/scqos_exec_gate_loader.c             -o /tmp/scqos-v2/scqos_exec_gate_loader             -lbpf -lelf -lz
+          test -x /tmp/scqos-v2/scqos_exec_gate_loader
 
       - name: Validate Python launcher
+        shell: bash
         run: |
+          set -euo pipefail
           python3 -m py_compile kernel_integration/scqos_kernel_exec.py
 
-      - name: Confirm old global mode is absent
+      - name: Verify source-layer invariants
+        shell: bash
         run: |
+          set -euo pipefail
           ! grep -R "scqos_mode" kernel_integration
           grep -q "govern_transition" kernel_integration/scqos_kernel_exec.py
           grep -q "bprm_check_security" kernel_integration/scqos_exec_gate.bpf.c
+          grep -q "exec_grants" kernel_integration/scqos_exec_gate.bpf.c
+          grep -q "governed" kernel_integration/scqos_exec_gate.bpf.c
