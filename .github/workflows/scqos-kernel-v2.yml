@@ -113,8 +113,21 @@ jobs:
           assert shell.is_file()
           identity = module._file_identity(shell)
           assert len(identity["sha256"]) == 64
-          assert identity["size"] > 0
-          assert identity["kernel_dev"] == module._kernel_dev(shell.stat().st_dev)
+          decimal_fields = (
+              "stat_dev",
+              "kernel_dev",
+              "device_major",
+              "device_minor",
+              "inode",
+              "size",
+              "mtime_ns",
+              "ctime_ns",
+          )
+          for field in decimal_fields:
+              assert isinstance(identity[field], str)
+              assert identity[field].isdigit()
+          assert int(identity["size"]) > 0
+          assert int(identity["kernel_dev"]) == module._kernel_dev(shell.stat().st_dev)
           PY
 
       - name: Verify source-layer invariants
