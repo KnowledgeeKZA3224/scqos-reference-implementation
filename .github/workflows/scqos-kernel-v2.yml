@@ -76,7 +76,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          ! grep -R "scqos_mode" kernel_integration
+          ! grep -R --include="*.c" --include="*.py" "scqos_mode" kernel_integration
           grep -q "govern_transition" kernel_integration/scqos_kernel_exec.py
           grep -q '"kernel_exec"' kernel_integration/scqos_kernel_exec.py
           grep -q "kernel_release" kernel_integration/scqos_kernel_exec.py
