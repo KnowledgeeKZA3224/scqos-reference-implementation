@@ -22,7 +22,7 @@ jobs:
         run: |
           set -euo pipefail
           test ! -e .scqos-universal-secret
-          if find . -type f \( -name '*.pem' -o -name '*.p12' -o -name '*.pfx' -o -name '.env' -o -name '.env.*' \) -print -quit | grep -q .; then
+          if find . -type f \( -name '*.key' -o -name '*.p12' -o -name '*.pfx' -o -name '.env' -o -name '.env.*' -o -iname '*private*key*.pem' \) -print -quit | grep -q .; then
             echo "Forbidden secret-like artifact found in repository"
             exit 1
           fi
