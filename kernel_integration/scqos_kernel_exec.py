@@ -9,6 +9,7 @@ Only a PERMIT receipt for those exact facts creates a one-shot BPF-LSM grant.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 import platform
@@ -91,6 +92,31 @@ def _resolve_executable(value: str) -> Path:
     return Path(resolved).resolve(strict=True)
 
 
+def _sha256_file(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as stream:
+        for chunk in iter(lambda: stream.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def _file_identity(path: Path) -> dict[str, int | str]:
+    st = path.stat()
+    if not stat.S_ISREG(st.st_mode):
+        raise ValueError("target executable must be a regular file")
+    return {
+        "stat_dev": int(st.st_dev),
+        "kernel_dev": _kernel_dev(st.st_dev),
+        "device_major": os.major(st.st_dev),
+        "device_minor": os.minor(st.st_dev),
+        "inode": int(st.st_ino),
+        "size": int(st.st_size),
+        "mtime_ns": int(st.st_mtime_ns),
+        "ctime_ns": int(st.st_ctime_ns),
+        "sha256": _sha256_file(path),
+    }
+
+
 def _kill_stopped_child(pid: int) -> None:
     try:
         os.kill(pid, signal.SIGKILL)
@@ -105,7 +131,7 @@ def _kill_stopped_child(pid: int) -> None:
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--request", required=True)
-    ap.add_argument("--ttl-ms", type=int, default=5000)
+    ap.add_argument("--ttl-ms", type=int, default=1000)
     ap.add_argument("command", nargs=argparse.REMAINDER)
     args = ap.parse_args()
 
@@ -113,14 +139,13 @@ def main() -> int:
         raise SystemExit("SCQOS kernel launcher requires root")
     if not args.command:
         raise SystemExit("command required after --request")
+    if not 100 <= args.ttl_ms <= 5000:
+        raise SystemExit("ttl-ms must be between 100 and 5000")
     if not GOVERNED.exists() or not EXEC_GRANTS.exists():
         raise SystemExit("SCQOS BPF-LSM v2 maps are not pinned")
 
     exe = _resolve_executable(args.command[0])
-    st = exe.stat()
-    kernel_dev = _kernel_dev(st.st_dev)
-    if not stat.S_ISREG(st.st_mode):
-        raise SystemExit("target executable must be a regular file")
+    identity = _file_identity(exe)
 
     request_data = json.loads(Path(args.request).read_text())
 
@@ -139,11 +164,7 @@ def main() -> int:
         "pid": pid,
         "path": str(exe),
         "argv": [str(exe), *args.command[1:]],
-        "stat_dev": int(st.st_dev),
-        "kernel_dev": kernel_dev,
-        "device_major": os.major(st.st_dev),
-        "device_minor": os.minor(st.st_dev),
-        "inode": int(st.st_ino),
+        **identity,
         "kernel_release": platform.release(),
         "active_lsms": _active_lsms(),
     }
@@ -178,6 +199,11 @@ def main() -> int:
             _kill_stopped_child(pid)
             return 2 if result.decision == "HOLD" else 3
 
+        # Reference must still be the exact executable that was governed.
+        if _file_identity(exe) != identity:
+            _kill_stopped_child(pid)
+            raise RuntimeError("executable changed after governance")
+
         governed_key = struct.pack("<I", pid)
         governed_value = struct.pack("<B", 1)
 
@@ -186,8 +212,8 @@ def main() -> int:
             "<IIQQ",
             pid,
             0,
-            kernel_dev,
-            int(st.st_ino),
+            int(identity["kernel_dev"]),
+            int(identity["inode"]),
         )
 
         expires_ns = time.monotonic_ns() + args.ttl_ms * 1_000_000
