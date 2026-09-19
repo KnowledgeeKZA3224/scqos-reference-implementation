@@ -1,0 +1,59 @@
+{
+  "contract_id": "SCQOS-ABSOLUTE-SOURCE-TOTALITY-v1",
+  "observed_utc": "2026-09-19T22:46:34Z",
+  "rule": "No external capability inherits authority. No expensive inference or consequence is released until the current totality state proves itself.",
+  "one_cycle": [
+    "reality",
+    "perception",
+    "source-admission",
+    "cognition",
+    "candidate-consequence",
+    "eight-invariant-proof",
+    "release-or-hold",
+    "actuation",
+    "independent-witness",
+    "receipt",
+    "next-genesis"
+  ],
+  "upstreams": {
+    "perception": {
+      "repository": "bilawalsidhu/gods-eye-view",
+      "commit": "0d41b6be5490db1f10a171f238be75db4d4ec3b4"
+    },
+    "cognition": {
+      "repository": "deepseek-ai/deepseek-harness",
+      "commit": "ddefc45fbc7f8e46dd73185e68295696d1297887"
+    },
+    "actuation": {
+      "repository": "openclaw/openclaw",
+      "commit": "616a3958329f90b64856691523b7f49f37d33db3"
+    }
+  },
+  "supreme_computation": {
+    "transition_contract": "SCQOS-UNIVERSAL-TRANSITION-v1",
+    "decisions": ["PERMIT", "HOLD", "REJECT"],
+    "invariants": [
+      "Time",
+      "Continuity",
+      "Alignment",
+      "Genesis",
+      "Boundary",
+      "Reference",
+      "Causality",
+      "Consciousness"
+    ],
+    "coherence_required": true,
+    "fail_closed": true,
+    "receipt_required": true
+  },
+  "live_aws_observation": {
+    "region": "us-east-1",
+    "source_bridge": "supreme-source-layer-bridge-v1",
+    "ingress": "supreme-totality-ingress-v1",
+    "gate": "supreme-totality-gate-v1",
+    "witness_bridge": "supreme-totality-witness-bridge-v1",
+    "safe_sink": "supreme-totality-safe-sink-v1",
+    "agentcore_verifier": "supreme-totality-agentcore-verifier-v1",
+    "evidence_bucket": "supreme-totality-evidence-327453383912-us-east-1"
+  }
+}
