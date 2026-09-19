@@ -1,6 +1,12 @@
 name: SCQOS Kernel Source Layer v2
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - "kernel_integration/**"
+      - ".github/workflows/scqos-kernel-v2.yml"
   pull_request:
     paths:
       - "kernel_integration/**"
