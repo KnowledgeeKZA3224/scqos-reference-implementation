@@ -9,39 +9,73 @@ Connected host:
 - current active LSM list omits `bpf`
 - kernel config contains `CONFIG_BPF_LSM=y` and `CONFIG_DEBUG_INFO_BTF=y`
 - normal GRUB defaults already request `bpf`
+- bpffs is mounted at `/sys/fs/bpf`
 - Amazon SSM Agent and its worker are running
 - `scqos.service`, `scqos-execve.service`, and the legacy
-  `scqos-lsm.service` are enabled
+  `scqos-lsm.service` are enabled on the observed recovery boot
 
 ## Legacy gap
 
 The legacy LSM loader defines `scqos_decision()` but does not call it before
 the BPF programs are attached. Its BPF side uses one global byte for exec,
 file-open, capability and socket-connect authorization. The map is initialized
-to zero independently of an eight-invariant transition receipt.
+independently of an eight-invariant transition receipt.
 
 A June 1 proof on kernel 7.0.0-22 recorded `bpf` in the active LSM list.
-The September 19 recovery boot does not. That means the historical attachment
-is continuity evidence, not proof of current enforcement.
+The September 19 recovery boot does not. That historical attachment is
+continuity evidence, not proof of current enforcement.
 
-## v2 closure
+## Mainline source-layer v2
 
-PR #20 introduces:
-- exact child PID + executable inode authorization;
-- one-shot, expiring BPF map grants;
-- live PID/argv/inode/kernel/LSM facts inserted into the universal transition
-  proposition before governance;
-- `PERMIT && execution_authorized` required before a grant exists;
-- kernel `bprm_check_security` as the final pre-exec consequence gate;
-- old global loader disabled only after v2 successfully compiles and stages;
-- v2 systemd activation conditioned on BTF and an active `bpf` LSM.
+The v2 source is integrated directly on `main` under
+`kernel_integration/`. It replaces the machine-wide bit with an explicitly
+enrolled, one-shot execution boundary.
 
-The OS is never put behind a machine-wide SCQOS bit. Only explicitly enrolled
-processes become fail-closed.
+Before a kernel grant exists, the launcher binds these facts into the existing
+universal SCQOS transition proposition:
+- stopped child PID;
+- resolved executable path and exact argv;
+- userspace device identity plus kernel `dev_t` encoding;
+- inode, size, mtime and ctime;
+- SHA-256 of the executable contents;
+- running kernel release;
+- active LSM chain.
+
+The existing `govern_transition` path must return both `PERMIT` and
+`execution_authorized=true`. The executable identity is recomputed after
+governance and must still match before any grant is inserted.
+
+The BPF-LSM map grant is then bound to the exact process + executable
+device/inode. It expires after a bounded 100–5000 ms window (1000 ms default)
+and is consumed on the first matching execution. Missing, stale or mismatched
+authorization returns `-EACCES` at `bprm_check_security`.
+
+The operating system is never placed behind a machine-wide SCQOS bit. Only a
+process explicitly enrolled by the launcher becomes fail-closed.
+
+## Deployment handoff
+
+`activate_v2.sh` verifies root, architecture, compiler/tooling, kernel BTF and
+bpffs, compiles the CO-RE object and loader, stages the new systemd unit, then
+retires the legacy global-bit unit only after v2 has compiled successfully.
+
+`scqos-kernel-v2.service` starts only when BTF exists and `bpf` is present
+in the live LSM list. On the currently observed recovery boot, activation
+therefore remains HOLD rather than falsely claiming kernel enforcement. The
+normal GRUB configuration already contains the required `bpf` LSM argument.
+
+## Validation
+
+The mainline GitHub workflow compiles the BPF-LSM object and userspace loader,
+syntax-checks the Python launcher and activation script, checks the userspace /
+kernel map ABI, verifies kernel device-number encoding, verifies executable
+reference hashing, and rejects reintroduction of the legacy global
+`scqos_mode` switch in executable source.
 
 ## Alpine boundary
 
 No Alpine installation was found on the connected laptop or in the searched
-SCQOS repository tree. The v2 BPF code is CO-RE based and can target Alpine
-when that Alpine kernel exposes BPF-LSM and BTF. Alpine is therefore a
-separate deployment target, not the identity of the currently connected host.
+SCQOS repository tree. v2 is CO-RE based and architecture-aware; it can target
+an Alpine Linux kernel when that kernel exposes BPF-LSM and BTF and has
+`bpf` active in the LSM list. Alpine remains a separate deployment target
+from the currently connected Ubuntu host.
