@@ -13,4 +13,5 @@ node_modules/
 *.p12
 *.pfx
 *credentials*
+.scqos-universal-secret
 darpa-qbi-ivv-submission/
