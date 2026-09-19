@@ -1,0 +1,48 @@
+name: SCQOS Kernel Source Layer v2
+
+on:
+  push:
+    branches:
+      - scqos-kernel-source-layer-v2-20260919
+  pull_request:
+    paths:
+      - "kernel_integration/**"
+      - ".github/workflows/scqos-kernel-v2.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install kernel build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y clang llvm gcc libbpf-dev libelf-dev zlib1g-dev bpftool
+
+      - name: Generate vmlinux.h
+        run: |
+          test -r /sys/kernel/btf/vmlinux
+          mkdir -p /tmp/scqos-v2
+          sudo bpftool btf dump file /sys/kernel/btf/vmlinux format c > /tmp/scqos-v2/vmlinux.h
+
+      - name: Compile BPF-LSM object
+        run: |
+          clang -O2 -g -target bpf -D__TARGET_ARCH_x86             -I/tmp/scqos-v2             -c kernel_integration/scqos_exec_gate.bpf.c             -o /tmp/scqos-v2/scqos_exec_gate.bpf.o
+
+      - name: Compile userspace loader
+        run: |
+          gcc -O2 kernel_integration/scqos_exec_gate_loader.c             -o /tmp/scqos-v2/scqos_exec_gate_loader             -lbpf -lelf -lz
+
+      - name: Validate Python launcher
+        run: |
+          python3 -m py_compile kernel_integration/scqos_kernel_exec.py
+
+      - name: Confirm old global mode is absent
+        run: |
+          ! grep -R "scqos_mode" kernel_integration
+          grep -q "govern_transition" kernel_integration/scqos_kernel_exec.py
+          grep -q "bprm_check_security" kernel_integration/scqos_exec_gate.bpf.c
