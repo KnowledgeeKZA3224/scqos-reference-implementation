@@ -78,12 +78,47 @@ jobs:
           python3 -m py_compile kernel_integration/scqos_kernel_exec.py
           sh -n kernel_integration/activate_v2.sh
 
+      - name: Verify userspace to kernel map ABI
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import importlib.util
+          import os
+          import struct
+          import sys
+          import types
+
+          package = types.ModuleType("integration")
+          package.__path__ = []
+          gateway = types.ModuleType("integration.universal_gateway")
+          gateway.TransitionRequest = object
+          gateway.govern_transition = lambda value: value
+          sys.modules["integration"] = package
+          sys.modules["integration.universal_gateway"] = gateway
+
+          spec = importlib.util.spec_from_file_location(
+              "scqos_kernel_exec",
+              "kernel_integration/scqos_kernel_exec.py",
+          )
+          module = importlib.util.module_from_spec(spec)
+          spec.loader.exec_module(module)
+
+          assert struct.calcsize("<I") == 4
+          assert struct.calcsize("<IIQQ") == 24
+          assert struct.calcsize("<QQ") == 16
+          assert module._kernel_dev(os.makedev(8, 6)) == (8 << 20) | 6
+          assert module._kernel_dev(os.makedev(259, 2)) == (259 << 20) | 2
+          assert module._resolve_executable("sh").is_file()
+          PY
+
       - name: Verify source-layer invariants
         shell: bash
         run: |
           set -euo pipefail
           ! grep -R --include="*.c" --include="*.py" "scqos_mode" kernel_integration
           grep -q "govern_transition" kernel_integration/scqos_kernel_exec.py
+          grep -q "_kernel_dev" kernel_integration/scqos_kernel_exec.py
           grep -q '"kernel_exec"' kernel_integration/scqos_kernel_exec.py
           grep -q "kernel_release" kernel_integration/scqos_kernel_exec.py
           grep -q "active_lsms" kernel_integration/scqos_kernel_exec.py
