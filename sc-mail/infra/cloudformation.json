@@ -1,0 +1,514 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "SC Mail Mark v1 - Outlook-native governed email control plane",
+  "Resources": {
+    "StateTable": {
+      "Type": "AWS::DynamoDB::Table",
+      "Properties": {
+        "TableName": "sc-mail-mark-v1-state",
+        "BillingMode": "PAY_PER_REQUEST",
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "PK",
+            "AttributeType": "S"
+          },
+          {
+            "AttributeName": "SK",
+            "AttributeType": "S"
+          }
+        ],
+        "KeySchema": [
+          {
+            "AttributeName": "PK",
+            "KeyType": "HASH"
+          },
+          {
+            "AttributeName": "SK",
+            "KeyType": "RANGE"
+          }
+        ],
+        "PointInTimeRecoverySpecification": {
+          "PointInTimeRecoveryEnabled": true
+        },
+        "TimeToLiveSpecification": {
+          "AttributeName": "ExpiresAt",
+          "Enabled": true
+        }
+      }
+    },
+    "DLQ": {
+      "Type": "AWS::SQS::Queue",
+      "Properties": {
+        "QueueName": "sc-mail-mark-v1-dlq",
+        "MessageRetentionPeriod": 1209600
+      }
+    },
+    "Queue": {
+      "Type": "AWS::SQS::Queue",
+      "Properties": {
+        "QueueName": "sc-mail-mark-v1-send",
+        "VisibilityTimeout": 300,
+        "RedrivePolicy": {
+          "deadLetterTargetArn": {
+            "Fn::GetAtt": [
+              "DLQ",
+              "Arn"
+            ]
+          },
+          "maxReceiveCount": 5
+        }
+      }
+    },
+    "MicrosoftSecret": {
+      "Type": "AWS::SecretsManager::Secret",
+      "Properties": {
+        "Name": "sc-mail/mark/microsoft",
+        "Description": "Mark Microsoft 365 Graph app credentials. Populate only after Mark authorizes.",
+        "SecretString": "{\"tenant_id\": \"REPLACE_TENANT_ID\", \"client_id\": \"REPLACE_CLIENT_ID\", \"client_secret\": \"REPLACE_CLIENT_SECRET\", \"sender_upn\": \"REPLACE_SENDER_UPN\"}"
+      }
+    },
+    "SigningSecret": {
+      "Type": "AWS::SecretsManager::Secret",
+      "Properties": {
+        "Name": "sc-mail/mark/unsubscribe-signing-key",
+        "GenerateSecretString": {
+          "PasswordLength": 48,
+          "ExcludePunctuation": true
+        }
+      }
+    },
+    "ApiRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "lambda.amazonaws.com"
+                ]
+              },
+              "Action": [
+                "sts:AssumeRole"
+              ]
+            }
+          ]
+        },
+        "ManagedPolicyArns": [
+          "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+        ],
+        "Policies": [
+          {
+            "PolicyName": "SCMailApi",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "dynamodb:GetItem",
+                    "dynamodb:PutItem",
+                    "dynamodb:UpdateItem",
+                    "dynamodb:Query"
+                  ],
+                  "Resource": {
+                    "Fn::GetAtt": [
+                      "StateTable",
+                      "Arn"
+                    ]
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "secretsmanager:GetSecretValue"
+                  ],
+                  "Resource": [
+                    {
+                      "Ref": "MicrosoftSecret"
+                    },
+                    {
+                      "Ref": "SigningSecret"
+                    }
+                  ]
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "sqs:SendMessage",
+                    "sqs:SendMessageBatch"
+                  ],
+                  "Resource": {
+                    "Fn::GetAtt": [
+                      "Queue",
+                      "Arn"
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "WorkerRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "lambda.amazonaws.com"
+                ]
+              },
+              "Action": [
+                "sts:AssumeRole"
+              ]
+            }
+          ]
+        },
+        "ManagedPolicyArns": [
+          "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+        ],
+        "Policies": [
+          {
+            "PolicyName": "SCMailWorker",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "dynamodb:GetItem",
+                    "dynamodb:PutItem",
+                    "dynamodb:UpdateItem",
+                    "dynamodb:Query"
+                  ],
+                  "Resource": {
+                    "Fn::GetAtt": [
+                      "StateTable",
+                      "Arn"
+                    ]
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "sqs:ReceiveMessage",
+                    "sqs:DeleteMessage",
+                    "sqs:GetQueueAttributes"
+                  ],
+                  "Resource": {
+                    "Fn::GetAtt": [
+                      "Queue",
+                      "Arn"
+                    ]
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "secretsmanager:GetSecretValue"
+                  ],
+                  "Resource": [
+                    {
+                      "Ref": "MicrosoftSecret"
+                    },
+                    {
+                      "Ref": "SigningSecret"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "ApiFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "FunctionName": "sc-mail-mark-v1-api",
+        "Runtime": "python3.12",
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "ApiRole",
+            "Arn"
+          ]
+        },
+        "Timeout": 30,
+        "MemorySize": 256,
+        "Environment": {
+          "Variables": {
+            "TABLE_NAME": {
+              "Ref": "StateTable"
+            },
+            "MICROSOFT_SECRET_ARN": {
+              "Ref": "MicrosoftSecret"
+            },
+            "SIGNING_SECRET_ARN": {
+              "Ref": "SigningSecret"
+            },
+            "HARD_CEILING": "9950",
+            "SAFE_PER_MIN": "28"
+          }
+        },
+        "Code": {
+          "ZipFile": "\nimport os, json, re, hashlib, hmac, time, uuid\nimport boto3\n\nTABLE=os.environ[\"TABLE_NAME\"]\nMICROSOFT_SECRET_ARN=os.environ[\"MICROSOFT_SECRET_ARN\"]\nSIGNING_SECRET_ARN=os.environ[\"SIGNING_SECRET_ARN\"]\nHARD_CEILING=int(os.environ.get(\"HARD_CEILING\",\"9950\"))\nSAFE_PER_MIN=int(os.environ.get(\"SAFE_PER_MIN\",\"28\"))\nddb=boto3.client(\"dynamodb\")\nsm=boto3.client(\"secretsmanager\")\nINVARIANTS=[\"Time\",\"Continuity\",\"Alignment\",\"Genesis\",\"Boundary\",\"Reference\",\"Causality\",\"Consciousness\"]\n\ndef response(code, body, content_type=\"application/json\"):\n    if content_type==\"application/json\" and not isinstance(body,str):\n        body=json.dumps(body,separators=(\",\",\":\"))\n    return {\"statusCode\":code,\"headers\":{\"content-type\":content_type,\"cache-control\":\"no-store\"},\"body\":body}\n\ndef get_secret(arn):\n    return sm.get_secret_value(SecretId=arn).get(\"SecretString\",\"\")\n\ndef provider_ready():\n    try:\n        cfg=json.loads(get_secret(MICROSOFT_SECRET_ARN) or \"{}\")\n        req=[\"tenant_id\",\"client_id\",\"client_secret\",\"sender_upn\"]\n        return all(cfg.get(k) and not str(cfg.get(k)).startswith(\"REPLACE_\") for k in req)\n    except Exception:\n        return False\n\ndef window_usage():\n    now=int(time.time()); cutoff=now-86400\n    r=ddb.query(TableName=TABLE,KeyConditionExpression=\"PK = :pk AND SK >= :cut\",ExpressionAttributeValues={\":pk\":{\"S\":\"OUTLOOK_WINDOW\"},\":cut\":{\"S\":\"R#\"+str(cutoff)}})\n    used=0\n    for item in r.get(\"Items\",[]):\n        used += int((item.get(\"Count\") or {}).get(\"N\",\"0\"))\n    return used\n\ndef valid_email(v):\n    return bool(re.match(r\"^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$\", (v or \"\").strip()))\n\ndef blocked_source(v):\n    return (v or \"\").strip().lower() in {\"scraped\",\"purchased\",\"bought\",\"unknown\",\"mystery\"}\n\ndef evaluate(c):\n    email=(c.get(\"email\") or \"\").strip().lower()\n    source=(c.get(\"source\") or \"\").strip()\n    suppressed=bool(c.get(\"unsubscribed\") or c.get(\"hard_bounce\") or c.get(\"complaint\"))\n    checks={\n      \"Time\": True,\n      \"Continuity\": not suppressed,\n      \"Alignment\": valid_email(email),\n      \"Genesis\": bool(source) and not blocked_source(source),\n      \"Boundary\": not suppressed,\n      \"Reference\": True,\n      \"Causality\": bool(c.get(\"purpose\") or c.get(\"relationship\") or source),\n      \"Consciousness\": bool(c.get(\"authorized\",True))\n    }\n    return email, checks, all(checks.values())\n\ndef manifest(base):\n    return \"\"\"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<OfficeApp xmlns=\"http://schemas.microsoft.com/office/appforoffice/1.1\"\n xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n xmlns:bt=\"http://schemas.microsoft.com/office/officeappbasictypes/1.0\" xsi:type=\"MailApp\">\n<Id>6d6f5127-9a6e-4f52-8c21-f6a4e7fe9950</Id><Version>1.0.0.0</Version><ProviderName>Supreme Computation</ProviderName>\n<DefaultLocale>en-US</DefaultLocale><DisplayName DefaultValue=\"SC Mail\"/><Description DefaultValue=\"Outlook-native governed business email automation.\"/>\n<IconUrl DefaultValue=\"%s/icon\"/><SupportUrl DefaultValue=\"%s/health\"/><AppDomains><AppDomain>%s</AppDomain></AppDomains>\n<Hosts><Host Name=\"Mailbox\"/></Hosts><Requirements><Sets><Set Name=\"Mailbox\" MinVersion=\"1.5\"/></Sets></Requirements>\n<FormSettings><Form xsi:type=\"ItemRead\"><DesktopSettings><SourceLocation DefaultValue=\"%s/taskpane\"/><RequestedHeight>450</RequestedHeight></DesktopSettings></Form>\n<Form xsi:type=\"ItemEdit\"><DesktopSettings><SourceLocation DefaultValue=\"%s/taskpane\"/></DesktopSettings></Form></FormSettings>\n<Permissions>ReadWriteMailbox</Permissions><Rule xsi:type=\"RuleCollection\" Mode=\"Or\"><Rule xsi:type=\"ItemIs\" ItemType=\"Message\" FormType=\"Read\"/><Rule xsi:type=\"ItemIs\" ItemType=\"Message\" FormType=\"Edit\"/></Rule>\n<VersionOverrides xmlns=\"http://schemas.microsoft.com/office/mailappversionoverrides\" xsi:type=\"VersionOverridesV1_0\">\n<Requirements><bt:Sets DefaultMinVersion=\"1.5\"><bt:Set Name=\"Mailbox\"/></bt:Sets></Requirements>\n<Hosts><Host xsi:type=\"MailHost\"><DesktopFormFactor>\n<FunctionFile resid=\"Commands.Url\"/>\n<ExtensionPoint xsi:type=\"MessageReadCommandSurface\"><OfficeTab id=\"TabDefault\"><Group id=\"SCMail.Read.Group\"><Label resid=\"Group.Label\"/><Control xsi:type=\"Button\" id=\"SCMail.Read.Open\"><Label resid=\"Button.Label\"/><Supertip><Title resid=\"Button.Label\"/><Description resid=\"Button.Desc\"/></Supertip><Icon><bt:Image size=\"16\" resid=\"Icon.16\"/><bt:Image size=\"32\" resid=\"Icon.32\"/><bt:Image size=\"80\" resid=\"Icon.80\"/></Icon><Action xsi:type=\"ShowTaskpane\"><SourceLocation resid=\"Taskpane.Url\"/><SupportsPinning>true</SupportsPinning></Action></Control></Group></OfficeTab></ExtensionPoint>\n<ExtensionPoint xsi:type=\"MessageComposeCommandSurface\"><OfficeTab id=\"TabDefault\"><Group id=\"SCMail.Compose.Group\"><Label resid=\"Group.Label\"/><Control xsi:type=\"Button\" id=\"SCMail.Compose.Open\"><Label resid=\"Button.Label\"/><Supertip><Title resid=\"Button.Label\"/><Description resid=\"Button.Desc\"/></Supertip><Icon><bt:Image size=\"16\" resid=\"Icon.16\"/><bt:Image size=\"32\" resid=\"Icon.32\"/><bt:Image size=\"80\" resid=\"Icon.80\"/></Icon><Action xsi:type=\"ShowTaskpane\"><SourceLocation resid=\"Taskpane.Url\"/><SupportsPinning>true</SupportsPinning></Action></Control></Group></OfficeTab></ExtensionPoint>\n</DesktopFormFactor></Host></Hosts>\n<Resources><bt:Images><bt:Image id=\"Icon.16\" DefaultValue=\"%s/icon\"/><bt:Image id=\"Icon.32\" DefaultValue=\"%s/icon\"/><bt:Image id=\"Icon.80\" DefaultValue=\"%s/icon\"/></bt:Images>\n<bt:Urls><bt:Url id=\"Commands.Url\" DefaultValue=\"%s/taskpane\"/><bt:Url id=\"Taskpane.Url\" DefaultValue=\"%s/taskpane\"/></bt:Urls>\n<bt:ShortStrings><bt:String id=\"Group.Label\" DefaultValue=\"SC Mail\"/><bt:String id=\"Button.Label\" DefaultValue=\"SC Mail\"/></bt:ShortStrings>\n<bt:LongStrings><bt:String id=\"Button.Desc\" DefaultValue=\"Open SC Mail business email controls.\"/></bt:LongStrings></Resources>\n</VersionOverrides></OfficeApp>\"\"\" % (base,base,base,base,base,base,base,base,base,base)\n\ndef taskpane(base):\n    return \"\"\"<!doctype html><html><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\n<script src=\"https://appsforoffice.microsoft.com/lib/1/hosted/office.js\"></script><style>\nbody{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f6f8fb;color:#1f2937}.wrap{padding:16px}h1{font-size:20px;margin:0 0 4px}.muted{color:#667085;font-size:12px}\n.card{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:12px;margin-top:12px}label{display:block;font-size:12px;font-weight:600;margin:8px 0 4px}\ninput,textarea,select{width:100%%;box-sizing:border-box;padding:9px;border:1px solid #cfd4dc;border-radius:6px;font:inherit}textarea{min-height:120px}\nbutton{border:0;border-radius:7px;padding:10px 12px;font-weight:700;cursor:pointer}.primary{background:#106ebe;color:#fff;width:100%%;margin-top:10px}.secondary{background:#eef2f7;margin-right:6px}\n.status{font-weight:700}.green{color:#08783e}.amber{color:#b54708}.row{display:flex;gap:8px}.row>*{flex:1}.count{font-size:24px;font-weight:700}</style></head>\n<body><div class=\"wrap\"><h1>\ud83d\udce8 SC Mail</h1><div class=\"muted\">Business email inside Outlook. SC handles the complexity underneath.</div>\n<div class=\"card\"><div class=\"row\"><div><div class=\"muted\">SC status</div><div id=\"status\" class=\"status amber\">Checking\u2026</div></div><div><div class=\"muted\">Available this window</div><div class=\"count\">%s</div></div></div></div>\n<div class=\"card\"><label>\ud83d\udc65 Contact list (.csv)</label><input id=\"file\" type=\"file\" accept=\".csv,text/csv\"><label>\ud83c\udfaf Audience</label>\n<select id=\"audience\"><option>Existing customers</option><option>New leads</option><option>Custom list</option></select>\n<label>\u270d\ufe0f Subject</label><input id=\"subject\" placeholder=\"Example: September tax reminder\"><label>\u270d\ufe0f Message</label><textarea id=\"body\" placeholder=\"Hi {FirstName},&#10;&#10;Write your message here...\"></textarea>\n<div class=\"row\"><button class=\"secondary\" onclick=\"preview()\">\ud83d\udc41 Preview</button><button class=\"secondary\" onclick=\"preflight()\">\ud83d\udee1\ufe0f SC Check</button></div>\n<button id=\"send\" class=\"primary\" onclick=\"sendCampaign()\" disabled>\ud83d\ude80 Send</button><div id=\"result\" class=\"muted\" style=\"margin-top:10px\"></div></div>\n<div class=\"card\"><b>Activity</b><div class=\"muted\">Sent, scheduled, failed and suppressed contacts are recorded automatically.</div></div></div>\n<script>\nvar BASE=%s; var contacts=[]; var proof=null;\nfunction parseCSV(text){var lines=text.split(/\\\\r?\\\\n/).filter(Boolean);if(!lines.length)return[];var h=lines[0].split(',').map(function(x){return x.trim().toLowerCase();});\nreturn lines.slice(1).map(function(line){var v=line.split(',');var o={};h.forEach(function(k,i){o[k]=(v[i]||'').trim();});\nreturn {email:o.email||o['email address'],firstName:o.firstname||o['first name']||'',company:o.company||'',source:o.source||'existing_business_file',relationship:o.relationship||document.getElementById('audience').value,purpose:'business outreach',authorized:true};});}\ndocument.getElementById('file').addEventListener('change',async function(e){var t=await e.target.files[0].text();contacts=parseCSV(t);document.getElementById('result').textContent='Loaded '+contacts.length.toLocaleString()+' contacts.';});\nasync function boot(){var r=await fetch(BASE+'/config');var x=await r.json();var s=document.getElementById('status');s.textContent=x.providerConnected?'READY':'MICROSOFT CONNECTION NEEDED';s.className='status '+(x.providerConnected?'green':'amber');var c=document.querySelector('.count');if(c)c.textContent=Number(x.remainingInRollingWindow).toLocaleString();}\nfunction preview(){var c=contacts[0]||{firstName:'Mark'};var b=document.getElementById('body').value.split('{FirstName}').join(c.firstName||'');document.getElementById('result').textContent=(document.getElementById('subject').value||'(no subject)')+' \u2014 '+b.slice(0,180);}\nasync function preflight(){document.getElementById('result').textContent='SC is checking the campaign\u2026';var payload={contacts:contacts.slice(0,9950),requestedCount:Math.min(contacts.length,9950),campaign:{subject:document.getElementById('subject').value,body:document.getElementById('body').value,audience:document.getElementById('audience').value}};\nvar r=await fetch(BASE+'/api/preflight',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(payload)});proof=await r.json();document.getElementById('result').textContent=proof.decision+' \u2014 '+proof.permitted+' ready, '+proof.rejected+' held/rejected.';document.getElementById('send').disabled=!(proof.decision==='PERMIT'&&proof.providerConnected);}\nasync function sendCampaign(){document.getElementById('send').disabled=true;document.getElementById('result').textContent='SC is compiling and queueing the proven batch\u2026';var payload={contacts:contacts.slice(0,9950),requestedCount:Math.min(contacts.length,9950),campaign:{subject:document.getElementById('subject').value,body:document.getElementById('body').value,audience:document.getElementById('audience').value,authorized:true}};var r=await fetch(BASE+'/api/send',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(payload)});var x=await r.json();document.getElementById('result').textContent=(x.decision||x.error)+' \u2014 '+(x.queued||0)+' queued.';document.getElementById('send').disabled=false;}\\nOffice.onReady(function(){boot();});</script></body></html>\"\"\" % (format(HARD_CEILING,\",\"),json.dumps(base))\n\ndef handler(event, context):\n    path=event.get(\"rawPath\") or \"/\"\n    method=((event.get(\"requestContext\") or {}).get(\"http\") or {}).get(\"method\",\"GET\")\n    headers={k.lower():v for k,v in (event.get(\"headers\") or {}).items()}\n    base=\"https://\"+headers.get(\"host\",\"\")\n    if path==\"/health\":\n        return response(200,{\"service\":\"sc-mail-mark-v1\",\"status\":\"ok\",\"version\":\"1.0.0\",\"hardCeiling\":HARD_CEILING,\"safePerMinute\":SAFE_PER_MIN})\n    if path==\"/config\":\n        used=window_usage(); return response(200,{\"provider\":\"microsoft365\",\"providerConnected\":provider_ready(),\"hardCeiling\":HARD_CEILING,\"usedInRollingWindow\":used,\"remainingInRollingWindow\":max(0,HARD_CEILING-used),\"safePerMinute\":SAFE_PER_MIN,\"invariants\":INVARIANTS})\n    if path==\"/manifest.xml\":\n        return response(200,manifest(base),\"application/xml\")\n    if path in {\"/\",\"/taskpane\"}:\n        return response(200,taskpane(base),\"text/html; charset=utf-8\")\n    if path==\"/icon\":\n        png=\"iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=\"\n        return {\"statusCode\":200,\"headers\":{\"content-type\":\"image/png\"},\"isBase64Encoded\":True,\"body\":png}\n    if path==\"/api/preflight\" and method==\"POST\":\n        body=json.loads(event.get(\"body\") or \"{}\"); contacts=body.get(\"contacts\") or []\n        requested=min(int(body.get(\"requestedCount\") or len(contacts) or 0),HARD_CEILING)\n        seen=set(); permitted=[]; rejected=[]\n        for c in contacts:\n            email,checks,ok=evaluate(c)\n            if email in seen:\n                checks[\"Continuity\"]=False; ok=False\n            seen.add(email)\n            item={\"email\":email,\"checks\":checks}\n            (permitted if ok else rejected).append(item)\n        campaign=body.get(\"campaign\") or {}\n        global_checks={\"Time\":True,\"Continuity\":True,\"Alignment\":bool(campaign.get(\"subject\") and campaign.get(\"body\")),\"Genesis\":True,\"Boundary\":requested<=HARD_CEILING,\"Reference\":True,\"Causality\":bool(campaign.get(\"audience\")),\"Consciousness\":True}\n        digest=hashlib.sha256(json.dumps({\"requested\":requested,\"permitted\":[x[\"email\"] for x in permitted],\"campaign\":campaign},sort_keys=True).encode()).hexdigest()\n        decision=\"PERMIT\" if all(global_checks.values()) and len(permitted)>=requested and requested>0 else \"HOLD\"\n        return response(200,{\"decision\":decision,\"requested\":requested,\"permitted\":len(permitted),\"rejected\":len(rejected),\"providerConnected\":provider_ready(),\"hardCeiling\":HARD_CEILING,\"checks\":global_checks,\"receiptSha256\":digest,\"rejectedSample\":rejected[:20]})\n    if path==\"/api/send\" and method==\"POST\":\n        if not provider_ready():\n            return response(409,{\"decision\":\"HOLD\",\"error\":\"microsoft_authorization_required\",\"queued\":0})\n        body=json.loads(event.get(\"body\") or \"{}\"); contacts=body.get(\"contacts\") or []\n        requested=min(int(body.get(\"requestedCount\") or len(contacts) or 0),HARD_CEILING)\n        used=window_usage(); remaining=max(0,HARD_CEILING-used)\n        if requested>remaining:\n            return response(409,{\"decision\":\"HOLD\",\"error\":\"outlook_rolling_window_ceiling\",\"requested\":requested,\"remaining\":remaining,\"queued\":0})\n        campaign=body.get(\"campaign\") or {}; campaign[\"authorized\"]=bool(campaign.get(\"authorized\",False))\n        if not campaign.get(\"subject\") or not campaign.get(\"body\") or not campaign.get(\"audience\") or not campaign.get(\"authorized\"):\n            return response(400,{\"decision\":\"HOLD\",\"error\":\"campaign_not_fully_authorized\",\"queued\":0})\n        seen=set(); selected=[]\n        for c in contacts:\n            email,checks,ok=evaluate(c)\n            if email in seen: ok=False\n            seen.add(email)\n            if ok:\n                selected.append({\"email\":email,\"firstName\":c.get(\"firstName\",\"\"),\"company\":c.get(\"company\",\"\")})\n            if len(selected)>=requested: break\n        if requested<=0 or len(selected)<requested:\n            return response(409,{\"decision\":\"HOLD\",\"error\":\"insufficient_proven_recipients\",\"requested\":requested,\"proven\":len(selected),\"queued\":0})\n        campaign_id=str(uuid.uuid4())\n        digest=hashlib.sha256(json.dumps({\"campaignId\":campaign_id,\"selected\":[x[\"email\"] for x in selected],\"subject\":campaign.get(\"subject\")},sort_keys=True).encode()).hexdigest()\n        now_epoch=int(time.time())\n        ddb.put_item(TableName=TABLE,Item={\"PK\":{\"S\":\"OUTLOOK_WINDOW\"},\"SK\":{\"S\":\"R#\"+str(now_epoch)+\"#\"+campaign_id},\"Count\":{\"N\":str(requested)},\"CampaignId\":{\"S\":campaign_id},\"ExpiresAt\":{\"N\":str(now_epoch+86400)}})\n        ddb.put_item(TableName=TABLE,Item={\"PK\":{\"S\":\"CAMPAIGN#\"+campaign_id},\"SK\":{\"S\":\"STATE\"},\"Status\":{\"S\":\"QUEUED\"},\"Requested\":{\"N\":str(requested)},\"Queued\":{\"N\":str(len(selected))},\"ReceiptSha256\":{\"S\":digest},\"CreatedAt\":{\"N\":str(now_epoch)}})\n        entries=[]\n        queued=0\n        for i,c in enumerate(selected):\n            msg={\"campaignId\":campaign_id,\"email\":c[\"email\"],\"firstName\":c.get(\"firstName\",\"\"),\"company\":c.get(\"company\",\"\"),\"subject\":campaign[\"subject\"],\"body\":campaign[\"body\"],\"base_url\":base}\n            entries.append({\"Id\":str(i%10)+\"-\"+str(i),\"MessageBody\":json.dumps(msg,separators=(\",\",\":\"))})\n            if len(entries)==10:\n                sqs.send_message_batch(QueueUrl=QUEUE_URL,Entries=entries); queued+=len(entries); entries=[]\n        if entries:\n            sqs.send_message_batch(QueueUrl=QUEUE_URL,Entries=entries); queued+=len(entries)\n        return response(202,{\"decision\":\"PERMIT\",\"campaignId\":campaign_id,\"queued\":queued,\"receiptSha256\":digest})\n    if path==\"/api/activity\" and method==\"GET\":\n        q=(event.get(\"queryStringParameters\") or {}); campaign_id=q.get(\"campaignId\")\n        if not campaign_id: return response(400,{\"error\":\"campaignId_required\"})\n        r=ddb.query(TableName=TABLE,KeyConditionExpression=\"PK = :pk\",ExpressionAttributeValues={\":pk\":{\"S\":\"CAMPAIGN#\"+campaign_id}})\n        counts={}\n        for item in r.get(\"Items\",[]):\n            st=(item.get(\"Status\") or {}).get(\"S\")\n            if st: counts[st]=counts.get(st,0)+1\n        return response(200,{\"campaignId\":campaign_id,\"counts\":counts,\"items\":len(r.get(\"Items\",[]))})\n    if path.startswith(\"/u/\") and method==\"GET\":\n        token=path.split(\"/u/\",1)[1]\n        email_addr=((event.get(\"queryStringParameters\") or {}).get(\"e\") or \"\").strip().lower()\n        key=get_secret(SIGNING_SECRET_ARN).encode()\n        expected=hmac.new(key,email_addr.encode(),hashlib.sha256).hexdigest()\n        if not email_addr or not hmac.compare_digest(token,expected):\n            return response(400,\"Invalid unsubscribe link\",\"text/plain\")\n        ddb.put_item(TableName=TABLE,Item={\"PK\":{\"S\":\"SUPPRESS#\"+email_addr},\"SK\":{\"S\":\"STATE\"},\"Reason\":{\"S\":\"unsubscribe\"},\"At\":{\"N\":str(int(time.time()))}})\n        return response(200,\"You have been unsubscribed.\",\"text/plain\")\n    return response(404,{\"error\":\"not_found\"})\n"
+        },
+        "ReservedConcurrentExecutions": 1
+      }
+    },
+    "WorkerFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "FunctionName": "sc-mail-mark-v1-worker",
+        "Runtime": "python3.12",
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "WorkerRole",
+            "Arn"
+          ]
+        },
+        "Timeout": 300,
+        "MemorySize": 256,
+        "ReservedConcurrentExecutions": 1,
+        "Environment": {
+          "Variables": {
+            "TABLE_NAME": {
+              "Ref": "StateTable"
+            },
+            "MICROSOFT_SECRET_ARN": {
+              "Ref": "MicrosoftSecret"
+            },
+            "SIGNING_SECRET_ARN": {
+              "Ref": "SigningSecret"
+            },
+            "HARD_CEILING": "9950",
+            "SAFE_PER_MIN": "28"
+          }
+        },
+        "Code": {
+          "ZipFile": "\nimport os, json, time, urllib.request, urllib.parse, urllib.error, hashlib, hmac, base64\nimport boto3\nTABLE=os.environ[\"TABLE_NAME\"]; MICROSOFT_SECRET_ARN=os.environ[\"MICROSOFT_SECRET_ARN\"]; SIGNING_SECRET_ARN=os.environ[\"SIGNING_SECRET_ARN\"]\nSAFE_PER_MIN=int(os.environ.get(\"SAFE_PER_MIN\",\"28\"))\nddb=boto3.client(\"dynamodb\"); sm=boto3.client(\"secretsmanager\")\ndef secret(arn): return sm.get_secret_value(SecretId=arn).get(\"SecretString\",\"\")\ndef cfg(): return json.loads(secret(MICROSOFT_SECRET_ARN) or \"{}\")\ndef access_token(c):\n    data=urllib.parse.urlencode({\"client_id\":c[\"client_id\"],\"client_secret\":c[\"client_secret\"],\"scope\":\"https://graph.microsoft.com/.default\",\"grant_type\":\"client_credentials\"}).encode()\n    req=urllib.request.Request(\"https://login.microsoftonline.com/\"+c[\"tenant_id\"]+\"/oauth2/v2.0/token\",data=data,headers={\"content-type\":\"application/x-www-form-urlencoded\"})\n    with urllib.request.urlopen(req,timeout=20) as r: return json.loads(r.read().decode())[\"access_token\"]\ndef is_suppressed(e):\n    return \"Item\" in ddb.get_item(TableName=TABLE,Key={\"PK\":{\"S\":\"SUPPRESS#\"+e},\"SK\":{\"S\":\"STATE\"}})\ndef unsub(base,e):\n    sig=hmac.new(secret(SIGNING_SECRET_ARN).encode(),e.encode(),hashlib.sha256).hexdigest()\n    return base.rstrip(\"/\")+\"/u/\"+sig+\"?e=\"+urllib.parse.quote(e)\ndef send_one(c,t,m):\n    e=m[\"email\"].strip().lower()\n    if is_suppressed(e): return {\"status\":\"SUPPRESSED\"}\n    u=unsub(m[\"base_url\"],e); body=m.get(\"body\",\"\").replace(\"{FirstName}\",m.get(\"firstName\",\"\"))+\"\\\\n\\\\nUnsubscribe: \"+u\n    mime=(\"From: \"+c[\"sender_upn\"]+\"\\\\r\\\\nTo: \"+e+\"\\\\r\\\\nSubject: \"+m.get(\"subject\",\"\")+\"\\\\r\\\\nMIME-Version: 1.0\\\\r\\\\nContent-Type: text/plain; charset=UTF-8\\\\r\\\\nList-Unsubscribe: <\"+u+\">\\\\r\\\\nList-Unsubscribe-Post: List-Unsubscribe=One-Click\\\\r\\\\n\\\\r\\\\n\"+body).encode()\n    req=urllib.request.Request(\"https://graph.microsoft.com/v1.0/users/\"+urllib.parse.quote(c[\"sender_upn\"])+\"/sendMail\",data=base64.b64encode(mime),method=\"POST\",headers={\"Authorization\":\"Bearer \"+t,\"Content-Type\":\"text/plain\"})\n    for attempt in range(4):\n        try:\n            with urllib.request.urlopen(req,timeout=30) as r:\n                if r.status==202: return {\"status\":\"ACCEPTED\"}\n        except urllib.error.HTTPError as x:\n            if x.code==429:\n                time.sleep(min(int(x.headers.get(\"Retry-After\",\"10\")),120)); continue\n            if 500<=x.code<600:\n                time.sleep(min(2**(attempt+1),20)); continue\n            return {\"status\":\"PERMANENT_FAILURE\",\"http\":x.code}\n    return {\"status\":\"RETRY_EXHAUSTED\"}\ndef handler(event,context):\n    c=cfg(); required=[\"tenant_id\",\"client_id\",\"client_secret\",\"sender_upn\"]\n    if not all(c.get(k) and not str(c.get(k)).startswith(\"REPLACE_\") for k in required):\n        return {\"batchItemFailures\":[{\"itemIdentifier\":r[\"messageId\"]} for r in event.get(\"Records\",[])]}\n    t=access_token(c); failures=[]; delay=max(60.0/SAFE_PER_MIN,2.0)\n    for r in event.get(\"Records\",[]):\n        m=json.loads(r[\"body\"]); result=send_one(c,t,m); now=str(int(time.time()*1000)); campaign=m.get(\"campaignId\",\"unknown\")\n        ddb.put_item(TableName=TABLE,Item={\"PK\":{\"S\":\"CAMPAIGN#\"+campaign},\"SK\":{\"S\":\"RECEIPT#\"+now+\"#\"+r[\"messageId\"]},\"EmailHash\":{\"S\":hashlib.sha256(m[\"email\"].lower().encode()).hexdigest()},\"Status\":{\"S\":result.get(\"status\",\"UNKNOWN\")},\"At\":{\"N\":str(int(time.time()))}})\n        if result.get(\"status\")==\"RETRY_EXHAUSTED\": failures.append({\"itemIdentifier\":r[\"messageId\"]})\n        time.sleep(delay)\n    return {\"batchItemFailures\":failures}\n"
+        }
+      }
+    },
+    "WorkerMapping": {
+      "Type": "AWS::Lambda::EventSourceMapping",
+      "Properties": {
+        "EventSourceArn": {
+          "Fn::GetAtt": [
+            "Queue",
+            "Arn"
+          ]
+        },
+        "FunctionName": {
+          "Ref": "WorkerFunction"
+        },
+        "BatchSize": 10,
+        "FunctionResponseTypes": [
+          "ReportBatchItemFailures"
+        ],
+        "Enabled": true
+      }
+    },
+    "HttpApi": {
+      "Type": "AWS::ApiGatewayV2::Api",
+      "Properties": {
+        "Name": "sc-mail-mark-v1",
+        "ProtocolType": "HTTP",
+        "CorsConfiguration": {
+          "AllowOrigins": [
+            "*"
+          ],
+          "AllowMethods": [
+            "GET",
+            "POST",
+            "OPTIONS"
+          ],
+          "AllowHeaders": [
+            "content-type",
+            "authorization"
+          ]
+        }
+      }
+    },
+    "Integration": {
+      "Type": "AWS::ApiGatewayV2::Integration",
+      "Properties": {
+        "ApiId": {
+          "Ref": "HttpApi"
+        },
+        "IntegrationType": "AWS_PROXY",
+        "IntegrationUri": {
+          "Fn::GetAtt": [
+            "ApiFunction",
+            "Arn"
+          ]
+        },
+        "PayloadFormatVersion": "2.0"
+      }
+    },
+    "Route": {
+      "Type": "AWS::ApiGatewayV2::Route",
+      "Properties": {
+        "ApiId": {
+          "Ref": "HttpApi"
+        },
+        "RouteKey": "$default",
+        "Target": {
+          "Fn::Join": [
+            "/",
+            [
+              "integrations",
+              {
+                "Ref": "Integration"
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "Stage": {
+      "Type": "AWS::ApiGatewayV2::Stage",
+      "Properties": {
+        "ApiId": {
+          "Ref": "HttpApi"
+        },
+        "StageName": "$default",
+        "AutoDeploy": true
+      }
+    },
+    "InvokePermission": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Ref": "ApiFunction"
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:aws:execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "HttpApi"
+              },
+              "/*"
+            ]
+          ]
+        }
+      }
+    },
+    "DLQAlarm": {
+      "Type": "AWS::CloudWatch::Alarm",
+      "Properties": {
+        "AlarmName": "sc-mail-mark-v1-dlq-visible",
+        "Namespace": "AWS/SQS",
+        "MetricName": "ApproximateNumberOfMessagesVisible",
+        "Dimensions": [
+          {
+            "Name": "QueueName",
+            "Value": {
+              "Fn::GetAtt": [
+                "DLQ",
+                "QueueName"
+              ]
+            }
+          }
+        ],
+        "Statistic": "Maximum",
+        "Period": 60,
+        "EvaluationPeriods": 1,
+        "Threshold": 0,
+        "ComparisonOperator": "GreaterThanThreshold",
+        "TreatMissingData": "notBreaching"
+      }
+    },
+    "WorkerErrorAlarm": {
+      "Type": "AWS::CloudWatch::Alarm",
+      "Properties": {
+        "AlarmName": "sc-mail-mark-v1-worker-errors",
+        "Namespace": "AWS/Lambda",
+        "MetricName": "Errors",
+        "Dimensions": [
+          {
+            "Name": "FunctionName",
+            "Value": {
+              "Ref": "WorkerFunction"
+            }
+          }
+        ],
+        "Statistic": "Sum",
+        "Period": 60,
+        "EvaluationPeriods": 1,
+        "Threshold": 0,
+        "ComparisonOperator": "GreaterThanThreshold",
+        "TreatMissingData": "notBreaching"
+      }
+    }
+  },
+  "Outputs": {
+    "ApiBaseUrl": {
+      "Value": {
+        "Fn::GetAtt": [
+          "HttpApi",
+          "ApiEndpoint"
+        ]
+      }
+    },
+    "TaskPaneUrl": {
+      "Value": {
+        "Fn::Join": [
+          "",
+          [
+            {
+              "Fn::GetAtt": [
+                "HttpApi",
+                "ApiEndpoint"
+              ]
+            },
+            "/taskpane"
+          ]
+        ]
+      }
+    },
+    "ManifestUrl": {
+      "Value": {
+        "Fn::Join": [
+          "",
+          [
+            {
+              "Fn::GetAtt": [
+                "HttpApi",
+                "ApiEndpoint"
+              ]
+            },
+            "/manifest.xml"
+          ]
+        ]
+      }
+    },
+    "MicrosoftSecretArn": {
+      "Value": {
+        "Ref": "MicrosoftSecret"
+      }
+    }
+  }
+}

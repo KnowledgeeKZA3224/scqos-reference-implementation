@@ -1,0 +1,16 @@
+services:
+  sc-mail:
+    build: ..
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8787:8787"
+    volumes:
+      - ./data:/data
+    environment:
+      SC_MAIL_MODE: local
+      SC_MAIL_DB: /data/sc-mail.sqlite3
+      SC_MAIL_HARD_CEILING: "9950"
+      SC_MAIL_SAFE_MESSAGES_PER_MINUTE: "28"
+      SC_MAIL_PROVIDER: microsoft365
+# Local packaging uses the same SC core/provider contract as hosted mode.
+# Microsoft authorization is supplied by Mark during installation; no passwords belong here.
