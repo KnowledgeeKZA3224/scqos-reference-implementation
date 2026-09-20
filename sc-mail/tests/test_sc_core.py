@@ -1,5 +1,9 @@
+import sys
+from pathlib import Path
 import unittest
-from sc_mail.backend.sc_core import compile_batch, HARD_OUTLOOK_CEILING
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "backend"))
+from sc_core import compile_batch, HARD_OUTLOOK_CEILING
 
 class TestSCMailCore(unittest.TestCase):
     def clean(self, email):
