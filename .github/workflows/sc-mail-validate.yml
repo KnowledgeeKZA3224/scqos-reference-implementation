@@ -1,0 +1,22 @@
+name: SC Mail Validate
+on:
+  pull_request:
+    paths:
+      - 'sc-mail/**'
+      - '.github/workflows/sc-mail-validate.yml'
+  push:
+    branches: [ main ]
+    paths:
+      - 'sc-mail/**'
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run SC Mail governance tests
+        run: python -m unittest discover -s sc-mail/tests -v
+      - name: Validate CloudFormation JSON syntax
+        run: python -m json.tool sc-mail/infra/cloudformation.json >/dev/null
