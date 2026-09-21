@@ -5,11 +5,21 @@ TABLE=os.environ["TABLE_NAME"]; MICROSOFT_SECRET_ARN=os.environ["MICROSOFT_SECRE
 SAFE_PER_MIN=int(os.environ.get("SAFE_PER_MIN","28"))
 ddb=boto3.client("dynamodb"); sm=boto3.client("secretsmanager")
 def secret(arn): return sm.get_secret_value(SecretId=arn).get("SecretString","")
-def cfg(): return json.loads(secret(MICROSOFT_SECRET_ARN) or "{}")
+def cfg():
+    x=json.loads(secret(MICROSOFT_SECRET_ARN) or "{}")
+    x["tenant_id"]=os.environ.get("MICROSOFT_TENANT_ID",x.get("tenant_id"))
+    x["sender_upn"]=os.environ.get("MICROSOFT_SENDER_UPN",x.get("sender_upn"))
+    return x
 def access_token(c):
-    data=urllib.parse.urlencode({"client_id":c["client_id"],"client_secret":c["client_secret"],"scope":"https://graph.microsoft.com/.default","grant_type":"client_credentials"}).encode()
+    data=urllib.parse.urlencode({"client_id":c["client_id"],"scope":"openid offline_access User.Read Mail.Send","grant_type":"refresh_token","refresh_token":c["refresh_token"]}).encode()
     req=urllib.request.Request("https://login.microsoftonline.com/"+c["tenant_id"]+"/oauth2/v2.0/token",data=data,headers={"content-type":"application/x-www-form-urlencoded"})
-    with urllib.request.urlopen(req,timeout=20) as r: return json.loads(r.read().decode())["access_token"]
+    with urllib.request.urlopen(req,timeout=20) as r:
+        x=json.loads(r.read().decode())
+    if x.get("refresh_token") and x["refresh_token"]!=c.get("refresh_token"):
+        c["refresh_token"]=x["refresh_token"]
+        sm.put_secret_value(SecretId=MICROSOFT_SECRET_ARN,SecretString=json.dumps(c,separators=(",",":")))
+    return x["access_token"]
+
 def is_suppressed(e):
     return "Item" in ddb.get_item(TableName=TABLE,Key={"PK":{"S":"SUPPRESS#"+e},"SK":{"S":"STATE"}})
 def unsub(base,e):
@@ -33,7 +43,7 @@ def send_one(c,t,m):
             return {"status":"PERMANENT_FAILURE","http":x.code}
     return {"status":"RETRY_EXHAUSTED"}
 def handler(event,context):
-    c=cfg(); required=["tenant_id","client_id","client_secret","sender_upn"]
+    c=cfg(); required=["tenant_id","client_id","sender_upn","refresh_token"]
     if not all(c.get(k) and not str(c.get(k)).startswith("REPLACE_") for k in required):
         return {"batchItemFailures":[{"itemIdentifier":r["messageId"]} for r in event.get("Records",[])]}
     t=access_token(c); failures=[]; delay=max(60.0/SAFE_PER_MIN,2.0)
