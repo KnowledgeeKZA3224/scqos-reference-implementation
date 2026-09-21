@@ -1,9 +1,9 @@
-# SC Mail — Mark v1
+# Supreme Mail — Mark v1
 
 Outlook-native business email automation governed by Supreme Computation.
 
 ## Frozen end state
-- Mark works from Outlook through a right-side **SC Mail** pane.
+- Mark works from Outlook through a right-side **Supreme Mail** pane.
 - Normal workflow: import CSV/Excel export → choose audience → write → preview → send.
 - SC evaluates Time, Continuity, Alignment, Genesis, Boundary, Reference, Causality and Consciousness as one pre-execution state.
 - Outlook/Microsoft 365 is the first transport.

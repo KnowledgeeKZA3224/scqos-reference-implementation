@@ -63,7 +63,7 @@ def manifest(base):
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
  xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0" xsi:type="MailApp">
 <Id>6d6f5127-9a6e-4f52-8c21-f6a4e7fe9950</Id><Version>1.0.0.0</Version><ProviderName>Supreme Computation</ProviderName>
-<DefaultLocale>en-US</DefaultLocale><DisplayName DefaultValue="SC Mail"/><Description DefaultValue="Outlook-native governed business email automation."/>
+<DefaultLocale>en-US</DefaultLocale><DisplayName DefaultValue="Supreme Mail"/><Description DefaultValue="Outlook-native governed business email automation."/>
 <IconUrl DefaultValue="%s/icon"/><SupportUrl DefaultValue="%s/health"/><AppDomains><AppDomain>%s</AppDomain></AppDomains>
 <Hosts><Host Name="Mailbox"/></Hosts><Requirements><Sets><Set Name="Mailbox" MinVersion="1.5"/></Sets></Requirements>
 <FormSettings><Form xsi:type="ItemRead"><DesktopSettings><SourceLocation DefaultValue="%s/taskpane"/><RequestedHeight>450</RequestedHeight></DesktopSettings></Form>
@@ -73,13 +73,13 @@ def manifest(base):
 <Requirements><bt:Sets DefaultMinVersion="1.5"><bt:Set Name="Mailbox"/></bt:Sets></Requirements>
 <Hosts><Host xsi:type="MailHost"><DesktopFormFactor>
 <FunctionFile resid="Commands.Url"/>
-<ExtensionPoint xsi:type="MessageReadCommandSurface"><OfficeTab id="TabDefault"><Group id="SCMail.Read.Group"><Label resid="Group.Label"/><Control xsi:type="Button" id="SCMail.Read.Open"><Label resid="Button.Label"/><Supertip><Title resid="Button.Label"/><Description resid="Button.Desc"/></Supertip><Icon><bt:Image size="16" resid="Icon.16"/><bt:Image size="32" resid="Icon.32"/><bt:Image size="80" resid="Icon.80"/></Icon><Action xsi:type="ShowTaskpane"><SourceLocation resid="Taskpane.Url"/><SupportsPinning>true</SupportsPinning></Action></Control></Group></OfficeTab></ExtensionPoint>
-<ExtensionPoint xsi:type="MessageComposeCommandSurface"><OfficeTab id="TabDefault"><Group id="SCMail.Compose.Group"><Label resid="Group.Label"/><Control xsi:type="Button" id="SCMail.Compose.Open"><Label resid="Button.Label"/><Supertip><Title resid="Button.Label"/><Description resid="Button.Desc"/></Supertip><Icon><bt:Image size="16" resid="Icon.16"/><bt:Image size="32" resid="Icon.32"/><bt:Image size="80" resid="Icon.80"/></Icon><Action xsi:type="ShowTaskpane"><SourceLocation resid="Taskpane.Url"/><SupportsPinning>true</SupportsPinning></Action></Control></Group></OfficeTab></ExtensionPoint>
+<ExtensionPoint xsi:type="MessageReadCommandSurface"><OfficeTab id="TabDefault"><Group id="SupremeMail.Read.Group"><Label resid="Group.Label"/><Control xsi:type="Button" id="SupremeMail.Read.Open"><Label resid="Button.Label"/><Supertip><Title resid="Button.Label"/><Description resid="Button.Desc"/></Supertip><Icon><bt:Image size="16" resid="Icon.16"/><bt:Image size="32" resid="Icon.32"/><bt:Image size="80" resid="Icon.80"/></Icon><Action xsi:type="ShowTaskpane"><SourceLocation resid="Taskpane.Url"/><SupportsPinning>true</SupportsPinning></Action></Control></Group></OfficeTab></ExtensionPoint>
+<ExtensionPoint xsi:type="MessageComposeCommandSurface"><OfficeTab id="TabDefault"><Group id="SupremeMail.Compose.Group"><Label resid="Group.Label"/><Control xsi:type="Button" id="SupremeMail.Compose.Open"><Label resid="Button.Label"/><Supertip><Title resid="Button.Label"/><Description resid="Button.Desc"/></Supertip><Icon><bt:Image size="16" resid="Icon.16"/><bt:Image size="32" resid="Icon.32"/><bt:Image size="80" resid="Icon.80"/></Icon><Action xsi:type="ShowTaskpane"><SourceLocation resid="Taskpane.Url"/><SupportsPinning>true</SupportsPinning></Action></Control></Group></OfficeTab></ExtensionPoint>
 </DesktopFormFactor></Host></Hosts>
 <Resources><bt:Images><bt:Image id="Icon.16" DefaultValue="%s/icon"/><bt:Image id="Icon.32" DefaultValue="%s/icon"/><bt:Image id="Icon.80" DefaultValue="%s/icon"/></bt:Images>
 <bt:Urls><bt:Url id="Commands.Url" DefaultValue="%s/taskpane"/><bt:Url id="Taskpane.Url" DefaultValue="%s/taskpane"/></bt:Urls>
-<bt:ShortStrings><bt:String id="Group.Label" DefaultValue="SC Mail"/><bt:String id="Button.Label" DefaultValue="SC Mail"/></bt:ShortStrings>
-<bt:LongStrings><bt:String id="Button.Desc" DefaultValue="Open SC Mail business email controls."/></bt:LongStrings></Resources>
+<bt:ShortStrings><bt:String id="Group.Label" DefaultValue="Supreme Mail"/><bt:String id="Button.Label" DefaultValue="Supreme Mail"/></bt:ShortStrings>
+<bt:LongStrings><bt:String id="Button.Desc" DefaultValue="Open Supreme Mail business email controls."/></bt:LongStrings></Resources>
 </VersionOverrides></OfficeApp>""" % (base,base,base,base,base,base,base,base,base,base)
 
 def taskpane(base):
@@ -90,7 +90,7 @@ body{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f6f8fb;color:#1f
 input,textarea,select{width:100%%;box-sizing:border-box;padding:9px;border:1px solid #cfd4dc;border-radius:6px;font:inherit}textarea{min-height:120px}
 button{border:0;border-radius:7px;padding:10px 12px;font-weight:700;cursor:pointer}.primary{background:#106ebe;color:#fff;width:100%%;margin-top:10px}.secondary{background:#eef2f7;margin-right:6px}
 .status{font-weight:700}.green{color:#08783e}.amber{color:#b54708}.row{display:flex;gap:8px}.row>*{flex:1}.count{font-size:24px;font-weight:700}</style></head>
-<body><div class="wrap"><h1>📨 SC Mail</h1><div class="muted">Business email inside Outlook. SC handles the complexity underneath.</div>
+<body><div class="wrap"><h1>📨 Supreme Mail</h1><div class="muted">Business email inside Outlook. SC handles the complexity underneath.</div>
 <div class="card"><div class="row"><div><div class="muted">SC status</div><div id="status" class="status amber">Checking…</div></div><div><div class="muted">Available this window</div><div class="count">%s</div></div></div></div>
 <div class="card"><label>👥 Contact list (.csv)</label><input id="file" type="file" accept=".csv,text/csv"><label>🎯 Audience</label>
 <select id="audience"><option>Existing customers</option><option>New leads</option><option>Custom list</option></select>
