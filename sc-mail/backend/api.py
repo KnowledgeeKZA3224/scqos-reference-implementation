@@ -23,7 +23,7 @@ def provider_ready():
     try:
         cfg=json.loads(get_secret(MICROSOFT_SECRET_ARN) or "{}")
         req=["tenant_id","client_id","sender_upn","refresh_token"]
-        return all(cfg.get(k) and not str(cfg.get(k)).startswith("REPLACE_") for k in req)
+        return os.environ.get("EXECUTION_ENABLED","false").lower()=="true" and bool(cfg.get("sender_authority_verified")) and all(cfg.get(k) and not str(cfg.get(k)).startswith("REPLACE_") for k in req)
     except Exception:
         return False
 
