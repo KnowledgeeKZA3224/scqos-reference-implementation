@@ -1,0 +1,31 @@
+name: Neverland GPS Proof
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - neverland-gps-v1
+      - main
+    paths:
+      - "projects/neverland-gps/**"
+      - ".github/workflows/neverland-gps-proof.yml"
+  pull_request:
+    paths:
+      - "projects/neverland-gps/**"
+      - ".github/workflows/neverland-gps-proof.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  offline-proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Prove Neverland GPS offline safety contract
+        working-directory: projects/neverland-gps
+        run: python -m unittest -v

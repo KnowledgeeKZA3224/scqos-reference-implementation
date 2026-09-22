@@ -1,0 +1,54 @@
+{
+  "product": "Neverland GPS",
+  "principle": "Core child safety must operate with zero Wi-Fi dependency.",
+  "device_runtime": {
+    "Supreme_Computation_SCQOS": "PERMIT/HOLD/REJECT safety-state governance",
+    "Linux_Coherence_Gate": "pre-execution enforcement on Linux-capable prototypes",
+    "Supreme_Biological_Loop": "sensor-to-state causal binding patterns",
+    "Gekyume": "pre-movement governance pattern adapted to location/data release",
+    "local_AI": "speech, map retrieval, child guidance; evidence only, never final authority"
+  },
+  "validation_factory": {
+    "Supreme_Mind_59_faculties": "scenario decomposition and bounded reasoning",
+    "Shadow_Clones": "parallel adversarial scenario generation",
+    "Anabelle_GrassRootsAI": "independent AI evaluation behind SCQOS",
+    "Grok_DeepSeek_Terra_services": "model diversity/cross-check witnesses",
+    "Codex": "implementation analysis and coding validation",
+    "Transformers": "local-model build/distillation/evaluation substrate",
+    "ProofGate_AI": "candidate release gate and durable receipt",
+    "SCQOS_Webhook": "backend/admission pre-execution governance",
+    "SCQOS_Hybrid_Proof": "independent multi-substrate proof lineage",
+    "AWS_Braket_IBM_Qiskit": "experimental witness branches; never child-runtime dependencies",
+    "Sharingan_patterns": "generic evidence reconciliation/contradiction handling only; no sports domain data"
+  },
+  "cloud_control_plane": {
+    "Supreme_Apex": "intent-to-proof orchestration",
+    "Supreme_Human_Identity": "child/guardian identity schema lineage",
+    "Supreme_Personal_Totality": "authorized-person context boundary",
+    "Supreme_Source_Artifacts": "signed source/reference lineage",
+    "Cognito": "cloud guardian/operator authentication only",
+    "DynamoDB": "device manifests, authority, receipts, release state",
+    "S3": "versioned build/proof artifacts",
+    "SQS": "proof/release/event work queues",
+    "Aurora_PostgreSQL": "non-device continuity/analytics where required",
+    "API_Gateway": "controlled cloud APIs; never required by core device loop",
+    "ECS": "hosted validators/services",
+    "KMS": "release/evidence signing",
+    "Supreme_Mail_Website": "onboarding/support/commercial/incident communication outside core runtime"
+  },
+  "prohibited_dependencies": [
+    "Wi-Fi",
+    "cloud login for local boot",
+    "cloud model for local safety decision",
+    "single outward network path"
+  ],
+  "production_holds": [
+    "physical wearable hardware",
+    "RF/antenna validation",
+    "battery reserve validation",
+    "secure manufacturing",
+    "regulatory certification",
+    "privacy/compliance review",
+    "field trials"
+  ]
+}
