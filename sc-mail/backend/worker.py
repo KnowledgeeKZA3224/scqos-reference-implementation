@@ -11,7 +11,7 @@ def cfg():
     x["sender_upn"]=os.environ.get("MICROSOFT_SENDER_UPN",x.get("sender_upn"))
     return x
 def access_token(c):
-    data=urllib.parse.urlencode({"client_id":c["client_id"],"scope":"openid offline_access User.Read Mail.Send","grant_type":"refresh_token","refresh_token":c["refresh_token"]}).encode()
+    data=urllib.parse.urlencode({"client_id":c["client_id"],"scope":"openid offline_access User.Read Mail.Send Mail.Send.Shared","grant_type":"refresh_token","refresh_token":c["refresh_token"]}).encode()
     req=urllib.request.Request("https://login.microsoftonline.com/"+c["tenant_id"]+"/oauth2/v2.0/token",data=data,headers={"content-type":"application/x-www-form-urlencoded"})
     with urllib.request.urlopen(req,timeout=20) as r:
         x=json.loads(r.read().decode())
@@ -30,7 +30,7 @@ def send_one(c,t,m):
     if is_suppressed(e): return {"status":"SUPPRESSED"}
     u=unsub(m["base_url"],e); body=m.get("body","").replace("{FirstName}",m.get("firstName",""))+"\\n\\nUnsubscribe: "+u
     mime=("From: "+c["sender_upn"]+"\\r\\nTo: "+e+"\\r\\nSubject: "+m.get("subject","")+"\\r\\nMIME-Version: 1.0\\r\\nContent-Type: text/plain; charset=UTF-8\\r\\nList-Unsubscribe: <"+u+">\\r\\nList-Unsubscribe-Post: List-Unsubscribe=One-Click\\r\\n\\r\\n"+body).encode()
-    req=urllib.request.Request("https://graph.microsoft.com/v1.0/users/"+urllib.parse.quote(c["sender_upn"])+"/sendMail",data=base64.b64encode(mime),method="POST",headers={"Authorization":"Bearer "+t,"Content-Type":"text/plain"})
+    req=urllib.request.Request("https://graph.microsoft.com/v1.0/me/sendMail",data=base64.b64encode(mime),method="POST",headers={"Authorization":"Bearer "+t,"Content-Type":"text/plain"})
     for attempt in range(4):
         try:
             with urllib.request.urlopen(req,timeout=30) as r:
@@ -40,11 +40,16 @@ def send_one(c,t,m):
                 time.sleep(min(int(x.headers.get("Retry-After","10")),120)); continue
             if 500<=x.code<600:
                 time.sleep(min(2**(attempt+1),20)); continue
-            return {"status":"PERMANENT_FAILURE","http":x.code}
+            try: detail=x.read().decode(errors="ignore")[:1200]
+            except Exception: detail=""
+            print("GRAPH_SEND_PERMANENT_FAILURE",json.dumps({"http":x.code,"detail":detail}))
+            return {"status":"PERMANENT_FAILURE","http":x.code,"detail":detail[:500]}
     return {"status":"RETRY_EXHAUSTED"}
 def handler(event,context):
+    if os.environ.get("EXECUTION_ENABLED","false").lower()!="true":
+        return {"batchItemFailures":[{"itemIdentifier":r["messageId"]} for r in event.get("Records",[])]}
     c=cfg(); required=["tenant_id","client_id","sender_upn","refresh_token"]
-    if not all(c.get(k) and not str(c.get(k)).startswith("REPLACE_") for k in required):
+    if not c.get("sender_authority_verified") or not all(c.get(k) and not str(c.get(k)).startswith("REPLACE_") for k in required):
         return {"batchItemFailures":[{"itemIdentifier":r["messageId"]} for r in event.get("Records",[])]}
     t=access_token(c); failures=[]; delay=max(60.0/SAFE_PER_MIN,2.0)
     for r in event.get("Records",[]):
