@@ -20,5 +20,5 @@ https://github.com/KnowledgeeKZA3224/scqos-reference-implementation
 
 #sanitychallenge
 
-Sanity project ID / public dataset URL: [insert after authorized Sanity provisioning]
-Public agent session: [insert after redacted session upload]
+Sanity project ID: nofw4k8i
+Public dataset: https://nofw4k8i.api.sanity.io/v2025-02-19/data/query/production?query=*%5B%5D
