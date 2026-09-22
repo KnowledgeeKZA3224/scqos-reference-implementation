@@ -3,13 +3,13 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import boto3
 
 REGION=os.environ.get("AWS_REGION","us-east-1")
-TABLE=os.environ["TABLE_NAME"]
-MS_SECRET=os.environ["MICROSOFT_SECRET_ARN"]
-SETUP_SECRET=os.environ["SETUP_TOKEN_SECRET_ID"]
-TENANT=os.environ["MICROSOFT_TENANT_ID"]
-CLIENT_ID=os.environ["MICROSOFT_CLIENT_ID"]
-SENDER=os.environ["MICROSOFT_SENDER_UPN"]
-CALLBACK=os.environ["MICROSOFT_CALLBACK_URI"]
+TABLE=os.environ.get("TABLE_NAME","sc-mail-mark-v1-state")
+MS_SECRET=os.environ.get("MICROSOFT_SECRET_ARN","arn:aws:secretsmanager:us-east-1:327453383912:secret:sc-mail/mark/microsoft-Er9iLZ")
+SETUP_SECRET=os.environ.get("SETUP_TOKEN_SECRET_ID","supreme-mail/mark/setup-token")
+TENANT=os.environ.get("MICROSOFT_TENANT_ID","890486d6-532e-4054-a508-02e1e4b48806")
+CLIENT_ID=os.environ.get("MICROSOFT_CLIENT_ID","93df0029-70fd-41c3-9640-262cb69f224b")
+SENDER=os.environ.get("MICROSOFT_SENDER_UPN","Marks@numbersetcandetc.com")
+CALLBACK=os.environ.get("MICROSOFT_CALLBACK_URI","https://v12t2f3nla.execute-api.us-east-1.amazonaws.com/connect/microsoft/callback")
 
 ddb=boto3.client("dynamodb",region_name=REGION)
 sm=boto3.client("secretsmanager",region_name=REGION)
