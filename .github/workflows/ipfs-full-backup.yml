@@ -1,0 +1,236 @@
+name: IPFS full repository backup
+
+on:
+  push:
+    branches:
+      - '**'
+    paths-ignore:
+      - 'ipfs/receipts/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: read
+  pull-requests: read
+  actions: read
+  discussions: read
+
+concurrency:
+  group: ipfs-full-backup-${{ github.repository }}
+  cancel-in-progress: true
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PINATA_JWT: ${{ secrets.PINATA_JWT }}
+      PINATA_API_KEY: ${{ secrets.PINATA_API_KEY }}
+      PINATA_SECRET_API_KEY: ${{ secrets.PINATA_SECRET_API_KEY }}
+      PINATA_SECRET_KEY: ${{ secrets.PINATA_SECRET_KEY }}
+
+    steps:
+      - name: Checkout full history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Build total repository backup package
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          REPO="$GITHUB_REPOSITORY"
+          OWNER="${REPO%%/*}"
+          NAME="${REPO##*/}"
+          OUT="$RUNNER_TEMP/scqos-ipfs-backup"
+          mkdir -p "$OUT/github" "$OUT/github/issue-comments" "$OUT/github/pr-comments" "$OUT/release-assets"
+
+          # Fetch every public branch/tag and convert remote branch refs into local refs
+          # so the git bundle can restore the complete repository history without GitHub.
+          git fetch origin '+refs/heads/*:refs/remotes/origin/*' --force --prune
+          git fetch origin '+refs/tags/*:refs/tags/*' --force --prune
+          while read -r sha ref; do
+            case "$ref" in
+              refs/remotes/origin/HEAD) ;;
+              refs/remotes/origin/*)
+                branch="${ref#refs/remotes/origin/}"
+                git update-ref "refs/heads/$branch" "$sha"
+                ;;
+            esac
+          done < <(git show-ref)
+
+          git bundle create "$OUT/scqos-reference-implementation.bundle" --all
+          git bundle verify "$OUT/scqos-reference-implementation.bundle"
+          git archive --format=tar HEAD | gzip -n > "$OUT/main-source.tar.gz"
+          git show-ref --head | sort > "$OUT/git-refs.txt"
+          git rev-parse HEAD > "$OUT/head-commit.txt"
+
+          # Preserve GitHub-side documentation/metadata that a normal git clone does not contain.
+          gh api "repos/$REPO" > "$OUT/github/repository.json"
+          gh api --paginate --slurp "repos/$REPO/branches?per_page=100" > "$OUT/github/branches.json"
+          gh api --paginate --slurp "repos/$REPO/tags?per_page=100" > "$OUT/github/tags.json"
+          gh api --paginate --slurp "repos/$REPO/issues?state=all&per_page=100" > "$OUT/github/issues.json"
+          gh api --paginate --slurp "repos/$REPO/pulls?state=all&per_page=100" > "$OUT/github/pulls.json"
+          gh api --paginate --slurp "repos/$REPO/releases?per_page=100" > "$OUT/github/releases.json"
+          gh api --paginate --slurp "repos/$REPO/actions/runs?per_page=100" > "$OUT/github/workflow-runs.json" || echo '[]' > "$OUT/github/workflow-runs.json"
+
+          # Preserve issue and PR conversation text.
+          jq -r '[.[][] | .number] | unique[]' "$OUT/github/issues.json" 2>/dev/null | while read -r n; do
+            gh api --paginate --slurp "repos/$REPO/issues/$n/comments?per_page=100" > "$OUT/github/issue-comments/$n.json" || echo '[]' > "$OUT/github/issue-comments/$n.json"
+          done
+
+          jq -r '[.[][] | .number] | unique[]' "$OUT/github/pulls.json" 2>/dev/null | while read -r n; do
+            gh api --paginate --slurp "repos/$REPO/pulls/$n/comments?per_page=100" > "$OUT/github/pr-comments/$n-review-comments.json" || echo '[]' > "$OUT/github/pr-comments/$n-review-comments.json"
+            gh api --paginate --slurp "repos/$REPO/pulls/$n/reviews?per_page=100" > "$OUT/github/pr-comments/$n-reviews.json" || echo '[]' > "$OUT/github/pr-comments/$n-reviews.json"
+          done
+
+          # Preserve discussions when enabled.
+          gh api graphql \
+            -f owner="$OWNER" \
+            -f name="$NAME" \
+            -f query='query($owner:String!,$name:String!){repository(owner:$owner,name:$name){discussions(first:100){nodes{number title body createdAt updatedAt url author{login} comments(first:100){nodes{body createdAt updatedAt url author{login}}}}}}}' \
+            > "$OUT/github/discussions.json" || echo '{"data":null}' > "$OUT/github/discussions.json"
+
+          # Preserve release assets if any exist.
+          gh release list --repo "$REPO" --limit 1000 --json tagName -q '.[].tagName' | while read -r tag; do
+            [ -z "$tag" ] && continue
+            mkdir -p "$OUT/release-assets/$tag"
+            gh release download "$tag" --repo "$REPO" --dir "$OUT/release-assets/$tag" || true
+          done
+
+          # Wiki is a separate git repository on GitHub.
+          git clone --mirror "https://github.com/$REPO.wiki.git" "$OUT/wiki.git" 2>/dev/null || true
+
+          (
+            cd "$OUT"
+            find . -type f ! -name SHA256SUMS -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS
+          )
+
+          HEAD_SHA="$(cat "$OUT/head-commit.txt")"
+          python3 - "$OUT" "$REPO" "$HEAD_SHA" <<'PY'
+          import json, pathlib, sys, datetime
+          out = pathlib.Path(sys.argv[1])
+          manifest = {
+              "schema": "scqos.github.ipfs.backup.v1",
+              "repository": sys.argv[2],
+              "head": sys.argv[3],
+              "created_at_utc": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+              "contents": {
+                  "git_bundle": "scqos-reference-implementation.bundle",
+                  "main_snapshot": "main-source.tar.gz",
+                  "git_refs": "git-refs.txt",
+                  "github_metadata": "github/",
+                  "release_assets": "release-assets/",
+                  "wiki_mirror": "wiki.git/ if the wiki exists",
+                  "checksums": "SHA256SUMS"
+              },
+              "restore": "git clone scqos-reference-implementation.bundle restored-repo"
+          }
+          (out / "MANIFEST.json").write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n")
+          PY
+
+          ARCHIVE="$RUNNER_TEMP/scqos-github-totality-${GITHUB_SHA}.tar.gz"
+          tar --sort=name --mtime='UTC 1970-01-01' --owner=0 --group=0 --numeric-owner \
+              -C "$OUT" -czf "$ARCHIVE" .
+
+          sha256sum "$ARCHIVE" | tee "$RUNNER_TEMP/archive.sha256"
+          echo "ARCHIVE=$ARCHIVE" >> "$GITHUB_ENV"
+          echo "ARCHIVE_SHA256=$(awk '{print $1}' "$RUNNER_TEMP/archive.sha256")" >> "$GITHUB_ENV"
+
+      - name: Pin backup package to IPFS through Pinata
+        id: pin
+        shell: bash
+        run: |
+          set +e
+          ARCHIVE_NAME="$(basename "$ARCHIVE")"
+          META="{\"name\":\"$ARCHIVE_NAME\",\"keyvalues\":{\"repository\":\"$GITHUB_REPOSITORY\",\"head\":\"$GITHUB_SHA\",\"sha256\":\"$ARCHIVE_SHA256\"}}"
+          OPTS='{"cidVersion":1}'
+
+          if [ -n "${PINATA_JWT:-}" ]; then
+            RESPONSE="$(curl -sS --fail-with-body \
+              -X POST "https://api.pinata.cloud/pinning/pinFileToIPFS" \
+              -H "Authorization: Bearer $PINATA_JWT" \
+              -F "file=@$ARCHIVE" \
+              -F "pinataMetadata=$META" \
+              -F "pinataOptions=$OPTS" 2>&1)"
+            RC=$?
+          else
+            SECRET="${PINATA_SECRET_API_KEY:-${PINATA_SECRET_KEY:-}}"
+            if [ -n "${PINATA_API_KEY:-}" ] && [ -n "$SECRET" ]; then
+              RESPONSE="$(curl -sS --fail-with-body \
+                -X POST "https://api.pinata.cloud/pinning/pinFileToIPFS" \
+                -H "pinata_api_key: $PINATA_API_KEY" \
+                -H "pinata_secret_api_key: $SECRET" \
+                -F "file=@$ARCHIVE" \
+                -F "pinataMetadata=$META" \
+                -F "pinataOptions=$OPTS" 2>&1)"
+              RC=$?
+            else
+              echo "PINATA_STATUS=credentials_missing" >> "$GITHUB_ENV"
+              {
+                echo "## IPFS backup"
+                echo "Backup package was built and verified, but no supported Pinata credential secret is configured."
+                echo ""
+                echo "Expected one of:"
+                echo "- PINATA_JWT"
+                echo "- PINATA_API_KEY + PINATA_SECRET_API_KEY"
+                echo "- PINATA_API_KEY + PINATA_SECRET_KEY"
+                echo ""
+                echo "No upload was attempted and this run is intentionally non-failing."
+              } >> "$GITHUB_STEP_SUMMARY"
+              exit 0
+            fi
+          fi
+
+          if [ "$RC" -ne 0 ]; then
+            echo "PINATA_STATUS=upload_error" >> "$GITHUB_ENV"
+            {
+              echo "## IPFS backup"
+              echo "Pinata upload was attempted but did not complete."
+              echo "The repository backup package itself was created and checksum-verified."
+              echo "No failing workflow status is emitted so this backup guard cannot create red GitHub runs."
+            } >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+
+          CID="$(printf '%s' "$RESPONSE" | jq -r '.IpfsHash // .data.cid // .cid // empty')"
+          if [ -z "$CID" ]; then
+            echo "PINATA_STATUS=cid_missing" >> "$GITHUB_ENV"
+            echo "Pinata returned no CID; upload is not considered proven." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+
+          echo "PINATA_STATUS=pinned" >> "$GITHUB_ENV"
+          echo "IPFS_CID=$CID" >> "$GITHUB_ENV"
+
+          {
+            echo "## IPFS backup"
+            echo "- Status: **PINNED**"
+            echo "- Repository: `$GITHUB_REPOSITORY`"
+            echo "- Source SHA: `$GITHUB_SHA`"
+            echo "- Archive SHA-256: `$ARCHIVE_SHA256`"
+            echo "- IPFS CID: `$CID`"
+            echo "- URI: `ipfs://$CID`"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Verify pinned CID is retrievable
+        if: env.PINATA_STATUS == 'pinned'
+        shell: bash
+        run: |
+          set +e
+          VERIFIED=0
+          for i in 1 2 3 4 5 6; do
+            if curl -fsS --range 0-0 "https://gateway.pinata.cloud/ipfs/$IPFS_CID" >/dev/null 2>&1; then
+              VERIFIED=1
+              break
+            fi
+            sleep 10
+          done
+
+          if [ "$VERIFIED" -eq 1 ]; then
+            echo "- Gateway retrieval: **VERIFIED**" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "- Gateway retrieval: pending/propagating; CID was returned by Pinata." >> "$GITHUB_STEP_SUMMARY"
+          fi
