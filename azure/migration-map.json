@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-24T14:23:00Z",
+  "generated_at_utc": "2026-09-24T17:47:00Z",
   "source_cloud": "AWS",
   "target_cloud": "Azure",
   "region": "westus3",
@@ -28,7 +28,26 @@
     "sc-boundary-gate",
     "stscqosc9f1a2b2",
     "blob versioning",
-    "30-day blob delete retention"
+    "30-day blob delete retention",
+    "id-scqos-runtime",
+    "kv-scqos-c9f1a2b2",
+    "scqos-signing-key",
+    "log-scqos-core",
+    "sb-scqos-c9f1a2b2",
+    "scqos-actions",
+    "scqos-business",
+    "scqos-deadletter",
+    "scqos-followup",
+    "scqos-publish",
+    "acrscqosc9f1a2b2",
+    "cae-scqos-core",
+    "scqos-governance-api",
+    "scqosstate",
+    "scqosreceipts",
+    "scqoscontinuity",
+    "scqosfaculties",
+    "scqosregistry",
+    "blob containers: evidence, receipts, manifests, releases, public-proof"
   ],
   "components": [
     {
@@ -45,7 +64,7 @@
         "Storage Queue",
         "Blob Storage"
       ],
-      "status": "CODE_PORTED_DEPLOY_PENDING"
+      "status": "AZURE_UNIVERSAL_GOVERNANCE_API_LIVE_59_FACULTY_ADAPTER_PENDING"
     },
     {
       "source": "scqos-router",
@@ -55,7 +74,7 @@
       "azure": [
         "Azure Functions HTTP"
       ],
-      "status": "CODE_PORTED_DEPLOY_PENDING"
+      "status": "AZURE_UNIVERSAL_GOVERNANCE_API_LIVE"
     },
     {
       "source": "supreme-mind-v1-state",
@@ -65,7 +84,7 @@
       "azure": [
         "Table Storage: SupremeMindState"
       ],
-      "status": "DATA_PLANE_PENDING_VERIFICATION"
+      "status": "LIVE"
     },
     {
       "source": "supreme-mind-v1-receipts",
@@ -75,7 +94,7 @@
       "azure": [
         "Table Storage: SupremeMindReceipts"
       ],
-      "status": "DATA_PLANE_PENDING_VERIFICATION"
+      "status": "LIVE"
     },
     {
       "source": "supreme-mind-v1-actions",
@@ -85,7 +104,7 @@
       "azure": [
         "Storage Queue: supreme-mind-actions"
       ],
-      "status": "DATA_PLANE_PENDING_VERIFICATION"
+      "status": "LIVE"
     },
     {
       "source": "shadow-clone-v1-executor",
@@ -98,7 +117,7 @@
         "Azure Functions Queue trigger",
         "Azure AI/external agent adapter"
       ],
-      "status": "CODE_PORTED_DEPLOY_PENDING"
+      "status": "TERMINAL_ORCHESTRATOR_COMMITTED_EXECUTION_PENDING_REMOTE_RECONNECT"
     },
     {
       "source": "SCQOS evidence plane",
@@ -108,7 +127,7 @@
       "azure": [
         "Blob containers evidence/manifests/proofs with versioning"
       ],
-      "status": "STORAGE_ACCOUNT_LIVE_CONTAINERS_PENDING_VERIFICATION"
+      "status": "LIVE"
     },
     {
       "source": "SCQOS signing",
@@ -118,7 +137,7 @@
       "azure": [
         "Key Vault key sign/verify"
       ],
-      "status": "DEPLOY_PENDING"
+      "status": "LIVE"
     },
     {
       "source": "SCQOS secrets",
@@ -128,7 +147,7 @@
       "azure": [
         "Key Vault secrets"
       ],
-      "status": "DEPLOY_PENDING"
+      "status": "LIVE"
     },
     {
       "source": "scqos-public-execution-challenge-v1",
@@ -145,7 +164,7 @@
         "Blob Storage",
         "Key Vault"
       ],
-      "status": "CODE_PORTED_DEPLOY_PENDING"
+      "status": "RUNTIME_SUBSTRATE_LIVE_CHALLENGE_ADAPTER_PENDING"
     },
     {
       "source": "supreme-totality-ingress-v1",
@@ -155,7 +174,7 @@
       "azure": [
         "Functions HTTP"
       ],
-      "status": "CODE_PORTED_DEPLOY_PENDING"
+      "status": "AZURE_UNIVERSAL_GOVERNANCE_API_LIVE"
     },
     {
       "source": "supreme-objective-orchestrator-v1",
@@ -354,7 +373,7 @@
       "azure": [
         "Container Apps/AKS/ACR"
       ],
-      "status": "DEPLOY_ON_DEMAND_COST_BOUNDARY"
+      "status": "ACR_AND_CONTAINER_APPS_LIVE"
     },
     {
       "source": "observability",
@@ -364,7 +383,7 @@
       "azure": [
         "Azure Monitor/Application Insights"
       ],
-      "status": "DEPLOY_PENDING"
+      "status": "LOG_ANALYTICS_LIVE_APPLICATION_INSIGHTS_PENDING"
     },
     {
       "source": "identity",
@@ -374,7 +393,7 @@
       "azure": [
         "Managed Identities/RBAC/Entra"
       ],
-      "status": "PARTIAL_LIVE"
+      "status": "MANAGED_IDENTITIES_AND_RBAC_LIVE"
     },
     {
       "source": "quantum witness",
@@ -389,5 +408,14 @@
       "status": "IBM_CONNECTION_PENDING"
     }
   ],
-  "claim_boundary": "Statuses distinguish verified live resources, code ported but not executed, and externally blocked integrations. No component is promoted to live without an observed Azure receipt."
+  "claim_boundary": "Statuses distinguish verified live resources, runtime substrate that is live but still needs product-specific adapters, code ported but not executed, and externally blocked integrations. Shadow Clone terminal orchestration is committed but is not promoted to executed while the authorized HP terminal is offline.",
+  "live_runtime": {
+    "endpoint": "https://scqos-governance-api.whitewave-9c5d9f8d.westus3.azurecontainerapps.io",
+    "health": "ONLINE",
+    "contract_id": "SCQOS-UNIVERSAL-TRANSITION-v1",
+    "container_app": "scqos-governance-api",
+    "revision": "scqos-governance-api--0000002",
+    "image": "acrscqosc9f1a2b2.azurecr.io/scqos-runtime:20260924r4",
+    "rule": "Nothing executes until it proves itself."
+  }
 }
