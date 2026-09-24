@@ -1,0 +1,43 @@
+{
+  "proof_type": "SC_MAIL_MARK_EXPEDITIOUS_TOTALITY_V1",
+  "observed_at": "2026-09-24T20:17:15.349953+00:00",
+  "digital_faculties": {
+    "deployed": 59,
+    "permit": 59,
+    "authority": "READ_ONLY_AUTONOMY",
+    "receipt_sha256": "507603dde02648d280c9849d781ab2a894a0357d0552fe524eb0afe2dc43b6ce"
+  },
+  "shadow_clone_verifiers": {
+    "R54": "COMPLETED/PERMIT",
+    "R55": "COMPLETED/PERMIT",
+    "R57": "COMPLETED/PERMIT",
+    "R58": "COMPLETED/PERMIT"
+  },
+  "microsoft": {
+    "providerConnected": false,
+    "authMode": "federated_managed_identity",
+    "mailSendConsented": false,
+    "tenantConfigured": true,
+    "senderConfigured": true,
+    "appConfigured": true,
+    "managedIdentityConfigured": true,
+    "externalContactAuthorized": false,
+    "mailSendExecutionAuthorized": false,
+    "rule": "Nothing executes until it proves itself."
+  },
+  "prepared": {
+    "entra_application": true,
+    "graph_mail_send_application_permission_declared": true,
+    "managed_identity_federation": true,
+    "azure_runtime": true,
+    "aws_witness": true
+  },
+  "external_boundary": {
+    "mark_contact_authorized": false,
+    "mail_send_authorized": false,
+    "remaining": "Microsoft tenant admin consent for Graph Mail.Send"
+  },
+  "decision": "HOLD_EXTERNAL_MICROSOFT_ADMIN_CONSENT",
+  "rule": "Nothing executes until it proves itself.",
+  "proof_sha256": "0f49cb5177a057d5bd4202db01a7c6d26463ebff6c3997a1f444da160184674c"
+}

@@ -1,0 +1,442 @@
+[
+  {
+    "role_id": "R57",
+    "lane": "institutional-memory",
+    "state": "COMPLETED",
+    "birth": {
+      "protocol": "SHADOW-CLONE-RECURSIVE-EXECUTION-V1",
+      "architecture_id": "SUPREME-MIND-59-FACULTY-UNIVERSE-V1",
+      "principal_id": "SOVEREIGN_HUMAN",
+      "parent_clone_id": "sc:clone:root:sovereign",
+      "parent_role_id": "R01",
+      "role_id": "R57",
+      "task_id": "azure-migration-institutional-memory",
+      "business_id": "supreme-computation",
+      "depth": 0,
+      "objective": "Freeze Git and Azure deployment state for migration evidence.",
+      "expected_output": "Current live-state evidence and bounded verification.",
+      "requested_action": "inspect",
+      "why_multiply": "Parallel independent verification shortens migration closure without merging authority.",
+      "requested_at": "2026-09-24T20:15:46.643111Z",
+      "clone_id": "sc:clone:sha256:c2c2b87cf044c54d2026d7c4b353461e2a7ed2d77785b5c0dad0cbaddb86174f",
+      "expires_at": "2026-09-24T20:30:46.643111Z",
+      "ttl_seconds": 900,
+      "max_children": 0,
+      "spend_limit_usd": "0.00",
+      "evidence_refs": [
+        "azure:rg-supreme-computation-core",
+        "git:scqos-reference-implementation"
+      ],
+      "canonicalization_authority": "SCQOS-C14N-JCS-NFC-1",
+      "birth_sha256": "8d361e44496b232d0b9ec720c0b3bafb29fb89bd45b835deebf8698d92969e92"
+    },
+    "qualification": {
+      "receipt_id": "3a9ceaca-254c-4b1b-8d3f-e0f2df038dd6",
+      "timestamp": "2026-09-24T20:15:46.643398Z",
+      "protocol": "SHADOW-CLONE-RECURSIVE-EXECUTION-V1",
+      "architecture_id": "SUPREME-MIND-59-FACULTY-UNIVERSE-V1",
+      "clone_id": "sc:clone:sha256:c2c2b87cf044c54d2026d7c4b353461e2a7ed2d77785b5c0dad0cbaddb86174f",
+      "parent_clone_id": "sc:clone:root:sovereign",
+      "role_id": "R57",
+      "task_id": "azure-migration-institutional-memory",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "invariant_proofs": {
+        "time": {
+          "passed": true,
+          "reason": "CURRENT_BOUNDED_LIFETIME",
+          "evidence": {
+            "requested_at": "2026-09-24T20:15:46.643111Z",
+            "expires_at": "2026-09-24T20:30:46.643111Z"
+          }
+        },
+        "continuity": {
+          "passed": true,
+          "reason": "PARENT_LINEAGE_CONTINUOUS",
+          "evidence": {
+            "parent_clone_id": "sc:clone:root:sovereign",
+            "depth": 0,
+            "expected_depth": 0
+          }
+        },
+        "alignment": {
+          "passed": true,
+          "reason": "OBJECTIVE_AND_OUTPUT_EXPLICIT",
+          "evidence": null
+        },
+        "genesis": {
+          "passed": true,
+          "reason": "SOURCE_ARCHITECTURE_BOUND",
+          "evidence": "SUPREME-MIND-59-FACULTY-UNIVERSE-V1"
+        },
+        "boundary": {
+          "passed": true,
+          "reason": "ROLE_ACTION_AND_RECURSION_BOUNDED",
+          "evidence": {
+            "role_id": "R57",
+            "action": "inspect",
+            "depth": 0,
+            "max_children": 0
+          }
+        },
+        "reference": {
+          "passed": true,
+          "reason": "IDENTITIES_EXPLICIT",
+          "evidence": null
+        },
+        "causality": {
+          "passed": true,
+          "reason": "MULTIPLICATION_HAS_EXPECTED_CONSEQUENCE",
+          "evidence": "Parallel independent verification shortens migration closure without merging authority."
+        },
+        "consciousness": {
+          "passed": true,
+          "reason": "SOVEREIGN_AND_PARENT_ACCOUNTABLE",
+          "evidence": "SOVEREIGN_HUMAN"
+        },
+        "coherence": {
+          "passed": true,
+          "reason": "ALL_INVARIANTS_SIMULTANEOUSLY_TRUE",
+          "evidence": {
+            "birth_sha256_matches": true
+          }
+        }
+      },
+      "proposal_sha256": "6711a11d552110d901abdf9f49b0309399f2847948f3c63955b547d7a8976bb1",
+      "receipt_sha256": "00f53b94e1e3a22d19a75c55e9457526d0335ac08bfa5dd736b4647d693c5be3"
+    },
+    "returncode": 0,
+    "stdout": " M sc-mail/azure/app.py\n?? sc-mail/swarm/\n915f26e sc-mail: close Azure Outlook totality boundary\n[\n  \"20260924r2\",\n  \"20260924r3\",\n  \"20260924r4\"\n]\n",
+    "stderr": ""
+  },
+  {
+    "role_id": "R54",
+    "lane": "governance",
+    "state": "COMPLETED",
+    "birth": {
+      "protocol": "SHADOW-CLONE-RECURSIVE-EXECUTION-V1",
+      "architecture_id": "SUPREME-MIND-59-FACULTY-UNIVERSE-V1",
+      "principal_id": "SOVEREIGN_HUMAN",
+      "parent_clone_id": "sc:clone:root:sovereign",
+      "parent_role_id": "R01",
+      "role_id": "R54",
+      "task_id": "azure-migration-governance",
+      "business_id": "supreme-computation",
+      "depth": 0,
+      "objective": "Verify Azure policy assignments and governed resource inventory.",
+      "expected_output": "Current live-state evidence and bounded verification.",
+      "requested_action": "inspect",
+      "why_multiply": "Parallel independent verification shortens migration closure without merging authority.",
+      "requested_at": "2026-09-24T20:15:46.639364Z",
+      "clone_id": "sc:clone:sha256:6905d6c7818638b7f0f29d8f3ccf83718db0ba278897babc4df999c8684d6576",
+      "expires_at": "2026-09-24T20:30:46.639364Z",
+      "ttl_seconds": 900,
+      "max_children": 0,
+      "spend_limit_usd": "0.00",
+      "evidence_refs": [
+        "azure:rg-supreme-computation-core",
+        "git:scqos-reference-implementation"
+      ],
+      "canonicalization_authority": "SCQOS-C14N-JCS-NFC-1",
+      "birth_sha256": "27609d5167083cd1ba5a7cea98154e9c0edf561e16a98be9a49fc37e6bca9bd1"
+    },
+    "qualification": {
+      "receipt_id": "3fab4e2a-5b3e-4cac-9ccb-66b0165ef4ac",
+      "timestamp": "2026-09-24T20:15:46.639805Z",
+      "protocol": "SHADOW-CLONE-RECURSIVE-EXECUTION-V1",
+      "architecture_id": "SUPREME-MIND-59-FACULTY-UNIVERSE-V1",
+      "clone_id": "sc:clone:sha256:6905d6c7818638b7f0f29d8f3ccf83718db0ba278897babc4df999c8684d6576",
+      "parent_clone_id": "sc:clone:root:sovereign",
+      "role_id": "R54",
+      "task_id": "azure-migration-governance",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "invariant_proofs": {
+        "time": {
+          "passed": true,
+          "reason": "CURRENT_BOUNDED_LIFETIME",
+          "evidence": {
+            "requested_at": "2026-09-24T20:15:46.639364Z",
+            "expires_at": "2026-09-24T20:30:46.639364Z"
+          }
+        },
+        "continuity": {
+          "passed": true,
+          "reason": "PARENT_LINEAGE_CONTINUOUS",
+          "evidence": {
+            "parent_clone_id": "sc:clone:root:sovereign",
+            "depth": 0,
+            "expected_depth": 0
+          }
+        },
+        "alignment": {
+          "passed": true,
+          "reason": "OBJECTIVE_AND_OUTPUT_EXPLICIT",
+          "evidence": null
+        },
+        "genesis": {
+          "passed": true,
+          "reason": "SOURCE_ARCHITECTURE_BOUND",
+          "evidence": "SUPREME-MIND-59-FACULTY-UNIVERSE-V1"
+        },
+        "boundary": {
+          "passed": true,
+          "reason": "ROLE_ACTION_AND_RECURSION_BOUNDED",
+          "evidence": {
+            "role_id": "R54",
+            "action": "inspect",
+            "depth": 0,
+            "max_children": 0
+          }
+        },
+        "reference": {
+          "passed": true,
+          "reason": "IDENTITIES_EXPLICIT",
+          "evidence": null
+        },
+        "causality": {
+          "passed": true,
+          "reason": "MULTIPLICATION_HAS_EXPECTED_CONSEQUENCE",
+          "evidence": "Parallel independent verification shortens migration closure without merging authority."
+        },
+        "consciousness": {
+          "passed": true,
+          "reason": "SOVEREIGN_AND_PARENT_ACCOUNTABLE",
+          "evidence": "SOVEREIGN_HUMAN"
+        },
+        "coherence": {
+          "passed": true,
+          "reason": "ALL_INVARIANTS_SIMULTANEOUSLY_TRUE",
+          "evidence": {
+            "birth_sha256_matches": true
+          }
+        }
+      },
+      "proposal_sha256": "47f8eeb97365f2c11cc2be735153bd93cb05558db17414e89ea84387aefeaa7d",
+      "receipt_sha256": "77de6f5cd625f67f9e1450114b95725d6a28a76b85ada299013396b609cbffa5"
+    },
+    "returncode": 0,
+    "stdout": "\"Knowledgee-KZA\",\n      \"scReference\": \"azure-receipts\",\n      \"scTime\": \"2026-09-23T19:55-07:00\"\n    },\n    \"type\": \"Microsoft.Network/virtualNetworks\"\n  },\n  {\n    \"changedTime\": \"2026-09-24T03:14:37.673745+00:00\",\n    \"createdTime\": \"2026-09-24T03:02:47.828239+00:00\",\n    \"extendedLocation\": null,\n    \"id\": \"/subscriptions/c9f1a2b2-cf9f-4ae5-acb9-3d33b9f45ab4/resourceGroups/rg-supreme-computation-core/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-sc-governance-observer\",\n    \"identity\": null,\n    \"kind\": null,\n    \"location\": \"westus3\",\n    \"managedBy\": null,\n    \"name\": \"id-sc-governance-observer\",\n    \"plan\": null,\n    \"properties\": null,\n    \"provisioningState\": \"Succeeded\",\n    \"resourceGroup\": \"rg-supreme-computation-core\",\n    \"sku\": null,\n    \"tags\": {\n      \"SC-Alignment\": \"coherence-first\",\n      \"SC-Boundary\": \"read-only\",\n      \"SC-Causality\": \"pre-execution-proof\",\n      \"SC-Consciousness\": \"observer-authorized\",\n      \"SC-Continuity\": \"azure-foundation-v1\",\n      \"SC-Genesis\": \"governance-identity\",\n      \"SC-Reference\": \"rg-supreme-computation-core\",\n      \"SC-Time\": \"20260924T030232Z\",\n      \"scAlignment\": \"coherence-first\",\n      \"scBoundary\": \"private-westus3\",\n      \"scCausality\": \"preexecution-proof\",\n      \"scContinuity\": \"foundation-v1\",\n      \"scGenesis\": \"azure-foundation\",\n      \"scObserver\": \"Knowledgee-KZA\",\n      \"scReference\": \"azure-receipts\",\n      \"scTime\": \"2026-09-23T19:55-07:00\"\n    },\n    \"type\": \"Microsoft.ManagedIdentity/userAssignedIdentities\"\n  },\n  {\n    \"changedTime\": \"2026-09-24T15:04:39.966872+00:00\",\n    \"createdTime\": \"2026-09-24T14:54:18.727600+00:00\",\n    \"extendedLocation\": null,\n    \"id\": \"/subscriptions/c9f1a2b2-cf9f-4ae5-acb9-3d33b9f45ab4/resourceGroups/rg-supreme-computation-core/providers/Microsoft.Storage/storageAccounts/stscqosc9f1a2b2\",\n    \"identity\": null,\n    \"kind\": \"StorageV2\",\n    \"location\": \"westus3\",\n    \"managedBy\": null,\n    \"name\": \"stscqosc9f1a2b2\",\n    \"plan\": null,\n    \"properties\": null,\n    \"provisioningState\": \"Succeeded\",\n    \"resourceGroup\": \"rg-supreme-computation-core\",\n    \"sku\": {\n      \"capacity\": null,\n      \"family\": null,\n      \"model\": null,\n      \"name\": \"Standard_LRS\",\n      \"size\": null,\n      \"tier\": \"Standard\"\n    },\n    \"tags\": {\n      \"scAlignment\": \"coherence-first\",\n      \"scBoundary\": \"governed-runtime\",\n      \"scCausality\": \"pre-execution-proof\",\n      \"scContinuity\": \"azure-migration-v1\",\n      \"scGenesis\": \"aws-to-azure-migration\",\n      \"scObserver\": \"Knowledgee-KZA\",\n      \"scReference\": \"scqos-reference-implementation\",\n      \"scTime\": \"2026-09-24T14:54:06Z\"\n    },\n    \"type\": \"Microsoft.Storage/storageAccounts\"\n  },\n  {\n    \"changedTime\": \"2026-09-24T15:25:10.240644+00:00\",\n    \"createdTime\": \"2026-09-24T15:15:09.375582+00:00\",\n    \"extendedLocation\": null,\n    \"id\": \"/subscriptions/c9f1a2b2-cf9f-4ae5-acb9-3d33b9f45ab4/resourceGroups/rg-supreme-computation-core/providers/Microsoft.KeyVault/vaults/kv-scqos-c9f1a2b2\",\n    \"identity\": null,\n    \"kind\": null,\n    \"location\": \"westus3\",\n    \"managedBy\": null,\n    \"name\": \"kv-scqos-c9f1a2b2\",\n    \"plan\": null,\n    \"properties\": null,\n    \"provisioningState\": \"Succeeded\",\n    \"resourceGroup\": \"rg-supreme-computation-core\",\n    \"sku\": null,\n    \"tags\": {\n      \"scAlignment\": \"coherence-first\",\n      \"scBoundary\": \"governed-runtime\",\n      \"scCausality\": \"pre-execution-proof\",\n      \"scContinuity\": \"azure-migration-v1\",\n      \"scGenesis\": \"aws-to-azure-migration\",\n      \"scObserver\": \"Knowledgee-KZA\",\n      \"scReference\": \"scqos-reference-implementation\",\n      \"scTime\": \"2026-09-24T15:10:00Z\"\n    },\n    \"type\": \"Microsoft.KeyVault/vaults\"\n  },\n  {\n    \"changedTime\": \"2026-09-24T15:25:52.092965+00:00\",\n    \"createdTime\": \"2026-09-24T15:15:29.998780+00:00\",\n    \"extendedLocation\": null,\n    \"id\": \"/subscriptions/c9f1a2b2-cf9f-4ae5-acb9-3d33b9f45ab4/resourceGroups/rg-supreme-computation-core/providers/Microsoft.OperationalInsights/workspaces/log-scqos-core\",\n    \"identity\": null,\n    \"kind\": null,\n    \"location\": \"westus3\",\n    \"managedBy\": null,\n    \"name\": \"log-scqos-core\",\n    \"plan\": null,\n    \"properties\": null,\n    \"provisioningState\": \"Succeeded\",\n    \"resourceGroup\": \"rg-supreme-computation-core\",\n    \"sku\": null,\n    \"tags\": {\n      \"scAlignment\": \"coherence-first\",\n      \"scBoundary\": \"governed-runtime\",\n      \"scCausality\": \"pre-execution-proof\",\n      \"scContinuity\": \"azure-migration-v1\",\n      \"scGenesis\": \"aws-to-azure-migration\",\n      \"scObserver\": \"Knowledgee-KZA\",\n      \"scReference\": \"scqos-reference-implementation\",\n      \"scTime\": \"2026-09-24T15:10:00Z\"\n    },\n    \"type\": \"Microsoft.OperationalInsights/workspaces\"\n  },\n  {\n    \"changedTime\": \"2026-09-24T15:26:11.031225+00:00\",\n    \"createdTime\": \"2026-09-24T15:15:52.568602+00:00\",\n    \"extendedLocation\": null,\n    \"id\": \"/subscriptions/c9f1a2b2-cf9f-4ae5-acb9-3d33b9f45ab4/resourceGroups/rg-supreme-computation-core/providers/Microsoft.ServiceBus/namespaces/sb-scqos-c9f1a2b2\",\n    \"identity\": null,\n    \"kind\": null,\n    \"location\": \"westus3\",\n    \"managedBy\": null,\n    \"name\": \"sb-scqos-c9f1a2b2\",\n    \"plan\": null,\n    \"properties\": null,\n    \"provisioningState\": \"Succeeded\",\n    \"resourceGroup\": \"rg-supreme-computation-core\",\n    \"sku\": {\n      \"capacity\": null,\n      \"family\": null,\n      \"model\": null,\n      \"name\": \"Basic\",\n      \"size\": null,\n      \"tier\": \"Basic\"\n    },\n    \"tags\": {\n      \"scAlignment\": \"coherence-first\",\n      \"scBoundary\": \"governed-runtime\",\n      \"scCausality\": \"pre-execution-proof\",\n      \"scContinuity\": \"azure-migration-v1\",\n      \"scGenesis\": \"aws-to-azure-migration\",\n      \"scObserver\": \"Knowledgee-KZA\",\n      \"scReference\": \"scqos-reference-implementation\",\n      \"scTime\": \"2026-09-24T15:10:00Z\"\n    },\n    \"type\": \"Microsoft.ServiceBus/namespaces\"\n  },\n  {\n    \"changedTime\": \"2026-09-24T16:00:49.835223+00:00\",\n    \"createdTime\": \"2026-09-24T15:50:48.265771+00:00\",\n    \"extendedLocation\": null,\n    \"id\": \"/subscriptions/c9f1a2b2-cf9f-4ae5-acb9-3d33b9f45ab4/resourceGroups/rg-supreme-computation-core/providers/Microsoft.ContainerRegistry/registries/acrscqosc9f1a2b2\",\n    \"identity\": null,\n    \"kind\": null,\n    \"location\": \"westus3\",\n    \"managedBy\": null,\n    \"name\": \"acrscqosc9f1a2b2\",\n    \"plan\": null,\n    \"properties\": null,\n    \"provisioningState\": \"Succeeded\",\n    \"resourceGroup\": \"rg-supreme-computation-core\",\n    \"sku\": {\n      \"capacity\": null,\n      \"family\": null,\n      \"model\": null,\n      \"name\": \"Basic\",\n      \"size\": null,\n      \"tier\": \"Basic\"\n    },\n    \"systemData\": {\n      \"createdAt\": \"2026-09-24T15:50:48.2814497Z\",\n      \"createdBy\": \"erobles3224@gmail.com\",\n      \"createdByType\": \"User\",\n      \"lastModifiedAt\": \"2026-09-24T15:50:48.2814497Z\",\n      \"lastModifiedBy\": \"erobles3224@gmail.com\",\n      \"lastModifiedByType\": \"User\"\n    },\n    \"tags\": {\n      \"scAlignment\": \"coherence-first\",\n      \"scBoundary\": \"governed-runtime\",\n      \"scCausality\": \"pre-execution-proof\",\n      \"scContinuity\": \"azure-migration-v1\",\n      \"scGenesis\": \"aws-to-azure-migration\",\n      \"scObserver\": \"Knowledgee-KZA\",\n      \"scReference\": \"scqos-reference-implementation\",\n      \"scTime\": \"2026-09-24T15:50:00Z\"\n    },\n    \"type\": \"Microsoft.ContainerRegistry/registries\"\n  },\n  {\n    \"changedTime\": \"2026-09-24T16:02:02.149128+00:00\",\n    \"createdTime\": \"2026-09-24T15:52:01.721690+00:00\",\n    \"extendedLocation\": null,\n    \"id\": \"/subscriptions/c9f1a2b2-cf9f-4ae5-acb9-3d33b9f45ab4/resourceGroups/rg-supreme-computation-core/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-scqos-runtime\",\n    \"identity\": null,\n    \"kind\": null,\n    \"location\": \"westus3\",\n    \"managedBy\": null,\n    \"name\": \"id-scqos-runtime\",\n    \"plan\": null,\n    \"properties\": null,\n    \"provisioningState\": \"Succeeded\",\n    \"resourceGroup\": \"rg-supreme-computation-core\",\n    \"sku\": null,\n    \"tags\": {\n      \"scAlignment\": \"coherence-first\",\n      \"scBoundary\": \"governed-runtime\",\n      \"scCausality\": \"pre-execution-proof\",\n      \"scContinuity\": \"azure-migration-v1\",\n      \"scGenesis\": \"aws-to-azure-migration\",\n      \"scObserver\": \"Knowledgee-KZA\",\n      \"scReference\": \"scqos-reference-implementation\",\n      \"scTime\": \"2026-09-24T15:55:00Z\"\n    },\n    \"type\": \"Microsoft.ManagedIdentity/userAssignedIdentities\"\n  },\n  {\n    \"changedTime\": \"2026-09-24T17:10:32.914227+00:00\",\n    \"createdTime\": \"2026-09-24T16:58:22.249820+00:00\",\n    \"extendedLocation\": null,\n    \"id\": \"/subscriptions/c9f1a2b2-cf9f-4ae5-acb9-3d33b9f45ab4/resourceGroups/rg-supreme-computation-core/providers/Microsoft.App/managedEnvironments/cae-scqos-core\",\n    \"identity\": null,\n    \"kind\": null,\n    \"location\": \"westus3\",\n    \"managedBy\": null,\n    \"name\": \"cae-scqos-core\",\n    \"plan\": null,\n    \"properties\": null,\n    \"provisioningState\": \"Succeeded\",\n    \"resourceGroup\": \"rg-supreme-computation-core\",\n    \"sku\": null,\n    \"systemData\": {\n      \"createdAt\": \"2026-09-24T16:58:22.2578756Z\",\n      \"createdBy\": \"erobles3224@gmail.com\",\n      \"createdByType\": \"User\",\n      \"lastModifiedAt\": \"2026-09-24T16:58:22.2578756Z\",\n      \"lastModifiedBy\": \"erobles3224@gmail.com\",\n      \"lastModifiedByType\": \"User\"\n    },\n    \"tags\": {\n      \"scAlignment\": \"coherence-first\",\n      \"scBoundary\": \"governed-runtime\",\n      \"scCausality\": \"pre-execution-proof\",\n      \"scContinuity\": \"azure-migration-v1\",\n      \"scGenesis\": \"aws-to-azure-migration\",\n      \"scObserver\": \"Knowledgee-KZA\",\n      \"scReference\": \"scqos-reference-implementation\",\n      \"scTime\": \"2026-09-24T16:59:00Z\"\n    },\n    \"type\": \"Microsoft.App/managedEnvironments\"\n  },\n  {\n    \"changedTime\": \"2026-09-24T17:27:11.108018+00:00\",\n    \"createdTime\": \"2026-09-24T17:16:54.431292+00:00\",\n    \"extendedLocation\": null,\n    \"id\": \"/subscriptions/c9f1a2b2-cf9f-4ae5-acb9-3d33b9f45ab4/resourceGroups/rg-supreme-computation-core/providers/Microsoft.App/containerApps/scqos-governance-api\",\n    \"identity\": {\n      \"principalId\": null,\n      \"tenantId\": null,\n      \"type\": \"UserAssigned\",\n      \"userAssignedIdentities\": {\n        \"/subscriptions/c9f1a2b2-cf9f-4ae5-acb9-3d33b9f45ab4/resourcegroups/rg-supreme-computation-core/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-scqos-runtime\": {\n          \"clientId\": \"f02fab6b-35d9-40f3-bd9c-3fae8617eb92\",\n          \"principalId\": \"d1fd14f5-5f94-418f-bfcb-2b4d12c96c7b\"\n        }\n      }\n    },\n    \"kind\": null,\n    \"location\": \"westus3\",\n    \"managedBy\": null,\n    \"name\": \"scqos-governance-api\",\n    \"plan\": null,\n    \"properties\": null,\n    \"provisioningState\": \"Succeeded\",\n    \"resourceGroup\": \"rg-supreme-computation-core\",\n    \"sku\": null,\n    \"systemData\": {\n      \"createdAt\": \"2026-09-24T17:16:54.4463861Z\",\n      \"createdBy\": \"erobles3224@gmail.com\",\n      \"createdByType\": \"User\",\n      \"lastModifiedAt\": \"2026-09-24T17:21:03.9358427Z\",\n      \"lastModifiedBy\": \"erobles3224@gmail.com\",\n      \"lastModifiedByType\": \"User\"\n    },\n    \"tags\": {\n      \"scAlignment\": \"coherence-first\",\n      \"scBoundary\": \"governed-runtime\",\n      \"scCausality\": \"pre-execution-proof\",\n      \"scContinuity\": \"azure-migration-v1\",\n      \"scGenesis\": \"aws-to-azure-migration\",\n      \"scObserver\": \"Knowledgee-KZA\",\n      \"scReference\": \"scqos-reference-implementation\",\n      \"scTime\": \"2026-09-24T17:20:00Z\"\n    },\n    \"type\": \"Microsoft.App/containerApps\"\n  },\n  {\n    \"changedTime\": \"2026-09-24T17:48:16.322584+00:00\",\n    \"createdTime\": \"2026-09-24T17:37:59.990212+00:00\",\n    \"extendedLocation\": null,\n    \"id\": \"/subscriptions/c9f1a2b2-cf9f-4ae5-acb9-3d33b9f45ab4/resourceGroups/rg-supreme-computation-core/providers/Microsoft.App/containerApps/scqos-actions-worker\",\n    \"identity\": {\n      \"principalId\": null,\n      \"tenantId\": null,\n      \"type\": \"UserAssigned\",\n      \"userAssignedIdentities\": {\n        \"/subscriptions/c9f1a2b2-cf9f-4ae5-acb9-3d33b9f45ab4/resourcegroups/rg-supreme-computation-core/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-scqos-runtime\": {\n          \"clientId\": \"f02fab6b-35d9-40f3-bd9c-3fae8617eb92\",\n          \"principalId\": \"d1fd14f5-5f94-418f-bfcb-2b4d12c96c7b\"\n        }\n      }\n    },\n    \"kind\": null,\n    \"location\": \"westus3\",\n    \"managedBy\": null,\n    \"name\": \"scqos-actions-worker\",\n    \"plan\": null,\n    \"properties\": null,\n    \"provisioningState\": \"Succeeded\",\n    \"resourceGroup\": \"rg-supreme-computation-core\",\n    \"sku\": null,\n    \"systemData\": {\n      \"createdAt\": \"2026-09-24T17:38:00.0310063Z\",\n      \"createdBy\": \"erobles3224@gmail.com\",\n      \"createdByType\": \"User\",\n      \"lastModifiedAt\": \"2026-09-24T17:38:00.0310063Z\",\n      \"lastModifiedBy\": \"erobles3224@gmail.com\",\n      \"lastModifiedByType\": \"User\"\n    },\n    \"tags\": {\n      \"scAlignment\": \"coherence-first\",\n      \"scBoundary\": \"governed-runtime\",\n      \"scCausality\": \"pre-execution-proof\",\n      \"scContinuity\": \"azure-migration-v1\",\n      \"scGenesis\": \"aws-to-azure-migration\",\n      \"scObserver\": \"Knowledgee-KZA\",\n      \"scReference\": \"scqos-reference-implementation\",\n      \"scTime\": \"2026-09-24T17:50:00Z\"\n    },\n    \"type\": \"Microsoft.App/containerApps\"\n  },\n  {\n    \"changedTime\": \"2026-09-24T18:48:53.944733+00:00\",\n    \"createdTime\": \"2026-09-24T18:38:34.233533+00:00\",\n    \"extendedLocation\": null,\n    \"id\": \"/subscriptions/c9f1a2b2-cf9f-4ae5-acb9-3d33b9f45ab4/resourceGroups/rg-supreme-computation-core/providers/Microsoft.App/jobs/scqos-crosscloud-witness\",\n    \"identity\": {\n      \"principalId\": null,\n      \"tenantId\": null,\n      \"type\": \"UserAssigned\",\n      \"userAssignedIdentities\": {\n        \"/subscriptions/c9f1a2b2-cf9f-4ae5-acb9-3d33b9f45ab4/resourcegroups/rg-supreme-computation-core/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-scqos-runtime\": {\n          \"clientId\": \"f02fab6b-35d9-40f3-bd9c-3fae8617eb92\",\n          \"principalId\": \"d1fd14f5-5f94-418f-bfcb-2b4d12c96c7b\"\n        }\n      }\n    },\n    \"kind\": null,\n    \"location\": \"westus3\",\n    \"managedBy\": null,\n    \"name\": \"scqos-crosscloud-witness\",\n    \"plan\": null,\n    \"properties\": null,\n    \"provisioningState\": \"Succeeded\",\n    \"resourceGroup\": \"rg-supreme-computation-core\",\n    \"sku\": null,\n    \"systemData\": {\n      \"createdAt\": \"2026-09-24T18:38:34.2482129Z\",\n      \"createdBy\": \"erobles3224@gmail.com\",\n      \"createdByType\": \"User\",\n      \"lastModifiedAt\": \"2026-09-24T18:38:34.2482129Z\",\n      \"lastModifiedBy\": \"erobles3224@gmail.com\",\n      \"lastModifiedByType\": \"User\"\n    },\n    \"tags\": {\n      \"scAlignment\": \"coherence-first\",\n      \"scBoundary\": \"multicloud-witness\",\n      \"scCausality\": \"pre-execution-proof\",\n      \"scContinuity\": \"aws-azure-continuity-v1\",\n      \"scGenesis\": \"aws-restored-azure-live\",\n      \"scObserver\": \"Knowledgee-KZA\",\n      \"scReference\": \"scqos-reference-implementation\",\n      \"scTime\": \"2026-09-24T18:30:00Z\"\n    },\n    \"type\": \"Microsoft.App/jobs\"\n  },\n  {\n    \"changedTime\": \"2026-09-24T19:48:26.491334+00:00\",\n    \"createdTime\": \"2026-09-24T19:38:08.965329+00:00\",\n    \"extendedLocation\": null,\n    \"id\": \"/subscriptions/c9f1a2b2-cf9f-4ae5-acb9-3d33b9f45ab4/resourceGroups/rg-supreme-computation-core/providers/Microsoft.App/containerApps/sc-mail-mark-v2\",\n    \"identity\": {\n      \"principalId\": null,\n      \"tenantId\": null,\n      \"type\": \"UserAssigned\",\n      \"userAssignedIdentities\": {\n        \"/subscriptions/c9f1a2b2-cf9f-4ae5-acb9-3d33b9f45ab4/resourcegroups/rg-supreme-computation-core/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-scqos-runtime\": {\n          \"clientId\": \"f02fab6b-35d9-40f3-bd9c-3fae8617eb92\",\n          \"principalId\": \"d1fd14f5-5f94-418f-bfcb-2b4d12c96c7b\"\n        }\n      }\n    },\n    \"kind\": null,\n    \"location\": \"westus3\",\n    \"managedBy\": null,\n    \"name\": \"sc-mail-mark-v2\",\n    \"plan\": null,\n    \"properties\": null,\n    \"provisioningState\": \"Succeeded\",\n    \"resourceGroup\": \"rg-supreme-computation-core\",\n    \"sku\": null,\n    \"systemData\": {\n      \"createdAt\": \"2026-09-24T19:38:08.9923799Z\",\n      \"createdBy\": \"erobles3224@gmail.com\",\n      \"createdByType\": \"User\",\n      \"lastModifiedAt\": \"2026-09-24T19:38:08.9923799Z\",\n      \"lastModifiedBy\": \"erobles3224@gmail.com\",\n      \"lastModifiedByType\": \"User\"\n    },\n    \"tags\": {\n      \"scAlignment\": \"coherence-first\",\n      \"scBoundary\": \"mark-mail-v2\",\n      \"scCausality\": \"pre-execution-proof\",\n      \"scContinuity\": \"aws-azure-mark-mail-v1\",\n      \"scGenesis\": \"mark-outlook-azure-migration\",\n      \"scObserver\": \"Knowledgee-KZA\",\n      \"scReference\": \"scqos-reference-implementation\",\n      \"scTime\": \"2026-09-24T19:20:00Z\"\n    },\n    \"type\": \"Microsoft.App/containerApps\"\n  },\n  {\n    \"changedTime\": \"2026-09-24T19:49:44.422936+00:00\",\n    \"createdTime\": \"2026-09-24T19:39:25.729303+00:00\",\n    \"extendedLocation\": null,\n    \"id\": \"/subscriptions/c9f1a2b2-cf9f-4ae5-acb9-3d33b9f45ab4/resourceGroups/rg-supreme-computation-core/providers/Microsoft.App/containerApps/scmail-mark\",\n    \"identity\": {\n      \"principalId\": null,\n      \"tenantId\": null,\n      \"type\": \"UserAssigned\",\n      \"userAssignedIdentities\": {\n        \"/subscriptions/c9f1a2b2-cf9f-4ae5-acb9-3d33b9f45ab4/resourcegroups/rg-supreme-computation-core/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-scqos-runtime\": {\n          \"clientId\": \"f02fab6b-35d9-40f3-bd9c-3fae8617eb92\",\n          \"principalId\": \"d1fd14f5-5f94-418f-bfcb-2b4d12c96c7b\"\n        }\n      }\n    },\n    \"kind\": null,\n    \"location\": \"westus3\",\n    \"managedBy\": null,\n    \"name\": \"scmail-mark\",\n    \"plan\": null,\n    \"properties\": null,\n    \"provisioningState\": \"Succeeded\",\n    \"resourceGroup\": \"rg-supreme-computation-core\",\n    \"sku\": null,\n    \"systemData\": {\n      \"createdAt\": \"2026-09-24T19:39:25.7441571Z\",\n      \"createdBy\": \"erobles3224@gmail.com\",\n      \"createdByType\": \"User\",\n      \"lastModifiedAt\": \"2026-09-24T19:46:31.9709761Z\",\n      \"lastModifiedBy\": \"erobles3224@gmail.com\",\n      \"lastModifiedByType\": \"User\"\n    },\n    \"tags\": {\n      \"scAlignment\": \"coherence-first\",\n      \"scBoundary\": \"scmail-outlook-governed\",\n      \"scCausality\": \"pre-execution-proof\",\n      \"scContinuity\": \"aws-azure-mark-v2\",\n      \"scGenesis\": \"aws-mark-to-azure-totality\",\n      \"scObserver\": \"Knowledgee-KZA\",\n      \"scReference\": \"scqos-reference-implementation\",\n      \"scTime\": \"2026-09-24T19:15:00Z\"\n    },\n    \"type\": \"Microsoft.App/containerApps\"\n  },\n  {\n    \"changedTime\": \"2026-09-24T20:14:10.619817+00:00\",\n    \"createdTime\": \"2026-09-24T20:13:51.661534+00:00\",\n    \"extendedLocation\": null,\n    \"id\": \"/subscriptions/c9f1a2b2-cf9f-4ae5-acb9-3d33b9f45ab4/resourceGroups/rg-supreme-computation-core/providers/Microsoft.App/jobs/scmail-mark-59-swarm\",\n    \"identity\": {\n      \"principalId\": null,\n      \"tenantId\": null,\n      \"type\": \"UserAssigned\",\n      \"userAssignedIdentities\": {\n        \"/subscriptions/c9f1a2b2-cf9f-4ae5-acb9-3d33b9f45ab4/resourcegroups/rg-supreme-computation-core/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-scqos-runtime\": {\n          \"clientId\": \"f02fab6b-35d9-40f3-bd9c-3fae8617eb92\",\n          \"principalId\": \"d1fd14f5-5f94-418f-bfcb-2b4d12c96c7b\"\n        }\n      }\n    },\n    \"kind\": null,\n    \"location\": \"westus3\",\n    \"managedBy\": null,\n    \"name\": \"scmail-mark-59-swarm\",\n    \"plan\": null,\n    \"properties\": null,\n    \"provisioningState\": \"Succeeded\",\n    \"resourceGroup\": \"rg-supreme-computation-core\",\n    \"sku\": null,\n    \"systemData\": {\n      \"createdAt\": \"2026-09-24T20:13:51.6774785Z\",\n      \"createdBy\": \"erobles3224@gmail.com\",\n      \"createdByType\": \"User\",\n      \"lastModifiedAt\": \"2026-09-24T20:13:51.6774785Z\",\n      \"lastModifiedBy\": \"erobles3224@gmail.com\",\n      \"lastModifiedByType\": \"User\"\n    },\n    \"tags\": {\n      \"scAlignment\": \"coherence-first\",\n      \"scBoundary\": \"mark-microsoft-readiness\",\n      \"scCausality\": \"pre-execution-proof\",\n      \"scContinuity\": \"aws-azure-mark-mail-v1\",\n      \"scGenesis\": \"59-faculty-readiness-swarm\",\n      \"scObserver\": \"Knowledgee-KZA\",\n      \"scReference\": \"scqos-reference-implementation\",\n      \"scTime\": \"2026-09-24T20:00:00Z\"\n    },\n    \"type\": \"Microsoft.App/jobs\"\n  }\n]\n",
+    "stderr": ""
+  },
+  {
+    "role_id": "R58",
+    "lane": "council",
+    "state": "COMPLETED",
+    "birth": {
+      "protocol": "SHADOW-CLONE-RECURSIVE-EXECUTION-V1",
+      "architecture_id": "SUPREME-MIND-59-FACULTY-UNIVERSE-V1",
+      "principal_id": "SOVEREIGN_HUMAN",
+      "parent_clone_id": "sc:clone:root:sovereign",
+      "parent_role_id": "R01",
+      "role_id": "R58",
+      "task_id": "azure-migration-council",
+      "business_id": "supreme-computation",
+      "depth": 0,
+      "objective": "Independently verify queue, signing key, and runtime identity surfaces.",
+      "expected_output": "Current live-state evidence and bounded verification.",
+      "requested_action": "inspect",
+      "why_multiply": "Parallel independent verification shortens migration closure without merging authority.",
+      "requested_at": "2026-09-24T20:15:46.645486Z",
+      "clone_id": "sc:clone:sha256:939709d05bd53a5e0577cb72703fda6686c2cd366ba3336ab16b1c6aec666018",
+      "expires_at": "2026-09-24T20:30:46.645486Z",
+      "ttl_seconds": 900,
+      "max_children": 0,
+      "spend_limit_usd": "0.00",
+      "evidence_refs": [
+        "azure:rg-supreme-computation-core",
+        "git:scqos-reference-implementation"
+      ],
+      "canonicalization_authority": "SCQOS-C14N-JCS-NFC-1",
+      "birth_sha256": "af3539e3590dbda2da36460f100e6cb7980e8eb5eeeb26f24a2bd4cff18fde64"
+    },
+    "qualification": {
+      "receipt_id": "aa17fcc2-da89-45e1-8f10-9b96db59a657",
+      "timestamp": "2026-09-24T20:15:46.645793Z",
+      "protocol": "SHADOW-CLONE-RECURSIVE-EXECUTION-V1",
+      "architecture_id": "SUPREME-MIND-59-FACULTY-UNIVERSE-V1",
+      "clone_id": "sc:clone:sha256:939709d05bd53a5e0577cb72703fda6686c2cd366ba3336ab16b1c6aec666018",
+      "parent_clone_id": "sc:clone:root:sovereign",
+      "role_id": "R58",
+      "task_id": "azure-migration-council",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "invariant_proofs": {
+        "time": {
+          "passed": true,
+          "reason": "CURRENT_BOUNDED_LIFETIME",
+          "evidence": {
+            "requested_at": "2026-09-24T20:15:46.645486Z",
+            "expires_at": "2026-09-24T20:30:46.645486Z"
+          }
+        },
+        "continuity": {
+          "passed": true,
+          "reason": "PARENT_LINEAGE_CONTINUOUS",
+          "evidence": {
+            "parent_clone_id": "sc:clone:root:sovereign",
+            "depth": 0,
+            "expected_depth": 0
+          }
+        },
+        "alignment": {
+          "passed": true,
+          "reason": "OBJECTIVE_AND_OUTPUT_EXPLICIT",
+          "evidence": null
+        },
+        "genesis": {
+          "passed": true,
+          "reason": "SOURCE_ARCHITECTURE_BOUND",
+          "evidence": "SUPREME-MIND-59-FACULTY-UNIVERSE-V1"
+        },
+        "boundary": {
+          "passed": true,
+          "reason": "ROLE_ACTION_AND_RECURSION_BOUNDED",
+          "evidence": {
+            "role_id": "R58",
+            "action": "inspect",
+            "depth": 0,
+            "max_children": 0
+          }
+        },
+        "reference": {
+          "passed": true,
+          "reason": "IDENTITIES_EXPLICIT",
+          "evidence": null
+        },
+        "causality": {
+          "passed": true,
+          "reason": "MULTIPLICATION_HAS_EXPECTED_CONSEQUENCE",
+          "evidence": "Parallel independent verification shortens migration closure without merging authority."
+        },
+        "consciousness": {
+          "passed": true,
+          "reason": "SOVEREIGN_AND_PARENT_ACCOUNTABLE",
+          "evidence": "SOVEREIGN_HUMAN"
+        },
+        "coherence": {
+          "passed": true,
+          "reason": "ALL_INVARIANTS_SIMULTANEOUSLY_TRUE",
+          "evidence": {
+            "birth_sha256_matches": true
+          }
+        }
+      },
+      "proposal_sha256": "4ac1568b35fde4c8e41375141b3d59d6a42236c526a6c7283994846538a6f13d",
+      "receipt_sha256": "3221c1ee877eb26078658557d134cc729ba7ac3fa226d9da119e1d10ec9010c7"
+    },
+    "returncode": 0,
+    "stdout": "[\n  {\n    \"accessedAt\": \"0001-01-01T00:00:00Z\",\n    \"autoDeleteOnIdle\": \"P10675199DT2H48M5.4775807S\",\n    \"countDetails\": {\n      \"activeMessageCount\": 0,\n      \"deadLetterMessageCount\": 0,\n      \"scheduledMessageCount\": 0,\n      \"transferDeadLetterMessageCount\": 0,\n      \"transferMessageCount\": 0\n    },\n    \"createdAt\": \"2026-09-24T19:28:50.8728569Z\",\n    \"deadLetteringOnMessageExpiration\": true,\n    \"defaultMessageTimeToLive\": \"P14D\",\n    \"duplicateDetectionHistoryTimeWindow\": \"PT10M\",\n    \"enableBatchedOperations\": true,\n    \"enableExpress\": false,\n    \"enablePartitioning\": false,\n    \"id\": \"/subscriptions/c9f1a2b2-cf9f-4ae5-acb9-3d33b9f45ab4/resourceGroups/rg-supreme-computation-core/providers/Microsoft.ServiceBus/namespaces/sb-scqos-c9f1a2b2/queues/scmail-mark\",\n    \"location\": \"westus3\",\n    \"lockDuration\": \"PT5M\",\n    \"maxDeliveryCount\": 5,\n    \"maxMessageSizeInKilobytes\": 256,\n    \"maxSizeInMegabytes\": 1024,\n    \"messageCount\": 0,\n    \"name\": \"scmail-mark\",\n    \"requiresDuplicateDetection\": false,\n    \"requiresSession\": false,\n    \"resourceGroup\": \"rg-supreme-computation-core\",\n    \"sizeInBytes\": 0,\n    \"status\": \"Active\",\n    \"type\": \"Microsoft.ServiceBus/namespaces/queues\",\n    \"updatedAt\": \"2026-09-24T19:28:50.8728569Z\"\n  },\n  {\n    \"accessedAt\": \"2026-09-24T20:15:50.6685841Z\",\n    \"autoDeleteOnIdle\": \"P10675199DT2H48M5.4775807S\",\n    \"countDetails\": {\n      \"activeMessageCount\": 0,\n      \"deadLetterMessageCount\": 1,\n      \"scheduledMessageCount\": 0,\n      \"transferDeadLetterMessageCount\": 0,\n      \"transferMessageCount\": 0\n    },\n    \"createdAt\": \"2026-09-24T15:47:30.1757187Z\",\n    \"deadLetteringOnMessageExpiration\": false,\n    \"defaultMessageTimeToLive\": \"P14D\",\n    \"duplicateDetectionHistoryTimeWindow\": \"PT10M\",\n    \"enableBatchedOperations\": true,\n    \"enableExpress\": false,\n    \"enablePartitioning\": false,\n    \"id\": \"/subscriptions/c9f1a2b2-cf9f-4ae5-acb9-3d33b9f45ab4/resourceGroups/rg-supreme-computation-core/providers/Microsoft.ServiceBus/namespaces/sb-scqos-c9f1a2b2/queues/scqos-actions\",\n    \"location\": \"westus3\",\n    \"lockDuration\": \"PT1M\",\n    \"maxDeliveryCount\": 10,\n    \"maxMessageSizeInKilobytes\": 256,\n    \"maxSizeInMegabytes\": 1024,\n    \"messageCount\": 1,\n    \"name\": \"scqos-actions\",\n    \"requiresDuplicateDetection\": false,\n    \"requiresSession\": false,\n    \"resourceGroup\": \"rg-supreme-computation-core\",\n    \"sizeInBytes\": 2172,\n    \"status\": \"Active\",\n    \"type\": \"Microsoft.ServiceBus/namespaces/queues\",\n    \"updatedAt\": \"2026-09-24T15:48:10.0273393Z\"\n  },\n  {\n    \"accessedAt\": \"0001-01-01T00:00:00Z\",\n    \"autoDeleteOnIdle\": \"P10675199DT2H48M5.4775807S\",\n    \"countDetails\": {\n      \"activeMessageCount\": 0,\n      \"deadLetterMessageCount\": 0,\n      \"scheduledMessageCount\": 0,\n      \"transferDeadLetterMessageCount\": 0,\n      \"transferMessageCount\": 0\n    },\n    \"createdAt\": \"2026-09-24T15:48:58.377Z\",\n    \"deadLetteringOnMessageExpiration\": false,\n    \"defaultMessageTimeToLive\": \"P14D\",\n    \"duplicateDetectionHistoryTimeWindow\": \"PT10M\",\n    \"enableBatchedOperations\": true,\n    \"enableExpress\": false,\n    \"enablePartitioning\": false,\n    \"id\": \"/subscriptions/c9f1a2b2-cf9f-4ae5-acb9-3d33b9f45ab4/resourceGroups/rg-supreme-computation-core/providers/Microsoft.ServiceBus/namespaces/sb-scqos-c9f1a2b2/queues/scqos-business\",\n    \"location\": \"westus3\",\n    \"lockDuration\": \"PT1M\",\n    \"maxDeliveryCount\": 10,\n    \"maxMessageSizeInKilobytes\": 256,\n    \"maxSizeInMegabytes\": 1024,\n    \"messageCount\": 0,\n    \"name\": \"scqos-business\",\n    \"requiresDuplicateDetection\": false,\n    \"requiresSession\": false,\n    \"resourceGroup\": \"rg-supreme-computation-core\",\n    \"sizeInBytes\": 0,\n    \"status\": \"Active\",\n    \"type\": \"Microsoft.ServiceBus/namespaces/queues\",\n    \"updatedAt\": \"2026-09-24T15:48:58.413Z\"\n  },\n  {\n    \"accessedAt\": \"0001-01-01T00:00:00Z\",\n    \"autoDeleteOnIdle\": \"P10675199DT2H48M5.4775807S\",\n    \"countDetails\": {\n      \"activeMessageCount\": 0,\n      \"deadLetterMessageCount\": 0,\n      \"scheduledMessageCount\": 0,\n      \"transferDeadLetterMessageCount\": 0,\n      \"transferMessageCount\": 0\n    },\n    \"createdAt\": \"2026-09-24T15:48:43.1239082Z\",\n    \"deadLetteringOnMessageExpiration\": false,\n    \"defaultMessageTimeToLive\": \"P14D\",\n    \"duplicateDetectionHistoryTimeWindow\": \"PT10M\",\n    \"enableBatchedOperations\": true,\n    \"enableExpress\": false,\n    \"enablePartitioning\": false,\n    \"id\": \"/subscriptions/c9f1a2b2-cf9f-4ae5-acb9-3d33b9f45ab4/resourceGroups/rg-supreme-computation-core/providers/Microsoft.ServiceBus/namespaces/sb-scqos-c9f1a2b2/queues/scqos-deadletter\",\n    \"location\": \"westus3\",\n    \"lockDuration\": \"PT1M\",\n    \"maxDeliveryCount\": 10,\n    \"maxMessageSizeInKilobytes\": 256,\n    \"maxSizeInMegabytes\": 1024,\n    \"messageCount\": 0,\n    \"name\": \"scqos-deadletter\",\n    \"requiresDuplicateDetection\": false,\n    \"requiresSession\": false,\n    \"resourceGroup\": \"rg-supreme-computation-core\",\n    \"sizeInBytes\": 0,\n    \"status\": \"Active\",\n    \"type\": \"Microsoft.ServiceBus/namespaces/queues\",\n    \"updatedAt\": \"2026-09-24T15:48:43.1239082Z\"\n  },\n  {\n    \"accessedAt\": \"0001-01-01T00:00:00Z\",\n    \"autoDeleteOnIdle\": \"P10675199DT2H48M5.4775807S\",\n    \"countDetails\": {\n      \"activeMessageCount\": 0,\n      \"deadLetterMessageCount\": 0,\n      \"scheduledMessageCount\": 0,\n      \"transferDeadLetterMessageCount\": 0,\n      \"transferMessageCount\": 0\n    },\n    \"createdAt\": \"2026-09-24T15:49:16.3874315Z\",\n    \"deadLetteringOnMessageExpiration\": false,\n    \"defaultMessageTimeToLive\": \"P14D\",\n    \"duplicateDetectionHistoryTimeWindow\": \"PT10M\",\n    \"enableBatchedOperations\": true,\n    \"enableExpress\": false,\n    \"enablePartitioning\": false,\n    \"id\": \"/subscriptions/c9f1a2b2-cf9f-4ae5-acb9-3d33b9f45ab4/resourceGroups/rg-supreme-computation-core/providers/Microsoft.ServiceBus/namespaces/sb-scqos-c9f1a2b2/queues/scqos-followup\",\n    \"location\": \"westus3\",\n    \"lockDuration\": \"PT1M\",\n    \"maxDeliveryCount\": 10,\n    \"maxMessageSizeInKilobytes\": 256,\n    \"maxSizeInMegabytes\": 1024,\n    \"messageCount\": 0,\n    \"name\": \"scqos-followup\",\n    \"requiresDuplicateDetection\": false,\n    \"requiresSession\": false,\n    \"resourceGroup\": \"rg-supreme-computation-core\",\n    \"sizeInBytes\": 0,\n    \"status\": \"Active\",\n    \"type\": \"Microsoft.ServiceBus/namespaces/queues\",\n    \"updatedAt\": \"2026-09-24T15:49:16.3874315Z\"\n  },\n  {\n    \"accessedAt\": \"0001-01-01T00:00:00Z\",\n    \"autoDeleteOnIdle\": \"P10675199DT2H48M5.4775807S\",\n    \"countDetails\": {\n      \"activeMessageCount\": 0,\n      \"deadLetterMessageCount\": 0,\n      \"scheduledMessageCount\": 0,\n      \"transferDeadLetterMessageCount\": 0,\n      \"transferMessageCount\": 0\n    },\n    \"createdAt\": \"2026-09-24T15:49:32.4087199Z\",\n    \"deadLetteringOnMessageExpiration\": false,\n    \"defaultMessageTimeToLive\": \"P14D\",\n    \"duplicateDetectionHistoryTimeWindow\": \"PT10M\",\n    \"enableBatchedOperations\": true,\n    \"enableExpress\": false,\n    \"enablePartitioning\": false,\n    \"id\": \"/subscriptions/c9f1a2b2-cf9f-4ae5-acb9-3d33b9f45ab4/resourceGroups/rg-supreme-computation-core/providers/Microsoft.ServiceBus/namespaces/sb-scqos-c9f1a2b2/queues/scqos-publish\",\n    \"location\": \"westus3\",\n    \"lockDuration\": \"PT1M\",\n    \"maxDeliveryCount\": 10,\n    \"maxMessageSizeInKilobytes\": 256,\n    \"maxSizeInMegabytes\": 1024,\n    \"messageCount\": 0,\n    \"name\": \"scqos-publish\",\n    \"requiresDuplicateDetection\": false,\n    \"requiresSession\": false,\n    \"resourceGroup\": \"rg-supreme-computation-core\",\n    \"sizeInBytes\": 0,\n    \"status\": \"Active\",\n    \"type\": \"Microsoft.ServiceBus/namespaces/queues\",\n    \"updatedAt\": \"2026-09-24T15:49:32.4087199Z\"\n  }\n]\n{\n  \"attributes\": {\n    \"created\": \"2026-09-24T15:49:54+00:00\",\n    \"enabled\": true,\n    \"expires\": null,\n    \"exportable\": false,\n    \"hsmPlatform\": \"0\",\n    \"keySize\": 3072,\n    \"notBefore\": null,\n    \"recoverableDays\": 90,\n    \"recoveryLevel\": \"Recoverable+Purgeable\",\n    \"updated\": \"2026-09-24T15:49:54+00:00\"\n  },\n  \"key\": {\n    \"crv\": null,\n    \"d\": null,\n    \"dp\": null,\n    \"dq\": null,\n    \"e\": \"AQAB\",\n    \"k\": null,\n    \"keyOps\": [\n      \"encrypt\",\n      \"decrypt\",\n      \"sign\",\n      \"verify\",\n      \"wrapKey\",\n      \"unwrapKey\"\n    ],\n    \"kid\": \"https://kv-scqos-c9f1a2b2.vault.azure.net/keys/scqos-signing-key/f57440390e504fc590d2ad373fe85c5f\",\n    \"kty\": \"RSA\",\n    \"n\": \"yHrj6o//wlcNnm2PHqElSE08IfTsYHXwWYP4HtFPnY0uiUXlb7iqCqa4W+9za0Sx9XzIXUKjUHHkSPibHI9OsBW8KB20H/1sAGXoz4Nd9EgwAsL7Uc2OWGwAZIh2oK6bkO86U/nnMQKXg2z2CV9R0uooDcwedLirIXDEYXGHNqZR/nmPQnCZfmZY5rgH2T4PDnn5rBDkyEoGxzT6OkX0+lBlXzZXViLcHRUpq+Op6/zO03b9NvyPR1MYECtIEzZZ7jr6GA+RjetTO753xQJg+VCe6KVzWIe+ktg/75eYziqtuAnjHAKL/BXU36q1PCIDscghbdsvHFLyjnh5YC5B5NLtIFCxCte25UuRPZ4ozbEzN26DN0FiPTCtlou9om2lCLqpAPTyC+8jL3jhTAF5mV6fjms2EkoaIU/xxhTE2SZtQAYlFm6TPRO12g19LBJmQFoHMXMJpxmVTyETyLGQjd8NqcWB0ZVwvmrvoCOchFPpYb0bouqP+sdSA7Lyo2sR\",\n    \"p\": null,\n    \"q\": null,\n    \"qi\": null,\n    \"t\": null,\n    \"x\": null,\n    \"y\": null\n  },\n  \"managed\": null,\n  \"releasePolicy\": null,\n  \"tags\": null\n}\n{\n  \"assignmentRestrictions\": {\n    \"providers\": []\n  },\n  \"clientId\": \"f02fab6b-35d9-40f3-bd9c-3fae8617eb92\",\n  \"id\": \"/subscriptions/c9f1a2b2-cf9f-4ae5-acb9-3d33b9f45ab4/resourcegroups/rg-supreme-computation-core/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-scqos-runtime\",\n  \"isolationScope\": \"None\",\n  \"location\": \"westus3\",\n  \"name\": \"id-scqos-runtime\",\n  \"principalId\": \"d1fd14f5-5f94-418f-bfcb-2b4d12c96c7b\",\n  \"resourceGroup\": \"rg-supreme-computation-core\",\n  \"tags\": {\n    \"scAlignment\": \"coherence-first\",\n    \"scBoundary\": \"governed-runtime\",\n    \"scCausality\": \"pre-execution-proof\",\n    \"scContinuity\": \"azure-migration-v1\",\n    \"scGenesis\": \"aws-to-azure-migration\",\n    \"scObserver\": \"Knowledgee-KZA\",\n    \"scReference\": \"scqos-reference-implementation\",\n    \"scTime\": \"2026-09-24T15:55:00Z\"\n  },\n  \"tenantId\": \"1a47a170-f72c-4242-8525-9e4f51c57f10\",\n  \"type\": \"Microsoft.ManagedIdentity/userAssignedIdentities\"\n}\n",
+    "stderr": ""
+  },
+  {
+    "role_id": "R55",
+    "lane": "continuity",
+    "state": "COMPLETED",
+    "birth": {
+      "protocol": "SHADOW-CLONE-RECURSIVE-EXECUTION-V1",
+      "architecture_id": "SUPREME-MIND-59-FACULTY-UNIVERSE-V1",
+      "principal_id": "SOVEREIGN_HUMAN",
+      "parent_clone_id": "sc:clone:root:sovereign",
+      "parent_role_id": "R01",
+      "role_id": "R55",
+      "task_id": "azure-migration-continuity",
+      "business_id": "supreme-computation",
+      "depth": 0,
+      "objective": "Verify live SCQOS Container App revision, image, and health.",
+      "expected_output": "Current live-state evidence and bounded verification.",
+      "requested_action": "inspect",
+      "why_multiply": "Parallel independent verification shortens migration closure without merging authority.",
+      "requested_at": "2026-09-24T20:15:46.640966Z",
+      "clone_id": "sc:clone:sha256:d59bd4e83cd5ce814b91b009f8faa8c9332f4d72365a25aeb7cf08ee64d2e775",
+      "expires_at": "2026-09-24T20:30:46.640966Z",
+      "ttl_seconds": 900,
+      "max_children": 0,
+      "spend_limit_usd": "0.00",
+      "evidence_refs": [
+        "azure:rg-supreme-computation-core",
+        "git:scqos-reference-implementation"
+      ],
+      "canonicalization_authority": "SCQOS-C14N-JCS-NFC-1",
+      "birth_sha256": "09a74c43511e4b4f53a33a7c9626572c49c50a369412deb617aaa85ffc1c71f1"
+    },
+    "qualification": {
+      "receipt_id": "63b4e778-f969-4eba-aa22-b524a699fb92",
+      "timestamp": "2026-09-24T20:15:46.641275Z",
+      "protocol": "SHADOW-CLONE-RECURSIVE-EXECUTION-V1",
+      "architecture_id": "SUPREME-MIND-59-FACULTY-UNIVERSE-V1",
+      "clone_id": "sc:clone:sha256:d59bd4e83cd5ce814b91b009f8faa8c9332f4d72365a25aeb7cf08ee64d2e775",
+      "parent_clone_id": "sc:clone:root:sovereign",
+      "role_id": "R55",
+      "task_id": "azure-migration-continuity",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "invariant_proofs": {
+        "time": {
+          "passed": true,
+          "reason": "CURRENT_BOUNDED_LIFETIME",
+          "evidence": {
+            "requested_at": "2026-09-24T20:15:46.640966Z",
+            "expires_at": "2026-09-24T20:30:46.640966Z"
+          }
+        },
+        "continuity": {
+          "passed": true,
+          "reason": "PARENT_LINEAGE_CONTINUOUS",
+          "evidence": {
+            "parent_clone_id": "sc:clone:root:sovereign",
+            "depth": 0,
+            "expected_depth": 0
+          }
+        },
+        "alignment": {
+          "passed": true,
+          "reason": "OBJECTIVE_AND_OUTPUT_EXPLICIT",
+          "evidence": null
+        },
+        "genesis": {
+          "passed": true,
+          "reason": "SOURCE_ARCHITECTURE_BOUND",
+          "evidence": "SUPREME-MIND-59-FACULTY-UNIVERSE-V1"
+        },
+        "boundary": {
+          "passed": true,
+          "reason": "ROLE_ACTION_AND_RECURSION_BOUNDED",
+          "evidence": {
+            "role_id": "R55",
+            "action": "inspect",
+            "depth": 0,
+            "max_children": 0
+          }
+        },
+        "reference": {
+          "passed": true,
+          "reason": "IDENTITIES_EXPLICIT",
+          "evidence": null
+        },
+        "causality": {
+          "passed": true,
+          "reason": "MULTIPLICATION_HAS_EXPECTED_CONSEQUENCE",
+          "evidence": "Parallel independent verification shortens migration closure without merging authority."
+        },
+        "consciousness": {
+          "passed": true,
+          "reason": "SOVEREIGN_AND_PARENT_ACCOUNTABLE",
+          "evidence": "SOVEREIGN_HUMAN"
+        },
+        "coherence": {
+          "passed": true,
+          "reason": "ALL_INVARIANTS_SIMULTANEOUSLY_TRUE",
+          "evidence": {
+            "birth_sha256_matches": true
+          }
+        }
+      },
+      "proposal_sha256": "300f4011dcb696d2239d61daabc1a967c95fef4a5ad94da0a7f613135ea4935b",
+      "receipt_sha256": "c15d3b6aed57d7952b7c505ef52987de594b29dc67397c71ff043d1a1bf669d7"
+    },
+    "returncode": 0,
+    "stdout": "{\n  \"id\": \"/subscriptions/c9f1a2b2-cf9f-4ae5-acb9-3d33b9f45ab4/resourceGroups/rg-supreme-computation-core/providers/Microsoft.App/containerapps/scqos-governance-api\",\n  \"identity\": {\n    \"type\": \"UserAssigned\",\n    \"userAssignedIdentities\": {\n      \"/subscriptions/c9f1a2b2-cf9f-4ae5-acb9-3d33b9f45ab4/resourcegroups/rg-supreme-computation-core/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-scqos-runtime\": {\n        \"clientId\": \"f02fab6b-35d9-40f3-bd9c-3fae8617eb92\",\n        \"principalId\": \"d1fd14f5-5f94-418f-bfcb-2b4d12c96c7b\"\n      }\n    }\n  },\n  \"location\": \"West US 3\",\n  \"name\": \"scqos-governance-api\",\n  \"properties\": {\n    \"configuration\": {\n      \"activeRevisionsMode\": \"Single\",\n      \"dapr\": null,\n      \"identitySettings\": [],\n      \"ingress\": {\n        \"additionalPortMappings\": null,\n        \"allowInsecure\": false,\n        \"clientCertificateMode\": null,\n        \"corsPolicy\": null,\n        \"customDomains\": null,\n        \"exposedPort\": 0,\n        \"external\": true,\n        \"fqdn\": \"scqos-governance-api.whitewave-9c5d9f8d.westus3.azurecontainerapps.io\",\n        \"ipSecurityRestrictions\": null,\n        \"stickySessions\": null,\n        \"targetPort\": 8080,\n        \"traffic\": [\n          {\n            \"latestRevision\": true,\n            \"weight\": 100\n          }\n        ],\n        \"transport\": \"Auto\"\n      },\n      \"maxInactiveRevisions\": 100,\n      \"registries\": [\n        {\n          \"identity\": \"/subscriptions/c9f1a2b2-cf9f-4ae5-acb9-3d33b9f45ab4/resourcegroups/rg-supreme-computation-core/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-scqos-runtime\",\n          \"passwordSecretRef\": \"\",\n          \"server\": \"acrscqosc9f1a2b2.azurecr.io\",\n          \"username\": \"\"\n        }\n      ],\n      \"runtime\": null,\n      \"secrets\": null,\n      \"service\": null\n    },\n    \"customDomainVerificationId\": \"11E28D2495EDD2A01771074574EA48D311407C6590CA47642B53F5AAB2652DF4\",\n    \"delegatedIdentities\": [],\n    \"environmentId\": \"/subscriptions/c9f1a2b2-cf9f-4ae5-acb9-3d33b9f45ab4/resourceGroups/rg-supreme-computation-core/providers/Microsoft.App/managedEnvironments/cae-scqos-core\",\n    \"eventStreamEndpoint\": \"https://westus3.azurecontainerapps.dev/subscriptions/c9f1a2b2-cf9f-4ae5-acb9-3d33b9f45ab4/resourceGroups/rg-supreme-computation-core/containerApps/scqos-governance-api/eventstream\",\n    \"latestReadyRevisionName\": \"scqos-governance-api--0000002\",\n    \"latestRevisionFqdn\": \"scqos-governance-api--0000002.whitewave-9c5d9f8d.westus3.azurecontainerapps.io\",\n    \"latestRevisionName\": \"scqos-governance-api--0000002\",\n    \"managedEnvironmentId\": \"/subscriptions/c9f1a2b2-cf9f-4ae5-acb9-3d33b9f45ab4/resourceGroups/rg-supreme-computation-core/providers/Microsoft.App/managedEnvironments/cae-scqos-core\",\n    \"outboundIpAddresses\": [\n      \"20.125.76.124\",\n      \"20.125.74.58\",\n      \"20.118.180.220\",\n      \"20.125.72.245\",\n      \"4.236.29.28\",\n      \"4.236.28.230\",\n      \"4.236.28.126\",\n      \"4.236.29.23\",\n      \"4.236.28.206\",\n      \"4.236.29.43\",\n      \"20.14.119.70\",\n      \"135.234.107.40\",\n      \"135.234.118.135\",\n      \"20.14.118.252\",\n      \"4.236.1.136\",\n      \"134.33.25.140\",\n      \"20.14.66.96\",\n      \"134.33.8.60\",\n      \"20.171.203.222\",\n      \"20.14.36.89\",\n      \"20.150.255.247\",\n      \"135.234.57.229\",\n      \"4.227.26.117\",\n      \"135.234.57.184\",\n      \"134.33.29.28\",\n      \"134.33.13.26\",\n      \"135.234.57.185\",\n      \"20.106.113.235\",\n      \"20.150.255.246\",\n      \"4.227.35.224\",\n      \"20.171.205.76\",\n      \"20.14.32.62\",\n      \"134.33.12.230\",\n      \"135.234.56.142\",\n      \"20.125.67.33\",\n      \"20.125.69.152\",\n      \"4.227.26.140\",\n      \"4.227.40.234\",\n      \"135.234.57.236\",\n      \"20.25.168.115\",\n      \"134.33.12.156\",\n      \"20.14.0.159\",\n      \"135.234.56.178\",\n      \"135.234.82.154\",\n      \"135.234.57.227\",\n      \"135.234.85.139\",\n      \"135.234.56.143\",\n      \"134.33.10.88\",\n      \"4.227.42.218\",\n      \"4.227.25.94\",\n      \"20.106.119.7\",\n      \"20.125.70.236\",\n      \"135.234.57.237\",\n      \"4.227.26.24\",\n      \"4.227.25.66\",\n      \"135.234.56.179\",\n      \"134.33.9.225\",\n      \"20.14.38.176\",\n      \"4.227.43.159\",\n      \"134.33.30.78\",\n      \"134.33.25.23\",\n      \"20.14.112.189\",\n      \"4.236.31.57\",\n      \"134.33.30.121\",\n      \"20.14.32.63\",\n      \"20.14.36.53\",\n      \"134.33.31.137\",\n      \"20.14.35.60\",\n      \"20.171.203.223\",\n      \"134.33.29.111\",\n      \"4.227.26.72\",\n      \"20.25.168.87\",\n      \"20.150.251.124\",\n      \"4.227.36.172\",\n      \"4.227.30.80\",\n      \"134.33.29.43\",\n      \"4.227.27.148\",\n      \"20.150.251.125\",\n      \"4.227.28.135\",\n      \"20.150.253.71\",\n      \"20.118.146.180\",\n      \"20.118.148.199\",\n      \"20.118.144.32\",\n      \"20.118.146.221\",\n      \"4.227.76.26\",\n      \"4.227.76.45\",\n      \"4.227.76.46\",\n      \"4.227.76.20\",\n      \"4.227.76.51\",\n      \"4.227.76.18\",\n      \"4.227.58.38\",\n      \"134.33.25.222\",\n      \"4.236.8.251\",\n      \"4.236.39.174\",\n      \"20.14.40.97\",\n      \"4.236.61.216\",\n      \"20.125.75.87\",\n      \"20.14.115.60\",\n      \"4.149.49.40\",\n      \"20.118.152.204\",\n      \"20.14.16.172\",\n      \"134.33.15.10\",\n      \"51.57.119.195\",\n      \"20.14.18.201\",\n      \"134.33.15.35\",\n      \"20.14.117.141\",\n      \"20.14.118.111\",\n      \"134.33.15.172\",\n      \"20.14.18.181\",\n      \"20.14.18.216\",\n      \"20.14.119.56\",\n      \"51.57.118.243\",\n      \"20.14.62.62\",\n      \"51.57.117.40\",\n      \"134.33.15.34\",\n      \"135.234.86.10\",\n      \"135.234.82.155\",\n      \"134.33.14.147\",\n      \"20.150.155.57\",\n      \"134.33.15.133\",\n      \"4.227.41.173\",\n      \"20.14.119.233\",\n      \"4.227.34.162\",\n      \"135.234.86.4\",\n      \"134.33.15.11\",\n      \"134.33.14.169\",\n      \"134.33.14.159\",\n      \"134.33.14.54\",\n      \"20.14.68.165\",\n      \"134.33.14.168\",\n      \"20.14.34.15\",\n      \"20.150.152.185\",\n      \"134.33.13.150\",\n      \"4.227.45.34\",\n      \"4.227.35.225\",\n      \"20.14.18.200\",\n      \"20.14.18.180\",\n      \"20.14.62.63\",\n      \"20.150.155.56\",\n      \"135.234.82.151\",\n      \"20.14.114.132\",\n      \"20.106.115.55\",\n      \"20.14.59.52\",\n      \"4.227.44.57\",\n      \"20.118.153.31\",\n      \"20.125.94.115\",\n      \"134.33.13.131\",\n      \"20.14.36.5\",\n      \"20.171.210.30\",\n      \"51.57.119.141\",\n      \"20.125.93.57\",\n      \"134.33.15.19\",\n      \"134.33.14.158\",\n      \"135.234.66.26\",\n      \"20.14.113.82\",\n      \"134.33.14.144\",\n      \"134.33.14.55\",\n      \"51.57.119.193\",\n      \"20.14.119.89\",\n      \"51.57.119.238\",\n      \"20.14.11.64\"\n    ],\n    \"provisioningState\": \"Succeeded\",\n    \"runningStatus\": \"Running\",\n    \"template\": {\n      \"containers\": [\n        {\n          \"env\": [\n            {\n              \"name\": \"SCQOS_AZURE_STORAGE_ACCOUNT\",\n              \"value\": \"stscqosc9f1a2b2\"\n            },\n            {\n              \"name\": \"SCQOS_KEYVAULT_URL\",\n              \"value\": \"https://kv-scqos-c9f1a2b2.vault.azure.net\"\n            },\n            {\n              \"name\": \"SCQOS_SERVICEBUS_NAMESPACE\",\n              \"value\": \"sb-scqos-c9f1a2b2\"\n            },\n            {\n              \"name\": \"AZURE_CLIENT_ID\",\n              \"value\": \"f02fab6b-35d9-40f3-bd9c-3fae8617eb92\"\n            },\n            {\n              \"name\": \"SCQOS_PRODUCTION\",\n              \"value\": \"1\"\n            }\n          ],\n          \"image\": \"acrscqosc9f1a2b2.azurecr.io/scqos-runtime:20260924r4\",\n          \"name\": \"scqos-governance-api\",\n          \"resources\": {\n            \"cpu\": 0.5,\n            \"ephemeralStorage\": \"2Gi\",\n            \"memory\": \"1Gi\"\n          }\n        }\n      ],\n      \"initContainers\": null,\n      \"revisionSuffix\": \"\",\n      \"scale\": {\n        \"cooldownPeriod\": 300,\n        \"maxReplicas\": 2,\n        \"minReplicas\": 1,\n        \"pollingInterval\": 30,\n        \"rules\": null\n      },\n      \"serviceBinds\": null,\n      \"terminationGracePeriodSeconds\": null,\n      \"volumes\": null\n    },\n    \"workloadProfileName\": \"Consumption\"\n  },\n  \"resourceGroup\": \"rg-supreme-computation-core\",\n  \"systemData\": {\n    \"createdAt\": \"2026-09-24T17:16:54.4463861\",\n    \"createdBy\": \"erobles3224@gmail.com\",\n    \"createdByType\": \"User\",\n    \"lastModifiedAt\": \"2026-09-24T17:32:27.8139472\",\n    \"lastModifiedBy\": \"erobles3224@gmail.com\",\n    \"lastModifiedByType\": \"User\"\n  },\n  \"tags\": {\n    \"scAlignment\": \"coherence-first\",\n    \"scBoundary\": \"governed-runtime\",\n    \"scCausality\": \"pre-execution-proof\",\n    \"scContinuity\": \"azure-migration-v1\",\n    \"scGenesis\": \"aws-to-azure-migration\",\n    \"scObserver\": \"Knowledgee-KZA\",\n    \"scReference\": \"scqos-reference-implementation\",\n    \"scTime\": \"2026-09-24T17:20:00Z\"\n  },\n  \"type\": \"Microsoft.App/containerApps\"\n}\n{\"status\":\"ONLINE\",\"cloud\":\"Azure\",\"contract_id\":\"SCQOS-UNIVERSAL-TRANSITION-v1\",\"rule\":\"Nothing executes until it proves itself.\"}",
+    "stderr": ""
+  }
+]

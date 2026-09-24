@@ -1,0 +1,487 @@
+{
+  "proof_type": "SC_MAIL_MARK_59_FACULTY_READINESS_SWARM_V1",
+  "architecture_id": "SUPREME-MIND-59-FACULTY-UNIVERSE-V1",
+  "protocol": "SHADOW-CLONE-RECURSIVE-EXECUTION-V1",
+  "objective": "Prepare and verify Mark Supreme Mail Microsoft 365 readiness across AWS and Azure without contacting Mark or sending mail.",
+  "authority": "READ_ONLY_AUTONOMY",
+  "external_contact_authorized": false,
+  "mail_send_authorized": false,
+  "role_count": 59,
+  "permit_count": 59,
+  "receipts": [
+    {
+      "role_id": "R01",
+      "role_name": "Sovereign Founder",
+      "clone_id": "sc:clone:sha256:24fc9e00074e12f8e643d575c652a610f9d1e08f346dd0d105e4bf57581878bd",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "c6995350-e27e-497e-aa24-5dc72986d7aa"
+    },
+    {
+      "role_id": "R02",
+      "role_name": "Executive",
+      "clone_id": "sc:clone:sha256:602f410ad7278d73fdd614ecef6def5849c93a56ef81eada6322d6d47f856246",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "bb0d59d6-dfa9-4a1e-9e4f-253134848f38"
+    },
+    {
+      "role_id": "R03",
+      "role_name": "Operations",
+      "clone_id": "sc:clone:sha256:0f48ae6347efd4f0266c7626cb5afc10a65f991bad82c7d98a1a341d9963e489",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "24782976-14d5-4986-832c-785aa96bac83"
+    },
+    {
+      "role_id": "R04",
+      "role_name": "Capital",
+      "clone_id": "sc:clone:sha256:83269d20a44e69be8fe0f97d0bcca2aa4a3fa2292fb0ecde6b071a75a84f3088",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "30331dd8-4338-4299-bca5-b0c778b2a233"
+    },
+    {
+      "role_id": "R05",
+      "role_name": "Technology",
+      "clone_id": "sc:clone:sha256:9fcc32363e92ff6118d69f8fa01e1306f13873170d3c1c0deed85888c40be8d6",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "8198f85d-aa77-4fa7-8553-38d75a82fa6e"
+    },
+    {
+      "role_id": "R06",
+      "role_name": "Voice",
+      "clone_id": "sc:clone:sha256:f0b0c3df754fabe43b4ada2dbde24f3d4416604ba450a51fb661c004188631d1",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "37fe8d09-49b9-40d7-a96d-bd3702e1eae3"
+    },
+    {
+      "role_id": "R07",
+      "role_name": "Expansion",
+      "clone_id": "sc:clone:sha256:4d96b36f49904d58ee2996e3548407925b00f0a1f5ee544083782a2552633db4",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "80ee77f8-7b22-42ce-bf19-bb93626f1747"
+    },
+    {
+      "role_id": "R08",
+      "role_name": "Impact",
+      "clone_id": "sc:clone:sha256:239e25760ecb18da9ffb289a345966b1c80492f49b891c624309b00f9fe77a4b",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "220d926f-dc6c-4fab-88d7-c198090e9c25"
+    },
+    {
+      "role_id": "R09",
+      "role_name": "Executive Memory",
+      "clone_id": "sc:clone:sha256:fe094803f5f158de9e642dfa8314e686e2ef90b7b0d00ec9528e0b994ac2f295",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "1877c4b6-6ce1-4aab-bfe1-4103b561138f"
+    },
+    {
+      "role_id": "R10",
+      "role_name": "Business Operations",
+      "clone_id": "sc:clone:sha256:529f6789a2d880e61da45767bfad45cc45d5fb7a015ca3fa1e56b171a9613885",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "52bd9e37-904a-4728-8c2b-b453ba7167b0"
+    },
+    {
+      "role_id": "R11",
+      "role_name": "People",
+      "clone_id": "sc:clone:sha256:c111d54f76722ee5d14b37a0df72a6ac8a042ee974be970ed347982ec966ebd9",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "9cfed38b-e00e-4366-8ead-1489c7e2f67e"
+    },
+    {
+      "role_id": "R12",
+      "role_name": "Law & Compliance",
+      "clone_id": "sc:clone:sha256:4ea8f3106abd1314b064459d1f777f8beda4f053d2473a571a4d82bcab770769",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "79942862-8aed-4df4-b10f-06c588e4cc46"
+    },
+    {
+      "role_id": "R13",
+      "role_name": "Funding & Contracts",
+      "clone_id": "sc:clone:sha256:ab29d5eddc4c4754541710610a37fa375092da61a1d137397cf269d585903ee2",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "3040a9b5-d9e3-4953-97f4-49c57f8c4231"
+    },
+    {
+      "role_id": "R14",
+      "role_name": "Accounting",
+      "clone_id": "sc:clone:sha256:a3fe0e6ed52b908370af4001ebaf6b828a21323f7a803965e088874f9bb6dcdf",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "6604952a-b490-473a-92b5-5362a9648f4d"
+    },
+    {
+      "role_id": "R15",
+      "role_name": "Intelligence",
+      "clone_id": "sc:clone:sha256:0907bc826680e7f57bbe470fc896c799c4a05a72176ee06a05c79267a6a391ca",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "67851a60-951a-412e-935c-467f72e9bfe6"
+    },
+    {
+      "role_id": "R16",
+      "role_name": "Administration",
+      "clone_id": "sc:clone:sha256:25db4abb1b04a38aabb8fd68d4f5b6ac6cb7743d46d3d839ca9d09826ba418f3",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "86ccc837-b441-4544-86c3-0960ea3858a5"
+    },
+    {
+      "role_id": "R17",
+      "role_name": "Front Door",
+      "clone_id": "sc:clone:sha256:0a33e821a62ac70cf4839d6b0b78b8bcf53073035802c7a1c49d86efd3f98942",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "00a5f651-4b79-4f47-a825-4cb7d1322c6a"
+    },
+    {
+      "role_id": "R18",
+      "role_name": "Service",
+      "clone_id": "sc:clone:sha256:e5c20be631b4406b9cadc54c8b66c29e5a46675c39119d3e86c05390e8c4d6b2",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "51d1ec18-1f06-4f3b-b7ef-559e0761bf03"
+    },
+    {
+      "role_id": "R19",
+      "role_name": "Education",
+      "clone_id": "sc:clone:sha256:367ee6ad5a4fbbba01f4fc8bf3659da9898c393dc5b065f21102173cb4c6ae17",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "4734940d-e159-413f-ac0f-249f5050bf32"
+    },
+    {
+      "role_id": "R20",
+      "role_name": "Mentorship",
+      "clone_id": "sc:clone:sha256:32ec26dcdd67984f3e52b7dc6267378c4f769c9c58b8dfa1d1accba9e625cc39",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "1b24f08f-f071-4e6f-ac35-43886d4cf88b"
+    },
+    {
+      "role_id": "R21",
+      "role_name": "Outreach",
+      "clone_id": "sc:clone:sha256:2be5910b3c58996360beb0d1447acee9bceff7a96db89f5f379beadaed233909",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "c0e2c23b-c66b-409c-b7b1-02f025d72252"
+    },
+    {
+      "role_id": "R22",
+      "role_name": "Client Success",
+      "clone_id": "sc:clone:sha256:9f7bdb632afad20f5871e47959eea167a031c3c5bfb9d1da8faef39b89b5741b",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "cc5b2578-0818-4e2e-8d74-672ceaa07c56"
+    },
+    {
+      "role_id": "R23",
+      "role_name": "Community",
+      "clone_id": "sc:clone:sha256:0d4dc7637df41cf42fc7357b1043a009553a580f0be4fde7c25e11f9a7cd4c5e",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "c6f71bc3-3af2-42a4-b0ee-dc2b1e1cacef"
+    },
+    {
+      "role_id": "R24",
+      "role_name": "Experience",
+      "clone_id": "sc:clone:sha256:829204bb8bdc8a60a4c9a68002c59838c37d00ab2a57b0abe516a30b81b12de1",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "510351a3-f4d6-413d-9e08-99c2a0cf9cad"
+    },
+    {
+      "role_id": "R25",
+      "role_name": "Logistics",
+      "clone_id": "sc:clone:sha256:47d7f486bc4caa29a658e6150c7a0805d250052bc1fea468e273b4dc5a98aaa7",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "c06cbf95-633a-42b6-8e4b-b5509fe02a17"
+    },
+    {
+      "role_id": "R26",
+      "role_name": "Infrastructure",
+      "clone_id": "sc:clone:sha256:60a8d18649313958f25af3ae86f68a77f3d30e6ebe29d1dfb7fa87822fb37992",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "719bb8db-9aa5-4e10-be33-4a4cb034b759"
+    },
+    {
+      "role_id": "R27",
+      "role_name": "Digital Twin Architect",
+      "clone_id": "sc:clone:sha256:76465dffdb2e2346795a274ed0aa804fa307a586c7fc5d77f95468c4ea04352b",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "58eaa4f2-7808-497f-b205-08d82cb6679e"
+    },
+    {
+      "role_id": "R28",
+      "role_name": "Security & Data",
+      "clone_id": "sc:clone:sha256:ca6b5fd9c173eb361dec402bb15566f76cbc64e8378cc662bcde46e7da67cd57",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "d4203055-6d09-48d9-b36d-b6ae27af0411"
+    },
+    {
+      "role_id": "R29",
+      "role_name": "Technical Support",
+      "clone_id": "sc:clone:sha256:b8deee902240f0176d7a36c745a1c6e090e8f248dab649c393ba6b54b2544bb4",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "e51c4520-2a6c-4e88-8eba-ab7c8190f589"
+    },
+    {
+      "role_id": "R30",
+      "role_name": "Creative",
+      "clone_id": "sc:clone:sha256:1e93bf3c98f813d7c580b0af17ebca623da79bf2081cc1806814c27f02a737bf",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "de7a73b5-c82d-43a8-94eb-9f4defebb598"
+    },
+    {
+      "role_id": "R31",
+      "role_name": "Product",
+      "clone_id": "sc:clone:sha256:1e2a816c561c963a9806c592134f4788bc45835569c695287dc27d72031a0388",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "a34e62e5-4a34-467e-b883-afc6fd05fd92"
+    },
+    {
+      "role_id": "R32",
+      "role_name": "Revenue",
+      "clone_id": "sc:clone:sha256:9c0e48d0608355360a3f0459a26ef6a0c6fd34c6b2e84d98411fa915506dcce1",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "bbce417a-16cb-4a66-8ffa-e5d21208b907"
+    },
+    {
+      "role_id": "R33",
+      "role_name": "Alliance",
+      "clone_id": "sc:clone:sha256:931d27d5d803c88e152311e8972d3a2afba023b70901c2d890d472f487c84447",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "101df3af-80f1-45cb-92dc-67ba3c36fcdf"
+    },
+    {
+      "role_id": "R34",
+      "role_name": "Proposal",
+      "clone_id": "sc:clone:sha256:39ad54a42742448c8fd5bca82c160d715549e75f4f0787f86d05e3f220adc4b6",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "437426d2-0505-47fc-8d7d-a7ce61db1f15"
+    },
+    {
+      "role_id": "R35",
+      "role_name": "Relationship",
+      "clone_id": "sc:clone:sha256:5a62a1fc19792d108231a5dddf8334773df6814df428fa6fcbe808703a33cd47",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "520dac93-aabc-400d-91cf-c661e3393a1a"
+    },
+    {
+      "role_id": "R36",
+      "role_name": "Licensing",
+      "clone_id": "sc:clone:sha256:693aee4b9fc69fb8a0dc8247ed41c1c65c7bcfbd55275527dbd5d1db62ae4906",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "3d1144ac-5d4d-4f50-ba15-e5f96650c3c9"
+    },
+    {
+      "role_id": "R37",
+      "role_name": "Market",
+      "clone_id": "sc:clone:sha256:80b45cab76cb111ad37aefaa2ffc8c12d1e2e998d65cc0a800ac572c078e728b",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "6d7e9ad5-dcc5-461d-8de4-217d4bf8556a"
+    },
+    {
+      "role_id": "R38",
+      "role_name": "Social",
+      "clone_id": "sc:clone:sha256:d15ebe2accb10891ce397d8a960d0f281e6bbfd529e8a634036767e3c085578a",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "75f2e45d-17e1-47eb-bc05-b25b541258d8"
+    },
+    {
+      "role_id": "R39",
+      "role_name": "Design",
+      "clone_id": "sc:clone:sha256:534b37190ea0b4d98e27171248dd3023aaf1fc95d9b0143d1d51aae5b05c6349",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "02595433-dca5-4782-8649-620f685cb7b5"
+    },
+    {
+      "role_id": "R40",
+      "role_name": "Community Intelligence",
+      "clone_id": "sc:clone:sha256:477228b16dc8e5bee81f7dd1b4e4d6b27d3cbb1b0eda9eaed103b7c772247bc8",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "7f975f36-e0ca-4418-85de-f69cbae26ed0"
+    },
+    {
+      "role_id": "R41",
+      "role_name": "Public Reality",
+      "clone_id": "sc:clone:sha256:7a2482a2cee69dcd6c8b990d2c2904a9fbc4c06a2ff202184fdca9b18036286d",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "20a08094-f3ee-4556-bb64-1492e072f03a"
+    },
+    {
+      "role_id": "R42",
+      "role_name": "Story",
+      "clone_id": "sc:clone:sha256:6107505a4a9667f7e4344e35d0a5044363f901783bda22da36b645437e8c5d8f",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "1ad2d94f-f367-441d-86cc-cd1cb310af2e"
+    },
+    {
+      "role_id": "R43",
+      "role_name": "Knowledge Architecture",
+      "clone_id": "sc:clone:sha256:b2278d46413c7ac872968e879f09fb94b51550acc0ee334e0996f234c12ec39e",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "5639deb5-0be6-4553-9b38-ab9cc5ed2ffc"
+    },
+    {
+      "role_id": "R44",
+      "role_name": "Instructor",
+      "clone_id": "sc:clone:sha256:4ce8a5f70d2f3c790017364bfa7e312eaabb3dc89bf9a8c7576ec0639d7fd7d6",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "59954135-903d-4c0a-84f5-52d5d77ce03f"
+    },
+    {
+      "role_id": "R45",
+      "role_name": "Opportunity Navigation",
+      "clone_id": "sc:clone:sha256:abaca138008e6d3d7dc68c37b9626a7377a6bff75c80ef011f64520cad0a7d4e",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "86eac923-769a-4e6c-8305-f130e139a313"
+    },
+    {
+      "role_id": "R46",
+      "role_name": "Human Development",
+      "clone_id": "sc:clone:sha256:792ac63d8c6c07bc7362902b5d5bb05bcd8128f73bb31370b83b3f1d0f119cb2",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "f23599ce-b66b-4109-9384-aca1ae72f48a"
+    },
+    {
+      "role_id": "R47",
+      "role_name": "Education Navigation",
+      "clone_id": "sc:clone:sha256:b237488b2d1455898f256bfb35d3bcac7c05e15e5092f08a0156b506322b2f51",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "2792144c-bdb1-49c2-8597-9248b3918cb8"
+    },
+    {
+      "role_id": "R48",
+      "role_name": "Wellbeing Support",
+      "clone_id": "sc:clone:sha256:52398168061681cbe2488ae3e2935732b3cbb1894d38c92135de2207018b5a35",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "72420ecb-9341-42f7-bdc8-e477a2f8ab51"
+    },
+    {
+      "role_id": "R49",
+      "role_name": "Life Operations",
+      "clone_id": "sc:clone:sha256:56552ea8a60ffb9a76b924663183e8d50fb5bfc464552ed7f57933fa474ce027",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "19461f56-5db3-415e-b4bf-553e11b36ce2"
+    },
+    {
+      "role_id": "R50",
+      "role_name": "Health & Wellness Operations",
+      "clone_id": "sc:clone:sha256:27c8004fc1997c002588c71cbf78c880fcb85fb4073eab6562738099a6acc027",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "5c9840bd-a599-4d09-9834-e8442eeb76ed"
+    },
+    {
+      "role_id": "R51",
+      "role_name": "Safety",
+      "clone_id": "sc:clone:sha256:e69573a623599c7f68815aa8e97cb6e4fac01aba78165367fd9cb4d15f2330b7",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "abade97e-1fab-4f59-a7cb-81bf97a7d50d"
+    },
+    {
+      "role_id": "R52",
+      "role_name": "Environment",
+      "clone_id": "sc:clone:sha256:9063fe31d98019e31a62f8c46c4aabf8c9879e18732e5064f1e9f02a2be022db",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "78a9f626-6219-4e1f-809b-cc8b74a10261"
+    },
+    {
+      "role_id": "R53",
+      "role_name": "Mobility",
+      "clone_id": "sc:clone:sha256:99a9ef2bad194e3a0575408dda4ca033fa2fd2d2ced582eba4c6aa424c53d8f6",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "3bceb458-18f7-4701-8c5a-b943b9df0787"
+    },
+    {
+      "role_id": "R54",
+      "role_name": "Governance",
+      "clone_id": "sc:clone:sha256:db0da1cddb4f99d6caf2f24b9ca9b88edfd02fceb2d52494c7bd21419e901a2d",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "b6ddd7d9-ba99-4f07-8a65-51d7f07e11d9"
+    },
+    {
+      "role_id": "R55",
+      "role_name": "Continuity",
+      "clone_id": "sc:clone:sha256:ee79aaf4b1d456de4f59bb03f6ec75b58e7c1421d26e9684ec55e347c06907c9",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "9eeca98c-4843-4899-87f8-39cb9b45f878"
+    },
+    {
+      "role_id": "R56",
+      "role_name": "Treasury Oversight",
+      "clone_id": "sc:clone:sha256:b762a1365c52e095080e6a4d88d631c3d7f4d1cc85879e3d22058be093dad275",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "fe991c4d-a4ce-425d-8d31-980b02c60573"
+    },
+    {
+      "role_id": "R57",
+      "role_name": "Institutional Memory",
+      "clone_id": "sc:clone:sha256:01b36f2d0d2450ab2a6dd789e2f9a1c7fbddd97b81200d7baab625de81493390",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "c68081e7-b143-4fba-8aa3-cf48ec17ed75"
+    },
+    {
+      "role_id": "R58",
+      "role_name": "Council",
+      "clone_id": "sc:clone:sha256:cb6943eaca35b3a2ae676d0c40d764ed27535207514b1de3ea44c2891a3c9cdb",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "05115e8c-5ae4-41d6-99ef-69bd50b7981d"
+    },
+    {
+      "role_id": "R59",
+      "role_name": "Future Self",
+      "clone_id": "sc:clone:sha256:562fe4049bb7fe847dcf0aefaaca5ea71d5d939254ed73963f962d4a99991927",
+      "state": "PERMIT",
+      "reason": "CLONE_BIRTH_QUALIFIED",
+      "receipt_id": "ed5f5847-ff9d-4d70-8a18-b427258a6ee5"
+    }
+  ],
+  "observed_at": "2026-09-24T20:15:50.739680+00:00",
+  "sha256": "507603dde02648d280c9849d781ab2a894a0357d0552fe524eb0afe2dc43b6ce"
+}
