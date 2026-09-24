@@ -1,0 +1,62 @@
+{
+  "error": null,
+  "id": "/subscriptions/c9f1a2b2-cf9f-4ae5-acb9-3d33b9f45ab4/resourceGroups/rg-supreme-computation-core/providers/Microsoft.Resources/deployments/sc-receipt-allow",
+  "name": "sc-receipt-allow",
+  "properties": {
+    "correlationId": "890ecedc-295d-4ef1-8532-6091f097ecec",
+    "debugSetting": null,
+    "dependencies": [],
+    "diagnostics": null,
+    "duration": "PT0S",
+    "error": null,
+    "extensions": [],
+    "mode": "Incremental",
+    "onErrorDeployment": null,
+    "outputResources": null,
+    "outputs": null,
+    "parameters": null,
+    "parametersLink": null,
+    "providers": [
+      {
+        "id": null,
+        "namespace": "Microsoft.Network",
+        "providerAuthorizationConsentState": null,
+        "registrationPolicy": null,
+        "registrationState": null,
+        "resourceTypes": [
+          {
+            "aliases": null,
+            "apiProfiles": null,
+            "apiVersions": null,
+            "capabilities": null,
+            "defaultApiVersion": null,
+            "locationMappings": null,
+            "locations": [
+              "westus3"
+            ],
+            "properties": null,
+            "resourceType": "networkSecurityGroups",
+            "zoneMappings": null
+          }
+        ]
+      }
+    ],
+    "provisioningState": "Succeeded",
+    "templateHash": "13285274284844329669",
+    "templateLink": null,
+    "timestamp": "2026-09-24T03:05:34.380907+00:00",
+    "validatedResources": [
+      {
+        "apiVersion": null,
+        "extension": null,
+        "id": "/subscriptions/c9f1a2b2-cf9f-4ae5-acb9-3d33b9f45ab4/resourceGroups/rg-supreme-computation-core/providers/Microsoft.Network/networkSecurityGroups/nsg-sc-proof-allow",
+        "identifiers": null,
+        "resourceGroup": "rg-supreme-computation-core",
+        "resourceType": null
+      }
+    ],
+    "validationLevel": null
+  },
+  "resourceGroup": "rg-supreme-computation-core",
+  "type": "Microsoft.Resources/deployments"
+}

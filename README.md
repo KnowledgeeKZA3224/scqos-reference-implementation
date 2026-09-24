@@ -28,7 +28,9 @@ The live public challenge is shadow-only: it evaluates the proposition, emits a 
 
 ## What is live now
 
-As of **September 16, 2026**, the verified environment includes a live AWS governance plane, a 59-faculty Supreme Mind architecture, governed Shadow Clones, model-validation boundaries, durable receipts, public-proof infrastructure, business automation, website/email/social infrastructure, Gekyume financial execution work, Supreme Apex V1, Sharingan sports-betting software, sports/quantum evidence paths, and independently challengeable demonstrations.
+As of **September 23, 2026**, the cloud execution boundary has changed. The previously verified AWS governance environment remains documented in this repository as historical execution evidence, but the AWS account hosting that environment is currently **suspended** and is not being represented here as presently reachable.
+
+On September 23, Azure was brought from authenticated CLI access to a coherence-first, policy-enforced Supreme Computation foundation in about **15 minutes**. The Azure baseline has a private network, deny-by-default egress controls, eight-invariant governance policies, continuity locking, a Reader-only observer identity, and executed PERMIT/REJECT validation receipts. See [`docs/CLOUD_CONTINUITY_2026-09-23.md`](docs/CLOUD_CONTINUITY_2026-09-23.md) and [`proofs/azure/2026-09-23/TOTALITY_RECEIPT.md`](proofs/azure/2026-09-23/TOTALITY_RECEIPT.md).
 
 The important idea is not “many disconnected tools.” The tools are useful because they are being placed behind one rule: **no consequential transition inherits permission just because one component said yes earlier. The current transition has to prove itself again.**
 
@@ -77,9 +79,15 @@ On September 10, 2026, the environment froze public OpenAI Codex issue **#44130*
 
 The result was also posted back into the upstream GitHub issue for independent challenge.
 
-## Live AWS pieces
+## AWS execution history and current availability
 
-The verified environment includes SCQOS governors and validators, Shadow Clone execution, Supreme Mind state and receipts in DynamoDB, SQS work queues, versioned S3 evidence, AWS KMS signing, model inference/release validation, SupremeComputation.org business infrastructure, LinkedIn OAuth/publishing, email routing, Anabelle/GrassRootsAI integration, Gekyume, Sharingan, Supreme Apex V1, and quantum-facing Qiskit/IBM/AWS experimentation.
+The previously verified AWS environment included SCQOS governors and validators, Shadow Clone execution, Supreme Mind state and receipts in DynamoDB, SQS work queues, versioned S3 evidence, AWS KMS signing, model inference/release validation, SupremeComputation.org business infrastructure, LinkedIn OAuth/publishing, email routing, Anabelle/GrassRootsAI integration, Gekyume, Sharingan, Supreme Apex V1, and quantum-facing Qiskit/IBM/AWS experimentation.
+
+As of **September 23, 2026**, that AWS account is suspended. The latest support trail available at the time of this update had not produced an actionable reinstatement path or completed recovery, so this repository treats those AWS materials as **historical verified execution**, not a claim of current AWS availability.
+
+## Azure continuity plane — September 23, 2026
+
+The active continuity foundation is now documented on Azure in `westus3`: `rg-supreme-computation-core`, `vnet-sc-core`, three private subnets, `nsg-sc-private`, disabled default subnet outbound access, explicit Internet egress denial, a `CanNotDelete` continuity lock, Reader-only governance observer identity, and enforced Supreme Computation policy assignments. Validation receipts show an allowed governed transition exiting `0`, while missing-invariant, wrong-region, and public-IP transitions exit `1` under policy denial. No paid compute workload was created during this foundation pass.
 
 ## The point
 
@@ -103,6 +111,8 @@ Read the plain-English proof: [Planetary Energy Totality — Executed Cloud Proo
 - [`docs/CURRENT_STATE_2026-09-10.md`](docs/CURRENT_STATE_2026-09-10.md) — current state in plain English.
 - [`docs/WHAT_CHANGED_SINCE_2026-09-07.md`](docs/WHAT_CHANGED_SINCE_2026-09-07.md) — verified delta since the last public README update.
 - [`docs/LIVE_AWS_MAP_2026-09-10.md`](docs/LIVE_AWS_MAP_2026-09-10.md) — how the live AWS pieces fit together.
+- [`docs/CLOUD_CONTINUITY_2026-09-23.md`](docs/CLOUD_CONTINUITY_2026-09-23.md) — current AWS suspension boundary and the executed Azure coherence-first continuity foundation.
+- [`proofs/azure/2026-09-23/TOTALITY_RECEIPT.md`](proofs/azure/2026-09-23/TOTALITY_RECEIPT.md) — Azure totality receipt with raw validation evidence and hashes beside it.
 - [`docs/SOFTWARE_PORTFOLIO_2026-09-16.md`](docs/SOFTWARE_PORTFOLIO_2026-09-16.md) — software portfolio ownership and integration boundary.
 - [`docs/SHARINGAN_SOFTWARE_2026-09-16.md`](docs/SHARINGAN_SOFTWARE_2026-09-16.md) — Sharingan sports-betting software identity, ownership attribution and architecture.
 - [`proofs/CODEX_READONLY_BOUNDARY_2026-09-10.md`](proofs/CODEX_READONLY_BOUNDARY_2026-09-10.md) — the September 10 Codex governance proof.

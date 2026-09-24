@@ -1,0 +1,12 @@
+{
+  "if": {
+    "anyOf": [
+      {"field": "type", "equals": "Microsoft.Network/publicIPAddresses"},
+      {"allOf": [
+        {"field": "location", "notEquals": "westus3"},
+        {"field": "location", "notEquals": "global"}
+      ]}
+    ]
+  },
+  "then": {"effect": "deny"}
+}

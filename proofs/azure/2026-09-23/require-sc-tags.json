@@ -1,0 +1,15 @@
+{
+  "if": {
+    "anyOf": [
+      {"field":"tags['SC-Time']","exists":"false"},
+      {"field":"tags['SC-Continuity']","exists":"false"},
+      {"field":"tags['SC-Alignment']","exists":"false"},
+      {"field":"tags['SC-Genesis']","exists":"false"},
+      {"field":"tags['SC-Boundary']","exists":"false"},
+      {"field":"tags['SC-Reference']","exists":"false"},
+      {"field":"tags['SC-Causality']","exists":"false"},
+      {"field":"tags['SC-Consciousness']","exists":"false"}
+    ]
+  },
+  "then": {"effect":"deny"}
+}

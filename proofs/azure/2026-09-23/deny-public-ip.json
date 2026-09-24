@@ -1,0 +1,7 @@
+{
+  "if": {
+    "field":"type",
+    "equals":"Microsoft.Network/publicIPAddresses"
+  },
+  "then": {"effect":"deny"}
+}

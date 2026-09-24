@@ -1,0 +1,18 @@
+{
+  "if": {
+    "allOf": [
+      {"field": "type", "notEquals": "Microsoft.Resources/subscriptions/resourceGroups"},
+      {"anyOf": [
+        {"field": "tags['scTime']", "exists": "false"},
+        {"field": "tags['scContinuity']", "exists": "false"},
+        {"field": "tags['scAlignment']", "exists": "false"},
+        {"field": "tags['scGenesis']", "exists": "false"},
+        {"field": "tags['scBoundary']", "exists": "false"},
+        {"field": "tags['scReference']", "exists": "false"},
+        {"field": "tags['scCausality']", "exists": "false"},
+        {"field": "tags['scObserver']", "exists": "false"}
+      ]}
+    ]
+  },
+  "then": {"effect": "deny"}
+}

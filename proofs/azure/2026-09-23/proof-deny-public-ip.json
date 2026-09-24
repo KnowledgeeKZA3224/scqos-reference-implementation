@@ -1,0 +1,22 @@
+{
+  "$schema":"https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion":"1.0.0.0",
+  "resources":[{
+    "type":"Microsoft.Network/publicIPAddresses",
+    "apiVersion":"2024-05-01",
+    "name":"pip-sc-proof-deny",
+    "location":"westus3",
+    "sku":{"name":"Standard"},
+    "tags":{
+      "SC-Time":"validation-proof",
+      "SC-Continuity":"azure-foundation-v1",
+      "SC-Alignment":"coherence-first",
+      "SC-Genesis":"governance-validation",
+      "SC-Boundary":"private-first",
+      "SC-Reference":"rg-supreme-computation-core",
+      "SC-Causality":"pre-execution-proof",
+      "SC-Consciousness":"observer-authorized"
+    },
+    "properties":{"publicIPAllocationMethod":"Static"}
+  }]
+}

@@ -1,0 +1,9 @@
+{
+  "if": {
+    "allOf": [
+      {"field":"location","exists":"true"},
+      {"field":"location","notIn":["westus3","global"]}
+    ]
+  },
+  "then": {"effect":"deny"}
+}
