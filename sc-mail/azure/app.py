@@ -320,3 +320,92 @@ def unsubscribe(token:str,e:str):
     now=int(time.time())
     table.upsert_entity({"PartitionKey":"SUPPRESS","RowKey":email_hash(email),"Reason":"unsubscribe","At":now})
     return Response("You have been unsubscribed.",media_type="text/plain")
+
+# --- Supreme Mail federated Microsoft boundary (v2.1) ---
+# Secretless app-only authentication: Azure managed identity -> Entra app -> customer tenant Graph.
+ENTRA_APP_CLIENT_ID=os.environ.get("SCMAIL_ENTRA_APP_CLIENT_ID","")
+_graph_token_cache={"token":"","expires_on":0,"roles":[]}
+
+def _jwt_roles(token):
+    import base64
+    try:
+        part=token.split(".")[1]
+        part += "=" * (-len(part) % 4)
+        claims=json.loads(base64.urlsafe_b64decode(part.encode()).decode())
+        return list(claims.get("roles") or [])
+    except Exception:
+        return []
+
+def graph_token(c):
+    now=int(time.time())
+    if _graph_token_cache["token"] and int(_graph_token_cache["expires_on"] or 0) > now+120:
+        return _graph_token_cache["token"]
+    if not ENTRA_APP_CLIENT_ID or not c.get("tenant_id"):
+        raise RuntimeError("federated_app_not_configured")
+    from azure.identity import ManagedIdentityCredential, ClientAssertionCredential
+    mi=ManagedIdentityCredential(client_id=CLIENT_ID)
+    fic=ClientAssertionCredential(
+        tenant_id=str(c["tenant_id"]),
+        client_id=ENTRA_APP_CLIENT_ID,
+        func=lambda: mi.get_token("api://AzureADTokenExchange/.default").token,
+    )
+    tok=fic.get_token("https://graph.microsoft.com/.default")
+    roles=_jwt_roles(tok.token)
+    if "Mail.Send" not in roles:
+        raise RuntimeError("microsoft_mail_send_not_consented")
+    _graph_token_cache.update(token=tok.token,expires_on=int(tok.expires_on),roles=roles)
+    return tok.token
+
+def provider_ready(c=None):
+    c=c or provider_cfg()
+    if not (c.get("tenant_id") and c.get("sender_upn") and ENTRA_APP_CLIENT_ID and CLIENT_ID):
+        return False
+    try:
+        graph_token(c)
+        return "Mail.Send" in _graph_token_cache.get("roles",[])
+    except Exception:
+        return False
+
+def microsoft_permission_status():
+    c=provider_cfg()
+    try:
+        ok=provider_ready(c)
+        return {"providerConnected":ok,"authMode":"federated_managed_identity","mailSendConsented":bool(ok)}
+    except Exception as e:
+        return {"providerConnected":False,"authMode":"federated_managed_identity","mailSendConsented":False,"error":type(e).__name__}
+
+@app.get("/microsoft/readiness")
+def microsoft_readiness():
+    c=provider_cfg()
+    s=microsoft_permission_status()
+    return {**s,"tenantConfigured":bool(c.get("tenant_id")),"senderConfigured":bool(c.get("sender_upn")),
+            "appConfigured":bool(ENTRA_APP_CLIENT_ID),"managedIdentityConfigured":bool(CLIENT_ID),
+            "externalContactAuthorized":False,"mailSendExecutionAuthorized":bool(s.get("providerConnected")),
+            "rule":"Nothing executes until it proves itself."}
+
+@app.get("/microsoft/admin-consent")
+def microsoft_admin_consent(request:Request):
+    c=provider_cfg()
+    if not c.get("tenant_id") or not ENTRA_APP_CLIENT_ID:
+        raise HTTPException(status_code=503,detail="microsoft_tenant_or_app_not_ready")
+    redirect="https://"+request.headers["host"]+"/microsoft/admin-consent/callback"
+    params={"client_id":ENTRA_APP_CLIENT_ID,"redirect_uri":redirect,"state":oauth_state()}
+    url="https://login.microsoftonline.com/"+str(c["tenant_id"])+"/v2.0/adminconsent?"+urllib.parse.urlencode(params)
+    return RedirectResponse(url)
+
+@app.get("/microsoft/admin-consent/callback")
+def microsoft_admin_consent_callback(request:Request,admin_consent:str="",tenant:str="",state:str="",error:str="",error_description:str=""):
+    c=provider_cfg()
+    if error or not verify_oauth_state(state):
+        raise HTTPException(status_code=400,detail="microsoft_admin_consent_failed")
+    if str(tenant).lower()!=str(c.get("tenant_id","")).lower():
+        raise HTTPException(status_code=403,detail="microsoft_tenant_mismatch")
+    if str(admin_consent).lower()!="true":
+        raise HTTPException(status_code=400,detail="microsoft_admin_consent_not_granted")
+    now=int(time.time())
+    table.upsert_entity({"PartitionKey":"MICROSOFT_AUTH","RowKey":"ADMIN_CONSENT","Tenant":str(tenant),"At":now,"State":"CONSENT_RECORDED"})
+    # Token propagation can take time. The reconciliation path will only move to PERMIT after Mail.Send is observed.
+    status=microsoft_permission_status()
+    state_label="PERMIT" if status.get("providerConnected") else "HOLD_PROPAGATION_OR_SCOPE"
+    table.upsert_entity({"PartitionKey":"MICROSOFT_AUTH","RowKey":"GRAPH_PROBE","At":now,"State":state_label})
+    return HTMLResponse("<h2>Supreme Mail Microsoft approval recorded.</h2><p>The governed cloud is verifying Mail.Send authority. You can close this window.</p>")

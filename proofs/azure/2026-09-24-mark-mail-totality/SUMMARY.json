@@ -1,0 +1,10 @@
+{
+  "architecture_id": "SUPREME-MIND-59-FACULTY-UNIVERSE-V1",
+  "task": "mark-mail-totality",
+  "role_count": 59,
+  "completed": 0,
+  "failed": 59,
+  "external_mutation_authorized": false,
+  "client_contact_authorized": false,
+  "sha256": "e9d198ed01906bc4c17594c0e8b9ffb909e81d3e0444dceea8e057795d0e1b38"
+}
