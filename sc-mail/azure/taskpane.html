@@ -1,0 +1,27 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script><style>
+body{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f6f8fb;color:#1f2937}.wrap{padding:16px}h1{font-size:20px;margin:0 0 4px}.muted{color:#667085;font-size:12px}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:12px;margin-top:12px}label{display:block;font-size:12px;font-weight:600;margin:8px 0 4px}
+input,textarea,select{width:100%;box-sizing:border-box;padding:9px;border:1px solid #cfd4dc;border-radius:6px;font:inherit}textarea{min-height:120px}
+button{border:0;border-radius:7px;padding:10px 12px;font-weight:700;cursor:pointer}.primary{background:#106ebe;color:#fff;width:100%;margin-top:10px}.secondary{background:#eef2f7;margin-right:6px}
+.status{font-weight:700}.green{color:#08783e}.amber{color:#b54708}.row{display:flex;gap:8px}.row>*{flex:1}.count{font-size:24px;font-weight:700}</style></head>
+<body><div class="wrap"><h1>📨 Supreme Mail</h1><div class="muted">Business email inside Outlook. SC handles the complexity underneath.</div>
+<div class="card"><div class="row"><div><div class="muted">SC status</div><div id="status" class="status amber">Checking…</div></div><div><div class="muted">Available this window</div><div class="count">9,950</div></div></div></div>
+<div class="card"><label>👥 Contact list (.csv)</label><input id="file" type="file" accept=".csv,text/csv"><label>🎯 Audience</label>
+<select id="audience"><option>Existing customers</option><option>New leads</option><option>Custom list</option></select>
+<label>✍️ Subject</label><input id="subject" placeholder="Example: September tax reminder"><label>✍️ Message</label><textarea id="body" placeholder="Hi {FirstName},&#10;&#10;Write your message here..."></textarea>
+<div class="row"><button class="secondary" onclick="preview()">👁 Preview</button><button class="secondary" onclick="preflight()">🛡️ SC Check</button></div>
+<button id="send" class="primary" onclick="sendCampaign()" disabled>🚀 Send</button><div id="result" class="muted" style="margin-top:10px"></div></div>
+<div class="card"><b>Activity</b><div class="muted">Sent, scheduled, failed and suppressed contacts are recorded automatically.</div></div></div>
+<script>
+var BASE="__BASE__"; var contacts=[]; var proof=null;
+function parseCSV(text){var lines=text.split(/\r?\n/).filter(Boolean);if(!lines.length)return[];var h=lines[0].split(',').map(function(x){return x.trim().toLowerCase();});
+return lines.slice(1).map(function(line){var v=line.split(',');var o={};h.forEach(function(k,i){o[k]=(v[i]||'').trim();});
+return {email:o.email||o['email address'],firstName:o.firstname||o['first name']||'',company:o.company||'',source:o.source||'existing_business_file',relationship:o.relationship||document.getElementById('audience').value,purpose:'business outreach',authorized:true};});}
+document.getElementById('file').addEventListener('change',async function(e){var t=await e.target.files[0].text();contacts=parseCSV(t);document.getElementById('result').textContent='Loaded '+contacts.length.toLocaleString()+' contacts.';});
+async function boot(){var r=await fetch(BASE+'/config');var x=await r.json();var s=document.getElementById('status');s.textContent=x.providerConnected?'READY':'MICROSOFT CONNECTION NEEDED';s.className='status '+(x.providerConnected?'green':'amber');var c=document.querySelector('.count');if(c)c.textContent=Number(x.remainingInRollingWindow).toLocaleString();}
+function preview(){var c=contacts[0]||{firstName:'Mark'};var b=document.getElementById('body').value.split('{FirstName}').join(c.firstName||'');document.getElementById('result').textContent=(document.getElementById('subject').value||'(no subject)')+' — '+b.slice(0,180);}
+async function preflight(){document.getElementById('result').textContent='SC is checking the campaign…';var payload={contacts:contacts.slice(0,9950),requestedCount:Math.min(contacts.length,9950),campaign:{subject:document.getElementById('subject').value,body:document.getElementById('body').value,audience:document.getElementById('audience').value}};
+var r=await fetch(BASE+'/api/preflight',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(payload)});proof=await r.json();document.getElementById('result').textContent=proof.decision+' — '+proof.permitted+' ready, '+proof.rejected+' held/rejected.';document.getElementById('send').disabled=!(proof.decision==='PERMIT'&&proof.providerConnected);}
+async function sendCampaign(){document.getElementById('send').disabled=true;document.getElementById('result').textContent='SC is compiling and queueing the proven batch…';var payload={contacts:contacts.slice(0,9950),requestedCount:Math.min(contacts.length,9950),campaign:{subject:document.getElementById('subject').value,body:document.getElementById('body').value,audience:document.getElementById('audience').value,authorized:true}};var r=await fetch(BASE+'/api/send',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(payload)});var x=await r.json();document.getElementById('result').textContent=(x.decision||x.error)+' — '+(x.queued||0)+' queued.';document.getElementById('send').disabled=false;}
+Office.onReady(function(){boot();});</script></body></html>

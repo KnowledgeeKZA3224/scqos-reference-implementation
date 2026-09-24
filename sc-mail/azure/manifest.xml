@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0" xsi:type="MailApp">
+<Id>6d6f5127-9a6e-4f52-8c21-f6a4e7fe9950</Id><Version>1.0.0.0</Version><ProviderName>Supreme Computation</ProviderName>
+<DefaultLocale>en-US</DefaultLocale><DisplayName DefaultValue="Supreme Mail"/><Description DefaultValue="Outlook-native governed business email automation."/>
+<IconUrl DefaultValue="__BASE__/icon"/><SupportUrl DefaultValue="__BASE__/health"/><AppDomains><AppDomain>__BASE__</AppDomain></AppDomains>
+<Hosts><Host Name="Mailbox"/></Hosts><Requirements><Sets><Set Name="Mailbox" MinVersion="1.5"/></Sets></Requirements>
+<FormSettings><Form xsi:type="ItemRead"><DesktopSettings><SourceLocation DefaultValue="__BASE__/taskpane"/><RequestedHeight>450</RequestedHeight></DesktopSettings></Form>
+<Form xsi:type="ItemEdit"><DesktopSettings><SourceLocation DefaultValue="__BASE__/taskpane"/></DesktopSettings></Form></FormSettings>
+<Permissions>ReadWriteMailbox</Permissions><Rule xsi:type="RuleCollection" Mode="Or"><Rule xsi:type="ItemIs" ItemType="Message" FormType="Read"/><Rule xsi:type="ItemIs" ItemType="Message" FormType="Edit"/></Rule>
+<VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides" xsi:type="VersionOverridesV1_0">
+<Requirements><bt:Sets DefaultMinVersion="1.5"><bt:Set Name="Mailbox"/></bt:Sets></Requirements>
+<Hosts><Host xsi:type="MailHost"><DesktopFormFactor>
+<FunctionFile resid="Commands.Url"/>
+<ExtensionPoint xsi:type="MessageReadCommandSurface"><OfficeTab id="TabDefault"><Group id="SupremeMail.Read.Group"><Label resid="Group.Label"/><Control xsi:type="Button" id="SupremeMail.Read.Open"><Label resid="Button.Label"/><Supertip><Title resid="Button.Label"/><Description resid="Button.Desc"/></Supertip><Icon><bt:Image size="16" resid="Icon.16"/><bt:Image size="32" resid="Icon.32"/><bt:Image size="80" resid="Icon.80"/></Icon><Action xsi:type="ShowTaskpane"><SourceLocation resid="Taskpane.Url"/><SupportsPinning>true</SupportsPinning></Action></Control></Group></OfficeTab></ExtensionPoint>
+<ExtensionPoint xsi:type="MessageComposeCommandSurface"><OfficeTab id="TabDefault"><Group id="SupremeMail.Compose.Group"><Label resid="Group.Label"/><Control xsi:type="Button" id="SupremeMail.Compose.Open"><Label resid="Button.Label"/><Supertip><Title resid="Button.Label"/><Description resid="Button.Desc"/></Supertip><Icon><bt:Image size="16" resid="Icon.16"/><bt:Image size="32" resid="Icon.32"/><bt:Image size="80" resid="Icon.80"/></Icon><Action xsi:type="ShowTaskpane"><SourceLocation resid="Taskpane.Url"/><SupportsPinning>true</SupportsPinning></Action></Control></Group></OfficeTab></ExtensionPoint>
+</DesktopFormFactor></Host></Hosts>
+<Resources><bt:Images><bt:Image id="Icon.16" DefaultValue="__BASE__/icon"/><bt:Image id="Icon.32" DefaultValue="__BASE__/icon"/><bt:Image id="Icon.80" DefaultValue="__BASE__/icon"/></bt:Images>
+<bt:Urls><bt:Url id="Commands.Url" DefaultValue="__BASE__/taskpane"/><bt:Url id="Taskpane.Url" DefaultValue="__BASE__/taskpane"/></bt:Urls>
+<bt:ShortStrings><bt:String id="Group.Label" DefaultValue="Supreme Mail"/><bt:String id="Button.Label" DefaultValue="Supreme Mail"/></bt:ShortStrings>
+<bt:LongStrings><bt:String id="Button.Desc" DefaultValue="Open Supreme Mail business email controls."/></bt:LongStrings></Resources>
+</VersionOverrides></OfficeApp>

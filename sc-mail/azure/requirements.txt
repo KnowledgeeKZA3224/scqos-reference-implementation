@@ -1,0 +1,7 @@
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+azure-identity==1.25.1
+azure-keyvault-secrets==4.10.0
+azure-data-tables==12.7.0
+azure-servicebus==7.14.2
+azure-storage-blob==12.27.0

@@ -1,0 +1,103 @@
+{
+  "proof_type": "SC_MAIL_MARK_AWS_AZURE_TOTALITY_V1",
+  "observed_at": "2026-09-24T19:41:15.560933+00:00",
+  "azure": {
+    "health": {
+      "service": "sc-mail-mark-v2",
+      "status": "ONLINE",
+      "cloud": "Azure",
+      "version": "2.0.0-azure",
+      "providerConnected": false,
+      "awsWitness": {
+        "service": "sc-mail-mark-v1",
+        "status": "ok",
+        "version": "1.0.0",
+        "hardCeiling": 9950,
+        "safePerMinute": 28
+      },
+      "rule": "Nothing executes until it proves itself.",
+      "invariants": [
+        "Time",
+        "Continuity",
+        "Alignment",
+        "Genesis",
+        "Boundary",
+        "Reference",
+        "Causality",
+        "Consciousness"
+      ]
+    },
+    "config": {
+      "product": "Supreme Mail",
+      "provider": "microsoft365",
+      "providerConnected": false,
+      "adminConfirmed": true,
+      "hardCeiling": 9950,
+      "usedInRollingWindow": 0,
+      "remainingInRollingWindow": 9950,
+      "safePerMinute": 28,
+      "invariants": [
+        "Time",
+        "Continuity",
+        "Alignment",
+        "Genesis",
+        "Boundary",
+        "Reference",
+        "Causality",
+        "Consciousness"
+      ],
+      "executionCloud": "Azure",
+      "witnessCloud": "AWS"
+    },
+    "endpoint": "https://sc-mail-mark-v2.whitewave-9c5d9f8d.westus3.azurecontainerapps.io"
+  },
+  "aws": {
+    "config": {
+      "product": "Supreme Mail",
+      "provider": "microsoft365",
+      "businessEmail": "Marks@numbersetcandetc.com",
+      "tenantId": "890486d6-532e-4054-a508-02e1e4b48806",
+      "adminConfirmed": true,
+      "providerConnected": false,
+      "hardCeiling": 9950,
+      "usedInRollingWindow": 0,
+      "remainingInRollingWindow": 9950,
+      "safePerMinute": 28,
+      "invariants": [
+        "Time",
+        "Continuity",
+        "Alignment",
+        "Genesis",
+        "Boundary",
+        "Reference",
+        "Causality",
+        "Consciousness"
+      ]
+    },
+    "apex_reconcile_case": {
+      "updated_at": "2026-09-24T19:39:32.885080+00:00",
+      "created_at": "2026-09-24T19:39:32.885080+00:00",
+      "boundary": "SCQOS_APEX_V1",
+      "authority_mode": "READ_ONLY_AUTONOMY",
+      "objective": "Reconcile SCQOS-MULTICLOUD-CONTINUITY-v1 live AWS/Azure continuity state. READ_ONLY_AUTONOMY only. Verify AWS health, Azure witness PERMIT, and durable continuity reference. No external mutation authorized.",
+      "principal_id": "PUBLIC_HUMAN",
+      "attempts": "0",
+      "source": "PUBLIC_WEB",
+      "case_id": "867dc55e-f702-4c6f-aa3a-39dc4b5d265c",
+      "state": "QUEUED"
+    }
+  },
+  "tests": {
+    "sc_core": "5/5 PASS",
+    "preflight": "PERMIT",
+    "unauthorized_send": "HOLD microsoft_authorization_required",
+    "queue_mutation_on_hold": 0
+  },
+  "boundary": {
+    "microsoft_provider_connected": false,
+    "remaining_external_requirement": "Mark Microsoft 365 application authorization: client_id + client_secret/admin consent",
+    "rule": "Nothing executes until it proves itself."
+  },
+  "overall": "HOLD_EXTERNAL_MICROSOFT_AUTH",
+  "proof_sha256": "843f9791bb28083689bb53b840e2cf9cfffcc399709497c2b37eed61ff1559e3"
+}
