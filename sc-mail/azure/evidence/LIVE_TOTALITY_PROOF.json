@@ -1,0 +1,108 @@
+{
+  "proof_type": "SCMAIL_MARK_AWS_AZURE_TOTALITY_V1",
+  "observed_at": "2026-09-24T19:51:29.888452+00:00",
+  "rule": "Nothing executes until it proves itself.",
+  "azure": {
+    "health": {
+      "service": "sc-mail-mark-v2",
+      "status": "ONLINE",
+      "cloud": "Azure",
+      "version": "2.0.0-azure",
+      "providerConnected": false,
+      "awsWitness": {
+        "service": "sc-mail-mark-v1",
+        "status": "ok",
+        "version": "1.0.0",
+        "hardCeiling": 9950,
+        "safePerMinute": 28
+      },
+      "rule": "Nothing executes until it proves itself.",
+      "invariants": [
+        "Time",
+        "Continuity",
+        "Alignment",
+        "Genesis",
+        "Boundary",
+        "Reference",
+        "Causality",
+        "Consciousness"
+      ]
+    },
+    "config": {
+      "providerConnected": false,
+      "adminConfirmed": true,
+      "remainingInRollingWindow": 9950,
+      "executionCloud": "Azure",
+      "witnessCloud": "AWS"
+    },
+    "preflight": {
+      "decision": "PERMIT",
+      "requested": 1,
+      "selected": 1,
+      "batch_receipt_sha256": "491db2cb9793ba8d8e8e63c549a8189d52cb97b07562c6f1fe9fcf8e2e38224e"
+    },
+    "queue": {
+      "active": 0,
+      "deadletter": 0
+    },
+    "send_boundary": {
+      "decision": "HOLD",
+      "error": "microsoft_authorization_required",
+      "queued": 0
+    },
+    "manifest": "sc-mail/outlook-addin/manifest.xml"
+  },
+  "aws": {
+    "health": {
+      "service": "sc-mail-mark-v1",
+      "status": "ok",
+      "version": "1.0.0",
+      "hardCeiling": 9950,
+      "safePerMinute": 28
+    },
+    "config": {
+      "providerConnected": false,
+      "adminConfirmed": true,
+      "remainingInRollingWindow": 9950
+    },
+    "preflight": {
+      "decision": "PERMIT",
+      "requested": 1,
+      "permitted": 1,
+      "receiptSha256": "5ce1d4ceaab70559aea626d260b81171da8881e88c0401cf7067e8a6dd1513f6"
+    },
+    "existing_continuity_case": {
+      "case_id": "018cab39-2833-41ba-b353-1c145714b122",
+      "state": "QUEUED",
+      "attempts": "0"
+    },
+    "mark_azure_witness_case": {
+      "state": "PERMIT",
+      "case_id": "0cd2754a-7ccf-428c-9de8-bedef591cb23",
+      "status": "QUEUED",
+      "authority_mode": "READ_ONLY_AUTONOMY"
+    }
+  },
+  "microsoft": {
+    "entra_app_created": true,
+    "entra_app_id_sha256": "41bce7b24e4aa62c5caccd08955f6a145a3069206948c650318c966b587a18da",
+    "delegated_permissions": [
+      "Mail.Send",
+      "User.Read"
+    ],
+    "confidential_credential_present": false,
+    "mailbox_consent_complete": false,
+    "providerConnected": false
+  },
+  "invariants": [
+    "Time",
+    "Continuity",
+    "Alignment",
+    "Genesis",
+    "Boundary",
+    "Reference",
+    "Causality",
+    "Consciousness"
+  ],
+  "overall": "HOLD_EXTERNAL_MICROSOFT_AUTHORIZATION"
+}
