@@ -43,3 +43,19 @@ Hosted sending remains locked until Mark authorizes the Microsoft 365 tenant. Us
 
 ## Non-goals
 Supreme Mail does not attempt to evade spam systems, falsify consent/origin, or hide abusive traffic. Account protection comes from proving legitimate origin, authorization, authentication, suppression, pacing and current provider boundaries before each consequence.
+
+
+## Microsoft connection flow
+
+Supreme Mail uses Microsoft delegated authorization with the device-code flow for the Mark deployment.
+
+1. Mark creates a single-tenant Entra application named **Supreme Mail**.
+2. The app uses Microsoft Graph delegated permissions: `Mail.Send`, `User.Read`, and `offline_access`.
+3. Public client flows are enabled.
+4. Mark supplies only the public Application (client) ID to the Supreme Mail setup page.
+5. AWS requests a Microsoft device code and shows Mark Microsoft's own verification page/code.
+6. Mark signs into Microsoft himself and approves the request.
+7. Supreme Mail receives and stores the resulting refresh token in AWS Secrets Manager.
+8. The worker exchanges that refresh token for short-lived access tokens when sending.
+
+No Microsoft password or client secret is collected from Mark.

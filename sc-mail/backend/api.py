@@ -1,5 +1,5 @@
 
-import os, json, re, hashlib, hmac, time, uuid
+import os, json, re, hashlib, hmac, time, uuid, urllib.parse, urllib.request, urllib.error
 import boto3
 
 TABLE=os.environ["TABLE_NAME"]
@@ -22,8 +22,8 @@ def get_secret(arn):
 def provider_ready():
     try:
         cfg=json.loads(get_secret(MICROSOFT_SECRET_ARN) or "{}")
-        req=["tenant_id","client_id","client_secret","sender_upn"]
-        return all(cfg.get(k) and not str(cfg.get(k)).startswith("REPLACE_") for k in req)
+        req=["tenant_id","client_id","sender_upn","refresh_token"]
+        return os.environ.get("EXECUTION_ENABLED","false").lower()=="true" and bool(cfg.get("sender_authority_verified")) and all(cfg.get(k) and not str(cfg.get(k)).startswith("REPLACE_") for k in req)
     except Exception:
         return False
 
@@ -115,10 +115,111 @@ def handler(event, context):
     method=((event.get("requestContext") or {}).get("http") or {}).get("method","GET")
     headers={k.lower():v for k,v in (event.get("headers") or {}).items()}
     base="https://"+headers.get("host","")
+    if path=="/connect/microsoft" and method=="GET":
+        q=event.get("queryStringParameters") or {}
+        tok=q.get("token","")
+        try:
+            setup=json.loads(get_secret(os.environ["SETUP_TOKEN_SECRET_ID"]) or "{}")
+            valid=(not setup.get("used")) and tok==setup.get("token")
+        except Exception:
+            valid=False
+        if not valid:
+            return response(403,"This Supreme Mail setup link is invalid or expired.","text/plain")
+        page="""<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Supreme Mail — Microsoft Connection</title><style>body{font-family:Segoe UI,Arial,sans-serif;max-width:760px;margin:36px auto;padding:0 18px;color:#202124}h1{font-size:28px}.card{background:#f6f8fb;border-radius:12px;padding:16px;margin:14px 0}ol{line-height:1.65}input{width:100%%;padding:11px;box-sizing:border-box;margin:6px 0 12px}button{background:#106ebe;color:white;border:0;border-radius:8px;padding:12px 18px;font-weight:700}.small{font-size:13px;color:#5f6368}</style></head>
+<body><h1>Supreme Mail — Connect Microsoft 365</h1><div class="card"><b>Mailbox:</b> Marks@numbersetcandetc.com<br><b>Microsoft tenant:</b> numbersetcandetc.com</div>
+<p>Microsoft needs Supreme Mail to have its own app ID before it can show the approval screen.</p>
+<ol><li>Open <a target="_blank" href="https://entra.microsoft.com/#view/Microsoft_AAD_RegisteredApps/ApplicationsListBlade">Microsoft Entra — App registrations</a>.</li>
+<li>Choose <b>New registration</b> and name it <b>Supreme Mail</b>.</li>
+<li>Choose <b>Accounts in this organizational directory only</b>, then Register.</li>
+<li>Open <b>API permissions</b> → Add a permission → Microsoft Graph → <b>Delegated permissions</b>. Add <b>Mail.Send</b>, <b>User.Read</b>, and <b>offline_access</b>.</li>
+<li>Open <b>Authentication</b> → Advanced settings → set <b>Allow public client flows</b> to <b>Yes</b>, then Save.</li>
+<li>Copy the <b>Application (client) ID</b> from the Overview page and paste it below.</li></ol>
+<form method="POST" action="/connect/microsoft/start"><input type="hidden" name="token" value="%s">
+<label>Application (client) ID</label><input name="client_id" required autocomplete="off">
+<button type="submit">Generate my Microsoft approval code</button></form>
+<p class="small">No Microsoft password or client secret is requested here.</p></body></html>""" % tok
+        return response(200,page,"text/html; charset=utf-8")
+
+    if path=="/connect/microsoft/start" and method=="POST":
+        raw=event.get("body") or ""
+        if event.get("isBase64Encoded"):
+            import base64
+            raw=base64.b64decode(raw).decode()
+        form=urllib.parse.parse_qs(raw)
+        tok=(form.get("token") or [""])[0]
+        client_id=(form.get("client_id") or [""])[0].strip()
+        setup=json.loads(get_secret(os.environ["SETUP_TOKEN_SECRET_ID"]) or "{}")
+        if setup.get("used") or tok!=setup.get("token"):
+            return response(403,"This Supreme Mail setup link is invalid or expired.","text/plain")
+        if not re.match(r"^[0-9a-fA-F-]{36}$",client_id):
+            return response(400,"That Microsoft Application (client) ID is not valid.","text/plain")
+        scope="openid offline_access User.Read Mail.Send"
+        data=urllib.parse.urlencode({"client_id":client_id,"scope":scope}).encode()
+        req=urllib.request.Request("https://login.microsoftonline.com/"+os.environ["MICROSOFT_TENANT_ID"]+"/oauth2/v2.0/devicecode",data=data,headers={"content-type":"application/x-www-form-urlencoded"})
+        try:
+            with urllib.request.urlopen(req,timeout=20) as rr:
+                dc=json.loads(rr.read().decode())
+        except urllib.error.HTTPError as e:
+            detail=e.read().decode(errors="ignore")
+            return response(502,"Microsoft would not start the approval flow. Recheck the Supreme Mail app registration settings.","text/plain")
+        session=uuid.uuid4().hex
+        ddb.put_item(TableName=TABLE,Item={
+          "PK":{"S":"MICROSOFT_DEVICE#"+session},"SK":{"S":"STATE"},
+          "ClientId":{"S":client_id},"DeviceCode":{"S":dc["device_code"]},
+          "Interval":{"N":str(int(dc.get("interval",5)))},
+          "ExpiresAt":{"N":str(int(time.time())+int(dc.get("expires_in",900)))}
+        })
+        cfg=json.loads(get_secret(MICROSOFT_SECRET_ARN) or "{}")
+        cfg.update({"tenant_id":os.environ["MICROSOFT_TENANT_ID"],"sender_upn":os.environ["MICROSOFT_SENDER_UPN"],"client_id":client_id,"auth_mode":"device_code"})
+        sm.put_secret_value(SecretId=MICROSOFT_SECRET_ARN,SecretString=json.dumps(cfg,separators=(",",":")))
+        verify=dc.get("verification_uri") or "https://microsoft.com/devicelogin"
+        code=dc.get("user_code","")
+        page="""<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Supreme Mail Approval</title>
+<style>body{font-family:Segoe UI,Arial,sans-serif;max-width:680px;margin:44px auto;padding:0 18px}.code{font-size:32px;font-weight:800;letter-spacing:4px;background:#f5f7fb;padding:18px;text-align:center;border-radius:10px}a.btn{display:block;background:#106ebe;color:white;text-decoration:none;text-align:center;padding:14px;border-radius:8px;margin:18px 0;font-weight:700}</style></head>
+<body><h1>Microsoft approval is ready ✅</h1><p>1. Copy this code:</p><div class="code">%s</div><p>2. Open Microsoft and sign in as the administrator:</p>
+<a class="btn" target="_blank" href="%s">Open Microsoft approval page</a><p>3. Enter the code and approve Supreme Mail.</p>
+<p id="status">Waiting for Microsoft approval…</p>
+<script>
+async function check(){try{let r=await fetch('/connect/microsoft/poll?session=%s');let x=await r.json();document.getElementById('status').textContent=x.message||x.status;if(x.status==='CONNECTED')return;}catch(e){}setTimeout(check,5000)}check();
+</script></body></html>""" % (code,verify,session)
+        return response(200,page,"text/html; charset=utf-8")
+
+    if path=="/connect/microsoft/poll" and method=="GET":
+        q=event.get("queryStringParameters") or {}
+        session=q.get("session","")
+        item=ddb.get_item(TableName=TABLE,Key={"PK":{"S":"MICROSOFT_DEVICE#"+session},"SK":{"S":"STATE"}}).get("Item")
+        if not item:
+            return response(404,{"status":"EXPIRED","message":"This approval session expired. Start again."})
+        client_id=item["ClientId"]["S"]; device_code=item["DeviceCode"]["S"]
+        data=urllib.parse.urlencode({"grant_type":"urn:ietf:params:oauth:grant-type:device_code","client_id":client_id,"device_code":device_code}).encode()
+        req=urllib.request.Request("https://login.microsoftonline.com/"+os.environ["MICROSOFT_TENANT_ID"]+"/oauth2/v2.0/token",data=data,headers={"content-type":"application/x-www-form-urlencoded"})
+        try:
+            with urllib.request.urlopen(req,timeout=20) as rr:
+                tokens=json.loads(rr.read().decode())
+        except urllib.error.HTTPError as e:
+            try: err=json.loads(e.read().decode())
+            except: err={}
+            code=err.get("error","")
+            if code=="authorization_pending":
+                return response(200,{"status":"WAITING","message":"Waiting for Mark to approve Supreme Mail in Microsoft…"})
+            if code=="slow_down":
+                return response(200,{"status":"WAITING","message":"Microsoft asked Supreme Mail to wait a little longer…"})
+            return response(400,{"status":"ERROR","message":"Microsoft did not complete the approval. Start the connection again."})
+        cfg=json.loads(get_secret(MICROSOFT_SECRET_ARN) or "{}")
+        cfg["refresh_token"]=tokens.get("refresh_token","")
+        cfg["access_token"]=tokens.get("access_token","")
+        cfg["access_token_expires_at"]=int(time.time())+int(tokens.get("expires_in",3600))
+        sm.put_secret_value(SecretId=MICROSOFT_SECRET_ARN,SecretString=json.dumps(cfg,separators=(",",":")))
+        sm.put_secret_value(SecretId=os.environ["SETUP_TOKEN_SECRET_ID"],SecretString=json.dumps({"token":setup_token_placeholder if False else "USED","used":True}))
+        ddb.delete_item(TableName=TABLE,Key={"PK":{"S":"MICROSOFT_DEVICE#"+session},"SK":{"S":"STATE"}})
+        ddb.put_item(TableName=TABLE,Item={"PK":{"S":"MICROSOFT#CONFIG"},"SK":{"S":"MARK"},"Product":{"S":"Supreme Mail"},"BusinessEmail":{"S":os.environ["MICROSOFT_SENDER_UPN"]},"TenantId":{"S":os.environ["MICROSOFT_TENANT_ID"]},"AdminConfirmed":{"BOOL":True},"AuthorizationStatus":{"S":"CONNECTED"}})
+        return response(200,{"status":"CONNECTED","message":"Supreme Mail is connected to Microsoft 365 ✅"})
+
     if path=="/health":
         return response(200,{"service":"sc-mail-mark-v1","status":"ok","version":"1.0.0","hardCeiling":HARD_CEILING,"safePerMinute":SAFE_PER_MIN})
     if path=="/config":
-        used=window_usage(); return response(200,{"provider":"microsoft365","providerConnected":provider_ready(),"hardCeiling":HARD_CEILING,"usedInRollingWindow":used,"remainingInRollingWindow":max(0,HARD_CEILING-used),"safePerMinute":SAFE_PER_MIN,"invariants":INVARIANTS})
+        used=window_usage(); return response(200,{"product":"Supreme Mail","provider":"microsoft365","businessEmail":"Marks@numbersetcandetc.com","tenantId":"890486d6-532e-4054-a508-02e1e4b48806","adminConfirmed":True,"providerConnected":provider_ready(),"hardCeiling":HARD_CEILING,"usedInRollingWindow":used,"remainingInRollingWindow":max(0,HARD_CEILING-used),"safePerMinute":SAFE_PER_MIN,"invariants":INVARIANTS})
     if path=="/manifest.xml":
         return response(200,manifest(base),"application/xml")
     if path in {"/","/taskpane"}:
