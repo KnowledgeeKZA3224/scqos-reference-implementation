@@ -1,0 +1,393 @@
+{
+  "generated_at_utc": "2026-09-24T14:23:00Z",
+  "source_cloud": "AWS",
+  "target_cloud": "Azure",
+  "region": "westus3",
+  "governing_principle": "Nothing executes until the current transition proves itself.",
+  "invariant_boundary": [
+    "Time",
+    "Continuity",
+    "Alignment",
+    "Genesis",
+    "Boundary",
+    "Reference",
+    "Causality",
+    "Consciousness / Observer"
+  ],
+  "verified_live_baseline": [
+    "rg-supreme-computation-core",
+    "vnet-sc-core",
+    "snet-app",
+    "snet-data",
+    "snet-management",
+    "nsg-sc-private",
+    "sc-continuity-lock",
+    "id-sc-governance-observer",
+    "sc-totality-enforced",
+    "sc-eight-invariants-gate",
+    "sc-boundary-gate",
+    "stscqosc9f1a2b2",
+    "blob versioning",
+    "30-day blob delete retention"
+  ],
+  "components": [
+    {
+      "source": "supreme-mind-v1-governor",
+      "aws": [
+        "Lambda",
+        "DynamoDB",
+        "SQS",
+        "S3"
+      ],
+      "azure": [
+        "Azure Functions",
+        "Table Storage",
+        "Storage Queue",
+        "Blob Storage"
+      ],
+      "status": "CODE_PORTED_DEPLOY_PENDING"
+    },
+    {
+      "source": "scqos-router",
+      "aws": [
+        "Lambda"
+      ],
+      "azure": [
+        "Azure Functions HTTP"
+      ],
+      "status": "CODE_PORTED_DEPLOY_PENDING"
+    },
+    {
+      "source": "supreme-mind-v1-state",
+      "aws": [
+        "DynamoDB"
+      ],
+      "azure": [
+        "Table Storage: SupremeMindState"
+      ],
+      "status": "DATA_PLANE_PENDING_VERIFICATION"
+    },
+    {
+      "source": "supreme-mind-v1-receipts",
+      "aws": [
+        "DynamoDB"
+      ],
+      "azure": [
+        "Table Storage: SupremeMindReceipts"
+      ],
+      "status": "DATA_PLANE_PENDING_VERIFICATION"
+    },
+    {
+      "source": "supreme-mind-v1-actions",
+      "aws": [
+        "SQS"
+      ],
+      "azure": [
+        "Storage Queue: supreme-mind-actions"
+      ],
+      "status": "DATA_PLANE_PENDING_VERIFICATION"
+    },
+    {
+      "source": "shadow-clone-v1-executor",
+      "aws": [
+        "Lambda",
+        "SQS",
+        "Bedrock AgentCore"
+      ],
+      "azure": [
+        "Azure Functions Queue trigger",
+        "Azure AI/external agent adapter"
+      ],
+      "status": "CODE_PORTED_DEPLOY_PENDING"
+    },
+    {
+      "source": "SCQOS evidence plane",
+      "aws": [
+        "S3 versioning"
+      ],
+      "azure": [
+        "Blob containers evidence/manifests/proofs with versioning"
+      ],
+      "status": "STORAGE_ACCOUNT_LIVE_CONTAINERS_PENDING_VERIFICATION"
+    },
+    {
+      "source": "SCQOS signing",
+      "aws": [
+        "KMS ML-DSA/RSA depending proof path"
+      ],
+      "azure": [
+        "Key Vault key sign/verify"
+      ],
+      "status": "DEPLOY_PENDING"
+    },
+    {
+      "source": "SCQOS secrets",
+      "aws": [
+        "Secrets Manager"
+      ],
+      "azure": [
+        "Key Vault secrets"
+      ],
+      "status": "DEPLOY_PENDING"
+    },
+    {
+      "source": "scqos-public-execution-challenge-v1",
+      "aws": [
+        "Lambda",
+        "API Gateway",
+        "DynamoDB",
+        "S3",
+        "KMS"
+      ],
+      "azure": [
+        "Functions HTTP",
+        "Table Storage",
+        "Blob Storage",
+        "Key Vault"
+      ],
+      "status": "CODE_PORTED_DEPLOY_PENDING"
+    },
+    {
+      "source": "supreme-totality-ingress-v1",
+      "aws": [
+        "Lambda/API Gateway"
+      ],
+      "azure": [
+        "Functions HTTP"
+      ],
+      "status": "CODE_PORTED_DEPLOY_PENDING"
+    },
+    {
+      "source": "supreme-objective-orchestrator-v1",
+      "aws": [
+        "Lambda",
+        "SQS",
+        "DynamoDB"
+      ],
+      "azure": [
+        "Functions",
+        "Storage Queue",
+        "Table Storage"
+      ],
+      "status": "CODE_PORTED_DEPLOY_PENDING"
+    },
+    {
+      "source": "supreme-live-public-evidence-v1",
+      "aws": [
+        "Lambda",
+        "S3"
+      ],
+      "azure": [
+        "Functions",
+        "Blob Storage"
+      ],
+      "status": "CODE_PORTED_DEPLOY_PENDING"
+    },
+    {
+      "source": "supreme-mind-v1-business-executor",
+      "aws": [
+        "Lambda",
+        "SQS"
+      ],
+      "azure": [
+        "Functions Queue trigger",
+        "Storage Queue"
+      ],
+      "status": "CODE_PORTED_DEPLOY_PENDING"
+    },
+    {
+      "source": "supreme-lead-followup-v1",
+      "aws": [
+        "Lambda",
+        "EventBridge"
+      ],
+      "azure": [
+        "Functions Timer trigger"
+      ],
+      "status": "CODE_PORTED_DEPLOY_PENDING"
+    },
+    {
+      "source": "supreme-social-oauth-v1",
+      "aws": [
+        "Lambda",
+        "Secrets Manager"
+      ],
+      "azure": [
+        "Functions HTTP",
+        "Key Vault"
+      ],
+      "status": "BLOCKED_EXTERNAL_OAUTH_CREDENTIALS"
+    },
+    {
+      "source": "supreme-linkedin-publisher-v1",
+      "aws": [
+        "Lambda",
+        "EventBridge"
+      ],
+      "azure": [
+        "Functions",
+        "Timer/Event Grid"
+      ],
+      "status": "BLOCKED_EXTERNAL_OAUTH_CREDENTIALS"
+    },
+    {
+      "source": "supremecomputation-email-forwarder",
+      "aws": [
+        "Lambda/SES/domain routing"
+      ],
+      "azure": [
+        "Microsoft Graph or Azure Communication Services"
+      ],
+      "status": "BLOCKED_EXTERNAL_DNS_OR_MAIL_AUTH"
+    },
+    {
+      "source": "SupremeComputation.org",
+      "aws": [
+        "S3/CloudFront/Route53 or equivalent"
+      ],
+      "azure": [
+        "Static Web Apps or Storage static website",
+        "Azure DNS optional"
+      ],
+      "status": "BLOCKED_EXTERNAL_DNS_CUTOVER"
+    },
+    {
+      "source": "Gekyume",
+      "aws": [
+        "Lambda",
+        "DynamoDB",
+        "AgentCore"
+      ],
+      "azure": [
+        "Functions",
+        "Table Storage: GekyumeReceipts",
+        "deterministic SCQOS gate"
+      ],
+      "status": "CODE_PORTED_DEPLOY_PENDING"
+    },
+    {
+      "source": "Sharingan",
+      "aws": [
+        "Lambda",
+        "DynamoDB/S3",
+        "sports feeds"
+      ],
+      "azure": [
+        "Functions",
+        "Table Storage: SharinganReceipts",
+        "Blob Storage sports"
+      ],
+      "status": "BLOCKED_EXTERNAL_LIVE_SPORTS_DATA"
+    },
+    {
+      "source": "Supreme Apex V1",
+      "aws": [
+        "Lambda",
+        "DynamoDB",
+        "SQS"
+      ],
+      "azure": [
+        "Functions",
+        "Table Storage: ApexCases",
+        "Storage Queue"
+      ],
+      "status": "CODE_PORTED_DEPLOY_PENDING"
+    },
+    {
+      "source": "Supreme Mail",
+      "aws": [
+        "API Gateway",
+        "Lambda",
+        "SQS",
+        "DynamoDB",
+        "Secrets Manager",
+        "CloudWatch"
+      ],
+      "azure": [
+        "Functions HTTP/Queue",
+        "Storage Queue sc-mail",
+        "Table Storage ScMailState",
+        "Key Vault",
+        "Application Insights"
+      ],
+      "status": "BLOCKED_EXTERNAL_MICROSOFT_MAIL_AUTH"
+    },
+    {
+      "source": "Anabelle / GrassRootsAI",
+      "aws": [
+        "ECS/build infrastructure",
+        "model validators"
+      ],
+      "azure": [
+        "Container Apps scale-to-zero",
+        "Functions release validator"
+      ],
+      "status": "BLOCKED_EXTERNAL_IMAGE_OR_SOURCE_DEPLOY"
+    },
+    {
+      "source": "model inference/release validators",
+      "aws": [
+        "Bedrock",
+        "Lambda"
+      ],
+      "azure": [
+        "Azure AI/external provider adapter",
+        "Functions release gate"
+      ],
+      "status": "BLOCKED_MODEL_ACCESS_OR_QUOTA"
+    },
+    {
+      "source": "scheduled heartbeat/growth/follow-up",
+      "aws": [
+        "EventBridge"
+      ],
+      "azure": [
+        "Functions Timer triggers"
+      ],
+      "status": "CODE_PORTED_DEPLOY_PENDING"
+    },
+    {
+      "source": "containers",
+      "aws": [
+        "ECS/EKS/ECR"
+      ],
+      "azure": [
+        "Container Apps/AKS/ACR"
+      ],
+      "status": "DEPLOY_ON_DEMAND_COST_BOUNDARY"
+    },
+    {
+      "source": "observability",
+      "aws": [
+        "CloudWatch"
+      ],
+      "azure": [
+        "Azure Monitor/Application Insights"
+      ],
+      "status": "DEPLOY_PENDING"
+    },
+    {
+      "source": "identity",
+      "aws": [
+        "IAM/Cognito"
+      ],
+      "azure": [
+        "Managed Identities/RBAC/Entra"
+      ],
+      "status": "PARTIAL_LIVE"
+    },
+    {
+      "source": "quantum witness",
+      "aws": [
+        "Braket",
+        "Qiskit/IBM"
+      ],
+      "azure": [
+        "Azure Quantum optional",
+        "IBM Cloud/Qiskit primary next connection"
+      ],
+      "status": "IBM_CONNECTION_PENDING"
+    }
+  ],
+  "claim_boundary": "Statuses distinguish verified live resources, code ported but not executed, and externally blocked integrations. No component is promoted to live without an observed Azure receipt."
+}
