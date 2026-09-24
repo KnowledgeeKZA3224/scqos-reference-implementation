@@ -1,0 +1,10 @@
+fastapi==0.115.12
+uvicorn[standard]==0.34.0
+pydantic==2.10.6
+azure-identity==1.19.0
+azure-data-tables==12.6.0
+azure-storage-blob==12.24.1
+azure-keyvault-keys==4.10.0
+azure-keyvault-secrets==4.9.0
+azure-servicebus==7.13.0
+rfc8785==0.1.4
