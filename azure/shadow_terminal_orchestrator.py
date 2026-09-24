@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import subprocess
+import sys
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
@@ -12,6 +13,7 @@ from shadow_clone.protocol import (
 )
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
 MANIFEST = json.loads((ROOT / "supreme_mind/v1/supreme_mind_manifest.json").read_text())
 VALID_ROLE_IDS = role_ids_from_manifest(MANIFEST)
 

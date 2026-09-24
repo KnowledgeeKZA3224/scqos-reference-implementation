@@ -117,7 +117,7 @@
         "Azure Functions Queue trigger",
         "Azure AI/external agent adapter"
       ],
-      "status": "TERMINAL_ORCHESTRATOR_COMMITTED_EXECUTION_PENDING_REMOTE_RECONNECT"
+      "status": "TERMINAL_SHADOW_CLONES_EXECUTED_PERMIT"
     },
     {
       "source": "SCQOS evidence plane",
@@ -417,5 +417,23 @@
     "revision": "scqos-governance-api--0000002",
     "image": "acrscqosc9f1a2b2.azurecr.io/scqos-runtime:20260924r4",
     "rule": "Nothing executes until it proves itself."
+  },
+  "shadow_clone_execution": {
+    "state": "PERMIT",
+    "roles": [
+      "R54",
+      "R55",
+      "R57",
+      "R58"
+    ],
+    "lanes": [
+      "governance",
+      "continuity",
+      "institutional-memory",
+      "council"
+    ],
+    "receipt": "proofs/azure/2026-09-24-shadow-clones/TERMINAL_SHADOW_CLONE_SUMMARY.json",
+    "raw_receipt_sha256": "62a45d7eea157ded05f2210694987bf43c52833cf253ba5c1210ca4061da249e",
+    "private_evidence_blob": "evidence/shadow-clones/2026-09-24/TERMINAL_SHADOW_CLONE_RECEIPTS.json"
   }
 }

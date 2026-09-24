@@ -1,0 +1,54 @@
+{
+  "executed_at_utc": "2026-09-24T18:07:00Z",
+  "architecture_id": "SUPREME-MIND-59-FACULTY-UNIVERSE-V1",
+  "protocol": "SHADOW-CLONE-RECURSIVE-EXECUTION-V1",
+  "raw_receipt_sha256": "62a45d7eea157ded05f2210694987bf43c52833cf253ba5c1210ca4061da249e",
+  "private_evidence_blob": "evidence/shadow-clones/2026-09-24/TERMINAL_SHADOW_CLONE_RECEIPTS.json",
+  "tests": {
+    "test_shadow_clone_protocol": 9,
+    "result": "PASS"
+  },
+  "clones": [
+    {
+      "role_id": "R57",
+      "lane": "institutional-memory",
+      "state": "COMPLETED",
+      "birth_decision": "PERMIT",
+      "birth_sha256": "f81f265c6736dbefcb88f2148dc8257c4ce520d53dd01291eb1a5c4dacd6ed56",
+      "stdout_sha256": "8d53f35315d208a66a859d461035a15258b62ec926bacaf6b0cd32e09ed69464",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "returncode": 0
+    },
+    {
+      "role_id": "R54",
+      "lane": "governance",
+      "state": "COMPLETED",
+      "birth_decision": "PERMIT",
+      "birth_sha256": "3ca85ab9413c73af3cfd6b160cc6ea907cab36913b4363bb679c03f0d62052bb",
+      "stdout_sha256": "01e95a369185fb9b05edf8923fb591703200ba2aab63662ecc7bb5508f4bae8d",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "returncode": 0
+    },
+    {
+      "role_id": "R55",
+      "lane": "continuity",
+      "state": "COMPLETED",
+      "birth_decision": "PERMIT",
+      "birth_sha256": "a01f4d8810a32c7e86b66fcd1e12571a23cc16584aa5236ac6b446e58d5d1069",
+      "stdout_sha256": "03d0e6cd1bc33ebc16a54683e4aa56e21f5465d33c714f63832e2f1eb7084821",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "returncode": 0
+    },
+    {
+      "role_id": "R58",
+      "lane": "council",
+      "state": "COMPLETED",
+      "birth_decision": "PERMIT",
+      "birth_sha256": "7d9023d436ee464beb3a210ae807bbcf6e9bc2edb79535595193ad46306f4c3f",
+      "stdout_sha256": "55a15c5197f4b418bbe8fd762613d592762be4fc076eafb46f04032f8b582477",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "returncode": 0
+    }
+  ],
+  "overall": "PERMIT"
+}
