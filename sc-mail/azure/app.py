@@ -409,3 +409,54 @@ def microsoft_admin_consent_callback(request:Request,admin_consent:str="",tenant
     state_label="PERMIT" if status.get("providerConnected") else "HOLD_PROPAGATION_OR_SCOPE"
     table.upsert_entity({"PartitionKey":"MICROSOFT_AUTH","RowKey":"GRAPH_PROBE","At":now,"State":state_label})
     return HTMLResponse("<h2>Supreme Mail Microsoft approval recorded.</h2><p>The governed cloud is verifying Mail.Send authority. You can close this window.</p>")
+
+# --- RBAC-only mailbox scope override (v2.2) ---
+# Exchange Application RBAC is authoritative; no tenant-wide Graph Mail.Send grant is used.
+def _rbac_proven(c=None):
+    c=c or provider_cfg()
+    try:
+        e=table.get_entity("MICROSOFT_AUTH","RBAC_PROVEN")
+        return (str(e.get("State","")).upper()=="PERMIT" and
+                str(e.get("Mailbox","")).strip().lower()==str(c.get("sender_upn","")).strip().lower() and
+                str(e.get("AppId","")).strip().lower()==ENTRA_APP_CLIENT_ID.lower())
+    except Exception:
+        return False
+
+def graph_token(c):
+    now=int(time.time())
+    if _graph_token_cache["token"] and int(_graph_token_cache["expires_on"] or 0) > now+120:
+        return _graph_token_cache["token"]
+    if not ENTRA_APP_CLIENT_ID or not c.get("tenant_id"):
+        raise RuntimeError("federated_app_not_configured")
+    from azure.identity import ManagedIdentityCredential, ClientAssertionCredential
+    mi=ManagedIdentityCredential(client_id=CLIENT_ID)
+    fic=ClientAssertionCredential(
+        tenant_id=str(c["tenant_id"]),
+        client_id=ENTRA_APP_CLIENT_ID,
+        func=lambda: mi.get_token("api://AzureADTokenExchange/.default").token,
+    )
+    tok=fic.get_token("https://graph.microsoft.com/.default")
+    _graph_token_cache.update(token=tok.token,expires_on=int(tok.expires_on),roles=_jwt_roles(tok.token))
+    return tok.token
+
+def provider_ready(c=None):
+    c=c or provider_cfg()
+    if not (c.get("tenant_id") and c.get("sender_upn") and ENTRA_APP_CLIENT_ID and CLIENT_ID and _rbac_proven(c)):
+        return False
+    try:
+        graph_token(c)
+        return True
+    except Exception:
+        return False
+
+def microsoft_permission_status():
+    c=provider_cfg()
+    auth=False
+    try:
+        graph_token(c); auth=True
+    except Exception:
+        auth=False
+    rbac=_rbac_proven(c)
+    return {"providerConnected":bool(auth and rbac),"authMode":"federated_managed_identity+r bac".replace(" ",""),
+            "tokenExchangeReady":auth,"rbacProven":rbac,"mailSendConsented":False,
+            "tenantWideMailSendPermission":False}

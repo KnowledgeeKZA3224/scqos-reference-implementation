@@ -1,0 +1,50 @@
+{
+  "proof_type": "SC_MAIL_MARK_TOTALITY_READINESS_V2",
+  "observed_at": "2026-09-24T20:20:59.005310+00:00",
+  "azure": {
+    "runtime": "sc-mail-mark-v2",
+    "revision": "sc-mail-mark-v2--0000002",
+    "image_digest": "sha256:71ad7ee912fac216eaf0886f8288b4990b688849573b0e3c600d520af222cd13",
+    "status": "ONLINE",
+    "provider_connected": false,
+    "auth_mode": "federated_managed_identity+rbac",
+    "token_exchange_ready": false,
+    "rbac_proven": false,
+    "tenant_wide_mail_send_permission": false
+  },
+  "workforce": {
+    "architecture": "SUPREME-MIND-59-FACULTY-UNIVERSE-V1",
+    "job": "scmail-mark-59-swarm",
+    "execution": "scmail-mark-59-swarm-4enzgku",
+    "status": "Succeeded",
+    "role_count": 59,
+    "permit_count": 59,
+    "swarm_sha256": "aa5cac1c1ce8d1506652cce77bdeff3384544a46afa1a21938d45f36d8bae6a2",
+    "external_contact_authorized": false,
+    "mail_send_authorized": false
+  },
+  "microsoft": {
+    "multitenant_app": true,
+    "workload_identity_federation": true,
+    "federated_credential_count": 1,
+    "entra_graph_permission_blocks": 0,
+    "authorization_model": "Exchange Online Application RBAC",
+    "scope_target": "Marks@numbersetcandetc.com",
+    "admin_action_required": true
+  },
+  "aws": {
+    "apex_state": "PERMIT",
+    "authority": "READ_ONLY_AUTONOMY",
+    "witness_case_id": "3748957b-c9f9-47c3-b204-1112d0764897",
+    "witness_case_state": "QUEUED",
+    "exact_swarm_anchor_bound": true
+  },
+  "boundary": {
+    "contact_mark": false,
+    "send_mail": false,
+    "remaining_external_authority": "Mark tenant admin must provision customer service principal and grant scoped Exchange Application Mail.Send to the target mailbox."
+  },
+  "rule": "Nothing executes until it proves itself.",
+  "overall": "HOLD_EXTERNAL_MICROSOFT_RBAC",
+  "proof_sha256": "264d6929f5a0506f9be7ee8cc93ab934c4fdd3f09d42550b075aac9538603b81"
+}
