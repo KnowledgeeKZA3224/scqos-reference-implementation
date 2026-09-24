@@ -1,0 +1,10 @@
+{
+  "contract_id": "SCQOS-MULTICLOUD-CONTINUITY-v1",
+  "law": "Nothing executes until it proves itself.",
+  "clouds": ["AWS", "Azure"],
+  "invariants": ["Time","Continuity","Alignment","Genesis","Boundary","Reference","Causality","Observer"],
+  "execution_rule": "A cloud may host execution, but no cloud owns the governing state.",
+  "failure_rule": "Loss of one cloud must not authorize unproven execution in the other.",
+  "witness_rule": "Every cross-cloud continuity transition must produce independently stored matching receipt hashes.",
+  "authority_rule": "Cross-cloud health and evidence are read-only by default; mutations require an explicit local permit at the destination boundary."
+}

@@ -1,0 +1,5 @@
+FROM python:3.12-slim
+WORKDIR /app
+RUN pip install --no-cache-dir azure-identity==1.25.1 azure-storage-blob==12.27.0
+COPY multicloud/azure_witness_worker.py /app/worker.py
+ENTRYPOINT ["python","/app/worker.py"]
