@@ -1,0 +1,25 @@
+{
+  "contract_id": "SCQOS-MULTICLOUD-CONTINUITY-v1",
+  "contract_sha256": "0c05158441561ec9080e77217e0cd92af8a3189194eaef94583970c0a402e26d",
+  "generated_at": "2026-09-24T18:56:23.817394+00:00",
+  "git_head": "cedc54b7dbddce38c9054f26fd8fd81bfb140d4a",
+  "azure": {
+    "health": {
+      "status": "ONLINE",
+      "cloud": "Azure",
+      "contract_id": "SCQOS-UNIVERSAL-TRANSITION-v1",
+      "rule": "Nothing executes until it proves itself."
+    }
+  },
+  "aws": {
+    "health": {
+      "state": "PERMIT",
+      "service": "SUPREME_APEX_V1",
+      "rule": "Nothing Executes Until It Proves Itself.",
+      "public_authority": "READ_ONLY_AUTONOMY",
+      "owner_route": "AWS_IAM"
+    }
+  },
+  "law": "Nothing executes until it proves itself.",
+  "continuity_anchor_sha256": "b36d73efea858099e79ad1f7e58dce5defae66393481ab8d4ae8ed777e480e21"
+}

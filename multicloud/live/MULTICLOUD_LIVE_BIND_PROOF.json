@@ -1,0 +1,31 @@
+{
+  "proof_type": "SCQOS_MULTICLOUD_LIVE_BIND_V1",
+  "closed_at": "2026-09-24T19:06:16.045768+00:00",
+  "contract_id": "SCQOS-MULTICLOUD-CONTINUITY-v1",
+  "contract_sha256": "0c05158441561ec9080e77217e0cd92af8a3189194eaef94583970c0a402e26d",
+  "continuity_anchor_sha256": "b36d73efea858099e79ad1f7e58dce5defae66393481ab8d4ae8ed777e480e21",
+  "aws": {
+    "service": "SUPREME_APEX_V1",
+    "health_state": "PERMIT",
+    "case_id": "018cab39-2833-41ba-b353-1c145714b122",
+    "case_state": "QUEUED",
+    "authority_mode": "READ_ONLY_AUTONOMY",
+    "objective_anchor_bound": true
+  },
+  "azure": {
+    "witness_decision": "PERMIT",
+    "observer": "Azure",
+    "observed_cloud": "AWS",
+    "witness_receipt_sha256": "e20af1181c96b6ee563913a15ffa521dcb621c7ea3dbfb9b2b8bfa7c63086142",
+    "witness_file_sha256": "d22d4c545887a4c8ccddafe54defd5af85850f4d050b2d20ea1e867902c877bd",
+    "anchor_blob": "evidence/multicloud/continuity/LIVE_CONTINUITY_ANCHOR.json",
+    "witness_blob": "evidence/multicloud/witness/azure/LATEST.json"
+  },
+  "boundary": {
+    "shared_root_credentials": false,
+    "cross_cloud_mutation_authorized": false,
+    "aws_public_authority": "READ_ONLY_AUTONOMY",
+    "rule": "Nothing executes until it proves itself."
+  },
+  "overall": "PERMIT"
+}

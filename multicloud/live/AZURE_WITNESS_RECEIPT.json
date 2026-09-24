@@ -1,0 +1,16 @@
+{
+  "aws_health": {
+    "owner_route": "AWS_IAM",
+    "public_authority": "READ_ONLY_AUTONOMY",
+    "rule": "Nothing Executes Until It Proves Itself.",
+    "service": "SUPREME_APEX_V1",
+    "state": "PERMIT"
+  },
+  "contract_id": "SCQOS-MULTICLOUD-CONTINUITY-v1",
+  "contract_sha256": "0c05158441561ec9080e77217e0cd92af8a3189194eaef94583970c0a402e26d",
+  "decision": "PERMIT",
+  "observed_at": "2026-09-24T19:05:30.904427+00:00",
+  "observed_cloud": "AWS",
+  "observer": "Azure",
+  "receipt_sha256": "e20af1181c96b6ee563913a15ffa521dcb621c7ea3dbfb9b2b8bfa7c63086142"
+}
