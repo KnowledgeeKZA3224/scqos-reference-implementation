@@ -190,43 +190,13 @@ def verify_oauth_state(value):
 
 @app.get("/microsoft/connect")
 def microsoft_connect(request:Request):
-    c=provider_cfg()
-    needed=("tenant_id","client_id","client_secret","sender_upn")
-    if not all(c.get(k) and not str(c.get(k)).startswith("REPLACE_") for k in needed):
-        raise HTTPException(status_code=503,detail="entra_application_not_ready")
-    redirect="https://"+request.headers["host"]+"/microsoft/callback"
-    params={"client_id":c["client_id"],"response_type":"code","redirect_uri":redirect,
-            "response_mode":"query","scope":"offline_access Mail.Send User.Read",
-            "state":oauth_state(),"prompt":"consent"}
-    url="https://login.microsoftonline.com/"+c["tenant_id"]+"/oauth2/v2.0/authorize?"+urllib.parse.urlencode(params)
-    return RedirectResponse(url)
+    # Legacy delegated OAuth entrypoint is retired. Always enter through the
+    # canonical multitenant admin-consent + Exchange Application RBAC path.
+    return RedirectResponse(url="/microsoft/admin-consent",status_code=307)
 
 @app.get("/microsoft/callback")
-def microsoft_callback(request:Request,code:str="",state:str="",error:str=""):
-    if error or not code or not verify_oauth_state(state):
-        raise HTTPException(status_code=400,detail="microsoft_authorization_failed")
-    c=provider_cfg()
-    redirect="https://"+request.headers["host"]+"/microsoft/callback"
-    data=urllib.parse.urlencode({
-        "client_id":c["client_id"],"client_secret":c["client_secret"],"code":code,
-        "redirect_uri":redirect,"grant_type":"authorization_code",
-        "scope":"offline_access Mail.Send User.Read"}).encode()
-    req=urllib.request.Request(
-        "https://login.microsoftonline.com/"+c["tenant_id"]+"/oauth2/v2.0/token",
-        data=data,headers={"content-type":"application/x-www-form-urlencoded"})
-    with urllib.request.urlopen(req,timeout=20) as r:
-        tok=json.loads(r.read().decode())
-    me=urllib.request.Request("https://graph.microsoft.com/v1.0/me?$select=userPrincipalName,mail",
-        headers={"Authorization":"Bearer "+tok["access_token"]})
-    with urllib.request.urlopen(me,timeout=20) as r:
-        who=json.loads(r.read().decode())
-    expected=c["sender_upn"].strip().lower()
-    observed={str(who.get("mail") or "").lower(),str(who.get("userPrincipalName") or "").lower()}
-    if expected not in observed:
-        raise HTTPException(status_code=403,detail="authorized_mailbox_does_not_match_mark")
-    c=dict(c); c["refresh_token"]=tok["refresh_token"]; c["authorized_at"]=int(time.time())
-    secrets.set_secret("scmail-mark-microsoft",json.dumps(c,separators=(",",":")))
-    return HTMLResponse("<h2>Supreme Mail connected.</h2><p>Microsoft authorization is verified and bound to the intended mailbox. You can close this window.</p>")
+def microsoft_callback(request:Request):
+    raise HTTPException(status_code=410,detail="legacy_oauth_callback_retired_use_rbac")
 
 @app.get("/manifest.xml")
 def manifest(request:Request):
@@ -389,7 +359,7 @@ def microsoft_admin_consent(request:Request):
     if not c.get("tenant_id") or not ENTRA_APP_CLIENT_ID:
         raise HTTPException(status_code=503,detail="microsoft_tenant_or_app_not_ready")
     redirect="https://"+request.headers["host"]+"/microsoft/admin-consent/callback"
-    params={"client_id":ENTRA_APP_CLIENT_ID,"redirect_uri":redirect,"state":oauth_state()}
+    params={"client_id":ENTRA_APP_CLIENT_ID,"redirect_uri":redirect,"scope":"https://graph.microsoft.com/.default","state":oauth_state()}
     url="https://login.microsoftonline.com/"+str(c["tenant_id"])+"/v2.0/adminconsent?"+urllib.parse.urlencode(params)
     return RedirectResponse(url)
 

@@ -15,7 +15,8 @@ Import-Module Microsoft.Graph.Applications
 Import-Module ExchangeOnlineManagement
 
 Connect-MgGraph -TenantId $TenantId -Scopes "Application.ReadWrite.All" -NoWelcome
-$sp = Get-MgServicePrincipal -Filter "appId eq " | Select-Object -First 1
+$filter = "appId eq '$AppId'"
+$sp = Get-MgServicePrincipal -Filter $filter | Select-Object -First 1
 if (-not $sp) { $sp = New-MgServicePrincipal -AppId $AppId }
 
 Connect-ExchangeOnline -UserPrincipalName $AdminUpn -ShowBanner:$false
@@ -24,8 +25,11 @@ if (-not $exoSp) {
   New-ServicePrincipal -AppId $AppId -ObjectId $sp.Id -DisplayName "Supreme Mail Mark" | Out-Null
 }
 $scope = Get-ManagementScope -Identity $ScopeName -ErrorAction SilentlyContinue
+$scopeFilter = "PrimarySmtpAddress -eq '$TargetMailbox'"
 if (-not $scope) {
-  New-ManagementScope -Name $ScopeName -RecipientRestrictionFilter "PrimarySmtpAddress -eq " | Out-Null
+  New-ManagementScope -Name $ScopeName -RecipientRestrictionFilter $scopeFilter | Out-Null
+} elseif ($scope.RecipientFilter -notmatch [regex]::Escape($TargetMailbox)) {
+  Set-ManagementScope -Identity $ScopeName -RecipientRestrictionFilter $scopeFilter
 }
 $assignment = Get-ManagementRoleAssignment -Identity $AssignmentName -ErrorAction SilentlyContinue
 if (-not $assignment) {
