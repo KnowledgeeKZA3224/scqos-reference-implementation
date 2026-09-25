@@ -356,12 +356,31 @@ def microsoft_readiness():
 TEST_TENANT_ID=os.environ.get("SCMAIL_TEST_TENANT_ID","")
 TEST_UPN=os.environ.get("SCMAIL_TEST_UPN","").strip().lower()
 
+def _test_graph_probe():
+    if not TEST_TENANT_ID or not ENTRA_APP_CLIENT_ID or not CLIENT_ID:
+        return {"tokenExchangeReady":False,"mailSendRolePresent":False,"roles":[],"error":"test_identity_not_configured"}
+    try:
+        from azure.identity import ManagedIdentityCredential, ClientAssertionCredential
+        mi=ManagedIdentityCredential(client_id=CLIENT_ID)
+        fic=ClientAssertionCredential(
+            tenant_id=TEST_TENANT_ID,
+            client_id=ENTRA_APP_CLIENT_ID,
+            func=lambda: mi.get_token("api://AzureADTokenExchange/.default").token,
+        )
+        tok=fic.get_token("https://graph.microsoft.com/.default")
+        roles=_jwt_roles(tok.token)
+        return {"tokenExchangeReady":True,"mailSendRolePresent":"Mail.Send" in roles,"roles":roles}
+    except Exception as e:
+        return {"tokenExchangeReady":False,"mailSendRolePresent":False,"roles":[],"error":type(e).__name__}
+
 @app.get("/microsoft/test-readiness")
 def microsoft_test_readiness():
+    probe=_test_graph_probe()
     return {
         "testTenantConfigured":bool(TEST_TENANT_ID),
         "testUpnConfigured":bool(TEST_UPN),
         "appConfigured":bool(ENTRA_APP_CLIENT_ID),
+        **probe,
         "productionMailbox":"Marks@numbersetcandetc.com",
         "productionSendAuthorized":False,
         "testCanAuthorizeProduction":False,
