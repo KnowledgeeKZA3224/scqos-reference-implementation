@@ -353,6 +353,56 @@ def microsoft_readiness():
             "externalContactAuthorized":False,"mailSendExecutionAuthorized":bool(s.get("providerConnected")),
             "rule":"Nothing executes until it proves itself."}
 
+TEST_TENANT_ID=os.environ.get("SCMAIL_TEST_TENANT_ID","")
+TEST_UPN=os.environ.get("SCMAIL_TEST_UPN","").strip().lower()
+
+@app.get("/microsoft/test-readiness")
+def microsoft_test_readiness():
+    return {
+        "testTenantConfigured":bool(TEST_TENANT_ID),
+        "testUpnConfigured":bool(TEST_UPN),
+        "appConfigured":bool(ENTRA_APP_CLIENT_ID),
+        "productionMailbox":"Marks@numbersetcandetc.com",
+        "productionSendAuthorized":False,
+        "testCanAuthorizeProduction":False,
+        "rule":"Nothing executes until it proves itself."
+    }
+
+@app.get("/microsoft/test-admin-consent")
+def microsoft_test_admin_consent(request:Request):
+    if not TEST_TENANT_ID or not TEST_UPN or not ENTRA_APP_CLIENT_ID:
+        raise HTTPException(status_code=503,detail="test_identity_not_configured")
+    redirect="https://"+request.headers["host"]+"/microsoft/test-admin-consent/callback"
+    params={
+        "client_id":ENTRA_APP_CLIENT_ID,
+        "redirect_uri":redirect,
+        "scope":"https://graph.microsoft.com/.default",
+        "state":oauth_state(),
+        "login_hint":TEST_UPN
+    }
+    url="https://login.microsoftonline.com/"+TEST_TENANT_ID+"/v2.0/adminconsent?"+urllib.parse.urlencode(params)
+    return RedirectResponse(url)
+
+@app.get("/microsoft/test-admin-consent/callback")
+def microsoft_test_admin_consent_callback(request:Request,admin_consent:str="",tenant:str="",state:str="",error:str="",error_description:str=""):
+    if error or not verify_oauth_state(state):
+        raise HTTPException(status_code=400,detail="test_microsoft_admin_consent_failed")
+    if str(tenant).lower()!=TEST_TENANT_ID.lower():
+        raise HTTPException(status_code=403,detail="test_microsoft_tenant_mismatch")
+    if str(admin_consent).lower()!="true":
+        raise HTTPException(status_code=400,detail="test_microsoft_admin_consent_not_granted")
+    now=int(time.time())
+    table.upsert_entity({
+        "PartitionKey":"MICROSOFT_TEST_AUTH",
+        "RowKey":"ADMIN_CONSENT",
+        "Tenant":str(tenant),
+        "Tester":TEST_UPN,
+        "At":now,
+        "State":"TEST_CONSENT_RECORDED",
+        "ProductionAuthority":False
+    })
+    return HTMLResponse("<h2>Supreme Mail test path verified.</h2><p>Your Microsoft test authority completed successfully. This did not authorize Mark's mailbox or production sending.</p>")
+
 @app.get("/microsoft/admin-consent")
 def microsoft_admin_consent(request:Request):
     c=provider_cfg()
