@@ -1,0 +1,1 @@
+{"name":"supreme-computation-sanity-challenge","private":true,"version":"1.0.0","scripts":{"dev":"sanity dev","deploy":"sanity deploy"},"dependencies":{"@sanity/vision":"latest","sanity":"latest","styled-components":"latest"},"devDependencies":{}}
