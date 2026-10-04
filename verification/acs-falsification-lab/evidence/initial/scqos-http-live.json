@@ -1,0 +1,641 @@
+{
+  "all_pass": true,
+  "generated_at": 1791081935.9955218,
+  "meta_test": {
+    "detected": true,
+    "failed_probes": [
+      "valid_transition",
+      "wrong_authority",
+      "missing_evidence",
+      "missing_signature",
+      "tampered_signature",
+      "replay_second",
+      "stale_timestamp",
+      "future_timestamp",
+      "chain_mismatch",
+      "modify_disposition",
+      "ask_disposition"
+    ],
+    "mutant": "allow-everything"
+  },
+  "mode": "http",
+  "passed": 20,
+  "probes": [
+    {
+      "detail": {
+        "id": "033c56e6-00ca-48ba-aa17-9a5f048ab843",
+        "jsonrpc": "2.0",
+        "result": {
+          "approver_types_supported": [
+            "human",
+            "service"
+          ],
+          "methods_evaluated": [
+            "protocols/MCP/tools/call",
+            "steps/agentResponse",
+            "steps/sessionEnd",
+            "steps/sessionStart",
+            "steps/toolCallRequest",
+            "steps/toolCallResult",
+            "steps/userMessage",
+            "system/ping"
+          ],
+          "negotiated_version": "0.1.0",
+          "on_decision_failure": "deny",
+          "policy_requires_provenance": false,
+          "profiles_accepted": [
+            "acs-core"
+          ],
+          "selected_transport": "http",
+          "signature_algorithms_supported": [
+            "HMAC-SHA256"
+          ],
+          "skew_window_ms": 300000,
+          "timeout_config": {
+            "default_ms": 5000,
+            "per_method_ms": {
+              "steps/toolCallRequest": 5000
+            }
+          }
+        }
+      },
+      "expected": "ServerHello 0.1.0 + fail-closed posture",
+      "name": "handshake",
+      "observed": "decision:server_hello",
+      "passed": true
+    },
+    {
+      "detail": {
+        "id": "c69ce6e9-fdbe-4f7d-9139-dffac07916fa",
+        "jsonrpc": "2.0",
+        "result": {
+          "acs_version": "0.1.0",
+          "decision": "allow",
+          "payload": {
+            "echo": "alive",
+            "server_timestamp": "2026-10-04T02:45:31.896809Z",
+            "status": "ok"
+          },
+          "request_id": "90a0261e-406c-42dd-858b-f86752fe8bd1",
+          "type": "final"
+        }
+      },
+      "expected": "allow",
+      "name": "unsigned_ping",
+      "observed": "decision:allow",
+      "passed": true
+    },
+    {
+      "detail": {
+        "id": "ea14ad76-f739-4044-8154-8ce830139e49",
+        "jsonrpc": "2.0",
+        "result": {
+          "acs_version": "0.1.0",
+          "chain_hash": "d0eeac68d0273f597a2e3c3e04ffef1d6f35d65b5001e741e67db54add31edc8",
+          "decision": "allow",
+          "metadata": {
+            "evaluator": "deterministic",
+            "evaluator_version": "scqos-acs-lab/0.1.0"
+          },
+          "policy_data": {
+            "scqos": {
+              "decision_boundary": "KERNEL",
+              "execution_mode": "SHADOW_ONLY",
+              "receipt_id": "1bd289ee2095402faf44667acb3480f66fb43d1aa5299cdf29705a50aca41841",
+              "verdict": "PERMIT"
+            }
+          },
+          "policy_references": [
+            {
+              "policy_id": "scqos",
+              "policy_name": "Supreme Computation",
+              "policy_version": "live",
+              "rule_id": "transition-admissibility"
+            }
+          ],
+          "reasoning": "SCQOS proved the proposed transition admissible",
+          "request_id": "2976aa55-f6fb-40f0-9c58-2eccbd2100de",
+          "signature": {
+            "algorithm": "HMAC-SHA256",
+            "key_id": "lab-hmac-v1",
+            "value": "qyztJE8ProKeIewkEnMZGn9bnXnahCqYQCS2sjlbErw="
+          },
+          "type": "final"
+        }
+      },
+      "expected": "allow + signed chain head",
+      "name": "valid_transition",
+      "observed": "decision:allow",
+      "passed": true
+    },
+    {
+      "detail": {
+        "id": "b6cbf042-60d9-4a12-8333-78084ae68afd",
+        "jsonrpc": "2.0",
+        "result": {
+          "acs_version": "0.1.0",
+          "chain_hash": "733f07cf3e9e06bfecb08bcae05dcfc5d05bcd8267bedda02f7142294608c7fb",
+          "decision": "deny",
+          "metadata": {
+            "evaluator": "deterministic",
+            "evaluator_version": "scqos-acs-lab/0.1.0"
+          },
+          "policy_data": {
+            "scqos": {
+              "decision_boundary": "AUTHORITY",
+              "execution_mode": "SHADOW_ONLY",
+              "receipt_id": "178db03710785f966ec30e275d26e3ac2507a80e8e1554d076fc20c447077c78",
+              "verdict": "REJECT"
+            }
+          },
+          "policy_references": [
+            {
+              "policy_id": "scqos",
+              "policy_name": "Supreme Computation",
+              "policy_version": "live",
+              "rule_id": "transition-admissibility"
+            }
+          ],
+          "reason_codes": [
+            "scqos_reject"
+          ],
+          "reasoning": "authority scope does not authorize execution",
+          "request_id": "3f42bfe2-3f88-4ba6-8e58-e7d6712f9956",
+          "signature": {
+            "algorithm": "HMAC-SHA256",
+            "key_id": "lab-hmac-v1",
+            "value": "Qb/LpWgreB3ffj4xReHu1TgjdVxodiAtIGr3VmBle2I="
+          },
+          "type": "final"
+        }
+      },
+      "expected": "deny",
+      "name": "wrong_authority",
+      "observed": "decision:deny",
+      "passed": true
+    },
+    {
+      "detail": {
+        "id": "23240841-b204-4f4c-80a2-50fefa4e8877",
+        "jsonrpc": "2.0",
+        "result": {
+          "acs_version": "0.1.0",
+          "chain_hash": "ac169056326057640c584ddb1077aff8d1481202e0565dd5470c635db4eaf9f2",
+          "decision": "defer",
+          "defer_details": {
+            "reason": "insufficient_context",
+            "required_context": [
+              "coherent_transition_evidence"
+            ],
+            "resolution_method": "additional_context",
+            "resolution_timeout_ms": 5000,
+            "timeout_decision": "deny"
+          },
+          "metadata": {
+            "evaluator": "deterministic",
+            "evaluator_version": "scqos-acs-lab/0.1.0"
+          },
+          "policy_data": {
+            "scqos": {
+              "decision_boundary": "EVIDENCE",
+              "execution_mode": "SHADOW_ONLY",
+              "receipt_id": "aaaa9fd76149bb5b9a42fc0707deb57f1b76439892329c30b1959c14d5e12b17",
+              "verdict": "HOLD"
+            }
+          },
+          "policy_references": [
+            {
+              "policy_id": "scqos",
+              "policy_name": "Supreme Computation",
+              "policy_version": "live",
+              "rule_id": "transition-admissibility"
+            }
+          ],
+          "reason_codes": [
+            "insufficient_context"
+          ],
+          "reasoning": "required evidence is incomplete",
+          "request_id": "52eb1cbd-dfc8-40ce-b745-32230e8a4c1b",
+          "signature": {
+            "algorithm": "HMAC-SHA256",
+            "key_id": "lab-hmac-v1",
+            "value": "pVjYI075Slo7iVSM/hOvSf2Xei4hqvEvmXbJoq+m1uI="
+          },
+          "type": "final"
+        }
+      },
+      "expected": "defer with deny timeout",
+      "name": "missing_evidence",
+      "observed": "decision:defer",
+      "passed": true
+    },
+    {
+      "detail": {
+        "error": {
+          "code": -32004,
+          "data": {
+            "message": "required HMAC-SHA256 signature missing or invalid",
+            "reason": "SIGNATURE_INVALID"
+          },
+          "message": "SIGNATURE_INVALID"
+        },
+        "id": "5477fd25-32c0-4eca-b6fd-4b7203bbaf43",
+        "jsonrpc": "2.0"
+      },
+      "expected": "error:-32004",
+      "name": "missing_signature",
+      "observed": "error:-32004",
+      "passed": true
+    },
+    {
+      "detail": {
+        "error": {
+          "code": -32004,
+          "data": {
+            "message": "required HMAC-SHA256 signature missing or invalid",
+            "reason": "SIGNATURE_INVALID"
+          },
+          "message": "SIGNATURE_INVALID"
+        },
+        "id": "2f499a33-5ded-48e1-b94e-8b2bb1460cf0",
+        "jsonrpc": "2.0"
+      },
+      "expected": "error:-32004",
+      "name": "tampered_signature",
+      "observed": "error:-32004",
+      "passed": true
+    },
+    {
+      "detail": {
+        "id": "0f2a0cf5-d704-4e82-b979-80862ce92d00",
+        "jsonrpc": "2.0",
+        "result": {
+          "acs_version": "0.1.0",
+          "chain_hash": "827b004213076e14000eb0c89fb014e03afc6c9536752fdcfe0740dc3f6d23b0",
+          "decision": "allow",
+          "metadata": {
+            "evaluator": "deterministic",
+            "evaluator_version": "scqos-acs-lab/0.1.0"
+          },
+          "policy_data": {
+            "scqos": {
+              "decision_boundary": "KERNEL",
+              "execution_mode": "SHADOW_ONLY",
+              "receipt_id": "88b051968b22e301ff5b1345dd179fd3a9d10b08d4b75acfc8b8a1e71f5cd38f",
+              "verdict": "PERMIT"
+            }
+          },
+          "policy_references": [
+            {
+              "policy_id": "scqos",
+              "policy_name": "Supreme Computation",
+              "policy_version": "live",
+              "rule_id": "transition-admissibility"
+            }
+          ],
+          "reasoning": "SCQOS proved the proposed transition admissible",
+          "request_id": "b4febcdc-00e5-474f-bd5e-a22d33910a69",
+          "signature": {
+            "algorithm": "HMAC-SHA256",
+            "key_id": "lab-hmac-v1",
+            "value": "ZsBEQh6d9r5sSgDFdBK0MO5foiI3lxNTkPv8ELBuYEo="
+          },
+          "type": "final"
+        }
+      },
+      "expected": "allow",
+      "name": "replay_first",
+      "observed": "decision:allow",
+      "passed": true
+    },
+    {
+      "detail": {
+        "error": {
+          "code": -32005,
+          "data": {
+            "message": "request_id or nonce already observed",
+            "reason": "REPLAY_DETECTED"
+          },
+          "message": "REPLAY_DETECTED"
+        },
+        "id": "0f2a0cf5-d704-4e82-b979-80862ce92d00",
+        "jsonrpc": "2.0"
+      },
+      "expected": "error:-32005",
+      "name": "replay_second",
+      "observed": "error:-32005",
+      "passed": true
+    },
+    {
+      "detail": {
+        "error": {
+          "code": -32006,
+          "data": {
+            "message": "timestamp outside negotiated window",
+            "reason": "TIMESTAMP_OUT_OF_WINDOW",
+            "skew_window_ms": 300000
+          },
+          "message": "TIMESTAMP_OUT_OF_WINDOW"
+        },
+        "id": "9e3f093a-e7da-47dc-8165-98c04e6a4f3e",
+        "jsonrpc": "2.0"
+      },
+      "expected": "error:-32006",
+      "name": "stale_timestamp",
+      "observed": "error:-32006",
+      "passed": true
+    },
+    {
+      "detail": {
+        "error": {
+          "code": -32006,
+          "data": {
+            "message": "timestamp outside negotiated window",
+            "reason": "TIMESTAMP_OUT_OF_WINDOW",
+            "skew_window_ms": 300000
+          },
+          "message": "TIMESTAMP_OUT_OF_WINDOW"
+        },
+        "id": "b0fdc14f-cf47-4e42-82bb-f23dafdde890",
+        "jsonrpc": "2.0"
+      },
+      "expected": "error:-32006",
+      "name": "future_timestamp",
+      "observed": "error:-32006",
+      "passed": true
+    },
+    {
+      "detail": {
+        "error": {
+          "code": -32007,
+          "data": {
+            "expected_chain_hash": "827b004213076e14000eb0c89fb014e03afc6c9536752fdcfe0740dc3f6d23b0",
+            "message": "client chain head differs from Guardian",
+            "reason": "CHAIN_MISMATCH"
+          },
+          "message": "CHAIN_MISMATCH"
+        },
+        "id": "8bb45cb2-1fd9-478e-ba7e-f135cc399bc2",
+        "jsonrpc": "2.0"
+      },
+      "expected": "error:-32007",
+      "name": "chain_mismatch",
+      "observed": "error:-32007",
+      "passed": true
+    },
+    {
+      "detail": {
+        "id": "d5db3ccc-205b-468e-a3a6-533ceff08460",
+        "jsonrpc": "2.0",
+        "result": {
+          "acs_version": "0.1.0",
+          "chain_hash": "700826436cf109b6854da576bd5450e21983802199927884d3c340cc3f28a7b2",
+          "decision": "modify",
+          "metadata": {
+            "evaluator": "deterministic",
+            "evaluator_version": "scqos-acs-lab/0.1.0"
+          },
+          "modifications": {
+            "parameter_overrides": {
+              "target": "acs://sandbox/safe"
+            }
+          },
+          "reason_codes": [
+            "bounded_rewrite"
+          ],
+          "reasoning": "policy permits only the bounded replacement value",
+          "request_id": "bee615c6-c806-441a-8778-9e759b0f4326",
+          "signature": {
+            "algorithm": "HMAC-SHA256",
+            "key_id": "lab-hmac-v1",
+            "value": "Jjz6+OssUMMDOZZtlfZiJGdrBYFnh4YxHDRxLOL1zL4="
+          },
+          "type": "final"
+        }
+      },
+      "expected": "modify",
+      "name": "modify_disposition",
+      "observed": "decision:modify",
+      "passed": true
+    },
+    {
+      "detail": {
+        "id": "38266717-2822-4ff4-a4d3-c614afb11b38",
+        "jsonrpc": "2.0",
+        "result": {
+          "acs_version": "0.1.0",
+          "ask_details": {
+            "approver": {
+              "id": "lab-operator",
+              "type": "human"
+            },
+            "question": "Approve this exact consequential transition?",
+            "timeout_disposition": "deny",
+            "timeout_seconds": 60
+          },
+          "chain_hash": "c94ed0b32190e1e84ec3982d0217fe332bf6632484d71e764458cdd7515ae06b",
+          "decision": "ask",
+          "metadata": {
+            "evaluator": "deterministic",
+            "evaluator_version": "scqos-acs-lab/0.1.0"
+          },
+          "reason_codes": [
+            "approval_required"
+          ],
+          "reasoning": "policy requires an independent approver",
+          "request_id": "161bac7e-f023-46fe-a570-a57fa6b9e92e",
+          "signature": {
+            "algorithm": "HMAC-SHA256",
+            "key_id": "lab-hmac-v1",
+            "value": "q2/VOeatitQwb1FjjhFcd6wXOa7gYU69n6ztzevzohs="
+          },
+          "type": "final"
+        }
+      },
+      "expected": "ask",
+      "name": "ask_disposition",
+      "observed": "decision:ask",
+      "passed": true
+    },
+    {
+      "detail": {
+        "id": "7f0cf64b-96f5-48b2-922c-4f8ee7009dba",
+        "jsonrpc": "2.0",
+        "result": {
+          "acs_version": "0.1.0",
+          "chain_hash": "54b2e879c72d31ed163891f60b86ef2cf2105d2de4ca52674aac2985e5dad457",
+          "decision": "allow",
+          "metadata": {
+            "evaluator": "deterministic",
+            "evaluator_version": "scqos-acs-lab/0.1.0"
+          },
+          "reasoning": "non-consequential lifecycle step accepted",
+          "request_id": "dccbabdd-759e-480b-88e5-24c7b89f7ab0",
+          "signature": {
+            "algorithm": "HMAC-SHA256",
+            "key_id": "lab-hmac-v1",
+            "value": "HscBKVsSx9JtfEIljXRf8aicPS6y9C8UY0+AydUFpvs="
+          },
+          "type": "final"
+        }
+      },
+      "expected": "non-error decision",
+      "name": "dispatch_steps/sessionStart",
+      "observed": "decision:allow",
+      "passed": true
+    },
+    {
+      "detail": {
+        "id": "e59ee8ab-c11b-490d-b830-4df427b7a3e5",
+        "jsonrpc": "2.0",
+        "result": {
+          "acs_version": "0.1.0",
+          "chain_hash": "3bc52ea5495ed2f32b04178cbd3c180cdd5725a074b586280fdaec4c6b61b031",
+          "decision": "allow",
+          "metadata": {
+            "evaluator": "deterministic",
+            "evaluator_version": "scqos-acs-lab/0.1.0"
+          },
+          "reasoning": "non-consequential lifecycle step accepted",
+          "request_id": "3d6c0948-9330-49fc-b057-294d9ec84550",
+          "signature": {
+            "algorithm": "HMAC-SHA256",
+            "key_id": "lab-hmac-v1",
+            "value": "NIZJYDfWEIrGHCrFOnWZfTecINB9aJLZSxoj7poxs8E="
+          },
+          "type": "final"
+        }
+      },
+      "expected": "non-error decision",
+      "name": "dispatch_steps/userMessage",
+      "observed": "decision:allow",
+      "passed": true
+    },
+    {
+      "detail": {
+        "id": "4c00e053-da92-4142-9cee-0bcc3744a458",
+        "jsonrpc": "2.0",
+        "result": {
+          "acs_version": "0.1.0",
+          "chain_hash": "8f6d689527ffc3da465106107f5feb790d3635eaeb03e62997eb3b1d91b1eca4",
+          "decision": "allow",
+          "metadata": {
+            "evaluator": "deterministic",
+            "evaluator_version": "scqos-acs-lab/0.1.0"
+          },
+          "reasoning": "non-consequential lifecycle step accepted",
+          "request_id": "d3c42d5b-cbe9-4e8d-96c0-dd0bd731ca54",
+          "signature": {
+            "algorithm": "HMAC-SHA256",
+            "key_id": "lab-hmac-v1",
+            "value": "T3k7CpTMcLZmdcKhZNZTvVkaekgWMnhsbxtXckS9qgQ="
+          },
+          "type": "final"
+        }
+      },
+      "expected": "non-error decision",
+      "name": "dispatch_steps/toolCallResult",
+      "observed": "decision:allow",
+      "passed": true
+    },
+    {
+      "detail": {
+        "id": "f774254b-7df2-4f60-9d45-1ae49d9f4d7b",
+        "jsonrpc": "2.0",
+        "result": {
+          "acs_version": "0.1.0",
+          "chain_hash": "a394857d0f53dd5a912e5537ad3de17143b338a2d1862244fc6f2b99cd5523b5",
+          "decision": "allow",
+          "metadata": {
+            "evaluator": "deterministic",
+            "evaluator_version": "scqos-acs-lab/0.1.0"
+          },
+          "reasoning": "non-consequential lifecycle step accepted",
+          "request_id": "f52f5312-88aa-4d00-82c6-628742b475ac",
+          "signature": {
+            "algorithm": "HMAC-SHA256",
+            "key_id": "lab-hmac-v1",
+            "value": "PEbcqUuS0fnUq5cZ+lQsVeZ68Dp1aj0kFy+uqTj8qik="
+          },
+          "type": "final"
+        }
+      },
+      "expected": "non-error decision",
+      "name": "dispatch_steps/agentResponse",
+      "observed": "decision:allow",
+      "passed": true
+    },
+    {
+      "detail": {
+        "id": "3c669c8c-2da2-4e1d-b4f4-cda0f2cd8af6",
+        "jsonrpc": "2.0",
+        "result": {
+          "acs_version": "0.1.0",
+          "chain_hash": "f2ee6343aadc0ddb39ba3075c53cc12fc7227600310cdfb2e27aad8b11807780",
+          "decision": "allow",
+          "metadata": {
+            "evaluator": "deterministic",
+            "evaluator_version": "scqos-acs-lab/0.1.0"
+          },
+          "reasoning": "non-consequential lifecycle step accepted",
+          "request_id": "cecb25ed-312e-4fa2-8aee-e1d07e1a9264",
+          "signature": {
+            "algorithm": "HMAC-SHA256",
+            "key_id": "lab-hmac-v1",
+            "value": "0ZjjdkT6aDb01AMF62LvVP6YingMhicfDIgqPhaE1VU="
+          },
+          "type": "final"
+        }
+      },
+      "expected": "non-error decision",
+      "name": "dispatch_steps/sessionEnd",
+      "observed": "decision:allow",
+      "passed": true
+    },
+    {
+      "detail": {
+        "id": "9456a23b-60d9-4ad8-a1d3-719e5a26f1e3",
+        "jsonrpc": "2.0",
+        "result": {
+          "acs_version": "0.1.0",
+          "chain_hash": "3721db23dfd4ca571de5c2e7fc17123f7c69e8600705085bc20224d8ff844052",
+          "decision": "allow",
+          "metadata": {
+            "evaluator": "deterministic",
+            "evaluator_version": "scqos-acs-lab/0.1.0"
+          },
+          "policy_data": {
+            "scqos": {
+              "decision_boundary": "KERNEL",
+              "execution_mode": "SHADOW_ONLY",
+              "receipt_id": "de4a492de207fd67d574057c12c3ba75b8c94b99ebe5602186b0c22a7975ffda",
+              "verdict": "PERMIT"
+            }
+          },
+          "policy_references": [
+            {
+              "policy_id": "scqos",
+              "policy_name": "Supreme Computation",
+              "policy_version": "live",
+              "rule_id": "transition-admissibility"
+            }
+          ],
+          "reasoning": "SCQOS proved the proposed transition admissible",
+          "request_id": "0e7b30d9-a8e6-4aeb-b557-481d13bc732c",
+          "signature": {
+            "algorithm": "HMAC-SHA256",
+            "key_id": "lab-hmac-v1",
+            "value": "iAU8XbWr0rmfYh2lmlxJLLT4wYsvOpRe6yvLj/4znOQ="
+          },
+          "type": "final"
+        }
+      },
+      "expected": "non-error decision",
+      "name": "dispatch_protocols/MCP/tools/call",
+      "observed": "decision:allow",
+      "passed": true
+    }
+  ],
+  "schema": "scqos.acs.falsification.run.v1",
+  "total": 20
+}

@@ -1,0 +1,263 @@
+{
+  "all_pass": true,
+  "artifacts": {
+    "denied": {
+      "exists": false,
+      "sha256": null
+    },
+    "permitted": {
+      "exists": true,
+      "sha256": "5ed2f5d790607647ac2d375d8658b9b0afadc150c71a8884138d6292749d1134"
+    },
+    "replay": {
+      "exists": true,
+      "sha256_after_replay": "46b1184b175a00c5b945c9aaf319f936380564ddd43d6f47cc1a56a91a8aec89",
+      "sha256_before_replay": "46b1184b175a00c5b945c9aaf319f936380564ddd43d6f47cc1a56a91a8aec89"
+    }
+  },
+  "assertions": {
+    "denied_not_executed": true,
+    "handshake_fail_closed": true,
+    "replay_first_executed": true,
+    "replay_second_blocked": true,
+    "replay_state_unchanged": true,
+    "valid_executed": true
+  },
+  "generated_at": 1791082807.0313034,
+  "mode": "live-scqos-cloud_to_terminal",
+  "root": "/home/knowledgee-kza/scqos-acs-falsification-lab/lab/controlled-effects",
+  "schema": "scqos.acs.real-consequence-proof.v1",
+  "wire": {
+    "denied": {
+      "request": {
+        "id": "ba496678-6590-41ac-b4df-4d670e6e80d8",
+        "jsonrpc": "2.0",
+        "method": "steps/toolCallRequest",
+        "params": {
+          "acs_version": "0.1.0",
+          "metadata": {
+            "agent_id": "falsification-agent",
+            "environment": "staging",
+            "session_id": "d8b0449e-04fb-4451-b080-c72e2ebf9729",
+            "session_state": {
+              "chain_hash": "c67acca04dd1d8e999ce520018b4449e343c1a860cbfdf4b658963e5a02f3903"
+            },
+            "user_context": {
+              "authentication_method": "lab-hmac",
+              "roles": [
+                "read:only"
+              ],
+              "user_id": "falsification-operator"
+            }
+          },
+          "payload": {
+            "arguments": {
+              "effect": {
+                "value": "write:62bb65cfcd255ca260697f76fc2b31ec5ff7fbf052920ab11ccfb2701768a9c6"
+              },
+              "evidence_present": {
+                "value": true
+              },
+              "target": {
+                "value": "file:///home/knowledgee-kza/scqos-acs-falsification-lab/lab/controlled-effects/denied.txt"
+              }
+            },
+            "capability": "lab.transition",
+            "intent": {
+              "description": "falsification-lab governed transition",
+              "goal": "write:62bb65cfcd255ca260697f76fc2b31ec5ff7fbf052920ab11ccfb2701768a9c6"
+            },
+            "tool": {
+              "name": "lab.write",
+              "version": "1"
+            }
+          },
+          "request_id": "2aa0209e-a649-4afc-ab99-63edd3af9138",
+          "signature": {
+            "algorithm": "HMAC-SHA256",
+            "key_id": "lab-hmac-v1",
+            "value": "f8uC7XnOLcwUiUQ918DQ3mebp5WMgqU0P+suie72tuk="
+          },
+          "timestamp": "2026-10-04T03:00:05.646070Z"
+        }
+      },
+      "response": {
+        "id": "ba496678-6590-41ac-b4df-4d670e6e80d8",
+        "jsonrpc": "2.0",
+        "result": {
+          "acs_version": "0.1.0",
+          "chain_hash": "bf2e3ecc7a70aa7d028a1ce4b107195b8efefab63917a3c14054e0d436d6d525",
+          "decision": "deny",
+          "metadata": {
+            "evaluator": "deterministic",
+            "evaluator_version": "scqos-acs-lab/0.1.0"
+          },
+          "policy_data": {
+            "scqos": {
+              "decision_boundary": "AUTHORITY",
+              "execution_mode": "SHADOW_ONLY",
+              "receipt_id": "9a8e4a7077c267075881db399f47e79cf8c4fd703789c7f834354cfc25de0420",
+              "verdict": "REJECT"
+            }
+          },
+          "policy_references": [
+            {
+              "policy_id": "scqos",
+              "policy_name": "Supreme Computation",
+              "policy_version": "live",
+              "rule_id": "transition-admissibility"
+            }
+          ],
+          "reason_codes": [
+            "scqos_reject"
+          ],
+          "reasoning": "authority scope does not authorize execution",
+          "request_id": "2aa0209e-a649-4afc-ab99-63edd3af9138",
+          "signature": {
+            "algorithm": "HMAC-SHA256",
+            "key_id": "lab-hmac-v1",
+            "value": "jYJMjeI4Q8xoU8ZNFmKRgjDrvEcRBH/wfh/ERzS+u8k="
+          },
+          "type": "final"
+        }
+      }
+    },
+    "replay_first": {
+      "id": "4628dcbc-ac6c-4552-8a58-81cca3cff277",
+      "jsonrpc": "2.0",
+      "result": {
+        "acs_version": "0.1.0",
+        "chain_hash": "307e11c43aa863056623581877e01088ba8e5a0e7319107bfd33a0dc91893c71",
+        "decision": "allow",
+        "metadata": {
+          "evaluator": "deterministic",
+          "evaluator_version": "scqos-acs-lab/0.1.0"
+        },
+        "policy_data": {
+          "scqos": {
+            "decision_boundary": "KERNEL",
+            "execution_mode": "SHADOW_ONLY",
+            "receipt_id": "0761924e1f6cd9fc23a497e7add2702e628f9809ce6f468d3908f477763a1591",
+            "verdict": "PERMIT"
+          }
+        },
+        "policy_references": [
+          {
+            "policy_id": "scqos",
+            "policy_name": "Supreme Computation",
+            "policy_version": "live",
+            "rule_id": "transition-admissibility"
+          }
+        ],
+        "reasoning": "SCQOS proved the proposed transition admissible",
+        "request_id": "137d02bf-38d5-4d51-a233-1e85e66e8a8c",
+        "signature": {
+          "algorithm": "HMAC-SHA256",
+          "key_id": "lab-hmac-v1",
+          "value": "H7mhMszB5zP6RO7SUAJRgsoEhB3+xuNSTtDI48vUVjU="
+        },
+        "type": "final"
+      }
+    },
+    "replay_second": {
+      "error": {
+        "code": -32005,
+        "data": {
+          "message": "request_id or nonce already observed",
+          "reason": "REPLAY_DETECTED"
+        },
+        "message": "REPLAY_DETECTED"
+      },
+      "id": "4628dcbc-ac6c-4552-8a58-81cca3cff277",
+      "jsonrpc": "2.0"
+    },
+    "valid": {
+      "request": {
+        "id": "a47504b3-56d0-4bd3-be66-04e1710bbf17",
+        "jsonrpc": "2.0",
+        "method": "steps/toolCallRequest",
+        "params": {
+          "acs_version": "0.1.0",
+          "metadata": {
+            "agent_id": "falsification-agent",
+            "environment": "staging",
+            "session_id": "d8b0449e-04fb-4451-b080-c72e2ebf9729",
+            "user_context": {
+              "authentication_method": "lab-hmac",
+              "roles": [
+                "challenge:execute"
+              ],
+              "user_id": "falsification-operator"
+            }
+          },
+          "payload": {
+            "arguments": {
+              "effect": {
+                "value": "write:5ed2f5d790607647ac2d375d8658b9b0afadc150c71a8884138d6292749d1134"
+              },
+              "evidence_present": {
+                "value": true
+              },
+              "target": {
+                "value": "file:///home/knowledgee-kza/scqos-acs-falsification-lab/lab/controlled-effects/permitted.txt"
+              }
+            },
+            "capability": "lab.transition",
+            "intent": {
+              "description": "falsification-lab governed transition",
+              "goal": "write:5ed2f5d790607647ac2d375d8658b9b0afadc150c71a8884138d6292749d1134"
+            },
+            "tool": {
+              "name": "lab.write",
+              "version": "1"
+            }
+          },
+          "request_id": "1d7f1366-e395-446f-ac14-49fad14eadc7",
+          "signature": {
+            "algorithm": "HMAC-SHA256",
+            "key_id": "lab-hmac-v1",
+            "value": "yoneYUXb3jG77Cb29TAbKMMC6rgccus/7fCoxI7J0g0="
+          },
+          "timestamp": "2026-10-04T03:00:00.387298Z"
+        }
+      },
+      "response": {
+        "id": "a47504b3-56d0-4bd3-be66-04e1710bbf17",
+        "jsonrpc": "2.0",
+        "result": {
+          "acs_version": "0.1.0",
+          "chain_hash": "c67acca04dd1d8e999ce520018b4449e343c1a860cbfdf4b658963e5a02f3903",
+          "decision": "allow",
+          "metadata": {
+            "evaluator": "deterministic",
+            "evaluator_version": "scqos-acs-lab/0.1.0"
+          },
+          "policy_data": {
+            "scqos": {
+              "decision_boundary": "KERNEL",
+              "execution_mode": "SHADOW_ONLY",
+              "receipt_id": "60e9197c8b0cf9998392009272a701959e4b1d6f05955a95c696defd0186b804",
+              "verdict": "PERMIT"
+            }
+          },
+          "policy_references": [
+            {
+              "policy_id": "scqos",
+              "policy_name": "Supreme Computation",
+              "policy_version": "live",
+              "rule_id": "transition-admissibility"
+            }
+          ],
+          "reasoning": "SCQOS proved the proposed transition admissible",
+          "request_id": "1d7f1366-e395-446f-ac14-49fad14eadc7",
+          "signature": {
+            "algorithm": "HMAC-SHA256",
+            "key_id": "lab-hmac-v1",
+            "value": "PHc9UC8kfPYxX/KG+EmSkiEBJQ6h1VO7Ib3NSI+G13U="
+          },
+          "type": "final"
+        }
+      }
+    }
+  }
+}
