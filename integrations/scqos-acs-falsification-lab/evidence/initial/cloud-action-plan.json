@@ -1,0 +1,496 @@
+{
+  "guardian": "http://127.0.0.1:18888/acs",
+  "handshake": {
+    "id": "1f34fd2b-cf93-44c1-b2dd-586235c86f79",
+    "jsonrpc": "2.0",
+    "result": {
+      "approver_types_supported": [
+        "human",
+        "service"
+      ],
+      "methods_evaluated": [
+        "protocols/MCP/tools/call",
+        "steps/agentResponse",
+        "steps/sessionEnd",
+        "steps/sessionStart",
+        "steps/toolCallRequest",
+        "steps/toolCallResult",
+        "steps/userMessage",
+        "system/ping"
+      ],
+      "negotiated_version": "0.1.0",
+      "on_decision_failure": "deny",
+      "policy_requires_provenance": false,
+      "profiles_accepted": [
+        "acs-core"
+      ],
+      "selected_transport": "http",
+      "signature_algorithms_supported": [
+        "HMAC-SHA256"
+      ],
+      "skew_window_ms": 300000,
+      "timeout_config": {
+        "default_ms": 5000,
+        "per_method_ms": {
+          "steps/toolCallRequest": 5000
+        }
+      }
+    }
+  },
+  "records": [
+    {
+      "key": "runs/20261004T024944Z-c64afc12/actions/permit.txt",
+      "name": "permit",
+      "request": {
+        "id": "0e6aa85f-6cfa-463d-a488-75e8ec96d3de",
+        "jsonrpc": "2.0",
+        "method": "steps/toolCallRequest",
+        "params": {
+          "acs_version": "0.1.0",
+          "metadata": {
+            "agent_id": "cloud-action-probe",
+            "environment": "staging",
+            "session_id": "cfa29e50-b0e1-4d25-b165-fde5d4b9ee22",
+            "user_context": {
+              "authentication_method": "lab-hmac",
+              "roles": [
+                "challenge:execute"
+              ],
+              "user_id": "falsification-operator"
+            }
+          },
+          "payload": {
+            "arguments": {
+              "effect": {
+                "value": "create:permit-proof"
+              },
+              "evidence_present": {
+                "value": true
+              },
+              "target": {
+                "value": "s3://scqos-acs-falsification/20261004T024944Z-c64afc12/permit.txt"
+              }
+            },
+            "capability": "lab.transition",
+            "intent": {
+              "description": "falsification-lab governed transition",
+              "goal": "create:permit-proof"
+            },
+            "tool": {
+              "name": "lab.write",
+              "version": "1"
+            }
+          },
+          "request_id": "253d310a-a9d5-4fc2-ae77-7ae6db81b1c8",
+          "signature": {
+            "algorithm": "HMAC-SHA256",
+            "key_id": "lab-hmac-v1",
+            "value": "3BgYAzJIGeQC1kW0mFxcGezuhFdPjoPfUziqIKHnynU="
+          },
+          "timestamp": "2026-10-04T02:49:44.189418Z"
+        }
+      },
+      "response": {
+        "id": "0e6aa85f-6cfa-463d-a488-75e8ec96d3de",
+        "jsonrpc": "2.0",
+        "result": {
+          "acs_version": "0.1.0",
+          "chain_hash": "795b54768819010b2c9609fc8e37dc55c738d9abbd3a37ddcdf4b300563afdb7",
+          "decision": "allow",
+          "metadata": {
+            "evaluator": "deterministic",
+            "evaluator_version": "scqos-acs-lab/0.1.0"
+          },
+          "policy_data": {
+            "scqos": {
+              "decision_boundary": "KERNEL",
+              "execution_mode": "SHADOW_ONLY",
+              "receipt_id": "0430f46aff10ebe8a22442f9708904fac72d9371923910647849058579bdd2e7",
+              "verdict": "PERMIT"
+            }
+          },
+          "policy_references": [
+            {
+              "policy_id": "scqos",
+              "policy_name": "Supreme Computation",
+              "policy_version": "live",
+              "rule_id": "transition-admissibility"
+            }
+          ],
+          "reasoning": "SCQOS proved the proposed transition admissible",
+          "request_id": "253d310a-a9d5-4fc2-ae77-7ae6db81b1c8",
+          "signature": {
+            "algorithm": "HMAC-SHA256",
+            "key_id": "lab-hmac-v1",
+            "value": "Z0615JGoR+nMof8S5VqM+rxYxcpc7CD+CcL6YNKzIGE="
+          },
+          "type": "final"
+        }
+      }
+    },
+    {
+      "key": "runs/20261004T024944Z-c64afc12/actions/deny.txt",
+      "name": "deny",
+      "request": {
+        "id": "61f39b4e-33b7-4b16-9843-5a4949894c1f",
+        "jsonrpc": "2.0",
+        "method": "steps/toolCallRequest",
+        "params": {
+          "acs_version": "0.1.0",
+          "metadata": {
+            "agent_id": "cloud-action-probe",
+            "environment": "staging",
+            "session_id": "cfa29e50-b0e1-4d25-b165-fde5d4b9ee22",
+            "session_state": {
+              "chain_hash": "795b54768819010b2c9609fc8e37dc55c738d9abbd3a37ddcdf4b300563afdb7"
+            },
+            "user_context": {
+              "authentication_method": "lab-hmac",
+              "roles": [
+                "read:only"
+              ],
+              "user_id": "falsification-operator"
+            }
+          },
+          "payload": {
+            "arguments": {
+              "effect": {
+                "value": "create:deny-proof"
+              },
+              "evidence_present": {
+                "value": true
+              },
+              "target": {
+                "value": "s3://scqos-acs-falsification/20261004T024944Z-c64afc12/deny.txt"
+              }
+            },
+            "capability": "lab.transition",
+            "intent": {
+              "description": "falsification-lab governed transition",
+              "goal": "create:deny-proof"
+            },
+            "tool": {
+              "name": "lab.write",
+              "version": "1"
+            }
+          },
+          "request_id": "3167088b-7b04-4332-beba-ebf796c14ee5",
+          "signature": {
+            "algorithm": "HMAC-SHA256",
+            "key_id": "lab-hmac-v1",
+            "value": "W+/AWz00/8JH0AXffjG4pF1fo2xhuhRXapuXDXUH5+0="
+          },
+          "timestamp": "2026-10-04T02:49:44.892525Z"
+        }
+      },
+      "response": {
+        "id": "61f39b4e-33b7-4b16-9843-5a4949894c1f",
+        "jsonrpc": "2.0",
+        "result": {
+          "acs_version": "0.1.0",
+          "chain_hash": "bba1182ccb492ad98f86d254034e73f865adac8fb6a156694c00b72fcb5fb198",
+          "decision": "deny",
+          "metadata": {
+            "evaluator": "deterministic",
+            "evaluator_version": "scqos-acs-lab/0.1.0"
+          },
+          "policy_data": {
+            "scqos": {
+              "decision_boundary": "AUTHORITY",
+              "execution_mode": "SHADOW_ONLY",
+              "receipt_id": "b1019e11b8150ee895810fb425a70a9b2dc3471ec0844ae37409f55a7bfccb95",
+              "verdict": "REJECT"
+            }
+          },
+          "policy_references": [
+            {
+              "policy_id": "scqos",
+              "policy_name": "Supreme Computation",
+              "policy_version": "live",
+              "rule_id": "transition-admissibility"
+            }
+          ],
+          "reason_codes": [
+            "scqos_reject"
+          ],
+          "reasoning": "authority scope does not authorize execution",
+          "request_id": "3167088b-7b04-4332-beba-ebf796c14ee5",
+          "signature": {
+            "algorithm": "HMAC-SHA256",
+            "key_id": "lab-hmac-v1",
+            "value": "h8MT6QMY12sLfWJb9i4+bgjVxRfLCy1I8g8kvYWu2is="
+          },
+          "type": "final"
+        }
+      }
+    },
+    {
+      "key": "runs/20261004T024944Z-c64afc12/actions/hold.txt",
+      "name": "hold",
+      "request": {
+        "id": "0f706608-d880-4d44-8c05-438ff9e2e8c1",
+        "jsonrpc": "2.0",
+        "method": "steps/toolCallRequest",
+        "params": {
+          "acs_version": "0.1.0",
+          "metadata": {
+            "agent_id": "cloud-action-probe",
+            "environment": "staging",
+            "session_id": "cfa29e50-b0e1-4d25-b165-fde5d4b9ee22",
+            "session_state": {
+              "chain_hash": "bba1182ccb492ad98f86d254034e73f865adac8fb6a156694c00b72fcb5fb198"
+            },
+            "user_context": {
+              "authentication_method": "lab-hmac",
+              "roles": [
+                "challenge:execute"
+              ],
+              "user_id": "falsification-operator"
+            }
+          },
+          "payload": {
+            "arguments": {
+              "effect": {
+                "value": "create:hold-proof"
+              },
+              "evidence_present": {
+                "value": false
+              },
+              "target": {
+                "value": "s3://scqos-acs-falsification/20261004T024944Z-c64afc12/hold.txt"
+              }
+            },
+            "capability": "lab.transition",
+            "intent": {
+              "description": "falsification-lab governed transition",
+              "goal": "create:hold-proof"
+            },
+            "tool": {
+              "name": "lab.write",
+              "version": "1"
+            }
+          },
+          "request_id": "1ad0f75c-8d53-4a61-9117-fbbd196c38ae",
+          "signature": {
+            "algorithm": "HMAC-SHA256",
+            "key_id": "lab-hmac-v1",
+            "value": "9IN0Iuc+IbpnO1dSUTGFa2bjA+KXbqrDrsUB1+asR0k="
+          },
+          "timestamp": "2026-10-04T02:49:45.531845Z"
+        }
+      },
+      "response": {
+        "id": "0f706608-d880-4d44-8c05-438ff9e2e8c1",
+        "jsonrpc": "2.0",
+        "result": {
+          "acs_version": "0.1.0",
+          "chain_hash": "cc23c9ccaa52c76aec43ca5f49474d87a2b6cf52ce92ae9d1bf10f8e764b5c1d",
+          "decision": "defer",
+          "defer_details": {
+            "reason": "insufficient_context",
+            "required_context": [
+              "coherent_transition_evidence"
+            ],
+            "resolution_method": "additional_context",
+            "resolution_timeout_ms": 5000,
+            "timeout_decision": "deny"
+          },
+          "metadata": {
+            "evaluator": "deterministic",
+            "evaluator_version": "scqos-acs-lab/0.1.0"
+          },
+          "policy_data": {
+            "scqos": {
+              "decision_boundary": "EVIDENCE",
+              "execution_mode": "SHADOW_ONLY",
+              "receipt_id": "3075d86dc116e436c11d6e0a5137fd3245e347f1c3353a8f4a9133a91d57f0b7",
+              "verdict": "HOLD"
+            }
+          },
+          "policy_references": [
+            {
+              "policy_id": "scqos",
+              "policy_name": "Supreme Computation",
+              "policy_version": "live",
+              "rule_id": "transition-admissibility"
+            }
+          ],
+          "reason_codes": [
+            "insufficient_context"
+          ],
+          "reasoning": "required evidence is incomplete",
+          "request_id": "1ad0f75c-8d53-4a61-9117-fbbd196c38ae",
+          "signature": {
+            "algorithm": "HMAC-SHA256",
+            "key_id": "lab-hmac-v1",
+            "value": "xnyWCU8l5gcxUnphf2+b2LOXzpMiA1ZjojDMJ9CSr0k="
+          },
+          "type": "final"
+        }
+      }
+    },
+    {
+      "key": "runs/20261004T024944Z-c64afc12/actions/replay.txt",
+      "name": "replay_first",
+      "request": {
+        "id": "d2d31db7-e41d-4bd6-908b-cb984c00e8a2",
+        "jsonrpc": "2.0",
+        "method": "steps/toolCallRequest",
+        "params": {
+          "acs_version": "0.1.0",
+          "metadata": {
+            "agent_id": "cloud-action-probe",
+            "environment": "staging",
+            "session_id": "cfa29e50-b0e1-4d25-b165-fde5d4b9ee22",
+            "session_state": {
+              "chain_hash": "cc23c9ccaa52c76aec43ca5f49474d87a2b6cf52ce92ae9d1bf10f8e764b5c1d"
+            },
+            "user_context": {
+              "authentication_method": "lab-hmac",
+              "roles": [
+                "challenge:execute"
+              ],
+              "user_id": "falsification-operator"
+            }
+          },
+          "payload": {
+            "arguments": {
+              "effect": {
+                "value": "create:replay-proof"
+              },
+              "evidence_present": {
+                "value": true
+              },
+              "target": {
+                "value": "s3://scqos-acs-falsification/20261004T024944Z-c64afc12/replay.txt"
+              }
+            },
+            "capability": "lab.transition",
+            "intent": {
+              "description": "replay falsification case",
+              "goal": "create exactly once"
+            },
+            "tool": {
+              "name": "lab.write",
+              "version": "1"
+            }
+          },
+          "request_id": "eaa722b4-d3e9-4021-8dcb-df0104ef9f36",
+          "signature": {
+            "algorithm": "HMAC-SHA256",
+            "key_id": "lab-hmac-v1",
+            "value": "vh+F93tfh9RJaUGywsDf3KbkdA0ogInSddhVJHzJAp8="
+          },
+          "timestamp": "2026-10-04T02:49:46.213289Z"
+        }
+      },
+      "response": {
+        "id": "d2d31db7-e41d-4bd6-908b-cb984c00e8a2",
+        "jsonrpc": "2.0",
+        "result": {
+          "acs_version": "0.1.0",
+          "chain_hash": "a0d666b1d050ead2f421d0d9c21e2312cd4606147a092cb5ae435d494fcacee7",
+          "decision": "allow",
+          "metadata": {
+            "evaluator": "deterministic",
+            "evaluator_version": "scqos-acs-lab/0.1.0"
+          },
+          "policy_data": {
+            "scqos": {
+              "decision_boundary": "KERNEL",
+              "execution_mode": "SHADOW_ONLY",
+              "receipt_id": "cc8c16950463537f2bf72526e7364edf5fd8c214e773ef4ea13cb7563319d55f",
+              "verdict": "PERMIT"
+            }
+          },
+          "policy_references": [
+            {
+              "policy_id": "scqos",
+              "policy_name": "Supreme Computation",
+              "policy_version": "live",
+              "rule_id": "transition-admissibility"
+            }
+          ],
+          "reasoning": "SCQOS proved the proposed transition admissible",
+          "request_id": "eaa722b4-d3e9-4021-8dcb-df0104ef9f36",
+          "signature": {
+            "algorithm": "HMAC-SHA256",
+            "key_id": "lab-hmac-v1",
+            "value": "ZsFAl66SEeoqvTUEvauupjbD8+RHoxsncsuyc5ZDzvQ="
+          },
+          "type": "final"
+        }
+      }
+    },
+    {
+      "key": "runs/20261004T024944Z-c64afc12/actions/replay.txt",
+      "name": "replay_second",
+      "request": {
+        "id": "d2d31db7-e41d-4bd6-908b-cb984c00e8a2",
+        "jsonrpc": "2.0",
+        "method": "steps/toolCallRequest",
+        "params": {
+          "acs_version": "0.1.0",
+          "metadata": {
+            "agent_id": "cloud-action-probe",
+            "environment": "staging",
+            "session_id": "cfa29e50-b0e1-4d25-b165-fde5d4b9ee22",
+            "session_state": {
+              "chain_hash": "cc23c9ccaa52c76aec43ca5f49474d87a2b6cf52ce92ae9d1bf10f8e764b5c1d"
+            },
+            "user_context": {
+              "authentication_method": "lab-hmac",
+              "roles": [
+                "challenge:execute"
+              ],
+              "user_id": "falsification-operator"
+            }
+          },
+          "payload": {
+            "arguments": {
+              "effect": {
+                "value": "create:replay-proof"
+              },
+              "evidence_present": {
+                "value": true
+              },
+              "target": {
+                "value": "s3://scqos-acs-falsification/20261004T024944Z-c64afc12/replay.txt"
+              }
+            },
+            "capability": "lab.transition",
+            "intent": {
+              "description": "replay falsification case",
+              "goal": "create exactly once"
+            },
+            "tool": {
+              "name": "lab.write",
+              "version": "1"
+            }
+          },
+          "request_id": "eaa722b4-d3e9-4021-8dcb-df0104ef9f36",
+          "signature": {
+            "algorithm": "HMAC-SHA256",
+            "key_id": "lab-hmac-v1",
+            "value": "vh+F93tfh9RJaUGywsDf3KbkdA0ogInSddhVJHzJAp8="
+          },
+          "timestamp": "2026-10-04T02:49:46.213289Z"
+        }
+      },
+      "response": {
+        "error": {
+          "code": -32005,
+          "data": {
+            "message": "request_id or nonce already observed",
+            "reason": "REPLAY_DETECTED"
+          },
+          "message": "REPLAY_DETECTED"
+        },
+        "id": "d2d31db7-e41d-4bd6-908b-cb984c00e8a2",
+        "jsonrpc": "2.0"
+      }
+    }
+  ],
+  "run_id": "20261004T024944Z-c64afc12",
+  "schema": "scqos.acs.cloud-action-plan.v1"
+}

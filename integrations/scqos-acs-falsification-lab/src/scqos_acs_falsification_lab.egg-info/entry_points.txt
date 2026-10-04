@@ -1,0 +1,3 @@
+[console_scripts]
+scqos-acs-guardian = scqos_acs_lab.server:main
+scqos-acs-lab = scqos_acs_lab.harness:main

@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "scqos-acs-falsification-lab"
+version = "0.1.0"
+description = "Executable falsification lab for SCQOS as an OWASP Agent Control Standard Guardian"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "Apache-2.0"}
+authors = [{name = "Supreme Computation"}]
+dependencies = ["rfc8785>=0.1.4"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+scqos-acs-guardian = "scqos_acs_lab.server:main"
+scqos-acs-lab = "scqos_acs_lab.harness:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

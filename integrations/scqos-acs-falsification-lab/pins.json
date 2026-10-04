@@ -1,0 +1,15 @@
+{
+  "agent_control_standard": {
+    "repository": "https://github.com/GenAI-Security-Project/agent-control-standard",
+    "commit": "27799c2c27414a483a4a043b957bfd2997d53231"
+  },
+  "external_vectors": {
+    "repository": "https://github.com/probityai/agent-evidence-vectors",
+    "commit": "bbdef583c9241138e5c2b5d872bc77f7f539e9ac"
+  },
+  "scqos_reference": {
+    "repository": "https://github.com/KnowledgeeKZA3224/scqos-reference-implementation",
+    "commit": "a1f3b96035494c71019443965c60ed64d17ddba6"
+  },
+  "scqos_live_endpoint": "https://lcnk9bvtz5.execute-api.us-east-1.amazonaws.com"
+}

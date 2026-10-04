@@ -1,0 +1,85 @@
+{
+  "artifacts": [
+    {
+      "bytes": 13205,
+      "file": "agt-reference.json",
+      "sha256": "147f3441b8fc8a2095a3478e6313324a40864f8cf3ad6f808dda81203422b6ff"
+    },
+    {
+      "bytes": 166417,
+      "file": "agt-upstream-tests.txt",
+      "sha256": "3bbc02a626c3fa1c6a2154b920d1e0c9195ef3d8b6300ed04ce02ef1780b4f11"
+    },
+    {
+      "bytes": 968,
+      "file": "cloud/cloud-execution-evidence.canonical.json",
+      "sha256": "e3f59e291402ad6a0c1b3a286876b6c4576f3d01de9b6454c6860d31a6e707e0"
+    },
+    {
+      "bytes": 1230,
+      "file": "cloud/cloud-execution-evidence.json",
+      "sha256": "385025c3a325b84456507a662a9746fc316ddda4c6dffe254b45edd6c06031ad"
+    },
+    {
+      "bytes": 65,
+      "file": "cloud/cloud-execution-evidence.sha256",
+      "sha256": "81149f3e803c28b1158df88206af2e044afe28b61e5052ead442fd9de8fdc7fe"
+    },
+    {
+      "bytes": 70,
+      "file": "cloud/cloud-execution-evidence.sig",
+      "sha256": "aaff59eaf3d35dc970ee1fa182ec2508c62b0d11ad95a32f0c6b60e47cae897f"
+    },
+    {
+      "bytes": 91,
+      "file": "cloud/evidence-signing-key.der",
+      "sha256": "c05a529667f3be3ab04610d2ff35e922fdad25c27f0323acdda0f269eded6439"
+    },
+    {
+      "bytes": 178,
+      "file": "cloud/evidence-signing-key.pem",
+      "sha256": "214999d51e57863a0af74447c0b03b56dbfd70d8607c4d7d741969e8ea9b7581"
+    },
+    {
+      "bytes": 12,
+      "file": "cloud/signature-verification.txt",
+      "sha256": "80a53f76c7ed6969dade3b6ee47cdb753162db7c00be625448999d08bae77ed8"
+    },
+    {
+      "bytes": 16262,
+      "file": "cloud-action-plan.json",
+      "sha256": "8c377100ac08a9d045643b953947ab224ac78a0c47474c127b7cdbb39e95cc51"
+    },
+    {
+      "bytes": 8892,
+      "file": "cloud-to-terminal.json",
+      "sha256": "e934860fc7026e4a3a1134e882e3040d7e8b4a887aacb9ee5f04e9defc805b53"
+    },
+    {
+      "bytes": 5065,
+      "file": "differential.json",
+      "sha256": "cf9968028651280c0a39b3e603a8dbbc251234541e7b04cf2d56cf3e038d6bb9"
+    },
+    {
+      "bytes": 17935,
+      "file": "external-vectors-agt.json",
+      "sha256": "31ded01e0b5791eb0a66eea286d5920690f057ab65f95db13e811eae38ffb8af"
+    },
+    {
+      "bytes": 19246,
+      "file": "external-vectors-scqos.json",
+      "sha256": "802bbdcd37f8f5d76453781fd0a5a5577ba6bdbf8fabad59c36a21d1096e2bcd"
+    },
+    {
+      "bytes": 22051,
+      "file": "live-scqos.json",
+      "sha256": "c0fa6135615532cfa3dfcd298e42800bc437ab8a569f3e92c12eaf14886c296e"
+    },
+    {
+      "bytes": 20259,
+      "file": "scqos-http-live.json",
+      "sha256": "b4c1c245bd7380db8d6aad3f9349e4fcc33e78ed064d1d8c292ed62e00769a8d"
+    }
+  ],
+  "schema": "scqos.acs.initial-evidence-manifest.v2"
+}

@@ -1,0 +1,64 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: SCQOS x OWASP ACS Falsification Lab evidence plane
+Resources:
+  EvidenceBucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      BucketName: !Sub 'scqos-acs-falsification-${AWS::AccountId}-${AWS::Region}'
+      VersioningConfiguration:
+        Status: Enabled
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        IgnorePublicAcls: true
+        BlockPublicPolicy: true
+        RestrictPublicBuckets: true
+      Tags:
+        - Key: Project
+          Value: SCQOS-ACS-Falsification-Lab
+        - Key: Purpose
+          Value: ReproducibleEvidence
+  EvidenceSigningKey:
+    Type: AWS::KMS::Key
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      Description: SCQOS ACS falsification evidence signing key
+      Enabled: true
+      KeySpec: ECC_NIST_P256
+      KeyUsage: SIGN_VERIFY
+      PendingWindowInDays: 30
+  EvidenceSigningAlias:
+    Type: AWS::KMS::Alias
+    Properties:
+      AliasName: alias/scqos-acs-falsification-lab
+      TargetKeyId: !Ref EvidenceSigningKey
+  RunLedger:
+    Type: AWS::DynamoDB::Table
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      TableName: scqos-acs-falsification-runs
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: run_id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: run_id
+          KeyType: HASH
+      PointInTimeRecoverySpecification:
+        PointInTimeRecoveryEnabled: true
+      SSESpecification:
+        SSEEnabled: true
+Outputs:
+  EvidenceBucketName:
+    Value: !Ref EvidenceBucket
+  EvidenceSigningKeyArn:
+    Value: !GetAtt EvidenceSigningKey.Arn
+  RunLedgerName:
+    Value: !Ref RunLedger

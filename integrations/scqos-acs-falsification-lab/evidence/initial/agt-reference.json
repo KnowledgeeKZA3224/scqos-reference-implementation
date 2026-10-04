@@ -1,0 +1,424 @@
+{
+  "all_pass": false,
+  "generated_at": 1791082148.6093726,
+  "meta_test": {
+    "detected": true,
+    "failed_probes": [
+      "valid_transition",
+      "wrong_authority",
+      "missing_evidence",
+      "missing_signature",
+      "tampered_signature",
+      "replay_second",
+      "stale_timestamp",
+      "future_timestamp",
+      "chain_mismatch",
+      "modify_disposition",
+      "ask_disposition"
+    ],
+    "mutant": "allow-everything"
+  },
+  "mode": "http",
+  "passed": 2,
+  "probes": [
+    {
+      "detail": {
+        "id": "cc812648-e398-4890-a03c-ccd8df5a7c91",
+        "jsonrpc": "2.0",
+        "result": {
+          "methods_evaluated": [
+            "steps/toolCallRequest",
+            "steps/toolCallResult"
+          ],
+          "negotiated_version": "0.1.0",
+          "on_decision_failure": "proceed",
+          "selected_transport": "http",
+          "timeout_config": {
+            "default_ms": 5000
+          }
+        }
+      },
+      "expected": "ServerHello 0.1.0 + fail-closed posture",
+      "name": "handshake",
+      "observed": "decision:server_hello",
+      "passed": false
+    },
+    {
+      "detail": {
+        "error": {
+          "code": -32011,
+          "data": {
+            "method": "system/ping"
+          },
+          "message": "method not dispatched by this Guardian: system/ping"
+        },
+        "id": "91c34cf6-027e-4d06-930e-2e9969e48469",
+        "jsonrpc": "2.0"
+      },
+      "expected": "allow",
+      "name": "unsigned_ping",
+      "observed": "error:-32011",
+      "passed": false
+    },
+    {
+      "detail": {
+        "id": "dbd1bb72-07da-4b29-bfc8-34fc53cf906a",
+        "jsonrpc": "2.0",
+        "result": {
+          "acs_version": "0.1.0",
+          "decision": "deny",
+          "policy_references": [],
+          "reason_codes": [
+            "evaluation_failed"
+          ],
+          "reasoning": "mapping.yaml reads tool \"lab.write\"'s policy target from argument \"command\", but this call sent no such argument (it sent: target, effect, evidence_present)",
+          "request_id": "55df69fa-14e0-496b-9c45-c8a7dfcc29a3",
+          "type": "final"
+        }
+      },
+      "expected": "allow + signed chain head",
+      "name": "valid_transition",
+      "observed": "decision:deny",
+      "passed": false
+    },
+    {
+      "detail": {
+        "id": "0b310294-df7a-47b5-a6c4-a7404fbcc322",
+        "jsonrpc": "2.0",
+        "result": {
+          "acs_version": "0.1.0",
+          "decision": "deny",
+          "policy_references": [],
+          "reason_codes": [
+            "evaluation_failed"
+          ],
+          "reasoning": "mapping.yaml reads tool \"lab.write\"'s policy target from argument \"command\", but this call sent no such argument (it sent: target, effect, evidence_present)",
+          "request_id": "b07dce17-8f07-4559-890a-2f573d9eee7a",
+          "type": "final"
+        }
+      },
+      "expected": "deny",
+      "name": "wrong_authority",
+      "observed": "decision:deny",
+      "passed": true
+    },
+    {
+      "detail": {
+        "id": "32100487-62f0-4226-91d1-5f3b9070b91c",
+        "jsonrpc": "2.0",
+        "result": {
+          "acs_version": "0.1.0",
+          "decision": "deny",
+          "policy_references": [],
+          "reason_codes": [
+            "evaluation_failed"
+          ],
+          "reasoning": "mapping.yaml reads tool \"lab.write\"'s policy target from argument \"command\", but this call sent no such argument (it sent: target, effect, evidence_present)",
+          "request_id": "e680defc-4a27-4629-a891-2648f582336e",
+          "type": "final"
+        }
+      },
+      "expected": "defer with deny timeout",
+      "name": "missing_evidence",
+      "observed": "decision:deny",
+      "passed": false
+    },
+    {
+      "detail": {
+        "id": "9dab6a87-abb8-4fdf-921d-3e110d1424f0",
+        "jsonrpc": "2.0",
+        "result": {
+          "acs_version": "0.1.0",
+          "decision": "deny",
+          "policy_references": [],
+          "reason_codes": [
+            "evaluation_failed"
+          ],
+          "reasoning": "mapping.yaml reads tool \"lab.write\"'s policy target from argument \"command\", but this call sent no such argument (it sent: none)",
+          "request_id": "3383089c-ed94-4021-84d1-3e41bba17437",
+          "type": "final"
+        }
+      },
+      "expected": "error:-32004",
+      "name": "missing_signature",
+      "observed": "decision:deny",
+      "passed": false
+    },
+    {
+      "detail": {
+        "id": "083cee03-22b1-4d65-96a6-d6e23edf8264",
+        "jsonrpc": "2.0",
+        "result": {
+          "acs_version": "0.1.0",
+          "decision": "deny",
+          "policy_references": [],
+          "reason_codes": [
+            "evaluation_failed"
+          ],
+          "reasoning": "mapping.yaml reads tool \"lab.write\"'s policy target from argument \"command\", but this call sent no such argument (it sent: none)",
+          "request_id": "ee3ae99c-5c62-443a-8f55-7285b9198070",
+          "type": "final"
+        }
+      },
+      "expected": "error:-32004",
+      "name": "tampered_signature",
+      "observed": "decision:deny",
+      "passed": false
+    },
+    {
+      "detail": {
+        "id": "6bc5532b-f696-47a7-8b56-3dd8f3ea58bb",
+        "jsonrpc": "2.0",
+        "result": {
+          "acs_version": "0.1.0",
+          "decision": "deny",
+          "policy_references": [],
+          "reason_codes": [
+            "evaluation_failed"
+          ],
+          "reasoning": "mapping.yaml reads tool \"lab.write\"'s policy target from argument \"command\", but this call sent no such argument (it sent: target, effect)",
+          "request_id": "df6cd5a7-dde9-4650-9f2b-530f42233f2a",
+          "type": "final"
+        }
+      },
+      "expected": "allow",
+      "name": "replay_first",
+      "observed": "decision:deny",
+      "passed": false
+    },
+    {
+      "detail": {
+        "id": "6bc5532b-f696-47a7-8b56-3dd8f3ea58bb",
+        "jsonrpc": "2.0",
+        "result": {
+          "acs_version": "0.1.0",
+          "decision": "deny",
+          "policy_references": [],
+          "reason_codes": [
+            "evaluation_failed"
+          ],
+          "reasoning": "mapping.yaml reads tool \"lab.write\"'s policy target from argument \"command\", but this call sent no such argument (it sent: target, effect)",
+          "request_id": "df6cd5a7-dde9-4650-9f2b-530f42233f2a",
+          "type": "final"
+        }
+      },
+      "expected": "error:-32005",
+      "name": "replay_second",
+      "observed": "decision:deny",
+      "passed": false
+    },
+    {
+      "detail": {
+        "id": "cc9d5c0b-b51b-4f2b-9779-6f8565797667",
+        "jsonrpc": "2.0",
+        "result": {
+          "acs_version": "0.1.0",
+          "decision": "deny",
+          "policy_references": [],
+          "reason_codes": [
+            "evaluation_failed"
+          ],
+          "reasoning": "mapping.yaml reads tool \"lab.write\"'s policy target from argument \"command\", but this call sent no such argument (it sent: none)",
+          "request_id": "d968f52b-904d-49f1-86c8-b9edc74f081d",
+          "type": "final"
+        }
+      },
+      "expected": "error:-32006",
+      "name": "stale_timestamp",
+      "observed": "decision:deny",
+      "passed": false
+    },
+    {
+      "detail": {
+        "id": "037a6418-0bb0-4414-9daa-591907db061d",
+        "jsonrpc": "2.0",
+        "result": {
+          "acs_version": "0.1.0",
+          "decision": "deny",
+          "policy_references": [],
+          "reason_codes": [
+            "evaluation_failed"
+          ],
+          "reasoning": "mapping.yaml reads tool \"lab.write\"'s policy target from argument \"command\", but this call sent no such argument (it sent: none)",
+          "request_id": "5b2540ee-863d-4b33-aa27-f2636588d0bb",
+          "type": "final"
+        }
+      },
+      "expected": "error:-32006",
+      "name": "future_timestamp",
+      "observed": "decision:deny",
+      "passed": false
+    },
+    {
+      "detail": {
+        "id": "7da500fa-da49-4963-b9f1-716de35b8eb2",
+        "jsonrpc": "2.0",
+        "result": {
+          "acs_version": "0.1.0",
+          "decision": "deny",
+          "policy_references": [],
+          "reason_codes": [
+            "evaluation_failed"
+          ],
+          "reasoning": "mapping.yaml reads tool \"lab.write\"'s policy target from argument \"command\", but this call sent no such argument (it sent: none)",
+          "request_id": "8b03cf46-d629-47ca-bc93-4026d04a8e1b",
+          "type": "final"
+        }
+      },
+      "expected": "error:-32007",
+      "name": "chain_mismatch",
+      "observed": "decision:deny",
+      "passed": false
+    },
+    {
+      "detail": {
+        "id": "e489a3e4-3b30-4d4c-acc5-a4cc6f9299f3",
+        "jsonrpc": "2.0",
+        "result": {
+          "acs_version": "0.1.0",
+          "decision": "deny",
+          "policy_references": [],
+          "reason_codes": [
+            "evaluation_failed"
+          ],
+          "reasoning": "mapping.yaml reads tool \"lab.write\"'s policy target from argument \"command\", but this call sent no such argument (it sent: target, effect, evidence_present, safe_rewrite)",
+          "request_id": "69302e70-49bf-4228-a6e6-e32abe118554",
+          "type": "final"
+        }
+      },
+      "expected": "modify",
+      "name": "modify_disposition",
+      "observed": "decision:deny",
+      "passed": false
+    },
+    {
+      "detail": {
+        "id": "d251bc60-61ae-445f-bc20-19d1c3d1ad0b",
+        "jsonrpc": "2.0",
+        "result": {
+          "acs_version": "0.1.0",
+          "decision": "deny",
+          "policy_references": [],
+          "reason_codes": [
+            "evaluation_failed"
+          ],
+          "reasoning": "mapping.yaml reads tool \"lab.write\"'s policy target from argument \"command\", but this call sent no such argument (it sent: target, effect, evidence_present, requires_approval)",
+          "request_id": "056a920f-65bc-45f9-93af-bb87ba0d19b0",
+          "type": "final"
+        }
+      },
+      "expected": "ask",
+      "name": "ask_disposition",
+      "observed": "decision:deny",
+      "passed": false
+    },
+    {
+      "detail": {
+        "error": {
+          "code": -32011,
+          "data": {
+            "method": "steps/sessionStart"
+          },
+          "message": "method not dispatched by this Guardian: steps/sessionStart"
+        },
+        "id": "1ab50c4e-ab64-4f5d-8eb6-070b7e2cbfe5",
+        "jsonrpc": "2.0"
+      },
+      "expected": "non-error decision",
+      "name": "dispatch_steps/sessionStart",
+      "observed": "error:-32011",
+      "passed": false
+    },
+    {
+      "detail": {
+        "error": {
+          "code": -32011,
+          "data": {
+            "method": "steps/userMessage"
+          },
+          "message": "method not dispatched by this Guardian: steps/userMessage"
+        },
+        "id": "ab84c6cc-bc79-4e46-991c-21dc622b42b4",
+        "jsonrpc": "2.0"
+      },
+      "expected": "non-error decision",
+      "name": "dispatch_steps/userMessage",
+      "observed": "error:-32011",
+      "passed": false
+    },
+    {
+      "detail": {
+        "id": "8221a28f-ad13-4ff9-8682-1af8bcf88abc",
+        "jsonrpc": "2.0",
+        "result": {
+          "acs_version": "0.1.0",
+          "decision": "deny",
+          "policy_references": [],
+          "reason_codes": [
+            "envelope_invalid"
+          ],
+          "reasoning": "ACS envelope failed schema validation at /params/payload/tool: must have required property 'tool'",
+          "request_id": "23f13e2e-1709-494e-858d-715b30f4c450",
+          "type": "final"
+        }
+      },
+      "expected": "non-error decision",
+      "name": "dispatch_steps/toolCallResult",
+      "observed": "decision:deny",
+      "passed": true
+    },
+    {
+      "detail": {
+        "error": {
+          "code": -32011,
+          "data": {
+            "method": "steps/agentResponse"
+          },
+          "message": "method not dispatched by this Guardian: steps/agentResponse"
+        },
+        "id": "372ad4f6-d65f-4900-9928-aac5bc433241",
+        "jsonrpc": "2.0"
+      },
+      "expected": "non-error decision",
+      "name": "dispatch_steps/agentResponse",
+      "observed": "error:-32011",
+      "passed": false
+    },
+    {
+      "detail": {
+        "error": {
+          "code": -32011,
+          "data": {
+            "method": "steps/sessionEnd"
+          },
+          "message": "method not dispatched by this Guardian: steps/sessionEnd"
+        },
+        "id": "24651584-3d39-43c0-a338-10cfed395051",
+        "jsonrpc": "2.0"
+      },
+      "expected": "non-error decision",
+      "name": "dispatch_steps/sessionEnd",
+      "observed": "error:-32011",
+      "passed": false
+    },
+    {
+      "detail": {
+        "error": {
+          "code": -32011,
+          "data": {
+            "method": "protocols/MCP/tools/call"
+          },
+          "message": "method not dispatched by this Guardian: protocols/MCP/tools/call"
+        },
+        "id": "6b05c8d8-83cc-4f5e-9abd-1299317dc94e",
+        "jsonrpc": "2.0"
+      },
+      "expected": "non-error decision",
+      "name": "dispatch_protocols/MCP/tools/call",
+      "observed": "error:-32011",
+      "passed": false
+    }
+  ],
+  "schema": "scqos.acs.falsification.run.v1",
+  "total": 20
+}
