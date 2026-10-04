@@ -2,21 +2,21 @@ name: ACS Falsification Lab
 on:
   push:
     paths:
-      - 'verification/acs-falsification-lab/**'
+      - 'integrations/scqos-acs-falsification-lab/**'
       - '.github/workflows/acs-falsification-lab.yml'
   pull_request:
     paths:
-      - 'verification/acs-falsification-lab/**'
+      - 'integrations/scqos-acs-falsification-lab/**'
       - '.github/workflows/acs-falsification-lab.yml'
   workflow_dispatch:
 permissions:
   contents: read
 jobs:
-  falsify:
+  falsification:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: verification/acs-falsification-lab
+        working-directory: integrations/scqos-acs-falsification-lab
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -25,7 +25,10 @@ jobs:
       - run: python -m pip install -e '.[dev]'
       - run: pytest -q
       - run: python -m scqos_acs_lab.harness --direct-local --output run-evidence/ci.json
+      - run: ./scripts/fetch-pinned-upstream.sh
+      - run: python -m scqos_acs_lab.external_vectors --corpus upstream/agent-evidence-vectors/vectors-acs-core --direct --output run-evidence/external-vectors-ci.json
+      - run: python scripts/summarize_evidence.py
       - uses: actions/upload-artifact@v4
         with:
           name: acs-falsification-evidence
-          path: verification/acs-falsification-lab/run-evidence/
+          path: integrations/scqos-acs-falsification-lab/run-evidence/
