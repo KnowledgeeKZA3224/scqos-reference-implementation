@@ -1,0 +1,31 @@
+name: ACS Falsification Lab
+on:
+  push:
+    paths:
+      - 'verification/acs-falsification-lab/**'
+      - '.github/workflows/acs-falsification-lab.yml'
+  pull_request:
+    paths:
+      - 'verification/acs-falsification-lab/**'
+      - '.github/workflows/acs-falsification-lab.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  falsify:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: verification/acs-falsification-lab
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -e '.[dev]'
+      - run: pytest -q
+      - run: python -m scqos_acs_lab.harness --direct-local --output run-evidence/ci.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: acs-falsification-evidence
+          path: verification/acs-falsification-lab/run-evidence/
