@@ -13,3 +13,8 @@ The live run used the deployed SCQOS ProofGate endpoint from the pinned reposito
 - Microsoft/AGT reference Guardian was driven by the same 20-probe harness and recorded separately. Its result is evidence about that exact pinned pairing, not a universal judgment about AGT or ACS.
 
 Raw machine-readable runs are intentionally generated under `run-evidence/` and are reproducible with `./scripts/verify-everything.sh`.
+
+
+## Pinned Microsoft/AGT Guardian self-test
+
+The Guardian package itself was tested from the pinned ACS checkout: **259 pass, 0 fail**. The broader monorepo run was also preserved separately and is not represented as green because unrelated upstream-watch tests require fixture clones.

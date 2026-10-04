@@ -1,0 +1,174 @@
+{
+  "agt": {
+    "passed": 2,
+    "total": 20
+  },
+  "claim_boundary": "Same laboratory probes only; this is not an official ACS certification score for either implementation.",
+  "rows": [
+    {
+      "agt_observed": "decision:deny",
+      "agt_pass_under_same_lab_probe": false,
+      "expected": "ask",
+      "probe": "ask_disposition",
+      "scqos_observed": "decision:ask",
+      "scqos_pass": true
+    },
+    {
+      "agt_observed": "decision:deny",
+      "agt_pass_under_same_lab_probe": false,
+      "expected": "error:-32007",
+      "probe": "chain_mismatch",
+      "scqos_observed": "error:-32007",
+      "scqos_pass": true
+    },
+    {
+      "agt_observed": "error:-32011",
+      "agt_pass_under_same_lab_probe": false,
+      "expected": "non-error decision",
+      "probe": "dispatch_protocols/MCP/tools/call",
+      "scqos_observed": "decision:allow",
+      "scqos_pass": true
+    },
+    {
+      "agt_observed": "error:-32011",
+      "agt_pass_under_same_lab_probe": false,
+      "expected": "non-error decision",
+      "probe": "dispatch_steps/agentResponse",
+      "scqos_observed": "decision:allow",
+      "scqos_pass": true
+    },
+    {
+      "agt_observed": "error:-32011",
+      "agt_pass_under_same_lab_probe": false,
+      "expected": "non-error decision",
+      "probe": "dispatch_steps/sessionEnd",
+      "scqos_observed": "decision:allow",
+      "scqos_pass": true
+    },
+    {
+      "agt_observed": "error:-32011",
+      "agt_pass_under_same_lab_probe": false,
+      "expected": "non-error decision",
+      "probe": "dispatch_steps/sessionStart",
+      "scqos_observed": "decision:allow",
+      "scqos_pass": true
+    },
+    {
+      "agt_observed": "decision:deny",
+      "agt_pass_under_same_lab_probe": true,
+      "expected": "non-error decision",
+      "probe": "dispatch_steps/toolCallResult",
+      "scqos_observed": "decision:allow",
+      "scqos_pass": true
+    },
+    {
+      "agt_observed": "error:-32011",
+      "agt_pass_under_same_lab_probe": false,
+      "expected": "non-error decision",
+      "probe": "dispatch_steps/userMessage",
+      "scqos_observed": "decision:allow",
+      "scqos_pass": true
+    },
+    {
+      "agt_observed": "decision:deny",
+      "agt_pass_under_same_lab_probe": false,
+      "expected": "error:-32006",
+      "probe": "future_timestamp",
+      "scqos_observed": "error:-32006",
+      "scqos_pass": true
+    },
+    {
+      "agt_observed": "decision:server_hello",
+      "agt_pass_under_same_lab_probe": false,
+      "expected": "ServerHello 0.1.0 + fail-closed posture",
+      "probe": "handshake",
+      "scqos_observed": "decision:server_hello",
+      "scqos_pass": true
+    },
+    {
+      "agt_observed": "decision:deny",
+      "agt_pass_under_same_lab_probe": false,
+      "expected": "defer with deny timeout",
+      "probe": "missing_evidence",
+      "scqos_observed": "decision:defer",
+      "scqos_pass": true
+    },
+    {
+      "agt_observed": "decision:deny",
+      "agt_pass_under_same_lab_probe": false,
+      "expected": "error:-32004",
+      "probe": "missing_signature",
+      "scqos_observed": "error:-32004",
+      "scqos_pass": true
+    },
+    {
+      "agt_observed": "decision:deny",
+      "agt_pass_under_same_lab_probe": false,
+      "expected": "modify",
+      "probe": "modify_disposition",
+      "scqos_observed": "decision:modify",
+      "scqos_pass": true
+    },
+    {
+      "agt_observed": "decision:deny",
+      "agt_pass_under_same_lab_probe": false,
+      "expected": "allow",
+      "probe": "replay_first",
+      "scqos_observed": "decision:allow",
+      "scqos_pass": true
+    },
+    {
+      "agt_observed": "decision:deny",
+      "agt_pass_under_same_lab_probe": false,
+      "expected": "error:-32005",
+      "probe": "replay_second",
+      "scqos_observed": "error:-32005",
+      "scqos_pass": true
+    },
+    {
+      "agt_observed": "decision:deny",
+      "agt_pass_under_same_lab_probe": false,
+      "expected": "error:-32006",
+      "probe": "stale_timestamp",
+      "scqos_observed": "error:-32006",
+      "scqos_pass": true
+    },
+    {
+      "agt_observed": "decision:deny",
+      "agt_pass_under_same_lab_probe": false,
+      "expected": "error:-32004",
+      "probe": "tampered_signature",
+      "scqos_observed": "error:-32004",
+      "scqos_pass": true
+    },
+    {
+      "agt_observed": "error:-32011",
+      "agt_pass_under_same_lab_probe": false,
+      "expected": "allow",
+      "probe": "unsigned_ping",
+      "scqos_observed": "decision:allow",
+      "scqos_pass": true
+    },
+    {
+      "agt_observed": "decision:deny",
+      "agt_pass_under_same_lab_probe": false,
+      "expected": "allow + signed chain head",
+      "probe": "valid_transition",
+      "scqos_observed": "decision:allow",
+      "scqos_pass": true
+    },
+    {
+      "agt_observed": "decision:deny",
+      "agt_pass_under_same_lab_probe": true,
+      "expected": "deny",
+      "probe": "wrong_authority",
+      "scqos_observed": "decision:deny",
+      "scqos_pass": true
+    }
+  ],
+  "schema": "scqos.acs.differential.v1",
+  "scqos": {
+    "passed": 20,
+    "total": 20
+  }
+}

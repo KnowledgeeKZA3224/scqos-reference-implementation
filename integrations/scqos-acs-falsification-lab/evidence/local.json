@@ -1,0 +1,709 @@
+{
+  "all_pass": true,
+  "generated_at": 1791083494.8371246,
+  "meta_test": {
+    "all_detected": true,
+    "mutants": [
+      {
+        "detected": true,
+        "failed_probes": [
+          "valid_transition",
+          "wrong_authority",
+          "missing_evidence",
+          "missing_signature",
+          "tampered_signature",
+          "replay_second",
+          "stale_timestamp",
+          "future_timestamp",
+          "chain_mismatch",
+          "modify_disposition",
+          "ask_disposition"
+        ],
+        "missing_probes": [],
+        "mutant": "allow-everything"
+      },
+      {
+        "detected": true,
+        "failed_probes": [
+          "unsigned_ping",
+          "valid_transition",
+          "missing_evidence",
+          "missing_signature",
+          "tampered_signature",
+          "replay_first",
+          "replay_second",
+          "stale_timestamp",
+          "future_timestamp",
+          "chain_mismatch",
+          "modify_disposition",
+          "ask_disposition"
+        ],
+        "missing_probes": [],
+        "mutant": "deny-everything"
+      },
+      {
+        "detected": true,
+        "failed_probes": [
+          "missing_signature",
+          "tampered_signature",
+          "replay_first",
+          "replay_second",
+          "modify_disposition",
+          "ask_disposition",
+          "dispatch_steps/sessionStart",
+          "dispatch_steps/userMessage",
+          "dispatch_steps/toolCallResult",
+          "dispatch_steps/agentResponse",
+          "dispatch_steps/sessionEnd",
+          "dispatch_protocols/MCP/tools/call"
+        ],
+        "missing_probes": [],
+        "mutant": "signature-blind"
+      },
+      {
+        "detected": true,
+        "failed_probes": [
+          "replay_second"
+        ],
+        "missing_probes": [],
+        "mutant": "replay-blind"
+      },
+      {
+        "detected": true,
+        "failed_probes": [
+          "physical-state-check"
+        ],
+        "missing_probes": [],
+        "mutant": "fake-success-adapter"
+      },
+      {
+        "detected": true,
+        "failed_probes": [],
+        "missing_probes": [
+          "dispatch_protocols/MCP/tools/call"
+        ],
+        "mutant": "skipped-test-runner"
+      }
+    ]
+  },
+  "mode": "direct-local-scqos",
+  "passed": 20,
+  "probes": [
+    {
+      "detail": {
+        "id": "73aa4ce2-69d7-47fa-9560-e12c4f65534c",
+        "jsonrpc": "2.0",
+        "result": {
+          "approver_types_supported": [
+            "human",
+            "service"
+          ],
+          "methods_evaluated": [
+            "protocols/MCP/tools/call",
+            "steps/agentResponse",
+            "steps/sessionEnd",
+            "steps/sessionStart",
+            "steps/toolCallRequest",
+            "steps/toolCallResult",
+            "steps/userMessage",
+            "system/ping"
+          ],
+          "negotiated_version": "0.1.0",
+          "on_decision_failure": "deny",
+          "policy_requires_provenance": false,
+          "profiles_accepted": [
+            "acs-core"
+          ],
+          "selected_transport": "http",
+          "signature_algorithms_supported": [
+            "HMAC-SHA256"
+          ],
+          "skew_window_ms": 300000,
+          "timeout_config": {
+            "default_ms": 5000,
+            "per_method_ms": {
+              "steps/toolCallRequest": 5000
+            }
+          }
+        }
+      },
+      "expected": "ServerHello 0.1.0 + fail-closed posture",
+      "name": "handshake",
+      "observed": "decision:server_hello",
+      "passed": true
+    },
+    {
+      "detail": {
+        "id": "ac72fc8a-4f67-4bb8-933a-9249bdcf7e2b",
+        "jsonrpc": "2.0",
+        "result": {
+          "acs_version": "0.1.0",
+          "decision": "allow",
+          "payload": {
+            "echo": "alive",
+            "server_timestamp": "2026-10-04T03:11:34.764591Z",
+            "status": "ok"
+          },
+          "request_id": "ffd87c4e-1d44-44ac-9173-691650be5c93",
+          "type": "final"
+        }
+      },
+      "expected": "allow",
+      "name": "unsigned_ping",
+      "observed": "decision:allow",
+      "passed": true
+    },
+    {
+      "detail": {
+        "id": "2d10f8fc-4fa0-4bd8-ab1b-ed923203e257",
+        "jsonrpc": "2.0",
+        "result": {
+          "acs_version": "0.1.0",
+          "chain_hash": "e4d277808c4cde4116f1248cdffe802ab646304482bec4fdf68150879fc24a7f",
+          "decision": "allow",
+          "metadata": {
+            "evaluator": "deterministic",
+            "evaluator_version": "scqos-acs-lab/0.1.0"
+          },
+          "policy_data": {
+            "scqos": {
+              "decision_boundary": null,
+              "execution_mode": "LOCAL_TEST",
+              "receipt_id": "LOCAL-2b30304ae3c87f6c76734a35",
+              "verdict": "PERMIT"
+            }
+          },
+          "policy_references": [
+            {
+              "policy_id": "scqos",
+              "policy_name": "Supreme Computation",
+              "policy_version": "live",
+              "rule_id": "transition-admissibility"
+            }
+          ],
+          "reasoning": "SCQOS proved the proposed transition admissible",
+          "request_id": "33b32874-b907-434a-88f0-001a76c4745d",
+          "signature": {
+            "algorithm": "HMAC-SHA256",
+            "key_id": "lab-hmac-v1",
+            "value": "o5bv0ABuzb4CVYrKgWPZcbHFEEzCoks+pD7CtKkioE0="
+          },
+          "type": "final"
+        }
+      },
+      "expected": "allow + signed chain head",
+      "name": "valid_transition",
+      "observed": "decision:allow",
+      "passed": true
+    },
+    {
+      "detail": {
+        "id": "289b63df-8ecf-458d-8edd-7491e119d244",
+        "jsonrpc": "2.0",
+        "result": {
+          "acs_version": "0.1.0",
+          "chain_hash": "c7c71bdcfcd9c48ca5812fbea847dbbbdbed1e9a40c605c825c116576f0197f0",
+          "decision": "deny",
+          "metadata": {
+            "evaluator": "deterministic",
+            "evaluator_version": "scqos-acs-lab/0.1.0"
+          },
+          "policy_data": {
+            "scqos": {
+              "decision_boundary": null,
+              "execution_mode": "LOCAL_TEST",
+              "receipt_id": "LOCAL-4454d8b989922d3f36d4bd15",
+              "verdict": "REJECT"
+            }
+          },
+          "policy_references": [
+            {
+              "policy_id": "scqos",
+              "policy_name": "Supreme Computation",
+              "policy_version": "live",
+              "rule_id": "transition-admissibility"
+            }
+          ],
+          "reason_codes": [
+            "scqos_reject"
+          ],
+          "reasoning": "SCQOS rejected the proposed transition",
+          "request_id": "e9a22af7-792f-4412-bc31-db0ec07a5ad6",
+          "signature": {
+            "algorithm": "HMAC-SHA256",
+            "key_id": "lab-hmac-v1",
+            "value": "15WHoQvBjCV7aMZsGH6Al9L5YDMOUMNfb63zZqpXOG0="
+          },
+          "type": "final"
+        }
+      },
+      "expected": "deny",
+      "name": "wrong_authority",
+      "observed": "decision:deny",
+      "passed": true
+    },
+    {
+      "detail": {
+        "id": "38bc976e-1c20-41fe-b585-8c70ba0ed4e7",
+        "jsonrpc": "2.0",
+        "result": {
+          "acs_version": "0.1.0",
+          "chain_hash": "57c7e9f647e0df434cf9c46ee9ab5100b17b213cfc6b3cb2899654c8af990b9f",
+          "decision": "defer",
+          "defer_details": {
+            "reason": "insufficient_context",
+            "required_context": [
+              "coherent_transition_evidence"
+            ],
+            "resolution_method": "additional_context",
+            "resolution_timeout_ms": 5000,
+            "timeout_decision": "deny"
+          },
+          "metadata": {
+            "evaluator": "deterministic",
+            "evaluator_version": "scqos-acs-lab/0.1.0"
+          },
+          "policy_data": {
+            "scqos": {
+              "decision_boundary": null,
+              "execution_mode": "LOCAL_TEST",
+              "receipt_id": "LOCAL-af537e40c57877d24898ff82",
+              "verdict": "HOLD"
+            }
+          },
+          "policy_references": [
+            {
+              "policy_id": "scqos",
+              "policy_name": "Supreme Computation",
+              "policy_version": "live",
+              "rule_id": "transition-admissibility"
+            }
+          ],
+          "reason_codes": [
+            "insufficient_context"
+          ],
+          "reasoning": "SCQOS could not prove the transition",
+          "request_id": "32047b95-762c-4008-8042-59a5a52c1ff8",
+          "signature": {
+            "algorithm": "HMAC-SHA256",
+            "key_id": "lab-hmac-v1",
+            "value": "2Mn8+VlL3KcvIPDT0R8IXTGCbxu3QG9bxdq9s6q6+lM="
+          },
+          "type": "final"
+        }
+      },
+      "expected": "defer with deny timeout",
+      "name": "missing_evidence",
+      "observed": "decision:defer",
+      "passed": true
+    },
+    {
+      "detail": {
+        "error": {
+          "code": -32004,
+          "data": {
+            "message": "required HMAC-SHA256 signature missing or invalid",
+            "reason": "SIGNATURE_INVALID"
+          },
+          "message": "SIGNATURE_INVALID"
+        },
+        "id": "5e4aec1f-5341-423e-a58f-25ae65e89770",
+        "jsonrpc": "2.0"
+      },
+      "expected": "error:-32004",
+      "name": "missing_signature",
+      "observed": "error:-32004",
+      "passed": true
+    },
+    {
+      "detail": {
+        "error": {
+          "code": -32004,
+          "data": {
+            "message": "required HMAC-SHA256 signature missing or invalid",
+            "reason": "SIGNATURE_INVALID"
+          },
+          "message": "SIGNATURE_INVALID"
+        },
+        "id": "8b6aa6cf-c9e1-4274-a263-4ee9e188613c",
+        "jsonrpc": "2.0"
+      },
+      "expected": "error:-32004",
+      "name": "tampered_signature",
+      "observed": "error:-32004",
+      "passed": true
+    },
+    {
+      "detail": {
+        "id": "8a60e421-1b8c-46d7-9c6f-b12fe444548f",
+        "jsonrpc": "2.0",
+        "result": {
+          "acs_version": "0.1.0",
+          "chain_hash": "2e82e8a37f2a16272c8a69c51cc5d9a69c0e94af72f1d02e22731d391a0fcbc9",
+          "decision": "allow",
+          "metadata": {
+            "evaluator": "deterministic",
+            "evaluator_version": "scqos-acs-lab/0.1.0"
+          },
+          "policy_data": {
+            "scqos": {
+              "decision_boundary": null,
+              "execution_mode": "LOCAL_TEST",
+              "receipt_id": "LOCAL-eb1f99406008c2e236439ea5",
+              "verdict": "PERMIT"
+            }
+          },
+          "policy_references": [
+            {
+              "policy_id": "scqos",
+              "policy_name": "Supreme Computation",
+              "policy_version": "live",
+              "rule_id": "transition-admissibility"
+            }
+          ],
+          "reasoning": "SCQOS proved the proposed transition admissible",
+          "request_id": "67eb0a30-5ed2-4d7b-af5a-0eabf5d31fb9",
+          "signature": {
+            "algorithm": "HMAC-SHA256",
+            "key_id": "lab-hmac-v1",
+            "value": "oLK6nfZosNcrCMbQuTe78GP3GN2B9RBf1siEIG6yCfA="
+          },
+          "type": "final"
+        }
+      },
+      "expected": "allow",
+      "name": "replay_first",
+      "observed": "decision:allow",
+      "passed": true
+    },
+    {
+      "detail": {
+        "error": {
+          "code": -32005,
+          "data": {
+            "message": "request_id or nonce already observed",
+            "reason": "REPLAY_DETECTED"
+          },
+          "message": "REPLAY_DETECTED"
+        },
+        "id": "8a60e421-1b8c-46d7-9c6f-b12fe444548f",
+        "jsonrpc": "2.0"
+      },
+      "expected": "error:-32005",
+      "name": "replay_second",
+      "observed": "error:-32005",
+      "passed": true
+    },
+    {
+      "detail": {
+        "error": {
+          "code": -32006,
+          "data": {
+            "message": "timestamp outside negotiated window",
+            "reason": "TIMESTAMP_OUT_OF_WINDOW",
+            "skew_window_ms": 300000
+          },
+          "message": "TIMESTAMP_OUT_OF_WINDOW"
+        },
+        "id": "81af5668-d763-4ca9-9436-f2cd087b4a0e",
+        "jsonrpc": "2.0"
+      },
+      "expected": "error:-32006",
+      "name": "stale_timestamp",
+      "observed": "error:-32006",
+      "passed": true
+    },
+    {
+      "detail": {
+        "error": {
+          "code": -32006,
+          "data": {
+            "message": "timestamp outside negotiated window",
+            "reason": "TIMESTAMP_OUT_OF_WINDOW",
+            "skew_window_ms": 300000
+          },
+          "message": "TIMESTAMP_OUT_OF_WINDOW"
+        },
+        "id": "9d0b1a75-8af7-4a04-9bd0-d56bb53be043",
+        "jsonrpc": "2.0"
+      },
+      "expected": "error:-32006",
+      "name": "future_timestamp",
+      "observed": "error:-32006",
+      "passed": true
+    },
+    {
+      "detail": {
+        "error": {
+          "code": -32007,
+          "data": {
+            "expected_chain_hash": "2e82e8a37f2a16272c8a69c51cc5d9a69c0e94af72f1d02e22731d391a0fcbc9",
+            "message": "client chain head differs from Guardian",
+            "reason": "CHAIN_MISMATCH"
+          },
+          "message": "CHAIN_MISMATCH"
+        },
+        "id": "13fe0fde-b5a4-4ae1-93a9-1e24cf907527",
+        "jsonrpc": "2.0"
+      },
+      "expected": "error:-32007",
+      "name": "chain_mismatch",
+      "observed": "error:-32007",
+      "passed": true
+    },
+    {
+      "detail": {
+        "id": "abfcd577-2f64-4ce1-9c45-8100189be140",
+        "jsonrpc": "2.0",
+        "result": {
+          "acs_version": "0.1.0",
+          "chain_hash": "652bcbc6527a56658d9351ea87c4cf1ff24eaced8405d1bf835800e1dc3bee0c",
+          "decision": "modify",
+          "metadata": {
+            "evaluator": "deterministic",
+            "evaluator_version": "scqos-acs-lab/0.1.0"
+          },
+          "modifications": {
+            "parameter_overrides": {
+              "target": "acs://sandbox/safe"
+            }
+          },
+          "reason_codes": [
+            "bounded_rewrite"
+          ],
+          "reasoning": "policy permits only the bounded replacement value",
+          "request_id": "983165fe-83af-4e62-90d7-8f0f266bc5d2",
+          "signature": {
+            "algorithm": "HMAC-SHA256",
+            "key_id": "lab-hmac-v1",
+            "value": "/qXYBFsu94fLzyJc+cwehmkp0hqXhjJxQTtEAsPUuOw="
+          },
+          "type": "final"
+        }
+      },
+      "expected": "modify",
+      "name": "modify_disposition",
+      "observed": "decision:modify",
+      "passed": true
+    },
+    {
+      "detail": {
+        "id": "de629079-82a6-4338-919e-2e1dbb990298",
+        "jsonrpc": "2.0",
+        "result": {
+          "acs_version": "0.1.0",
+          "ask_details": {
+            "approver": {
+              "id": "lab-operator",
+              "type": "human"
+            },
+            "question": "Approve this exact consequential transition?",
+            "timeout_disposition": "deny",
+            "timeout_seconds": 60
+          },
+          "chain_hash": "3d3aaa3fde4d7a62dd1b407abe62a96babf6b5626ad63532c2820fc67c546789",
+          "decision": "ask",
+          "metadata": {
+            "evaluator": "deterministic",
+            "evaluator_version": "scqos-acs-lab/0.1.0"
+          },
+          "reason_codes": [
+            "approval_required"
+          ],
+          "reasoning": "policy requires an independent approver",
+          "request_id": "afaa90ad-be9a-4295-a5ef-3cf512e1828f",
+          "signature": {
+            "algorithm": "HMAC-SHA256",
+            "key_id": "lab-hmac-v1",
+            "value": "xj3Ne5gkGDjw2IxCSdPmPO2fDX2nEzywN7S7vSmdHBk="
+          },
+          "type": "final"
+        }
+      },
+      "expected": "ask",
+      "name": "ask_disposition",
+      "observed": "decision:ask",
+      "passed": true
+    },
+    {
+      "detail": {
+        "id": "439d8bfb-26cb-4693-a4ae-aeeb89d3df53",
+        "jsonrpc": "2.0",
+        "result": {
+          "acs_version": "0.1.0",
+          "chain_hash": "0a03926312ad2f42a240ba1af2c7754ae2d2f1849a7b77dc82053049e200e849",
+          "decision": "allow",
+          "metadata": {
+            "evaluator": "deterministic",
+            "evaluator_version": "scqos-acs-lab/0.1.0"
+          },
+          "reasoning": "non-consequential lifecycle step accepted",
+          "request_id": "c695a391-0cb2-4ec5-905d-007956c1e4a5",
+          "signature": {
+            "algorithm": "HMAC-SHA256",
+            "key_id": "lab-hmac-v1",
+            "value": "lYYPuIKWbad82X6rFL1cuewSGbSqSwZhzhzhrcadwQM="
+          },
+          "type": "final"
+        }
+      },
+      "expected": "non-error decision",
+      "name": "dispatch_steps/sessionStart",
+      "observed": "decision:allow",
+      "passed": true
+    },
+    {
+      "detail": {
+        "id": "8083dce6-1770-4b8f-90ab-bd3e189bfdf5",
+        "jsonrpc": "2.0",
+        "result": {
+          "acs_version": "0.1.0",
+          "chain_hash": "670906551b79ffc59cec0853647e4c717b60541d97f1c8d3cc7f2770dfed71ae",
+          "decision": "allow",
+          "metadata": {
+            "evaluator": "deterministic",
+            "evaluator_version": "scqos-acs-lab/0.1.0"
+          },
+          "reasoning": "non-consequential lifecycle step accepted",
+          "request_id": "5ddd7d35-ecdd-4578-8aa8-5821a9a5a731",
+          "signature": {
+            "algorithm": "HMAC-SHA256",
+            "key_id": "lab-hmac-v1",
+            "value": "0uNVHQWTokagweKRQd95ngXg5jGPkIpXVHWwsvgvzfY="
+          },
+          "type": "final"
+        }
+      },
+      "expected": "non-error decision",
+      "name": "dispatch_steps/userMessage",
+      "observed": "decision:allow",
+      "passed": true
+    },
+    {
+      "detail": {
+        "id": "a022ccfa-304e-42f3-a796-09b458ad78d7",
+        "jsonrpc": "2.0",
+        "result": {
+          "acs_version": "0.1.0",
+          "chain_hash": "3b29db865fe484d9287fdc3c67e4e5d350c8f3b2af88c463b019cb3d6662540f",
+          "decision": "allow",
+          "metadata": {
+            "evaluator": "deterministic",
+            "evaluator_version": "scqos-acs-lab/0.1.0"
+          },
+          "reasoning": "non-consequential lifecycle step accepted",
+          "request_id": "72fcba67-719f-4843-b2b2-f8aacb70cafc",
+          "signature": {
+            "algorithm": "HMAC-SHA256",
+            "key_id": "lab-hmac-v1",
+            "value": "ba2QPPfTX6mLQbwSo8VXN08Q4fadMEOtAqskIyer1YQ="
+          },
+          "type": "final"
+        }
+      },
+      "expected": "non-error decision",
+      "name": "dispatch_steps/toolCallResult",
+      "observed": "decision:allow",
+      "passed": true
+    },
+    {
+      "detail": {
+        "id": "2a5d39ca-f38d-4011-ab4b-1011a4a0bd07",
+        "jsonrpc": "2.0",
+        "result": {
+          "acs_version": "0.1.0",
+          "chain_hash": "3cfaf12d3828529afa4980b4596e3bae8875869f259ba6f076a396446d90c251",
+          "decision": "allow",
+          "metadata": {
+            "evaluator": "deterministic",
+            "evaluator_version": "scqos-acs-lab/0.1.0"
+          },
+          "reasoning": "non-consequential lifecycle step accepted",
+          "request_id": "a6d7f388-3ed0-4f61-9099-d77ee4bec458",
+          "signature": {
+            "algorithm": "HMAC-SHA256",
+            "key_id": "lab-hmac-v1",
+            "value": "DSgo5S1EHmcCqyrVBbZxCnTdwVeFjPN+tyjoAf7vk6g="
+          },
+          "type": "final"
+        }
+      },
+      "expected": "non-error decision",
+      "name": "dispatch_steps/agentResponse",
+      "observed": "decision:allow",
+      "passed": true
+    },
+    {
+      "detail": {
+        "id": "0f2a9aa0-0bf3-41f1-b393-9c1a8c4c9652",
+        "jsonrpc": "2.0",
+        "result": {
+          "acs_version": "0.1.0",
+          "chain_hash": "90fdd56b01bda51013bd4cacb40406591ef8ba5a3dbd34f7e584f63eaa7a19e4",
+          "decision": "allow",
+          "metadata": {
+            "evaluator": "deterministic",
+            "evaluator_version": "scqos-acs-lab/0.1.0"
+          },
+          "reasoning": "non-consequential lifecycle step accepted",
+          "request_id": "7a232a6d-0de5-4ac9-9a83-f4656bd4d6de",
+          "signature": {
+            "algorithm": "HMAC-SHA256",
+            "key_id": "lab-hmac-v1",
+            "value": "fcO4d1CAgPTZQ8KBvOsJkdVajjYwD5m88zGZ68vGG88="
+          },
+          "type": "final"
+        }
+      },
+      "expected": "non-error decision",
+      "name": "dispatch_steps/sessionEnd",
+      "observed": "decision:allow",
+      "passed": true
+    },
+    {
+      "detail": {
+        "id": "3f3958e9-290f-45fb-8361-7f6fc5247840",
+        "jsonrpc": "2.0",
+        "result": {
+          "acs_version": "0.1.0",
+          "chain_hash": "e09c8702d1a9308907aaa47b22af5323df24e49266f38374023b7939b120001d",
+          "decision": "allow",
+          "metadata": {
+            "evaluator": "deterministic",
+            "evaluator_version": "scqos-acs-lab/0.1.0"
+          },
+          "policy_data": {
+            "scqos": {
+              "decision_boundary": null,
+              "execution_mode": "LOCAL_TEST",
+              "receipt_id": "LOCAL-4024c1f82f94d3f8240cc843",
+              "verdict": "PERMIT"
+            }
+          },
+          "policy_references": [
+            {
+              "policy_id": "scqos",
+              "policy_name": "Supreme Computation",
+              "policy_version": "live",
+              "rule_id": "transition-admissibility"
+            }
+          ],
+          "reasoning": "SCQOS proved the proposed transition admissible",
+          "request_id": "2f776ecd-06f3-4ce8-b83f-139f7db40de2",
+          "signature": {
+            "algorithm": "HMAC-SHA256",
+            "key_id": "lab-hmac-v1",
+            "value": "8HFuRvVc6jNiA9fpAVJLhtHlR2y16LuNA0oJrm+tk7s="
+          },
+          "type": "final"
+        }
+      },
+      "expected": "non-error decision",
+      "name": "dispatch_protocols/MCP/tools/call",
+      "observed": "decision:allow",
+      "passed": true
+    }
+  ],
+  "schema": "scqos.acs.falsification.run.v1",
+  "total": 20
+}

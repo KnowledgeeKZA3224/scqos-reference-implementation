@@ -1,0 +1,636 @@
+{
+  "baseline_handshake": {
+    "id": "264be05b-c30e-4e1c-9939-741decc159cd",
+    "jsonrpc": "2.0",
+    "result": {
+      "approver_types_supported": [
+        "human",
+        "service"
+      ],
+      "methods_evaluated": [
+        "protocols/MCP/tools/call",
+        "steps/agentResponse",
+        "steps/sessionEnd",
+        "steps/sessionStart",
+        "steps/toolCallRequest",
+        "steps/toolCallResult",
+        "steps/userMessage",
+        "system/ping"
+      ],
+      "negotiated_version": "0.1.0",
+      "on_decision_failure": "deny",
+      "policy_requires_provenance": false,
+      "profiles_accepted": [
+        "acs-core"
+      ],
+      "selected_transport": "http",
+      "signature_algorithms_supported": [
+        "HMAC-SHA256"
+      ],
+      "skew_window_ms": 300000,
+      "timeout_config": {
+        "default_ms": 5000,
+        "per_method_ms": {
+          "steps/toolCallRequest": 5000
+        }
+      }
+    }
+  },
+  "corpus": "/home/knowledgee-kza/scqos-acs-falsification-lab-work/agent-evidence-vectors/vectors-acs-core",
+  "directly_driven": 9,
+  "endpoint": "http://127.0.0.1:18888/acs",
+  "failed": 0,
+  "not_driven": 25,
+  "passed": 9,
+  "rows": [
+    {
+      "expected": {
+        "code": null,
+        "codeValue": null,
+        "unmeasurableBecause": null,
+        "verdict": "allow"
+      },
+      "family": "acs-f-1",
+      "id": "v0577dc8ccd4d7e47",
+      "observed": {
+        "id": "9ce798a4-a402-4b17-a4f6-f4894f1a532a",
+        "jsonrpc": "2.0",
+        "result": {
+          "acs_version": "0.1.0",
+          "chain_hash": "60e9e8614401db40e6cce813ae41a7f9b869c46dd0f5fd91ae4ccec2ce75fd0c",
+          "decision": "allow",
+          "metadata": {
+            "evaluator": "deterministic",
+            "evaluator_version": "scqos-acs-lab/0.1.0"
+          },
+          "policy_data": {
+            "scqos": {
+              "decision_boundary": "KERNEL",
+              "execution_mode": "SHADOW_ONLY",
+              "receipt_id": "b606e4d6ec7595597bbd4331345c7f94c158f543c42d8202e9abdcfd5c71a73a",
+              "verdict": "PERMIT"
+            }
+          },
+          "policy_references": [
+            {
+              "policy_id": "scqos",
+              "policy_name": "Supreme Computation",
+              "policy_version": "live",
+              "rule_id": "transition-admissibility"
+            }
+          ],
+          "reasoning": "SCQOS proved the proposed transition admissible",
+          "request_id": "49b32a97-eb56-4dc7-a45c-0f2c9740b73c",
+          "signature": {
+            "algorithm": "HMAC-SHA256",
+            "key_id": "lab-hmac-v1",
+            "value": "/SO/aHLgVp/JK/OhxCzz/G/V0aOGENSuT5Kk0b90xCM="
+          },
+          "type": "final"
+        }
+      },
+      "requirements": [
+        "ACS-R-020"
+      ],
+      "status": "PASS"
+    },
+    {
+      "expected": {
+        "code": null,
+        "codeValue": null,
+        "unmeasurableBecause": null,
+        "verdict": "allow"
+      },
+      "id": "v07180a3ca8f10123",
+      "reason": "vector depends on policy/framework/artifact semantics outside the direct ACS wire surface exercised by this adapter",
+      "status": "NOT_DRIVEN"
+    },
+    {
+      "expected": {
+        "code": null,
+        "codeValue": null,
+        "unmeasurableBecause": null,
+        "verdict": "deny"
+      },
+      "id": "v0c6dcb9ff13af3c9",
+      "reason": "vector depends on policy/framework/artifact semantics outside the direct ACS wire surface exercised by this adapter",
+      "status": "NOT_DRIVEN"
+    },
+    {
+      "expected": {
+        "code": "CAPABILITY_NOT_NEGOTIATED",
+        "codeValue": -32003,
+        "unmeasurableBecause": null,
+        "verdict": "deny"
+      },
+      "id": "v100f74962fbb8b94",
+      "reason": "vector depends on policy/framework/artifact semantics outside the direct ACS wire surface exercised by this adapter",
+      "status": "NOT_DRIVEN"
+    },
+    {
+      "expected": {
+        "code": "CAPABILITY_NOT_NEGOTIATED",
+        "codeValue": -32003,
+        "unmeasurableBecause": null,
+        "verdict": "deny"
+      },
+      "id": "v10351021bf6e46b1",
+      "reason": "vector depends on policy/framework/artifact semantics outside the direct ACS wire surface exercised by this adapter",
+      "status": "NOT_DRIVEN"
+    },
+    {
+      "expected": {
+        "code": null,
+        "codeValue": null,
+        "unmeasurableBecause": null,
+        "verdict": "allow"
+      },
+      "id": "v25f01d8fe1e91bf5",
+      "reason": "vector depends on policy/framework/artifact semantics outside the direct ACS wire surface exercised by this adapter",
+      "status": "NOT_DRIVEN"
+    },
+    {
+      "expected": {
+        "code": null,
+        "codeValue": null,
+        "unmeasurableBecause": null,
+        "verdict": "allow"
+      },
+      "id": "v3c03d4e4ce213e9c",
+      "reason": "vector depends on policy/framework/artifact semantics outside the direct ACS wire surface exercised by this adapter",
+      "status": "NOT_DRIVEN"
+    },
+    {
+      "expected": {
+        "code": null,
+        "codeValue": null,
+        "unmeasurableBecause": null,
+        "verdict": "allow"
+      },
+      "id": "v3e946bcfde26bbe2",
+      "reason": "vector depends on policy/framework/artifact semantics outside the direct ACS wire surface exercised by this adapter",
+      "status": "NOT_DRIVEN"
+    },
+    {
+      "expected": {
+        "code": "UNSUPPORTED_VERSION",
+        "codeValue": -32001,
+        "unmeasurableBecause": null,
+        "verdict": "deny"
+      },
+      "family": "acs-f-9",
+      "id": "v412653087b92cb07",
+      "observed": {
+        "error": {
+          "code": -32001,
+          "data": {
+            "message": "no common ACS version",
+            "reason": "UNSUPPORTED_VERSION",
+            "supported_versions": [
+              "0.1.0"
+            ]
+          },
+          "message": "UNSUPPORTED_VERSION"
+        },
+        "id": "54d11a1c-2597-451b-b235-febf3d563ae7",
+        "jsonrpc": "2.0"
+      },
+      "requirements": [
+        "ACS-R-017"
+      ],
+      "status": "PASS"
+    },
+    {
+      "expected": {
+        "code": "CAPABILITY_NOT_NEGOTIATED",
+        "codeValue": -32003,
+        "unmeasurableBecause": null,
+        "verdict": "deny"
+      },
+      "id": "v448a61c91554a125",
+      "reason": "vector depends on policy/framework/artifact semantics outside the direct ACS wire surface exercised by this adapter",
+      "status": "NOT_DRIVEN"
+    },
+    {
+      "expected": {
+        "code": "CAPABILITY_NOT_NEGOTIATED",
+        "codeValue": -32003,
+        "unmeasurableBecause": null,
+        "verdict": "deny"
+      },
+      "id": "v661266c5c87cb206",
+      "reason": "vector depends on policy/framework/artifact semantics outside the direct ACS wire surface exercised by this adapter",
+      "status": "NOT_DRIVEN"
+    },
+    {
+      "expected": {
+        "code": null,
+        "codeValue": null,
+        "unmeasurableBecause": null,
+        "verdict": "allow"
+      },
+      "id": "v699f3f41215849ca",
+      "reason": "vector depends on policy/framework/artifact semantics outside the direct ACS wire surface exercised by this adapter",
+      "status": "NOT_DRIVEN"
+    },
+    {
+      "expected": {
+        "code": null,
+        "codeValue": null,
+        "unmeasurableBecause": null,
+        "verdict": "allow"
+      },
+      "family": "acs-f-9",
+      "id": "v78927805373a6c06",
+      "observed": {
+        "id": "a2cb9b82-7c07-4ba5-8541-9aacfefdb4dc",
+        "jsonrpc": "2.0",
+        "result": {
+          "approver_types_supported": [
+            "human",
+            "service"
+          ],
+          "methods_evaluated": [
+            "protocols/MCP/tools/call",
+            "steps/agentResponse",
+            "steps/sessionEnd",
+            "steps/sessionStart",
+            "steps/toolCallRequest",
+            "steps/toolCallResult",
+            "steps/userMessage",
+            "system/ping"
+          ],
+          "negotiated_version": "0.1.0",
+          "on_decision_failure": "deny",
+          "policy_requires_provenance": false,
+          "profiles_accepted": [
+            "acs-core"
+          ],
+          "selected_transport": "http",
+          "signature_algorithms_supported": [
+            "HMAC-SHA256"
+          ],
+          "skew_window_ms": 300000,
+          "timeout_config": {
+            "default_ms": 5000,
+            "per_method_ms": {
+              "steps/toolCallRequest": 5000
+            }
+          }
+        }
+      },
+      "requirements": [
+        "ACS-R-017"
+      ],
+      "status": "PASS"
+    },
+    {
+      "expected": {
+        "code": "CHAIN_MISMATCH",
+        "codeValue": -32007,
+        "unmeasurableBecause": null,
+        "verdict": "deny"
+      },
+      "id": "v7b0b32fb369136c1",
+      "reason": "vector depends on policy/framework/artifact semantics outside the direct ACS wire surface exercised by this adapter",
+      "status": "NOT_DRIVEN"
+    },
+    {
+      "expected": {
+        "code": null,
+        "codeValue": null,
+        "unmeasurableBecause": "the specification carries no revocation mechanism at the pinned commit: revocation propagation is listed as pending in its own identity overview, so a deployment has no conformant way to learn that the mandate was withdrawn. The vector is kept rather than dropped because an absent verdict and a passing one look identical in a table that only carries allow and deny.",
+        "verdict": "unmeasurable"
+      },
+      "id": "v82b6d110b4d68e7c",
+      "reason": "vector depends on policy/framework/artifact semantics outside the direct ACS wire surface exercised by this adapter",
+      "status": "NOT_DRIVEN"
+    },
+    {
+      "expected": {
+        "code": "CHAIN_MISMATCH",
+        "codeValue": -32007,
+        "unmeasurableBecause": null,
+        "verdict": "deny"
+      },
+      "id": "v8557c978bf12ca55",
+      "reason": "vector depends on policy/framework/artifact semantics outside the direct ACS wire surface exercised by this adapter",
+      "status": "NOT_DRIVEN"
+    },
+    {
+      "expected": {
+        "code": null,
+        "codeValue": null,
+        "unmeasurableBecause": null,
+        "verdict": "deny"
+      },
+      "id": "va00ef569d09bf7d5",
+      "reason": "vector depends on policy/framework/artifact semantics outside the direct ACS wire surface exercised by this adapter",
+      "status": "NOT_DRIVEN"
+    },
+    {
+      "expected": {
+        "code": null,
+        "codeValue": null,
+        "unmeasurableBecause": null,
+        "verdict": "allow"
+      },
+      "id": "va0ee5d0830b0490b",
+      "reason": "vector depends on policy/framework/artifact semantics outside the direct ACS wire surface exercised by this adapter",
+      "status": "NOT_DRIVEN"
+    },
+    {
+      "expected": {
+        "code": null,
+        "codeValue": null,
+        "unmeasurableBecause": null,
+        "verdict": "deny"
+      },
+      "id": "va200b64093301e14",
+      "reason": "vector depends on policy/framework/artifact semantics outside the direct ACS wire surface exercised by this adapter",
+      "status": "NOT_DRIVEN"
+    },
+    {
+      "expected": {
+        "code": "PROVENANCE_REQUIRED",
+        "codeValue": -32002,
+        "unmeasurableBecause": null,
+        "verdict": "deny"
+      },
+      "id": "va2fea96983583972",
+      "reason": "vector depends on policy/framework/artifact semantics outside the direct ACS wire surface exercised by this adapter",
+      "status": "NOT_DRIVEN"
+    },
+    {
+      "expected": {
+        "code": null,
+        "codeValue": null,
+        "unmeasurableBecause": null,
+        "verdict": "allow"
+      },
+      "family": "acs-f-3",
+      "id": "va6d6e952d417c5a1",
+      "observed": {
+        "id": "69629fec-1656-4555-a313-b47e64666921",
+        "jsonrpc": "2.0",
+        "result": {
+          "acs_version": "0.1.0",
+          "chain_hash": "849d246d94111c2045e2b2392c8499a22d102824c57e8df39c4e525bcd5afafd",
+          "decision": "allow",
+          "metadata": {
+            "evaluator": "deterministic",
+            "evaluator_version": "scqos-acs-lab/0.1.0"
+          },
+          "policy_data": {
+            "scqos": {
+              "decision_boundary": "KERNEL",
+              "execution_mode": "SHADOW_ONLY",
+              "receipt_id": "dabe880f372562e42ce98847cb3a5e936f902479d3b1de58520ff1fc459440dd",
+              "verdict": "PERMIT"
+            }
+          },
+          "policy_references": [
+            {
+              "policy_id": "scqos",
+              "policy_name": "Supreme Computation",
+              "policy_version": "live",
+              "rule_id": "transition-admissibility"
+            }
+          ],
+          "reasoning": "SCQOS proved the proposed transition admissible",
+          "request_id": "7dcacd4b-be3e-45fd-8195-912bebf9ecc2",
+          "signature": {
+            "algorithm": "HMAC-SHA256",
+            "key_id": "lab-hmac-v1",
+            "value": "kvIkaiEHz6aibUD9obg0n36hT1IJVO/AcJClwwxMu9o="
+          },
+          "type": "final"
+        }
+      },
+      "requirements": [
+        "ACS-R-003"
+      ],
+      "status": "PASS"
+    },
+    {
+      "expected": {
+        "code": "SIGNATURE_INVALID",
+        "codeValue": -32004,
+        "unmeasurableBecause": null,
+        "verdict": "deny"
+      },
+      "id": "va8eebd3334b97257",
+      "reason": "vector depends on policy/framework/artifact semantics outside the direct ACS wire surface exercised by this adapter",
+      "status": "NOT_DRIVEN"
+    },
+    {
+      "expected": {
+        "code": null,
+        "codeValue": null,
+        "unmeasurableBecause": null,
+        "verdict": "deny"
+      },
+      "id": "vae2037ee96435463",
+      "reason": "vector depends on policy/framework/artifact semantics outside the direct ACS wire surface exercised by this adapter",
+      "status": "NOT_DRIVEN"
+    },
+    {
+      "expected": {
+        "code": "TIMESTAMP_OUT_OF_WINDOW",
+        "codeValue": -32006,
+        "unmeasurableBecause": null,
+        "verdict": "deny"
+      },
+      "family": "acs-f-3",
+      "id": "vb10df32610db1173",
+      "observed": {
+        "error": {
+          "code": -32006,
+          "data": {
+            "message": "timestamp outside negotiated window",
+            "reason": "TIMESTAMP_OUT_OF_WINDOW",
+            "skew_window_ms": 300000
+          },
+          "message": "TIMESTAMP_OUT_OF_WINDOW"
+        },
+        "id": "9ae8e4dd-c8cd-4b40-b2f1-5c4ecf2b0c08",
+        "jsonrpc": "2.0"
+      },
+      "requirements": [
+        "ACS-R-003"
+      ],
+      "status": "PASS"
+    },
+    {
+      "expected": {
+        "code": "SIGNATURE_INVALID",
+        "codeValue": -32004,
+        "unmeasurableBecause": null,
+        "verdict": "deny"
+      },
+      "family": "acs-f-1",
+      "id": "vb87b86b4930665ca",
+      "observed": {
+        "error": {
+          "code": -32004,
+          "data": {
+            "message": "required HMAC-SHA256 signature missing or invalid",
+            "reason": "SIGNATURE_INVALID"
+          },
+          "message": "SIGNATURE_INVALID"
+        },
+        "id": "c8995567-daca-41e2-8fc2-d97e57ea1b53",
+        "jsonrpc": "2.0"
+      },
+      "requirements": [
+        "ACS-R-001"
+      ],
+      "status": "PASS"
+    },
+    {
+      "expected": {
+        "code": null,
+        "codeValue": null,
+        "unmeasurableBecause": null,
+        "verdict": "deny"
+      },
+      "id": "vc333473269d1b3a9",
+      "reason": "vector depends on policy/framework/artifact semantics outside the direct ACS wire surface exercised by this adapter",
+      "status": "NOT_DRIVEN"
+    },
+    {
+      "expected": {
+        "code": null,
+        "codeValue": null,
+        "unmeasurableBecause": null,
+        "verdict": "deny"
+      },
+      "id": "vd57793caa251dec6",
+      "reason": "vector depends on policy/framework/artifact semantics outside the direct ACS wire surface exercised by this adapter",
+      "status": "NOT_DRIVEN"
+    },
+    {
+      "expected": {
+        "code": "SIGNATURE_INVALID",
+        "codeValue": -32004,
+        "unmeasurableBecause": null,
+        "verdict": "deny"
+      },
+      "family": "acs-f-1",
+      "id": "vd67cd207a4eb6798",
+      "observed": {
+        "error": {
+          "code": -32004,
+          "data": {
+            "message": "required HMAC-SHA256 signature missing or invalid",
+            "reason": "SIGNATURE_INVALID"
+          },
+          "message": "SIGNATURE_INVALID"
+        },
+        "id": "a8ff04c5-57ce-4b42-98aa-d724192f57f5",
+        "jsonrpc": "2.0"
+      },
+      "requirements": [
+        "ACS-R-001"
+      ],
+      "status": "PASS"
+    },
+    {
+      "expected": {
+        "code": "REPLAY_DETECTED",
+        "codeValue": -32005,
+        "unmeasurableBecause": null,
+        "verdict": "deny"
+      },
+      "family": "acs-f-2",
+      "id": "vef655ce2a45f618b",
+      "observed": {
+        "error": {
+          "code": -32005,
+          "data": {
+            "message": "request_id or nonce already observed",
+            "reason": "REPLAY_DETECTED"
+          },
+          "message": "REPLAY_DETECTED"
+        },
+        "id": "6d644ac4-8bab-41ac-a80c-8ebbcb1d8560",
+        "jsonrpc": "2.0"
+      },
+      "requirements": [
+        "ACS-R-002"
+      ],
+      "status": "PASS"
+    },
+    {
+      "expected": {
+        "code": null,
+        "codeValue": null,
+        "unmeasurableBecause": null,
+        "verdict": "allow"
+      },
+      "id": "vf3679e6ac60fd250",
+      "reason": "vector depends on policy/framework/artifact semantics outside the direct ACS wire surface exercised by this adapter",
+      "status": "NOT_DRIVEN"
+    },
+    {
+      "expected": {
+        "code": "SIGNATURE_INVALID",
+        "codeValue": -32004,
+        "unmeasurableBecause": null,
+        "verdict": "deny"
+      },
+      "family": "acs-f-1",
+      "id": "vf80a81054d3f0862",
+      "observed": {
+        "error": {
+          "code": -32004,
+          "data": {
+            "message": "required HMAC-SHA256 signature missing or invalid",
+            "reason": "SIGNATURE_INVALID"
+          },
+          "message": "SIGNATURE_INVALID"
+        },
+        "id": "674a7eeb-0630-483a-810c-23173c771fd2",
+        "jsonrpc": "2.0"
+      },
+      "requirements": [
+        "ACS-R-020"
+      ],
+      "status": "PASS"
+    },
+    {
+      "expected": {
+        "code": "CAPABILITY_NOT_NEGOTIATED",
+        "codeValue": -32003,
+        "unmeasurableBecause": null,
+        "verdict": "deny"
+      },
+      "id": "vfcab242ddb38d018",
+      "reason": "vector depends on policy/framework/artifact semantics outside the direct ACS wire surface exercised by this adapter",
+      "status": "NOT_DRIVEN"
+    },
+    {
+      "expected": {
+        "code": null,
+        "codeValue": null,
+        "unmeasurableBecause": null,
+        "verdict": "deny"
+      },
+      "id": "vfdd68340c2094962",
+      "reason": "vector depends on policy/framework/artifact semantics outside the direct ACS wire surface exercised by this adapter",
+      "status": "NOT_DRIVEN"
+    },
+    {
+      "expected": {
+        "code": null,
+        "codeValue": null,
+        "unmeasurableBecause": null,
+        "verdict": "allow"
+      },
+      "id": "vff6b4d46f470f2ad",
+      "reason": "vector depends on policy/framework/artifact semantics outside the direct ACS wire surface exercised by this adapter",
+      "status": "NOT_DRIVEN"
+    }
+  ],
+  "schema": "scqos.acs.external-vector-adapter-run.v1"
+}

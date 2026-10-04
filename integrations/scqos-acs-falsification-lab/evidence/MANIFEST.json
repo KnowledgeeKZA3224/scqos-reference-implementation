@@ -1,46 +1,60 @@
 {
-  "created_unix": 1791083225.5512211,
-  "evidence": [
+  "artifacts": [
     {
-      "bytes": 748,
-      "path": "evidence/SUMMARY-2026-10-03.json",
-      "sha256": "e630455ff7638f71e15ffb1f0918818938f685318dd7663a1dd34a2f1732877d"
+      "bytes": 1302,
+      "file": "MANIFEST.json",
+      "sha256": "21dc2e74059de8774526806fcf7182fa5d6e20d20628fcc0bbcde5de0c8f8246"
     },
     {
-      "bytes": 38047,
-      "path": "evidence/agt-guardian-tests.txt",
-      "sha256": "94729dfe5b77fafc3a5479ee52e4c6929ec10296d8cb8bd602c3c58d13cfc221"
+      "bytes": 13205,
+      "file": "agt-reference.json",
+      "sha256": "147f3441b8fc8a2095a3478e6313324a40864f8cf3ad6f808dda81203422b6ff"
     },
     {
-      "bytes": 191731,
-      "path": "evidence/agt-upstream-tests.txt",
-      "sha256": "98a406369f3bce8f16172d34cb6d14de6fadf07bbf131e3ead22fc7d059efb41"
+      "bytes": 191689,
+      "file": "agt-upstream-tests.txt",
+      "sha256": "828e57866710c82bc4c6c4ddaf05654ebef48890e5e25699275368a41abc9982"
+    },
+    {
+      "bytes": 16262,
+      "file": "cloud-action-plan.json",
+      "sha256": "8c377100ac08a9d045643b953947ab224ac78a0c47474c127b7cdbb39e95cc51"
     },
     {
       "bytes": 8892,
-      "path": "evidence/cloud-to-terminal-2026-10-03.json",
+      "file": "cloud-to-terminal.json",
       "sha256": "e934860fc7026e4a3a1134e882e3040d7e8b4a887aacb9ee5f04e9defc805b53"
     },
     {
+      "bytes": 5065,
+      "file": "differential.json",
+      "sha256": "cf9968028651280c0a39b3e603a8dbbc251234541e7b04cf2d56cf3e038d6bb9"
+    },
+    {
+      "bytes": 17935,
+      "file": "external-vectors-agt.json",
+      "sha256": "31ded01e0b5791eb0a66eea286d5920690f057ab65f95db13e811eae38ffb8af"
+    },
+    {
+      "bytes": 19246,
+      "file": "external-vectors-scqos.json",
+      "sha256": "802bbdcd37f8f5d76453781fd0a5a5577ba6bdbf8fabad59c36a21d1096e2bcd"
+    },
+    {
       "bytes": 22051,
-      "path": "evidence/live-scqos-2026-10-03.json",
+      "file": "live-scqos.json",
       "sha256": "c0fa6135615532cfa3dfcd298e42800bc437ab8a569f3e92c12eaf14886c296e"
+    },
+    {
+      "bytes": 21850,
+      "file": "local.json",
+      "sha256": "a1d2454503e3a5a516e12e9069ed2756981386920c920b165cae0abbd68014c3"
+    },
+    {
+      "bytes": 20259,
+      "file": "scqos-http-live.json",
+      "sha256": "b4c1c245bd7380db8d6aad3f9349e4fcc33e78ed064d1d8c292ed62e00769a8d"
     }
   ],
-  "pins": {
-    "agent_control_standard": {
-      "commit": "27799c2c27414a483a4a043b957bfd2997d53231",
-      "repository": "https://github.com/GenAI-Security-Project/agent-control-standard"
-    },
-    "external_vectors": {
-      "commit": "bbdef583c9241138e5c2b5d872bc77f7f539e9ac",
-      "repository": "https://github.com/probityai/agent-evidence-vectors"
-    },
-    "scqos_live_endpoint": "https://lcnk9bvtz5.execute-api.us-east-1.amazonaws.com",
-    "scqos_reference": {
-      "commit": "a1f3b96035494c71019443965c60ed64d17ddba6",
-      "repository": "https://github.com/KnowledgeeKZA3224/scqos-reference-implementation"
-    }
-  },
-  "schema": "scqos.acs.evidence.manifest.v1"
+  "schema": "scqos.acs.evidence-manifest.v1"
 }

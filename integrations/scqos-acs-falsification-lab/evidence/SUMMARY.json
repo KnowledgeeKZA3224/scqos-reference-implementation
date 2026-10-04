@@ -1,0 +1,25 @@
+{
+  "all_pass": true,
+  "artifacts": [
+    {
+      "all_pass": true,
+      "mode": "direct-local-scqos",
+      "path": "run-evidence/local.json",
+      "sha256": "6241b44a5b23be747639d56920a7fb0573c5d802b29ce32663aa508195d4fe27"
+    },
+    {
+      "all_pass": true,
+      "mode": "direct-live-scqos",
+      "path": "run-evidence/live-scqos.json",
+      "sha256": "6123b34b3a921e51cb7066e3ab153c43575b75cb9fe702711ddb9723a588e1dc"
+    },
+    {
+      "all_pass": true,
+      "mode": "live-scqos-cloud_to_terminal",
+      "path": "run-evidence/cloud-to-terminal.json",
+      "sha256": "b986366ede8b8ddb53ea0bab1385fded264d5d6efe52f17feb514970c0c2e909"
+    }
+  ],
+  "generated_at": 1791083506.0273323,
+  "schema": "scqos.acs.falsification.summary.v1"
+}
