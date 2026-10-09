@@ -1,0 +1,101 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "WATelemetryPayload",
+  "description": "The Forge SPEC-WA-TELEMETRY-V1 syntax; cryptographic receipts must be verified separately.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "telemetry_id",
+    "timestamp",
+    "gekyume_validation",
+    "scqos_evaluation",
+    "transaction_data"
+  ],
+  "properties": {
+    "telemetry_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "gekyume_validation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "policy_check_passed",
+        "rule_engine_id"
+      ],
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "policy_check_passed": {
+          "type": "boolean"
+        },
+        "rule_engine_id": {
+          "type": "string"
+        }
+      }
+    },
+    "scqos_evaluation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "authority_state",
+        "admissibility_score",
+        "consequence_vector"
+      ],
+      "properties": {
+        "authority_state": {
+          "type": "string"
+        },
+        "admissibility_score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "consequence_vector": {
+          "type": "string"
+        }
+      }
+    },
+    "transaction_data": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "arn",
+        "amount",
+        "currency",
+        "device_fingerprint",
+        "ip_address",
+        "customer_account_id"
+      ],
+      "properties": {
+        "arn": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "currency": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$"
+        },
+        "device_fingerprint": {
+          "type": "string"
+        },
+        "ip_address": {
+          "type": "string"
+        },
+        "customer_account_id": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

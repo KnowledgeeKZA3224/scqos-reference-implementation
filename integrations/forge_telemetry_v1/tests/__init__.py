@@ -1,0 +1,1 @@
+"""Forge contract test suite."""
