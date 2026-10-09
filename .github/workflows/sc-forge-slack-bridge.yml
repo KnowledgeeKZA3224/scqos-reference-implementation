@@ -1,0 +1,35 @@
+name: SC Forge Slack Bridge Checks
+
+on:
+  pull_request:
+    paths:
+      - 'integrations/the-forge-slack-aws-bridge/**'
+      - '.github/workflows/sc-forge-slack-bridge.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'integrations/the-forge-slack-aws-bridge/**'
+      - '.github/workflows/sc-forge-slack-bridge.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.11', '3.12']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies for unit tests (no AWS or Slack secrets)
+        run: python -m pip install -r integrations/the-forge-slack-aws-bridge/requirements.txt
+      - name: Check syntax
+        run: python -m compileall -q integrations/the-forge-slack-aws-bridge/
+      - name: Run fail-closed bridge tests
+        run: python -m unittest discover -s integrations/the-forge-slack-aws-bridge/tests -p 'test*.py' -v
