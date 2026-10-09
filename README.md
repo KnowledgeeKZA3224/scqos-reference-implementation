@@ -2,6 +2,12 @@
 
 **Nothing Executes Until It Proves Itself.**
 
+> **CURRENT VERIFIED STATE — October 9, 2026:** The September 23 AWS suspension statements below are **historical**, not a claim of present suspension. On October 9, authenticated AWS API reads succeeded and named GEKYUME, SCQOS and Workbench Lambda functions returned `Active / Successful` configuration state; this is **not** evidence of a live bank settlement. The new GEKYUME × SCQOS × Forge client implementation remains in [open draft PR #26](https://github.com/KnowledgeeKZA3224/scqos-reference-implementation/pull/26), with 29/29 local synthetic tests and 3/3 GitHub CI workflows passing. Forge's remote receiver remains **HOLD_NETWORK** after external DNS failure / TCP:443 timeout; no production POST was made. The LLC's Arizona articles were approved on September 21. Sensitive business details remain private.
+>
+> **New complete dated audit:** [Operating state](docs/CURRENT_VERIFIED_STATE_2026-10-09.md) · [Repository census and module map](docs/REPOSITORY_FULL_AUDIT_2026-10-09.md) · [Registration and connected ecosystem](docs/ORGANIZATION_AND_ECOSYSTEM_2026-10-09.md) · [Evidence register and chronology](docs/EVIDENCE_REGISTER_2026-10-09.md) · [599-file baseline content-hash manifest](docs/audits/REPOSITORY_FILE_MANIFEST_2026-10-09.tsv).
+
+
+
 Supreme Computation is a governance system for people, AI, software and machines. Before an important action becomes real, SCQOS checks whether the whole situation still agrees across eight invariants: **Time, Continuity, Alignment, Genesis, Boundary, Reference, Causality, and Consciousness / Accountability.**
 
 SCQOS returns **PERMIT** when the current transition proves itself, **HOLD** when something is missing, stale or contradictory, and **REJECT** when a hard rule or authority boundary is crossed.
@@ -28,7 +34,7 @@ The live public challenge is shadow-only: it evaluates the proposition, emits a 
 
 ## What is live now
 
-As of **September 23, 2026**, the cloud execution boundary has changed. The previously verified AWS governance environment remains documented in this repository as historical execution evidence, but the AWS account hosting that environment is currently **suspended** and is not being represented here as presently reachable.
+**Historical observation (September 23, 2026):** the cloud execution boundary changed and the AWS governance environment was inaccessible because of an account suspension **at that time**. October 9 authenticated API evidence confirms current AWS resource visibility; see the dated current-state report above for precise limits. Historical AWS proofs remain historical and are not automatically converted to new executed proofs.
 
 On September 23, Azure was brought from authenticated CLI access to a coherence-first, policy-enforced Supreme Computation foundation in about **15 minutes**. The Azure baseline has a private network, deny-by-default egress controls, eight-invariant governance policies, continuity locking, a Reader-only observer identity, and executed PERMIT/REJECT validation receipts. See [`docs/CLOUD_CONTINUITY_2026-09-23.md`](docs/CLOUD_CONTINUITY_2026-09-23.md) and [`proofs/azure/2026-09-23/TOTALITY_RECEIPT.md`](proofs/azure/2026-09-23/TOTALITY_RECEIPT.md).
 
@@ -83,7 +89,7 @@ The result was also posted back into the upstream GitHub issue for independent c
 
 The previously verified AWS environment included SCQOS governors and validators, Shadow Clone execution, Supreme Mind state and receipts in DynamoDB, SQS work queues, versioned S3 evidence, AWS KMS signing, model inference/release validation, SupremeComputation.org business infrastructure, LinkedIn OAuth/publishing, email routing, Anabelle/GrassRootsAI integration, Gekyume, Sharingan, Supreme Apex V1, and quantum-facing Qiskit/IBM/AWS experimentation.
 
-As of **September 23, 2026**, that AWS account is suspended. The latest support trail available at the time of this update had not produced an actionable reinstatement path or completed recovery, so this repository treats those AWS materials as **historical verified execution**, not a claim of current AWS availability.
+**September 23 historical status:** that AWS account was suspended and had not yet received a completed recovery at the time of this section. **October 9 observed status:** authenticated AWS API resource inspection succeeded and named functions reported active configurations. Their historical execution claims remain dated; new transaction outcomes require fresh proof. See [current-state audit](docs/CURRENT_VERIFIED_STATE_2026-10-09.md).
 
 ## Azure continuity plane — September 23, 2026
 
