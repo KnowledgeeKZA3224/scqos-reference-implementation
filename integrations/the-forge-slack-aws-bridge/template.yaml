@@ -1,0 +1,99 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: 'SC Slack continuity bridge: signed Slack event archival and bounded SNS alerts.'
+Parameters:
+  ExistingArchiveBucket:
+    Type: String
+    Description: Existing PRIVATE S3 bucket with encryption and retention policy reviewed.
+  SlackWorkspaceId:
+    Type: String
+  ArchiveChannelIds:
+    Type: String
+    Description: Comma-separated, explicitly approved channel IDs (founders only by default).
+  NotificationChannelId:
+    Type: String
+    Description: Private channel selected for cloud status alerts; do not use executive channel for noisy alarms.
+  SigningSecretArn:
+    Type: String
+    Description: Existing Secrets Manager secret holding Slack App signing secret.
+  BotTokenArn:
+    Type: String
+    Description: Existing Secrets Manager secret holding xoxb bot token (not ChatGPT OAuth token).
+  ArchivePrefix:
+    Type: String
+    Default: integrations/slack/the-forge/v1
+Globals:
+  Function:
+    Runtime: python3.12
+    MemorySize: 128
+    Timeout: 20
+    Environment:
+      Variables:
+        ARCHIVE_BUCKET: !Ref ExistingArchiveBucket
+        ARCHIVE_PREFIX: !Ref ArchivePrefix
+        SLACK_TEAM_ID: !Ref SlackWorkspaceId
+        ARCHIVE_CHANNEL_IDS: !Ref ArchiveChannelIds
+        NOTIFY_CHANNEL_ID: !Ref NotificationChannelId
+        SLACK_SIGNING_SECRET_ARN: !Ref SigningSecretArn
+        SLACK_BOT_TOKEN_ARN: !Ref BotTokenArn
+Resources:
+  EventIngress:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: v1
+  SlackArchiveFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./
+      Handler: app.archive_handler
+      Events:
+        SlackEvents:
+          Type: Api
+          Properties:
+            RestApiId: !Ref EventIngress
+            Path: /slack/events
+            Method: post
+      Policies:
+        - Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Action: secretsmanager:GetSecretValue
+              Resource: !Ref SigningSecretArn
+            - Effect: Allow
+              Action: s3:PutObject
+              Resource: !Sub arn:${AWS::Partition}:s3:::${ExistingArchiveBucket}/${ArchivePrefix}/events/by-id/*
+      Environment:
+        Variables:
+          SLACK_BOT_TOKEN_ARN: !Ref BotTokenArn
+  CloudAlarmTopic:
+    Type: AWS::SNS::Topic
+  SlackNotifyFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./
+      Handler: app.notify_handler
+      Environment:
+        Variables:
+          SNS_TOPIC_ARN: !Ref CloudAlarmTopic
+          ALARM_NAME_PREFIX: SC-
+      Policies:
+        - Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Action: secretsmanager:GetSecretValue
+              Resource: !Ref BotTokenArn
+            - Effect: Allow
+              Action: s3:PutObject
+              Resource: !Sub arn:${AWS::Partition}:s3:::${ExistingArchiveBucket}/${ArchivePrefix}/receipts/sns/*
+      Events:
+        CloudAlarm:
+          Type: SNS
+          Properties:
+            Topic: !Ref CloudAlarmTopic
+Outputs:
+  SlackEventUrl:
+    Value: !Sub https://${EventIngress}.execute-api.${AWS::Region}.amazonaws.com/v1/slack/events
+  AlarmTopicArn:
+    Value: !Ref CloudAlarmTopic
+  ArchiveBucket:
+    Value: !Ref ExistingArchiveBucket
