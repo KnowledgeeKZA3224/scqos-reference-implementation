@@ -91,6 +91,11 @@ def _put_immutable(key, data, sha):
     except ClientError as exc:
         code = exc.response.get('Error', {}).get('Code', '')
         if code in ('PreconditionFailed', '412'):
+            # An existing key proves only that an object exists, not that its
+            # content matches this event. Reject conflicting event identities.
+            existing = s3.head_object(Bucket=_env('ARCHIVE_BUCKET'), Key=key)
+            if existing.get('Metadata', {}).get('sha256') != sha:
+                raise ValueError('Conflicting immutable receipt for event identity')
             return {}, False
         raise
 
