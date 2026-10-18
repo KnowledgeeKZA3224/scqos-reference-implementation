@@ -19,6 +19,12 @@ class FakeS3:
             raise ClientError({'Error': {'Code': 'PreconditionFailed'}}, 'PutObject')
         self.items[kw['Key']] = kw
         return {'ResponseMetadata': {'RequestId': 'req-test'}}
+    def head_object(self, **kw):
+        from botocore.exceptions import ClientError
+        item = self.items.get(kw['Key'])
+        if item is None:
+            raise ClientError({'Error': {'Code': '404'}}, 'HeadObject')
+        return {'Metadata': item['Metadata']}
 
 class FakeSecrets:
     def get_secret_value(self, SecretId):
