@@ -60,7 +60,7 @@ Resources:
               Action: secretsmanager:GetSecretValue
               Resource: !Ref SigningSecretArn
             - Effect: Allow
-              Action: s3:PutObject
+              Action: [s3:PutObject, s3:GetObject]
               Resource: !Sub arn:${AWS::Partition}:s3:::${ExistingArchiveBucket}/${ArchivePrefix}/events/by-id/*
       Environment:
         Variables:
@@ -83,7 +83,7 @@ Resources:
               Action: secretsmanager:GetSecretValue
               Resource: !Ref BotTokenArn
             - Effect: Allow
-              Action: s3:PutObject
+              Action: [s3:PutObject, s3:GetObject]
               Resource: !Sub arn:${AWS::Partition}:s3:::${ExistingArchiveBucket}/${ArchivePrefix}/receipts/sns/*
       Events:
         CloudAlarm:
