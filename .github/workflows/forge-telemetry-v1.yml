@@ -1,0 +1,24 @@
+name: Forge telemetry synthetic verification
+on:
+  push:
+    paths:
+      - 'integrations/forge_telemetry_v1/**'
+      - '.github/workflows/forge-telemetry-v1.yml'
+  pull_request:
+    paths:
+      - 'integrations/forge_telemetry_v1/**'
+      - '.github/workflows/forge-telemetry-v1.yml'
+permissions:
+  contents: read
+jobs:
+  offline-synthetic:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - name: Compile
+        run: python3 -m compileall -q integrations/forge_telemetry_v1
+      - name: Run tests
+        run: python3 -m unittest discover -s integrations/forge_telemetry_v1/tests -v
+      - name: Offline demonstration
+        run: python3 -m integrations.forge_telemetry_v1.demo
