@@ -1,0 +1,21 @@
+{
+  "hardware_provider": "IBM Quantum",
+  "backend": "ibm_fez",
+  "hardware_qpu": true,
+  "job_id": "dbcs9e9gv2cc738gun60",
+  "shots_requested": 128,
+  "submitted_utc": "2026-10-22T08:09:29.370170+00:00",
+  "circuit_qasm_description": "H q0; CX q0,q1; measure q0,q1. Bell state hardware sanity check, not a cosmology prediction.",
+  "status": "COMPLETED",
+  "counts": {
+    "00": 66,
+    "11": 40,
+    "01": 18,
+    "10": 4
+  },
+  "finished_utc": "2026-10-22T08:09:35.899091+00:00",
+  "shots_measured": 128,
+  "correlated_fraction": 0.828125,
+  "hardware_check_pass": true,
+  "result_sha256": "1884c03a83c53e0fe257cf35069653fca33ac2bcc78cb2c6a2d67a4318b2ecd8"
+}

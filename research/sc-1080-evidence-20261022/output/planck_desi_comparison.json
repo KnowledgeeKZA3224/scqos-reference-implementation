@@ -1,0 +1,137 @@
+{
+  "title": "Fixed Planck 2018 \u039bCDM predictions versus published DESI DR2 BAO measurements",
+  "method": "flat matter+Lambda late-time expansion; fixed Planck parameters, no fitting; full DESI covariance; no new physical law claim",
+  "planck": {
+    "H0_km_s_Mpc": 67.4,
+    "omega_m": 0.315,
+    "r_drag_Mpc": 147.09,
+    "source": "https://doi.org/10.1051/0004-6361/201833910",
+    "parameter_origin": "Planck 2018 base LCDM, fixed illustrative parameter set, no DESI fit"
+  },
+  "DESI_source": "https://github.com/CobayaSampler/bao_data/tree/master/desi_bao_dr2",
+  "measurement_count": 13,
+  "chi2": 28.96591953134862,
+  "reference_degrees_of_freedom": 13,
+  "nominal_chi2_survival_p": 0.006619179847779099,
+  "caveat": "Nominal p ignores uncertainties and covariances in fixed Planck parameters and implementation simplifications. This is NOT a jointly fitted cosmology likelihood.",
+  "rows": [
+    {
+      "index": 0,
+      "z": 0.295,
+      "quantity": "DV_over_rs",
+      "observed": 7.94167639,
+      "predicted_Planck_flat_LCDM": 8.053342793174755,
+      "observed_sigma": 0.07609196324185624,
+      "residual": -0.1116664031747554
+    },
+    {
+      "index": 1,
+      "z": 0.51,
+      "quantity": "DM_over_rs",
+      "observed": 13.58758434,
+      "predicted_Planck_flat_LCDM": 13.494637962431982,
+      "observed_sigma": 0.16836678472905517,
+      "residual": 0.09294637756801727
+    },
+    {
+      "index": 2,
+      "z": 0.51,
+      "quantity": "DH_over_rs",
+      "observed": 21.86294686,
+      "predicted_Planck_flat_LCDM": 22.732580980330265,
+      "observed_sigma": 0.42886832478046216,
+      "residual": -0.8696341203302644
+    },
+    {
+      "index": 3,
+      "z": 0.706,
+      "quantity": "DM_over_rs",
+      "observed": 17.35069094,
+      "predicted_Planck_flat_LCDM": 17.69365778586277,
+      "observed_sigma": 0.17993122074837373,
+      "residual": -0.3429668458627688
+    },
+    {
+      "index": 4,
+      "z": 0.706,
+      "quantity": "DH_over_rs",
+      "observed": 19.45534918,
+      "predicted_Planck_flat_LCDM": 20.16411407296075,
+      "observed_sigma": 0.33387003159912393,
+      "residual": -0.7087648929607511
+    },
+    {
+      "index": 5,
+      "z": 0.934,
+      "quantity": "DM_over_rs",
+      "observed": 21.57563956,
+      "predicted_Planck_flat_LCDM": 21.986793378065514,
+      "observed_sigma": 0.1617815860968114,
+      "residual": -0.41115381806551454
+    },
+    {
+      "index": 6,
+      "z": 0.934,
+      "quantity": "DH_over_rs",
+      "observed": 17.64149464,
+      "predicted_Planck_flat_LCDM": 17.565612671636035,
+      "observed_sigma": 0.20104324858099562,
+      "residual": 0.07588196836396577
+    },
+    {
+      "index": 7,
+      "z": 1.321,
+      "quantity": "DM_over_rs",
+      "observed": 27.60085612,
+      "predicted_Planck_flat_LCDM": 28.072853749295746,
+      "observed_sigma": 0.32455587500459765,
+      "residual": -0.4719976292957462
+    },
+    {
+      "index": 8,
+      "z": 1.321,
+      "quantity": "DH_over_rs",
+      "observed": 14.17602155,
+      "predicted_Planck_flat_LCDM": 14.06339077204806,
+      "observed_sigma": 0.22455135092000672,
+      "residual": 0.11263077795194043
+    },
+    {
+      "index": 9,
+      "z": 1.484,
+      "quantity": "DM_over_rs",
+      "observed": 30.51190063,
+      "predicted_Planck_flat_LCDM": 30.26660253031587,
+      "observed_sigma": 0.763557644844186,
+      "residual": 0.2452980996841312
+    },
+    {
+      "index": 10,
+      "z": 1.484,
+      "quantity": "DH_over_rs",
+      "observed": 12.81699964,
+      "predicted_Planck_flat_LCDM": 12.879070147652142,
+      "observed_sigma": 0.5180117691713191,
+      "residual": -0.06207050765214106
+    },
+    {
+      "index": 11,
+      "z": 2.33,
+      "quantity": "DH_over_rs",
+      "observed": 8.631545674846294,
+      "predicted_Planck_flat_LCDM": 8.616491175395511,
+      "observed_sigma": 0.10106245296844917,
+      "residual": 0.015054499450782188
+    },
+    {
+      "index": 12,
+      "z": 2.33,
+      "quantity": "DM_over_rs",
+      "observed": 38.988973961958784,
+      "predicted_Planck_flat_LCDM": 39.17346835581441,
+      "observed_sigma": 0.5316820280957407,
+      "residual": -0.18449439385562272
+    }
+  ],
+  "computed_utc": "2026-10-22T08:30:54.963908+00:00"
+}

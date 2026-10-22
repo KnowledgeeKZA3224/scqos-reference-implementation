@@ -1,0 +1,22 @@
+{
+  "type": "REAL_QPU",
+  "provider": "Rigetti via Amazon Braket",
+  "device_arn": "arn:aws:braket:us-west-1::device/qpu/rigetti/Cepheus-1-108Q",
+  "qpu_task_arn": "arn:aws:braket:us-west-1:327453383912:quantum-task/788e181a-4a8a-4156-abb0-786760911c1d",
+  "shots": 256,
+  "estimated_qpu_usd": 0.4088,
+  "scqos_pre_execution_receipt": "a1c22c3c44c480070d622337aa2489555e5b803cfba24cff7fa96c665a190ecc",
+  "created_utc": "2026-10-22T08:16:48.204147+00:00",
+  "state": "COMPLETED",
+  "counts": {
+    "00": 111,
+    "11": 130,
+    "01": 5,
+    "10": 10
+  },
+  "shots_measured": 256,
+  "correlated_fraction": 0.94140625,
+  "hardware_check_pass": true,
+  "completed_utc": "2026-10-22T08:16:52.288622+00:00",
+  "result_sha256": "46450ca262f3d82dbe7df7ab5504ad0ca33bab22ccccd89737b7cfea2b8ce5c9"
+}

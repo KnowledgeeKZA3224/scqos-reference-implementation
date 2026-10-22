@@ -1,0 +1,632 @@
+{
+  "covariance_shape": [
+    13,
+    13
+  ],
+  "final_chain_hash": "6b29d4086fa31534aeb9f761d43a4837f933af87ba8408979b425e1604bd8c1c",
+  "generated_utc": "2026-10-22T08:02:50.246567+00:00",
+  "invariants": [
+    "Time",
+    "Continuity",
+    "Alignment",
+    "Genesis",
+    "Boundary",
+    "Reference",
+    "Causality",
+    "Consciousness"
+  ],
+  "measurement_count": 13,
+  "measurements": [
+    {
+      "chain_hash": "373f8ee18273904f497813961147503d75073132d872756220c9764338d20354",
+      "covariance_hash": "252a143274c8a07c78694c119617d36594f6d7965d00319ca611c6ffb886e509",
+      "id": "DESI-DR2-BAO-0",
+      "index": 0,
+      "integrity_checks": {
+        "Alignment": true,
+        "Boundary": true,
+        "Causality": true,
+        "Consciousness": true,
+        "Continuity": true,
+        "Genesis": true,
+        "Reference": true,
+        "Time": true
+      },
+      "measurement": 7.94167639,
+      "parent_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+      "quantity": "DV_over_rs",
+      "redshift": 0.295,
+      "scqos": {
+        "decision": "PERMIT",
+        "final_proof": "fab2daa215828edf7648a845179647d90f57dc298549bad4859ffe2e459eba43",
+        "gate_proofs": {
+          "alignment": "9372dbd314f8906e2985b87e8c1afaabf13616a3669c709589c7f70b2b359290",
+          "boundary": "816fc43631025ef1527236e01afd242b6427c464b9174eca2dd73837659e9106",
+          "causality": "e98e8420418a18c87ec315466efe463b57d94bff30fbe2d918f0bfb42e6abc31",
+          "coherence": "fab2daa215828edf7648a845179647d90f57dc298549bad4859ffe2e459eba43",
+          "consciousness": "dba677e3e8dc261ce70f99744e6f15b86f1d6e022536452ab40a5498f735530c",
+          "continuity": "0d6e24e3486c1be404b4f30b16938dbb97b134d09525580ef56b77f131cd17e2",
+          "genesis": "61b09b27f623b5aa10560e3b8755e96dd427a3b8423ffdf7ffeb879786e7c6c1",
+          "reference": "ab64431b9fface87eddc1de7243350f5e02e666d3d1d6340fbb4426c589c0435",
+          "time": "2366019cea37b398f64bc50382985c967e63691f102921a1a2b6db77eeba1baa"
+        },
+        "reason": "all SCQOS universal transition proofs coherent",
+        "receipt_hash": "f8030b12a74903ba94e72562eec6d8cef38ee8d14c557e69a74a894e25dc94b4"
+      },
+      "sigma": 0.07609196324185624,
+      "source_hash": "9ac154ab583ce759c0f7eef3c978c7c70a6ead2d18774caceadf1a350a640585",
+      "source_url": "https://raw.githubusercontent.com/CobayaSampler/bao_data/master/desi_bao_dr2/desi_gaussian_bao_ALL_GCcomb_mean.txt",
+      "units": "dimensionless"
+    },
+    {
+      "chain_hash": "795806a455d1dc01ec77c1e43220857ff4bfb3393da176b0b848c5f7217ec479",
+      "covariance_hash": "252a143274c8a07c78694c119617d36594f6d7965d00319ca611c6ffb886e509",
+      "id": "DESI-DR2-BAO-1",
+      "index": 1,
+      "integrity_checks": {
+        "Alignment": true,
+        "Boundary": true,
+        "Causality": true,
+        "Consciousness": true,
+        "Continuity": true,
+        "Genesis": true,
+        "Reference": true,
+        "Time": true
+      },
+      "measurement": 13.58758434,
+      "parent_hash": "373f8ee18273904f497813961147503d75073132d872756220c9764338d20354",
+      "quantity": "DM_over_rs",
+      "redshift": 0.51,
+      "scqos": {
+        "decision": "PERMIT",
+        "final_proof": "646c9a2a110c8c14545b7841c1ad6e4dd061d6b9dd188482916c5ee54f22d5fc",
+        "gate_proofs": {
+          "alignment": "0a7de7f80894c365af17a8104ec84e29829f7c0fa0aa0e774256d38564c1a89e",
+          "boundary": "cb47cb060effcae96657645fcf67de0082c7e82290ba32e856a019a4265f7f79",
+          "causality": "d4687d1527dd62908fbe629635f462374b57a0bbd4593b02ead405270bf25857",
+          "coherence": "646c9a2a110c8c14545b7841c1ad6e4dd061d6b9dd188482916c5ee54f22d5fc",
+          "consciousness": "968fd344865c593570780818202e01a02876799ef3721e4f8e3f2981acef8841",
+          "continuity": "f0115c83f1318f42dceee71526c896cdb27c857f9e86d07b87044bd98405f7c0",
+          "genesis": "707146601d00a7ebe9136d4d054c994a9de0d34229b425029cb060f4dfb9c625",
+          "reference": "b60735fc6da04e9e721f32776940b7eee18f8b13d164e1199d7c244da27bc1a9",
+          "time": "8d0f1e1d8ec2c9c99d13029c9d14cd1509148139ae860df0f1c5df9876affd38"
+        },
+        "reason": "all SCQOS universal transition proofs coherent",
+        "receipt_hash": "659a968acda4144a8d11e32bd3a329c949d2b5c6410a5225d1932e81f9765735"
+      },
+      "sigma": 0.16836678472905517,
+      "source_hash": "9ac154ab583ce759c0f7eef3c978c7c70a6ead2d18774caceadf1a350a640585",
+      "source_url": "https://raw.githubusercontent.com/CobayaSampler/bao_data/master/desi_bao_dr2/desi_gaussian_bao_ALL_GCcomb_mean.txt",
+      "units": "dimensionless"
+    },
+    {
+      "chain_hash": "13882a0ee0f65b7c3d643b172a0dbec530feba3f2fbf47fb6ba25d30f1c12888",
+      "covariance_hash": "252a143274c8a07c78694c119617d36594f6d7965d00319ca611c6ffb886e509",
+      "id": "DESI-DR2-BAO-2",
+      "index": 2,
+      "integrity_checks": {
+        "Alignment": true,
+        "Boundary": true,
+        "Causality": true,
+        "Consciousness": true,
+        "Continuity": true,
+        "Genesis": true,
+        "Reference": true,
+        "Time": true
+      },
+      "measurement": 21.86294686,
+      "parent_hash": "795806a455d1dc01ec77c1e43220857ff4bfb3393da176b0b848c5f7217ec479",
+      "quantity": "DH_over_rs",
+      "redshift": 0.51,
+      "scqos": {
+        "decision": "PERMIT",
+        "final_proof": "a7fe7f0ddeadce2a12f8a7d841aa0c815be4a89f309e69378d746328b0886c97",
+        "gate_proofs": {
+          "alignment": "39542662ad30217c3a9036b4d83d12bff28709712261eb77c7b3f83924d8f946",
+          "boundary": "cb001b24cec3506cee3b89d671cec57c3eeffbcb6b8b0239084764e1593a47a1",
+          "causality": "fe1c86a97fb5b55cdc45937158ed899d3a22ead5a8f2383c1a9ef406dab62cd1",
+          "coherence": "a7fe7f0ddeadce2a12f8a7d841aa0c815be4a89f309e69378d746328b0886c97",
+          "consciousness": "ae42e5f557993dd56fb8da222b303f88c7337bf838b57f1eadf8dc860ffcdb45",
+          "continuity": "dcb95257cf7bf0c301d2979d3df52cf5daf025e67a82ad5371ef0aab867eed67",
+          "genesis": "9bfc6cdb7c29f6d098303909088d9968dcded4430f34a57abb53678cfdd53872",
+          "reference": "eb4e9f024a743b0a23b6bd11851df39957db5d48adb5345b389203a470bc26b6",
+          "time": "63e5c424ab33e40fb82a6449736cdf9707af48519a1ed84446502177f71a9c55"
+        },
+        "reason": "all SCQOS universal transition proofs coherent",
+        "receipt_hash": "a4e6b9c74b7faa350c60d7ecf8cbef16d97fcb4cda0b615dce0fbce73a341be6"
+      },
+      "sigma": 0.42886832478046216,
+      "source_hash": "9ac154ab583ce759c0f7eef3c978c7c70a6ead2d18774caceadf1a350a640585",
+      "source_url": "https://raw.githubusercontent.com/CobayaSampler/bao_data/master/desi_bao_dr2/desi_gaussian_bao_ALL_GCcomb_mean.txt",
+      "units": "dimensionless"
+    },
+    {
+      "chain_hash": "dd4d79c16e6e2b82f08391879b738d712ccd5ae5df52981a5723fe1579ca8b28",
+      "covariance_hash": "252a143274c8a07c78694c119617d36594f6d7965d00319ca611c6ffb886e509",
+      "id": "DESI-DR2-BAO-3",
+      "index": 3,
+      "integrity_checks": {
+        "Alignment": true,
+        "Boundary": true,
+        "Causality": true,
+        "Consciousness": true,
+        "Continuity": true,
+        "Genesis": true,
+        "Reference": true,
+        "Time": true
+      },
+      "measurement": 17.35069094,
+      "parent_hash": "13882a0ee0f65b7c3d643b172a0dbec530feba3f2fbf47fb6ba25d30f1c12888",
+      "quantity": "DM_over_rs",
+      "redshift": 0.706,
+      "scqos": {
+        "decision": "PERMIT",
+        "final_proof": "df7e23bbe884aca000f274552a7b7458054bd0a31ff48a2649f27d8a50b0acd0",
+        "gate_proofs": {
+          "alignment": "b3a064698d241eb37e5b6eba5c3833fe77747865aa66b492ac46b400f9e479c6",
+          "boundary": "f83b2449a56fcc962507d35defb235aa1403f188c23b3d907982ed808a9d9a85",
+          "causality": "a8998fd23c6f796a42d39ef72a06a7b803fbd720820cd96fe31aeba3577b72c5",
+          "coherence": "df7e23bbe884aca000f274552a7b7458054bd0a31ff48a2649f27d8a50b0acd0",
+          "consciousness": "9689bbbfdc0f70232ad9e457f08971ec3b2d0caa1ce4a7fe43c4a63e24828f43",
+          "continuity": "0eab20bfffb67a201f613e89698ea675509e3f9d31778abd607445af344f49c5",
+          "genesis": "59a5616269877b3c8aa87fa7c84be353ec8fbdf3edcbae5a7578b20b8fd13ae7",
+          "reference": "c1e2a7c6f0bc9499de818edd27b47a516d00a1bc6bcfee6f0f804b9857bcadb5",
+          "time": "1105da7e7d4f128cd8aec3323795187677f7763698f9e87354cf4c71f735412a"
+        },
+        "reason": "all SCQOS universal transition proofs coherent",
+        "receipt_hash": "1bfdae98106da5a84a18788957b574f3ebe90628a9ee252167378db795bf8337"
+      },
+      "sigma": 0.17993122074837373,
+      "source_hash": "9ac154ab583ce759c0f7eef3c978c7c70a6ead2d18774caceadf1a350a640585",
+      "source_url": "https://raw.githubusercontent.com/CobayaSampler/bao_data/master/desi_bao_dr2/desi_gaussian_bao_ALL_GCcomb_mean.txt",
+      "units": "dimensionless"
+    },
+    {
+      "chain_hash": "e1f3cad311e93d46aa4e9dde4636deb717ac4f2c1d5cd896c80f45edc8f329c5",
+      "covariance_hash": "252a143274c8a07c78694c119617d36594f6d7965d00319ca611c6ffb886e509",
+      "id": "DESI-DR2-BAO-4",
+      "index": 4,
+      "integrity_checks": {
+        "Alignment": true,
+        "Boundary": true,
+        "Causality": true,
+        "Consciousness": true,
+        "Continuity": true,
+        "Genesis": true,
+        "Reference": true,
+        "Time": true
+      },
+      "measurement": 19.45534918,
+      "parent_hash": "dd4d79c16e6e2b82f08391879b738d712ccd5ae5df52981a5723fe1579ca8b28",
+      "quantity": "DH_over_rs",
+      "redshift": 0.706,
+      "scqos": {
+        "decision": "PERMIT",
+        "final_proof": "6cdcf20459026f9a793524f09e92fc5db14763f47af213a71b70748776113490",
+        "gate_proofs": {
+          "alignment": "49376db88aae10bc1870247abbe4f7f2fad657cd0ae1bd81accaebe5f036a7f2",
+          "boundary": "e08a4d597d0b7f68db3b5639dcb20ba8049f2e4ba339b3265cc8e0d6d9ce31de",
+          "causality": "f242b7ddd3344f9f43ffa229edd2cfb2332a0c4537094b65ab376b8adcae2f4c",
+          "coherence": "6cdcf20459026f9a793524f09e92fc5db14763f47af213a71b70748776113490",
+          "consciousness": "f612167f3bd2034b2f93f134818b2a94a9e1816a28b14edbda1e7379ab91b11f",
+          "continuity": "beb255fdb7b9acc3218e73455173a09422a2b7e678f9df0c64397873f68e2dee",
+          "genesis": "45c54645020d04eaa15ce8a004cd4112734d86853123dd37d8f629bae69c4dc3",
+          "reference": "4070304522073cd929e396421a825bffe8be35f0a780b55ce9ecbca0d507b772",
+          "time": "78c3607848a7c4e6e80c3985f864f25acffc16c26032e855634b51c2478b1d62"
+        },
+        "reason": "all SCQOS universal transition proofs coherent",
+        "receipt_hash": "4749072278a7196c0c1e6219753d8d8bf88f17c450feec5f233f0399edf9b766"
+      },
+      "sigma": 0.33387003159912393,
+      "source_hash": "9ac154ab583ce759c0f7eef3c978c7c70a6ead2d18774caceadf1a350a640585",
+      "source_url": "https://raw.githubusercontent.com/CobayaSampler/bao_data/master/desi_bao_dr2/desi_gaussian_bao_ALL_GCcomb_mean.txt",
+      "units": "dimensionless"
+    },
+    {
+      "chain_hash": "9cba4884ef841f9d1d7b07d104536e26457816240c584d2aee9e2e1562e69681",
+      "covariance_hash": "252a143274c8a07c78694c119617d36594f6d7965d00319ca611c6ffb886e509",
+      "id": "DESI-DR2-BAO-5",
+      "index": 5,
+      "integrity_checks": {
+        "Alignment": true,
+        "Boundary": true,
+        "Causality": true,
+        "Consciousness": true,
+        "Continuity": true,
+        "Genesis": true,
+        "Reference": true,
+        "Time": true
+      },
+      "measurement": 21.57563956,
+      "parent_hash": "e1f3cad311e93d46aa4e9dde4636deb717ac4f2c1d5cd896c80f45edc8f329c5",
+      "quantity": "DM_over_rs",
+      "redshift": 0.934,
+      "scqos": {
+        "decision": "PERMIT",
+        "final_proof": "9bb50b6c092109db78dee9145689ee05a6761bed49e4c9eac1c0f7fe2474d7c6",
+        "gate_proofs": {
+          "alignment": "ac8c6105a59b0bad2808f6db564d25e38c3f8fb5572e3b67857f78d4815a8888",
+          "boundary": "445fc172fc9b6a78ffd0e5be642664494495436081e4f23518ee4f497bc04c22",
+          "causality": "da6de929c2b517f06ded32416862f0d1e9862b278d185e18abd4bf771b9d6976",
+          "coherence": "9bb50b6c092109db78dee9145689ee05a6761bed49e4c9eac1c0f7fe2474d7c6",
+          "consciousness": "52518f57fed0cfa551939b333fc5586b2ba078f39006c1c1601326e98f1edc1e",
+          "continuity": "55b61cb33edfe0e0b72e2a0150cee9268a4b75e37235df7650fab21bd894b7e8",
+          "genesis": "73478be36bafea23d994f2be58421974895f3bc56e5541e11beace3bb293b28b",
+          "reference": "7ffb95c68423b03ae99e1f719ee8e494737b0e3a291a3c5818daeb2c9ccc65fa",
+          "time": "380250cf03bf32f0db456dfadbe1693f4ba090c0fb116eb5f3a2cfa8118fa9cf"
+        },
+        "reason": "all SCQOS universal transition proofs coherent",
+        "receipt_hash": "f26d9d2618ef8aee7f69fde2a34bae807dbe35d70305fe9b876b6f9292f427e3"
+      },
+      "sigma": 0.1617815860968114,
+      "source_hash": "9ac154ab583ce759c0f7eef3c978c7c70a6ead2d18774caceadf1a350a640585",
+      "source_url": "https://raw.githubusercontent.com/CobayaSampler/bao_data/master/desi_bao_dr2/desi_gaussian_bao_ALL_GCcomb_mean.txt",
+      "units": "dimensionless"
+    },
+    {
+      "chain_hash": "f3f166621d359812a87036fb6f05ce1dab5830fc42a111012d87b913b5b17bf9",
+      "covariance_hash": "252a143274c8a07c78694c119617d36594f6d7965d00319ca611c6ffb886e509",
+      "id": "DESI-DR2-BAO-6",
+      "index": 6,
+      "integrity_checks": {
+        "Alignment": true,
+        "Boundary": true,
+        "Causality": true,
+        "Consciousness": true,
+        "Continuity": true,
+        "Genesis": true,
+        "Reference": true,
+        "Time": true
+      },
+      "measurement": 17.64149464,
+      "parent_hash": "9cba4884ef841f9d1d7b07d104536e26457816240c584d2aee9e2e1562e69681",
+      "quantity": "DH_over_rs",
+      "redshift": 0.934,
+      "scqos": {
+        "decision": "PERMIT",
+        "final_proof": "a960797c542a3277d25b56d6f8479bf042a0846f00908dc2bd7218390198e26d",
+        "gate_proofs": {
+          "alignment": "67dd9c3b759f501a3d0a6f614b1dd0aad3a2577f95599cf59b05d9a2655d2758",
+          "boundary": "323b0024f20095f6b12281d87a320d3ff3dc96fb766cac88c7a800177088046a",
+          "causality": "fdff8b1cd4042818a5e7fa7a8f338b2a80b488e7277ce2ca26cb48b1efdf7324",
+          "coherence": "a960797c542a3277d25b56d6f8479bf042a0846f00908dc2bd7218390198e26d",
+          "consciousness": "a9c5f119c539b7105d44efa0658e4a0d0836b68826ffa0a369e4e43c1652e698",
+          "continuity": "611d3fb206a3f3c671fbcd6c504eff4bbeacb4d3a93d341e34854efb2f029f57",
+          "genesis": "e444602377c46521bac1d2a53e20ebca3d8ea6189131bf75dbc13c64b5ce2539",
+          "reference": "9366757def020b13b0b5cdc52b5e25282ad85e503b505f7ecd1ee9f113fa9c45",
+          "time": "050b7137b5e08cfa9d6b6f59408aab494233ce1c82be4ea7e7c5df03cf62c3b0"
+        },
+        "reason": "all SCQOS universal transition proofs coherent",
+        "receipt_hash": "08cbf055de7e4ad2ec01a15342a4e1d94b7aabfefdcf18f2daa199823ef278f0"
+      },
+      "sigma": 0.20104324858099562,
+      "source_hash": "9ac154ab583ce759c0f7eef3c978c7c70a6ead2d18774caceadf1a350a640585",
+      "source_url": "https://raw.githubusercontent.com/CobayaSampler/bao_data/master/desi_bao_dr2/desi_gaussian_bao_ALL_GCcomb_mean.txt",
+      "units": "dimensionless"
+    },
+    {
+      "chain_hash": "dde4618806eff196504203e1d4716dff2e5d025d3302f14b0aed026773a343eb",
+      "covariance_hash": "252a143274c8a07c78694c119617d36594f6d7965d00319ca611c6ffb886e509",
+      "id": "DESI-DR2-BAO-7",
+      "index": 7,
+      "integrity_checks": {
+        "Alignment": true,
+        "Boundary": true,
+        "Causality": true,
+        "Consciousness": true,
+        "Continuity": true,
+        "Genesis": true,
+        "Reference": true,
+        "Time": true
+      },
+      "measurement": 27.60085612,
+      "parent_hash": "f3f166621d359812a87036fb6f05ce1dab5830fc42a111012d87b913b5b17bf9",
+      "quantity": "DM_over_rs",
+      "redshift": 1.321,
+      "scqos": {
+        "decision": "PERMIT",
+        "final_proof": "849c2c0b98cf5ca9e10c35e6e4c04097eb61d1aa387aafecaeb06ab07c938836",
+        "gate_proofs": {
+          "alignment": "49472a4319d596ad03b9a86ceb8ed78ccb9d70dfbdcd58ee46f41544d6864e98",
+          "boundary": "5dcc799fd9be281852fde801cc44db2b18ec687460db991a89e2c07cf142c691",
+          "causality": "ac574a195ec4b0f007d351dd1a2e404c6c0c52ec841d54f4c113c4ff903c17ce",
+          "coherence": "849c2c0b98cf5ca9e10c35e6e4c04097eb61d1aa387aafecaeb06ab07c938836",
+          "consciousness": "50e5653bfcdc2ef8a69e74242c264b482067a9226722efdc61604d6a7751745a",
+          "continuity": "60f4fe4a4f33c44b0b82076c49fa5b09a26288f2d2f377bac5eb6580f4f3a107",
+          "genesis": "e956cb87b36d5b90bba847751f32875ef9bf0a49427b17c62f1091fdcc87aea4",
+          "reference": "d7bf6f90b4142134f4b2fa185538b7adda9984dca13dc1b7af192945026ed158",
+          "time": "74b261d59bf3df5159863f68039326ef90eab94ffb0bee7fe7f6a25e4adbedc1"
+        },
+        "reason": "all SCQOS universal transition proofs coherent",
+        "receipt_hash": "b827091e6c6bc55515ba4f683d50b4c1f2e8f41774f5a9bddb5da999985a0cf7"
+      },
+      "sigma": 0.32455587500459765,
+      "source_hash": "9ac154ab583ce759c0f7eef3c978c7c70a6ead2d18774caceadf1a350a640585",
+      "source_url": "https://raw.githubusercontent.com/CobayaSampler/bao_data/master/desi_bao_dr2/desi_gaussian_bao_ALL_GCcomb_mean.txt",
+      "units": "dimensionless"
+    },
+    {
+      "chain_hash": "f31688e2a8b7683c4d61d6b38f5547e3db6a95a79ca8b4bde358ff752e30fc0e",
+      "covariance_hash": "252a143274c8a07c78694c119617d36594f6d7965d00319ca611c6ffb886e509",
+      "id": "DESI-DR2-BAO-8",
+      "index": 8,
+      "integrity_checks": {
+        "Alignment": true,
+        "Boundary": true,
+        "Causality": true,
+        "Consciousness": true,
+        "Continuity": true,
+        "Genesis": true,
+        "Reference": true,
+        "Time": true
+      },
+      "measurement": 14.17602155,
+      "parent_hash": "dde4618806eff196504203e1d4716dff2e5d025d3302f14b0aed026773a343eb",
+      "quantity": "DH_over_rs",
+      "redshift": 1.321,
+      "scqos": {
+        "decision": "PERMIT",
+        "final_proof": "0dbfcf1cb5a474d111bbb5d55b5f9bbc8f220a1ee60ddf6ea78e4621082599a8",
+        "gate_proofs": {
+          "alignment": "b0691ac9696e8945eb2e8fbd34b60056ecd9d554252973cb7153db46a0da3874",
+          "boundary": "e47d28fb58b9ce9bf56b0c6e09beff24570fb95dbdf4952e6c235a2ae3d184b1",
+          "causality": "c3bed865ee91813620b51d4910069a0cbb8dd5aaff3452798c89c3b7f4cb2667",
+          "coherence": "0dbfcf1cb5a474d111bbb5d55b5f9bbc8f220a1ee60ddf6ea78e4621082599a8",
+          "consciousness": "82920f7c5da41e6495a80dc971669d48c7361f441b9edf813ce07e118d857cb1",
+          "continuity": "708a5b76592d5c31391487ed1bfd00fdf4742880ae7c7f959d237e7675b156df",
+          "genesis": "9c60401da2105c8e5508d163fc308a71bcb092f6ddffd2d1951af8881636ee25",
+          "reference": "3a24bb02f4292ade749738c5ace7edc67466e0cfb1b8642e31f48f09c4977fcc",
+          "time": "76247b6d710e44d4070b695e3d3abde30f286bd212b278db51c8443c62e8d348"
+        },
+        "reason": "all SCQOS universal transition proofs coherent",
+        "receipt_hash": "2ae035321c5471967197d19f40744df9962cad6e916eaf93292f657f5f4728c4"
+      },
+      "sigma": 0.22455135092000672,
+      "source_hash": "9ac154ab583ce759c0f7eef3c978c7c70a6ead2d18774caceadf1a350a640585",
+      "source_url": "https://raw.githubusercontent.com/CobayaSampler/bao_data/master/desi_bao_dr2/desi_gaussian_bao_ALL_GCcomb_mean.txt",
+      "units": "dimensionless"
+    },
+    {
+      "chain_hash": "85c811fa9e05ac0b3c12266070e17afaed1eddaa88a5208b8a3c2fa4d253a985",
+      "covariance_hash": "252a143274c8a07c78694c119617d36594f6d7965d00319ca611c6ffb886e509",
+      "id": "DESI-DR2-BAO-9",
+      "index": 9,
+      "integrity_checks": {
+        "Alignment": true,
+        "Boundary": true,
+        "Causality": true,
+        "Consciousness": true,
+        "Continuity": true,
+        "Genesis": true,
+        "Reference": true,
+        "Time": true
+      },
+      "measurement": 30.51190063,
+      "parent_hash": "f31688e2a8b7683c4d61d6b38f5547e3db6a95a79ca8b4bde358ff752e30fc0e",
+      "quantity": "DM_over_rs",
+      "redshift": 1.484,
+      "scqos": {
+        "decision": "PERMIT",
+        "final_proof": "3338fb4e59618e48bfcd2ebc8594cd76aefdc6513cabba757429280e35f41d4f",
+        "gate_proofs": {
+          "alignment": "582bfdaefb6d1e38b75200480259b31db25542385ff9dbf05044418286592c75",
+          "boundary": "92935409ac5f4e63e206515905c6897d9e353a6f12dffc1940d09f3dfacfe6e7",
+          "causality": "f24b3d6644ee8d364f4cd3410e3426d59b2f44bfa4e526f9b4a22121179ed825",
+          "coherence": "3338fb4e59618e48bfcd2ebc8594cd76aefdc6513cabba757429280e35f41d4f",
+          "consciousness": "c4616a4c574493bcdb5a5077a4f7186eb84e00d9eff7b133683fcd94e9624a25",
+          "continuity": "e263a38a57906e08417b0d028f832d9a92fde7a8d9d4c40baa9cfc067b7ef0bc",
+          "genesis": "b13358faf50d20529806b2816efa405443c1ab2952929e91d05fdeeec6d234f7",
+          "reference": "a782f2b8aa9d69fc2c7c7aa675059ea6b8b7b6273b0e2cc0967845fb5de0e7d0",
+          "time": "e0159dc05e3c1d3ddd05fd50d4b50fb3e7da27239fd4b0ea30eb5b2139c56740"
+        },
+        "reason": "all SCQOS universal transition proofs coherent",
+        "receipt_hash": "8d43439335cd7311945fcedbd5348ac8becd6973243e8914000cd96482be5239"
+      },
+      "sigma": 0.763557644844186,
+      "source_hash": "9ac154ab583ce759c0f7eef3c978c7c70a6ead2d18774caceadf1a350a640585",
+      "source_url": "https://raw.githubusercontent.com/CobayaSampler/bao_data/master/desi_bao_dr2/desi_gaussian_bao_ALL_GCcomb_mean.txt",
+      "units": "dimensionless"
+    },
+    {
+      "chain_hash": "97d34b62f4a2d63ec45b4123efefee2f3cd8d284476ee425007a5436b8d3c618",
+      "covariance_hash": "252a143274c8a07c78694c119617d36594f6d7965d00319ca611c6ffb886e509",
+      "id": "DESI-DR2-BAO-10",
+      "index": 10,
+      "integrity_checks": {
+        "Alignment": true,
+        "Boundary": true,
+        "Causality": true,
+        "Consciousness": true,
+        "Continuity": true,
+        "Genesis": true,
+        "Reference": true,
+        "Time": true
+      },
+      "measurement": 12.81699964,
+      "parent_hash": "85c811fa9e05ac0b3c12266070e17afaed1eddaa88a5208b8a3c2fa4d253a985",
+      "quantity": "DH_over_rs",
+      "redshift": 1.484,
+      "scqos": {
+        "decision": "PERMIT",
+        "final_proof": "3df05043c0405b90cf6f2cee677caec2217b026bfaa6708587a1e869cc89a8aa",
+        "gate_proofs": {
+          "alignment": "209f6ac2a49cd31ef56f3b2e2f14579ea122c9c9fca5b1b69cfdc9128a7ab016",
+          "boundary": "cc8238b32b48390d31b8373783bf97c4b8cbe0c63f2f665967975b58331ab9e7",
+          "causality": "33c00189cc94d679d4b4685c479ee2a5d89ea6c5aea80c3b7bdbc81eca85852f",
+          "coherence": "3df05043c0405b90cf6f2cee677caec2217b026bfaa6708587a1e869cc89a8aa",
+          "consciousness": "4c0b29ce2621c8d7eeff0418d08aeb6789b4174474bbac77f75a7e21619ddfb8",
+          "continuity": "6198e20d49848152f9058337721c2aa3971aeebeaa38a21ba7a06f28b5fb1489",
+          "genesis": "48592bc3b1e12cd4c61f692122d0b2190ae0de655c1501d24d3c502fe22ba2ec",
+          "reference": "74c42b3a5626ece5719e5cbf72e4bb4e26803a6fd84da44112bb9526b5bb917c",
+          "time": "552c72300d5096d21fc6254eab5be28d10e0459c6a16e358b57d117b0d2e6216"
+        },
+        "reason": "all SCQOS universal transition proofs coherent",
+        "receipt_hash": "8ee37a39db2943114df8f93c3f9992294333425af65dd0aa10fae84589a58001"
+      },
+      "sigma": 0.5180117691713191,
+      "source_hash": "9ac154ab583ce759c0f7eef3c978c7c70a6ead2d18774caceadf1a350a640585",
+      "source_url": "https://raw.githubusercontent.com/CobayaSampler/bao_data/master/desi_bao_dr2/desi_gaussian_bao_ALL_GCcomb_mean.txt",
+      "units": "dimensionless"
+    },
+    {
+      "chain_hash": "7e0241f2c34183616e47d61513959bf3d08fc3d90ce3d10a04a15bcc3a383dfc",
+      "covariance_hash": "252a143274c8a07c78694c119617d36594f6d7965d00319ca611c6ffb886e509",
+      "id": "DESI-DR2-BAO-11",
+      "index": 11,
+      "integrity_checks": {
+        "Alignment": true,
+        "Boundary": true,
+        "Causality": true,
+        "Consciousness": true,
+        "Continuity": true,
+        "Genesis": true,
+        "Reference": true,
+        "Time": true
+      },
+      "measurement": 8.631545674846294,
+      "parent_hash": "97d34b62f4a2d63ec45b4123efefee2f3cd8d284476ee425007a5436b8d3c618",
+      "quantity": "DH_over_rs",
+      "redshift": 2.33,
+      "scqos": {
+        "decision": "PERMIT",
+        "final_proof": "bf50b3ff82186e41abce35ba2eac460c15cee567808bf0cd245d0f53e0a19fb7",
+        "gate_proofs": {
+          "alignment": "14074f189696c103a429c8fa41004c8b88d42319c84416a82ac1e9fb6d6c24c3",
+          "boundary": "b06889f2ad41ec62d4e9035da723f57367c31444d72ba4e378403d1900a057bd",
+          "causality": "230067ab0c0fe340e59d521a79793ddbac21d38b3f5c328c4c2a2a2089decf1d",
+          "coherence": "bf50b3ff82186e41abce35ba2eac460c15cee567808bf0cd245d0f53e0a19fb7",
+          "consciousness": "2930e6ec32d22baee9a18321076b010fa98270cfad2308bc7265869182ddd4ae",
+          "continuity": "a360e29af71eeb599ee8a212df47319f5cd2b0b7a96d4dfb8990b1282049995b",
+          "genesis": "7be8527105faf85bac5a2ada2857a4f14f8ae9a34c7a5d3e50bcb679c6533fef",
+          "reference": "a56d0042c077c2022061b08fa3473a70154832bb1ce845480564319697b9cbf1",
+          "time": "d81468e57419b034b672b987430a709163dfe7eea56b98d3c07b24ff1c69cf39"
+        },
+        "reason": "all SCQOS universal transition proofs coherent",
+        "receipt_hash": "8dd4c4a89e740caa9b906dea04703f4896797a4c8bf74bed8628cc9159127b72"
+      },
+      "sigma": 0.10106245296844917,
+      "source_hash": "9ac154ab583ce759c0f7eef3c978c7c70a6ead2d18774caceadf1a350a640585",
+      "source_url": "https://raw.githubusercontent.com/CobayaSampler/bao_data/master/desi_bao_dr2/desi_gaussian_bao_ALL_GCcomb_mean.txt",
+      "units": "dimensionless"
+    },
+    {
+      "chain_hash": "6b29d4086fa31534aeb9f761d43a4837f933af87ba8408979b425e1604bd8c1c",
+      "covariance_hash": "252a143274c8a07c78694c119617d36594f6d7965d00319ca611c6ffb886e509",
+      "id": "DESI-DR2-BAO-12",
+      "index": 12,
+      "integrity_checks": {
+        "Alignment": true,
+        "Boundary": true,
+        "Causality": true,
+        "Consciousness": true,
+        "Continuity": true,
+        "Genesis": true,
+        "Reference": true,
+        "Time": true
+      },
+      "measurement": 38.988973961958784,
+      "parent_hash": "7e0241f2c34183616e47d61513959bf3d08fc3d90ce3d10a04a15bcc3a383dfc",
+      "quantity": "DM_over_rs",
+      "redshift": 2.33,
+      "scqos": {
+        "decision": "PERMIT",
+        "final_proof": "9cc8119b81a5e3220c5236306588293e1ac559e827ec473bd35254e606ca23b8",
+        "gate_proofs": {
+          "alignment": "fd377a00421f560da5a033a42d01e49e1b63dce298ca0c4b6fa4417e650f4332",
+          "boundary": "95192691f2839b7b52348127f8a28a1b6c7011d5a3478fcbf961492ce9032a7b",
+          "causality": "431de3477bf966a2707ee5864b8a0b498f6ac793eb598b3e32417766d65ce6d8",
+          "coherence": "9cc8119b81a5e3220c5236306588293e1ac559e827ec473bd35254e606ca23b8",
+          "consciousness": "c48c5e6f75726484ab59d706256d7670eff3e68833deea27e6717779205597f3",
+          "continuity": "6cb2da07a433190eddedaac72447093933e1f5fb43eb250b88641b4b1a603e21",
+          "genesis": "572051d3b50a0d1587ff8b3ef7cbfcd6a8b7c4ce46f99544c441738169c6dc51",
+          "reference": "4bc355560c0fece1ef93caa8d7691869e901b38cdeeed535d419e02ad064495d",
+          "time": "02ce5aac571af84e482b643bb66afb1e7c5e5cb9eeb08c3620089433832b05bc"
+        },
+        "reason": "all SCQOS universal transition proofs coherent",
+        "receipt_hash": "1ba71f1c4fbeb1003ac4e4443e84b19b8f97bfadc16fbbded897d375eb6e0a7f"
+      },
+      "sigma": 0.5316820280957407,
+      "source_hash": "9ac154ab583ce759c0f7eef3c978c7c70a6ead2d18774caceadf1a350a640585",
+      "source_url": "https://raw.githubusercontent.com/CobayaSampler/bao_data/master/desi_bao_dr2/desi_gaussian_bao_ALL_GCcomb_mean.txt",
+      "units": "dimensionless"
+    }
+  ],
+  "quantum": {
+    "aws_braket_local": {
+      "p00": 0.5244140625,
+      "p11": 0.4755859375,
+      "pass": true
+    },
+    "aws_braket_managed": "not submitted; no billable job",
+    "ibm_hardware": "not submitted; no billable job",
+    "ibm_qiskit": {
+      "p00": 0.4999999999999999,
+      "p11": 0.4999999999999999,
+      "pass": true
+    },
+    "kind": "local Bell-state software self-test; unrelated to DESI physics"
+  },
+  "schema": "SC-1080-EVIDENCE-v1",
+  "scientific_scope": "DESI DR2 observational data integration. Does not prove a universal physics law.",
+  "scqos_hold_count": 0,
+  "scqos_permit_count": 13,
+  "source_files": {
+    "covariance": {
+      "bytes": 2547,
+      "path": "data/desi_dr2_cov.txt",
+      "sha256": "252a143274c8a07c78694c119617d36594f6d7965d00319ca611c6ffb886e509",
+      "url": "https://raw.githubusercontent.com/CobayaSampler/bao_data/master/desi_bao_dr2/desi_gaussian_bao_ALL_GCcomb_cov.txt"
+    },
+    "mean": {
+      "bytes": 472,
+      "path": "data/desi_dr2_mean.txt",
+      "sha256": "9ac154ab583ce759c0f7eef3c978c7c70a6ead2d18774caceadf1a350a640585",
+      "url": "https://raw.githubusercontent.com/CobayaSampler/bao_data/master/desi_bao_dr2/desi_gaussian_bao_ALL_GCcomb_mean.txt"
+    }
+  },
+  "statistical_links": [
+    {
+      "correlation": -0.45156451597511,
+      "covariance": -0.0326062007,
+      "source": 1,
+      "target": 2,
+      "type": "statistical_covariance_not_causation"
+    },
+    {
+      "correlation": -0.39525761496067274,
+      "covariance": -0.0237445646,
+      "source": 3,
+      "target": 4,
+      "type": "statistical_covariance_not_causation"
+    },
+    {
+      "correlation": -0.3472334325670801,
+      "covariance": -0.0112938006,
+      "source": 5,
+      "target": 6,
+      "type": "statistical_covariance_not_causation"
+    },
+    {
+      "correlation": -0.39834051635094414,
+      "covariance": -0.0290308418,
+      "source": 7,
+      "target": 8,
+      "type": "statistical_covariance_not_causation"
+    },
+    {
+      "correlation": -0.49355207107146415,
+      "covariance": -0.195215562,
+      "source": 9,
+      "target": 10,
+      "type": "statistical_covariance_not_causation"
+    },
+    {
+      "correlation": -0.4306382085569688,
+      "covariance": -0.0231395216,
+      "source": 11,
+      "target": 12,
+      "type": "statistical_covariance_not_causation"
+    }
+  ],
+  "status": "PERMIT"
+}
