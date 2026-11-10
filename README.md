@@ -1,20 +1,58 @@
-# 🧠 Supreme Computation
+# 🧠🔥 Supreme Computation
 
-**Nothing Executes Until It Proves Itself.**
+### ⚡ Nothing Executes Until It Proves Itself
 
-> **CURRENT VERIFIED STATE — October 9, 2026:** The September 23 AWS suspension statements below are **historical**, not a claim of present suspension. On October 9, authenticated AWS API reads succeeded and named GEKYUME, SCQOS and Workbench Lambda functions returned `Active / Successful` configuration state; this is **not** evidence of a live bank settlement. The new GEKYUME × SCQOS × Forge client implementation remains in [open draft PR #26](https://github.com/KnowledgeeKZA3224/scqos-reference-implementation/pull/26), with 29/29 local synthetic tests and 3/3 GitHub CI workflows passing. Forge's remote receiver remains **HOLD_NETWORK** after external DNS failure / TCP:443 timeout; no production POST was made. The LLC's Arizona articles were approved on September 21. Sensitive business details remain private.
->
-> **New complete dated audit:** [Operating state](docs/CURRENT_VERIFIED_STATE_2026-10-09.md) · [Repository census and module map](docs/REPOSITORY_FULL_AUDIT_2026-10-09.md) · [Registration and connected ecosystem](docs/ORGANIZATION_AND_ECOSYSTEM_2026-10-09.md) · [Evidence register and chronology](docs/EVIDENCE_REGISTER_2026-10-09.md) · [599-file baseline content-hash manifest](docs/audits/REPOSITORY_FILE_MANIFEST_2026-10-09.tsv).
+**Created by Knowledgee KZA | Supreme Computation LLC**
 
+**This is the main SCQOS integration and implementation repository, not the small Core demonstration.** This page covers the complete framework, the integrated systems, what has been executed, what remains to be independently proved, and how another person can test the results.
 
+Supreme Computation is a way for people and machines to check the whole truth of an action before that action becomes reality.
 
-Supreme Computation is a governance system for people, AI, software and machines. Before an important action becomes real, SCQOS checks whether the whole situation still agrees across eight invariants: **Time, Continuity, Alignment, Genesis, Boundary, Reference, Causality, and Consciousness / Accountability.**
+Today, software checks information in separate pieces. It may confirm that someone has the correct password, permission, account, and command. But all those pieces can be correct while the complete action is still wrong. The information could be old. The wrong customer could be selected. The action could violate the real goal. The person or AI could have permission to do something that should not happen under the current circumstances.
 
-SCQOS returns **PERMIT** when the current transition proves itself, **HOLD** when something is missing, stale or contradictory, and **REJECT** when a hard rule or authority boundary is crossed.
+Supreme Computation checks whether the person, purpose, timing, history, evidence, authority, boundaries, action, and expected result all agree at the same time.
 
-## ProofGate AI — use it now
+SCQOS is the software architecture that makes Supreme Computation executable.
 
-The public pre-execution boundary is now packaged as a Python CLI/client and a reusable GitHub Action. You do not need to learn the entire SCQOS stack to challenge it.
+## ✅ What We Have Executed — The Actual Evidence
+
+**Supreme Computation is the whole-system framework. SCQOS is how its rules are implemented at the point where an action becomes a consequence.** The work below includes live executions, controlled tests, deployed components, and research. Those labels matter: a successful simulation is not the same as a settled bank payment.
+
+### 🧠⚙️ 1. Five connected actions in one AWS run — September 7, 2026
+
+The [live five-part proof](docs/SUPREME-COMPUTATION-LIVE-FIVE-PART-PROOF.md) records one governed execution that:
+
+- 🧰 Deliberately broke a safe canary, diagnosed and repaired it within its authority, and checked that it returned to healthy.
+- 🛑 Proposed an improvement, submitted it to a challenge, and **held** it when human authorization was required.
+- 💵 Ran a **synthetic** GEKYUME financial decision, permitting the allowed path while holding higher-consequence actions.
+- 👁️ Activated four faculties from the **59-faculty Supreme Mind architecture**, preserving the split result of **2 PERMIT / 2 HOLD** instead of manufacturing agreement.
+- 🧾 Produced and stored cryptographic evidence connecting the requests, decisions, and observed results.
+
+That is a dated, controlled execution record—not proof of a live bank settlement.
+
+### 🤖 2. Governed AI and Codex read-only boundary — September 10, 2026
+
+The [Codex boundary proof](proofs/CODEX_READONLY_BOUNDARY_2026-09-10.md) froze an example of an agent crossing a read-only boundary. In the documented test, a permitted read operation passed, while a proposed file-moving operation under read-only authority returned **HOLD**. The result includes test vectors, a SHA-256 evidence identity, and signed evidence.
+
+### 🐧 3. Linux enforcement before a process starts
+
+The [Linux coherence-gate experiment](https://github.com/KnowledgeeKZA3224/linux-coherence-gate) documents a **BPF-LSM enforcement** path on Ubuntu: a governed process with its one-time grant executed; the governed process without the grant failed with **`EACCES`** before execution. A separate pre-visibility **kernel source patch** has supporting source/compatibility work but is **not** represented as a freshly built and booted production kernel.
+
+### ☸️ 4. Kubernetes admission gate
+
+The [Kubernetes webhook implementation](https://github.com/KnowledgeeKZA3224/scqos-webhook) examines proposed cluster changes **before admission**. It can reject missing accountability, lineage, purpose, resource boundaries, or pinned references. Code, policy rules, deployment instructions, and example requests are published. This is not a claim that it is installed in every production cluster.
+
+### ☁️ 5. AWS deployment and Azure continuity
+
+The [October 9 authenticated AWS audit](docs/CURRENT_VERIFIED_STATE_2026-10-09.md) documented active Lambda configurations for SCQOS, GEKYUME, Supreme Mind, and related systems, along with S3 evidence, KMS, DynamoDB, APIs, and queues. **Active configuration means observed deployment, not confirmed end-to-end settlement.**
+
+The [September 23 Azure record](docs/CLOUD_CONTINUITY_2026-09-23.md) documents a restricted network, policy-enforced foundation, and successful permitted/denied validation receipts. That is an executed **dated policy experiment**, not automatic proof of present production operation.
+
+### 🔐 6. ProofGate AI — test a real boundary yourself
+
+ProofGate offers a public challenge interface, Python client, CLI, GitHub Action, signed receipts, and adversarial cases. **A developer can submit a transition and challenge the decision.** The public challenge is **shadow-only**: it records whether an action qualifies but does not perform the external action.
+
+[ProofGate instructions](docs/PROOFGATE_PLUG_AND_PLAY.md)
 
 ```bash
 pip install "git+https://github.com/KnowledgeeKZA3224/scqos-reference-implementation.git"
@@ -22,110 +60,277 @@ proofgate matrix
 proofgate challenge --case valid
 ```
 
-Drop it into another repository with:
+### ⚛️ 7. Classical, hybrid, and quantum-facing research
 
-```yaml
-- uses: KnowledgeeKZA3224/scqos-reference-implementation/.github/actions/proofgate@main
-  with:
-    case_id: valid
-```
+The [hybrid proof](https://github.com/KnowledgeeKZA3224/SCQOS_Hybrid_Proof), [Ollama substrate experiment](proofs/OLLAMA_SUBSTRATE_INDEPENDENCE_2026-09-10.md), and [October 22 research evidence](research/sc-1080-evidence-20261022) document work involving AWS, Braket, IBM Quantum, Qiskit, local models, and artifact locking. Those are specific experiment records, not blanket proof that every physical or quantum claim is resolved.
 
-The live public challenge is shadow-only: it evaluates the proposition, emits a signed durable receipt, and never performs the proposed external side effect itself. Developers can submit their own transition JSON and test whether the boundary returns the wrong decision. See [`docs/PROOFGATE_PLUG_AND_PLAY.md`](docs/PROOFGATE_PLUG_AND_PLAY.md).
+### 💵 8. GEKYUME × SCQOS × Forge integration
 
-## What is live now
+The [October 9 operating-state audit](docs/CURRENT_VERIFIED_STATE_2026-10-09.md) recorded the GEKYUME/SCQOS/Forge adapter in **draft PR #26**, with **29/29 local synthetic tests and 3 passing CI workflows** for the tested revision. The independent remote Forge receiver and real bank settlement were **not** verified in that record. The code and evidence remain visible without claiming that an unobserved external consequence happened.
 
-**Historical observation (September 23, 2026):** the cloud execution boundary changed and the AWS governance environment was inaccessible because of an account suspension **at that time**. October 9 authenticated API evidence confirms current AWS resource visibility; see the dated current-state report above for precise limits. Historical AWS proofs remain historical and are not automatically converted to new executed proofs.
+### 📍 What is verified now versus what still needs proof?
 
-On September 23, Azure was brought from authenticated CLI access to a coherence-first, policy-enforced Supreme Computation foundation in about **15 minutes**. The Azure baseline has a private network, deny-by-default egress controls, eight-invariant governance policies, continuity locking, a Reader-only observer identity, and executed PERMIT/REJECT validation receipts. See [`docs/CLOUD_CONTINUITY_2026-09-23.md`](docs/CLOUD_CONTINUITY_2026-09-23.md) and [`proofs/azure/2026-09-23/TOTALITY_RECEIPT.md`](proofs/azure/2026-09-23/TOTALITY_RECEIPT.md).
+This page contains **dated** observations and links. The [operating-state audit](docs/CURRENT_VERIFIED_STATE_2026-10-09.md) explicitly distinguishes **DIRECT**, **REPORTED**, and **HOLD / UNKNOWN** evidence. A deployed function, passing test, successful model prediction, signed receipt, or simulated amount should never be mislabeled as a new third-party settlement.
 
-The important idea is not “many disconnected tools.” The tools are useful because they are being placed behind one rule: **no consequential transition inherits permission just because one component said yes earlier. The current transition has to prove itself again.**
+**The point:** we do not ask people to believe the architecture from a slogan. We show them the source, the proposed action, the authority boundary, the actual decision, and the evidence. Then we invite them to challenge it.
 
-## Software ownership and attribution
+---
 
-### Owned by Knowledgee KZA
+## 🛡️ What SCQOS Does
 
-- **Supreme Computation / SCQOS** — Owner: **Knowledgee KZA** — the governing software layer.
-- **ProofGate AI** — Owner: **Knowledgee KZA** — the reusable public pre-execution checkpoint.
-- **Supreme Mind** — Owner: **Knowledgee KZA** — the 59-faculty digital-twin architecture.
-- **Shadow Clone** — Owner: **Knowledgee KZA** — bounded recursive workers governed by Supreme Mind / SCQOS.
-- **Gekyume** — Owner: **Knowledgee KZA** — financial execution and universal payment-governance software.
-- **Supreme Apex V1** — Owner: **Knowledgee KZA** — the continuous intent-to-proof control surface.
-- **Sharingan** — Owner: **Knowledgee KZA** — the Supreme Computation sports-betting software for single bets and 3+ leg parlay evaluation, recursive contradiction resolution, immutable pregame receipts and later reality verification.
+SCQOS sits between what a person, AI, application, or machine wants to do and what it is allowed to make real.
 
-### Collaborator-owned software integrated into the environment
+Before an important action happens, SCQOS checks the complete situation and returns one of three decisions:
 
-- **Anabelle / GrassRootsAI** — Owner: **Jerry Elizares** — integrated AI software operating behind dedicated Supreme Computation inference/release governance boundaries. Its presence in the cloud does not transfer ownership to Knowledgee KZA.
+PERMIT means the action proved itself and may continue.
 
-AWS, Qiskit, IBM Quantum, model providers, DraftKings, and other open-source/vendor technologies remain integrations and infrastructure rather than software attributed to Knowledgee KZA or Jerry Elizares merely because they are deployed in the environment.
+HOLD means something is missing, outdated, uncertain, or contradictory. The action waits until the problem is corrected.
 
-See [`docs/SOFTWARE_PORTFOLIO_2026-09-16.md`](docs/SOFTWARE_PORTFOLIO_2026-09-16.md) for the detailed ownership boundary and [`docs/SHARINGAN_SOFTWARE_2026-09-16.md`](docs/SHARINGAN_SOFTWARE_2026-09-16.md) for Sharingan's live identity.
+REJECT means the action violates a required rule or boundary and must not happen.
 
-## Supreme Mind and Shadow Clones
+Missing evidence, uncertainty, or a broken verification system never quietly becomes permission.
 
-The live Supreme Mind manifest defines **59 digital faculties** sharing one SCQOS governance plane. Only causally necessary faculties need to activate. Shadow Clones are bounded workers that can research, analyze, draft and test in parallel, but their output remains evidence or a proposal until governance qualifies the consequence.
+## 💡 A Simple Example
 
-The system has already observed Shadow Clone drift. During the September 10 Codex experiment, a clone returned unrelated evidence and SCQOS failed closed with **HOLD** rather than releasing the result.
+Imagine an AI is asked to refund a customer.
 
-## Digital-twin testing
+Normal software may only check whether the AI can access the payment system and whether the refund command works.
 
-A digital twin freezes one situation and changes one relevant condition so the decision can be challenged directly. In the live Codex proof:
+SCQOS can also check whether:
 
-- `READ_ONLY` + `git status` → **PERMIT**
-- `READ_ONLY` + `mv /tmp/x /tmp/y` → **HOLD**
+1. The correct customer and order were selected.
+2. The information is current.
+3. The refund matches the real reason given.
+4. The request came from a trusted source.
+5. The amount stays inside the AI’s allowed limit.
+6. The refund follows the current company policy.
+7. The expected result logically follows from the action.
+8. A person or system remains accountable for the decision.
 
-Same authority. Different proposed consequence. That makes the boundary falsifiable instead of rhetorical.
+If the complete decision makes sense, SCQOS permits it. If proof is missing, SCQOS holds it. If the request crosses a required boundary, SCQOS rejects it.
 
-## Live Codex proof
+If the refund is permitted, SCQOS records what actually happened and connects the result to the original request and decision.
 
-On September 10, 2026, the environment froze public OpenAI Codex issue **#44130**, where an explicitly read-only task reportedly produced `mv /tmp/x /tmp/y`. Supreme Computation produced frozen evidence, a SHA-256 identity, an AWS KMS ML-DSA signature, a verifier and reproducible test vectors.
+## ♾️ The Eight Invariants — One Connected Whole
 
-**Evidence SHA-256:** `ccfeb37d299494d20ffd18e8bd1d4e60486bbb67cb2211e3fa3856509bf76df0`
+Supreme Computation checks eight connected parts of reality:
 
-**Public proof:** http://SupremeComputation.org/proof/codex-readonly-boundary-2026-09-10/
+1. Time
 
-The result was also posted back into the upstream GitHub issue for independent challenge.
+Is the information current? Is this the correct moment and sequence for the action?
 
-## AWS execution history and current availability
+2. Continuity
 
-The previously verified AWS environment included SCQOS governors and validators, Shadow Clone execution, Supreme Mind state and receipts in DynamoDB, SQS work queues, versioned S3 evidence, AWS KMS signing, model inference/release validation, SupremeComputation.org business infrastructure, LinkedIn OAuth/publishing, email routing, Anabelle/GrassRootsAI integration, Gekyume, Sharingan, Supreme Apex V1, and quantum-facing Qiskit/IBM/AWS experimentation.
+Can this action be traced through the real history that produced it, without missing or silently replacing important steps?
 
-**September 23 historical status:** that AWS account was suspended and had not yet received a completed recovery at the time of this section. **October 9 observed status:** authenticated AWS API resource inspection succeeded and named functions reported active configurations. Their historical execution claims remain dated; new transaction outcomes require fresh proof. See [current-state audit](docs/CURRENT_VERIFIED_STATE_2026-10-09.md).
+3. Alignment
 
-## Azure continuity plane — September 23, 2026
+Does the action still match the true goal, instructions, and governing rules?
 
-The active continuity foundation is now documented on Azure in `westus3`: `rg-supreme-computation-core`, `vnet-sc-core`, three private subnets, `nsg-sc-private`, disabled default subnet outbound access, explicit Internet egress denial, a `CanNotDelete` continuity lock, Reader-only governance observer identity, and enforced Supreme Computation policy assignments. Validation receipts show an allowed governed transition exiting `0`, while missing-invariant, wrong-region, and public-IP transitions exit `1` under policy denial. No paid compute workload was created during this foundation pass.
+4. Genesis
 
-## The point
+Do we know where the request, information, and authority originally came from?
 
-Most software asks: **Can this component perform this operation?**
+5. Boundary
 
-Supreme Computation asks: **Should this exact consequence happen now, under this authority, using this evidence, inside this boundary, and can we prove afterward what happened?**
+Is the action staying inside its allowed limits, systems, resources, and responsibilities?
 
-## Planetary energy totality proof
+6. Reference
 
-Supreme Computation is now being applied to a larger physical question: **can a brain-scale active control layer coordinate a planetary electrical system while the actual energy comes from measured physical sources already available to the planet?**
+Are the people, accounts, files, facts, and systems being referenced actually the correct ones?
 
-The executed cloud proof uses public global-energy data, deterministic calculation, local AI digital twins, an Amazon Braket quantum branch, SCQOS invariant checks, AWS KMS signing, versioned S3 evidence, and a durable DynamoDB receipt. Incorrect AI output was rejected instead of promoted.
+7. Causality
 
-The current result is **PERMIT** for the planetary energy-abundance bound and the control architecture, and **HOLD** for a physically measured <=20 W global control plane and actual full-world grid operation.
+Does the proposed action logically produce the claimed result? Can the real consequence be traced back to the decision?
 
-Read the plain-English proof: [Planetary Energy Totality — Executed Cloud Proof](proofs/PLANETARY_ENERGY_TOTALITY_CLOUD_PROOF_2026-09-10.md)
+8. Consciousness and Accountability
 
-## Current documentation
+Who or what is observing, deciding, approving, and accepting responsibility for the action?
 
-- [The technology people call science fiction is already here](docs/THE_TECHNOLOGY_PEOPLE_CALL_SCIENCE_FICTION_IS_ALREADY_HERE.md) — a plain-English introduction to connected AI, cloud tools and SCQOS.
-- [`docs/CURRENT_STATE_2026-09-10.md`](docs/CURRENT_STATE_2026-09-10.md) — current state in plain English.
-- [`docs/WHAT_CHANGED_SINCE_2026-09-07.md`](docs/WHAT_CHANGED_SINCE_2026-09-07.md) — verified delta since the last public README update.
-- [`docs/LIVE_AWS_MAP_2026-09-10.md`](docs/LIVE_AWS_MAP_2026-09-10.md) — how the live AWS pieces fit together.
-- [`docs/CLOUD_CONTINUITY_2026-09-23.md`](docs/CLOUD_CONTINUITY_2026-09-23.md) — current AWS suspension boundary and the executed Azure coherence-first continuity foundation.
-- [`proofs/azure/2026-09-23/TOTALITY_RECEIPT.md`](proofs/azure/2026-09-23/TOTALITY_RECEIPT.md) — Azure totality receipt with raw validation evidence and hashes beside it.
-- [`docs/SOFTWARE_PORTFOLIO_2026-09-16.md`](docs/SOFTWARE_PORTFOLIO_2026-09-16.md) — software portfolio ownership and integration boundary.
-- [`docs/SHARINGAN_SOFTWARE_2026-09-16.md`](docs/SHARINGAN_SOFTWARE_2026-09-16.md) — Sharingan sports-betting software identity, ownership attribution and architecture.
-- [`proofs/CODEX_READONLY_BOUNDARY_2026-09-10.md`](proofs/CODEX_READONLY_BOUNDARY_2026-09-10.md) — the September 10 Codex governance proof.
+After checking these eight parts, SCQOS checks coherence:
 
-This repository is the public reference implementation and evidence surface. Dated live-state documents make the observation boundary explicit when production moves faster than documentation.
+Can every required answer remain true together without contradicting another part of the decision?
 
-- [`proofs/OLLAMA_SUBSTRATE_INDEPENDENCE_2026-09-10.md`](proofs/OLLAMA_SUBSTRATE_INDEPENDENCE_2026-09-10.md) — executed Ollama substrate-independence proof across Qwen and TinyLlama.
+Coherence is what closes the circuit. Passing separate checks is not enough if the complete action still does not make sense.
 
-- [`research/SC_TOTALITY_ENERGY_CONVERGENCE_MAP_2026-09-10.md`](research/SC_TOTALITY_ENERGY_CONVERGENCE_MAP_2026-09-10.md) — global convergence map for brain-scale, environmentally coupled computation.
-- [`proofs/SC_20W_ENVIRONMENTAL_INTELLIGENCE_PROOF_SPEC_V1.md`](proofs/SC_20W_ENVIRONMENTAL_INTELLIGENCE_PROOF_SPEC_V1.md) — universal eight-invariant 20 W proof specification.
+## ⚙️ The Complete Live Circuit
+
+The system proposes an action.
+
+SCQOS checks the action against the eight parts of Supreme Computation.
+
+SCQOS returns PERMIT, HOLD, or REJECT.
+
+If the action is permitted, the connected system performs it.
+
+SCQOS observes the actual result.
+
+A cryptographic receipt connects the original request, evidence, rules, decision, action, and result.
+
+That verified result becomes part of the truth used for the next decision.
+
+Nothing is treated as an isolated event. Intention becomes decision. Decision becomes action. Action creates a consequence. That consequence becomes part of the next reality.
+
+SCQOS keeps the entire chain connected.
+
+## 🧾 Real-Time Quantum Auditing
+
+Real-time quantum auditing is the first commercial capability built from SCQOS.
+
+Traditional auditing usually asks what happened after an action was already completed.
+
+SCQOS audits the action while it can still be allowed, paused, or stopped. It then follows the permitted action through its real result and preserves the complete event in a cryptographic receipt.
+
+A customer receives clear answers:
+
+* What did the system try to do?
+* Who or what requested it?
+* What information and rules were checked?
+* Why was it permitted, held, or rejected?
+* What actually happened?
+* Can another person verify the evidence?
+
+Real-time quantum auditing is one use of Supreme Computation. It is not the full definition of Supreme Computation.
+
+## 🔐 What the Cryptographic Proof Means
+
+A cryptographic hash works like a digital fingerprint for information.
+
+If the protected information changes, its fingerprint changes. This allows another person to check whether the code, evidence, decision, or receipt is still identical to the original.
+
+A hash does not automatically prove that the original information was truthful. It proves whether the locked information was changed.
+
+SCQOS connects that digital fingerprint to the source, rules, authority, decision, action, and observed result. The mathematics, code, tests, hashes, cloud records, and quantum execution records provide the technical proof underneath the plain-language explanation.
+
+## ⚛️ Why It Is Called Quantum
+
+A company does not need a quantum computer to use SCQOS.
+
+The architecture is called quantum because it checks whether all required conditions can exist together as one complete state, and because the same governing structure has been tested across classical computing, cloud systems, hybrid systems, and quantum-computing environments.
+
+The computer can change. The governing law stays the same.
+
+SCQOS does not replace Linux, Kubernetes, AWS, IBM Quantum, or another operating system. It adds a governing checkpoint before important actions performed through those systems.
+
+## 🧠 Supreme Computation Versus SCQOS
+
+Supreme Computation is the complete source architecture. It defines how timing, history, purpose, origin, boundaries, references, cause and effect, accountability, and coherence remain connected.
+
+SCQOS is the software architecture that applies Supreme Computation to real digital actions.
+
+Real-time quantum auditing is one service SCQOS can provide.
+
+Cryptographic receipts are the tamper-evident proof left behind by each governed decision.
+
+Supreme Computation is the whole architecture. It must not be reduced to auditing alone.
+
+## 🔥 What Has Already Been Built
+
+The public Supreme Computation environment includes:
+
+* The main SCQOS reference implementation.
+* The foundational Supreme Computation logic.
+* AI and API execution paths.
+* AWS and cloud execution evidence.
+* Classical and quantum execution evidence.
+* IBM Quantum and Qiskit work.
+* A Kubernetes admission gate.
+* Linux process-governance research.
+* Cryptographic hashes and receipts.
+* Public tests and audit artifacts.
+* A frozen governed-agent pilot experiment and dated tests (not an independently verified paying-bank pilot).
+
+These repositories are different parts of the same architecture. Each one applies the same governing law at a different point where information becomes action.
+
+## 🌐 Public Repository Network
+
+### ⚙️ SCQOS Reference Implementation
+
+https://github.com/KnowledgeeKZA3224/scqos-reference-implementation
+
+### 🧠 Supreme Computation Core
+
+https://github.com/KnowledgeeKZA3224/Supreme-Computation-Core
+
+### ⚛️ SCQOS Hybrid Proof
+
+https://github.com/KnowledgeeKZA3224/SCQOS_Hybrid_Proof
+
+### ☸️ SCQOS Kubernetes Admission Gate
+
+https://github.com/KnowledgeeKZA3224/scqos-webhook
+
+### 🐧 Linux Coherence Gate
+
+https://github.com/KnowledgeeKZA3224/linux-coherence-gate
+
+These projects are public so people can inspect the code, run it, challenge it, introduce failures, and verify whether the system behaves as claimed.
+
+The standard is not “believe the creator.”
+
+The standard is “test the execution and verify the receipt.”
+
+## 💼 What Can Be Licensed
+
+The software already released under the MIT License remains available under that license.
+
+A company can pay for the additional technology and work required to make SCQOS operate inside its real environment, including:
+
+* Connecting SCQOS to its AI, application, API, cloud, Kubernetes, Linux, classical, hybrid, or quantum system.
+* Creating company-specific rules, limits, authority, and evidence requirements.
+* Operating a managed SCQOS environment.
+* Installing SCQOS inside the company’s own environment.
+* Building private adapters and components.
+* Creating, storing, and verifying cryptographic receipts.
+* Testing failures and contradictions before launch.
+* Maintenance, updates, training, support, and service commitments.
+
+The public repository shows the engine.
+
+Commercial licensing turns that engine into a fitted, tested, supported system for a real organization.
+
+A company can begin with one important action instead of changing its entire operation. An SCQOS pilot can be scoped to govern that action, test PERMIT, HOLD, and REJECT behavior, and create receipts the company can independently inspect.
+
+See [LICENSING.md](LICENSING.md) for the commercial boundary, and independently confirm the license terms relevant to each integrated component.
+
+## 👁️ The Human Source
+
+Human discernment does not happen through one isolated calculation. A person can compare memory, timing, purpose, origin, boundaries, references, cause and effect, and responsibility at the same time.
+
+Supreme Computation turns that whole-system discernment into a process that a person and machine can share, test, document, and improve together.
+
+The purpose is not to remove the human or blindly trust the machine. The purpose is to keep human intent, machine action, evidence, accountability, and real-world consequences connected.
+
+This gives people greater technological sovereignty. They can use powerful machines without surrendering their authority or their ability to understand why something happened.
+
+## 🌍 The Larger Mission
+
+Supreme Computation was not created only for corporations or engineers.
+
+The larger vision is to give ordinary people—and especially children from communities where survival can consume their attention before they ever reach these tools—a way to learn, build, test, and prove what they create.
+
+A child who can question information, work with a machine, test the result against reality, and preserve proof of their work is not merely consuming technology.
+
+They are learning to govern it.
+
+The person and the machine can evolve together, but sovereignty depends on the person’s ability to discern the information in front of them.
+
+## 🎯 The Shortest Explanation
+
+SCQOS is a control layer for AI and software.
+
+Before a machine does something important, it checks whether the information, timing, purpose, authority, boundaries, and expected result all agree. It permits what proves itself, pauses or blocks what does not, and leaves a tamper-evident receipt showing why.
+
+Supreme Computation is the larger architecture that keeps the person, machine, decision, evidence, action, and consequence inside one continuous system.
+
+Nothing Executes Until It Proves Itself.
+
+## 🧾 Further Evidence and Documentation
+
+- [September 7 five-part execution proof](docs/SUPREME-COMPUTATION-LIVE-FIVE-PART-PROOF.md)
+- [October 9 operating-state audit](docs/CURRENT_VERIFIED_STATE_2026-10-09.md)
+- [Repository census and module map](docs/REPOSITORY_FULL_AUDIT_2026-10-09.md)
+- [October 22 research evidence](research/sc-1080-evidence-20261022)
+- [Public ProofGate challenge instructions](docs/PROOFGATE_PLUG_AND_PLAY.md)
+
+**Last independently described operating-state snapshot here: October 9, 2026.** Historical accomplishments remain documented, and new outcomes require new observations.
