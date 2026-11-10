@@ -4,7 +4,7 @@
 
 **Created by Knowledgee KZA | Supreme Computation LLC**
 
-**This is the main SCQOS integration and implementation repository, not the small Core demonstration.** This page covers the complete framework, the integrated systems, what has been executed, what remains to be independently proved, and how another person can test the results.
+**This is the Supreme Computation implementation and integration repository.** This page explains the complete framework, the integrated systems, what has been executed, what remains to be independently proved, and how another person can test the results.
 
 Supreme Computation is a way for people and machines to check the whole truth of an action before that action becomes reality.
 
@@ -247,10 +247,6 @@ These repositories are different parts of the same architecture. Each one applie
 ### ⚙️ SCQOS Reference Implementation
 
 https://github.com/KnowledgeeKZA3224/scqos-reference-implementation
-
-### 🧠 Supreme Computation Core
-
-https://github.com/KnowledgeeKZA3224/Supreme-Computation-Core
 
 ### ⚛️ SCQOS Hybrid Proof
 
